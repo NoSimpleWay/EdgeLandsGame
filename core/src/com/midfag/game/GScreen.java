@@ -48,6 +48,8 @@ import com.midfag.game.script.ScriptTimer;
 public class GScreen implements Screen {
     public static final int path_cell = 30;
 
+    long time=0;
+    
 	private static final int enemy_gen_count = 10;
 
     public static SpriteBatch batch;
@@ -971,11 +973,12 @@ public class GScreen implements Screen {
 	    plposy=(int)(pl.pos.y/path_cell);
 		
 		 	Gdx.gl.glEnable(GL20.GL_BLEND);
-	        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+	        Gdx.gl.glBlendFunc(GL20.GL_DST_COLOR, GL20.GL_ZERO);
 	        game.shapeRenderer.begin(ShapeType.Filled);
 		
 
-	        long time=TimeUtils.millis();
+	        //long time=TimeUtils.millis();
+	        time++;
 		
 			if (path[plposx][plposy]<500)
 			{
@@ -1035,8 +1038,11 @@ public class GScreen implements Screen {
  		 	 		}
  		 	 		else
  		 			{
- 		 				game.shapeRenderer.setColor(path[j][i]/100f,1-path[j][i]/100f,0.1f,0.5f);
- 		 				if (path[j][i]==0){game.shapeRenderer.setColor(1,1,1,0.5f);}
+ 		 	 			float col=1+(path[j][i]-5)/10f;
+ 		 	 			//col*=col;
+ 		 	 			col=1/col+0.15f;
+ 		 				game.shapeRenderer.setColor(col,col,col,1);
+ 		 				//if (path[j][i]==0){game.shapeRenderer.setColor(1,1,1,0.5f);}
  		 			}
  		 			
  					game.shapeRenderer.rect(j*path_cell, i*path_cell, path_cell,path_cell);
