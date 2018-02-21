@@ -20,7 +20,6 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
 import com.midfag.game.Phys;
 import com.midfag.game.script.ScriptSystem;
 import com.midfag.game.skills.Skill;
@@ -33,7 +32,11 @@ public class Entity {
 	public Vector2 pos=new Vector2();
 	public Vector2 offset=new Vector2();
 	
+	public float light_update_cooldown=0.2f;
 	
+	public float color_multiplier_R;
+	public float color_multiplier_G;
+	public float color_multiplier_B;
 	List<List<String>> list = new ArrayList<List<String>>();
 	//public List<Entity> list = new ArrayList<Entity>();
 
@@ -141,6 +144,8 @@ public class Entity {
 
 	public boolean updatable=true;
 	
+	public LightSource light_source=null;
+	
 	public void use_module(int _id)
 	{
 		if ((armored_module[_id]!=null)&&(armored_module[_id].can_use()))
@@ -153,6 +158,7 @@ public class Entity {
 	{
     	
 			sound_init();
+			if (light_source!=null) {light_source.update_light_position(pos.x,pos.y);}
 			
 			/*
 			int sx=Math.round(spr.getTexture().getWidth()/GScreen.path_cell/2f);
@@ -169,7 +175,7 @@ public class Entity {
 			int px=(int)(pos.x/GScreen.path_cell);
 			int py=(int)(pos.y/GScreen.path_cell);
 			
-			if (z<=30)
+			if ((z<=30)&&(path_x>0))
 			for (int i=px-path_x; i<=px+path_x; i++)
 			for (int j=py-path_y; j<=py+path_y; j++)
 			{
@@ -209,19 +215,19 @@ public class Entity {
 					;
 					
 					
-						Phys p=new Phys(new Vector2(pos.x,pos.y+30),new Vector2(pos.x-30,pos.y),false,this,true);
+						Phys p=new Phys(new Vector2(pos.x,pos.y+20),new Vector2(pos.x-20,pos.y),false,this,true);
 						{p.move_block=false;}
 						Phys_list_local.add(p);
 						
-						p=new Phys(new Vector2(pos.x-30,pos.y),new Vector2(pos.x,pos.y-30),false,this,true);
+						p=new Phys(new Vector2(pos.x-20,pos.y),new Vector2(pos.x,pos.y-20),false,this,true);
 						{p.move_block=false;}
 						Phys_list_local.add(p);
 						
-						p=new Phys(new Vector2(pos.x,pos.y-30),new Vector2(pos.x+30,pos.y),false,this,true);
+						p=new Phys(new Vector2(pos.x,pos.y-20),new Vector2(pos.x+20,pos.y),false,this,true);
 						{p.move_block=false;}
 						Phys_list_local.add(p);
 						
-						p=new Phys(new Vector2(pos.x+30,pos.y),new Vector2(pos.x,pos.y+30),false,this,true);
+						p=new Phys(new Vector2(pos.x+20,pos.y),new Vector2(pos.x,pos.y+20),false,this,true);
 						{p.move_block=false;}
 						Phys_list_local.add(p);
 					
@@ -256,7 +262,7 @@ public class Entity {
 	public Entity(Vector2 _v)
 	{
 		pos=_v;
-		
+
 		
 		
 		armored[0]=new WeaponRobofirle();
@@ -502,8 +508,23 @@ public class Entity {
 	public void do_move (float _x, float _y, float _d,boolean _need)
 	{
 		
+
+		
 		int cx=(int)(pos.x/300f);
 		int cy=(int)(pos.y/300f);
+		
+		int pcx=(int)(pos.x/30f);
+		int pcy=(int)(pos.y/30f);
+		
+		//light_update_cooldown-=_d;
+		
+		
+		
+		/*if (light_update_cooldown<=0)
+		{
+			
+			
+		}*/
 		
 		if (stun<=0)
 		{
@@ -533,6 +554,9 @@ public class Entity {
 				int ncx=(int)(pos.x/300f);
 				int ncy=(int)(pos.y/300f);
 				
+				int npcx=(int)(pos.x/30f);
+				int npcy=(int)(pos.y/30f);
+				
 				if ((cx!=ncx)||(cy!=ncy))
 				{
 					
@@ -547,6 +571,20 @@ public class Entity {
 					}
 					
 					
+				}
+				
+				if ((pcx!=npcx)||(pcy!=npcy))
+				{
+					if (light_source!=null)
+					{
+						light_source.update_light_position(pos.x, pos.y);
+						GScreen.need_light_update=true;
+					}
+					else
+					{
+						light_update_cooldown=0.2f;
+						update_color_state();
+					}
 				}
 				
 			for (int z=0; z<Phys_list_local.size(); z++)
@@ -1024,6 +1062,32 @@ public class Entity {
 		GScreen.batch.draw(Assets.rect_white, pos.x-15, pos.y-40, 30f*armored_shield.value/armored_shield.total_value,10);
 	}
 	
+	public void update_color_state()
+	{
+		color_multiplier_R=0;
+    	color_multiplier_G=0;
+    	color_multiplier_B=0;
+    	
+    	int summ=0;
+    	
+    	for (int a=0; a<=2; a++)
+    	for (int b=-2; b<=2; b++)
+    	{
+    		
+    		color_multiplier_R+=GScreen.light_mask_R[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+    		color_multiplier_G+=GScreen.light_mask_G[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+    		color_multiplier_B+=GScreen.light_mask_B[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+    		
+    		//color_multiplier_R+=GScreen.illumination_fbo.getColorBufferTexture().;
+    		
+    	}
+    	
+    	color_multiplier_R=Math.min(1, color_multiplier_R);
+    	color_multiplier_G=Math.min(1, color_multiplier_G);
+    	color_multiplier_B=Math.min(1, color_multiplier_B);
+    	
+    	
+	}
 
 	public void draw_action(float _d)
 	{
@@ -1051,12 +1115,21 @@ public class Entity {
 		spr.draw(GScreen.batch);*/
 		
 		
-		spr.setColor(temp_color);
+		if (light_source==null)
+		{spr.setColor(color_multiplier_R,color_multiplier_G,color_multiplier_B,1f);}
+		else
+		{spr.setColor(1,1,1,1f);}
+		
+		/*spr.getVertices()[12]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);
+		spr.getVertices()[7]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);
+		spr.getVertices()[7]=0;
+		spr.getVertices()[12]=0;
+		spr.getVertices()[17]=0;*/
 		
 		spr.setScale(_siz);
 		spr.draw(GScreen.batch);
 		
-
+		
 		
 
 		

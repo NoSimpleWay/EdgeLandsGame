@@ -1,10 +1,7 @@
 package com.midfag.game.script.actions;
 
 import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
-import com.midfag.game.GUI.GUIDialog;
 import com.midfag.game.GUI.cinematic.GUICinematic;
-import com.midfag.game.script.ScriptSystem;
 
 public class ScriptActionCinematicClose extends ScriptAction {
 	

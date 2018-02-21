@@ -11,7 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.missiles.Missile;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
 import com.midfag.game.Phys;
 
 public class Player {

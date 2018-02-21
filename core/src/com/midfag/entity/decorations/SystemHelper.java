@@ -1,6 +1,5 @@
 package com.midfag.entity.decorations;
 
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;

@@ -5,7 +5,6 @@ import com.midfag.entity.Entity;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Main;
 
 public class EntityTurret extends Entity {
 

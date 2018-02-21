@@ -1,18 +1,9 @@
 package com.midfag.game.script.actions;
 
-import java.lang.reflect.Field;
 import java.util.List;
 
-import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.midfag.entity.Entity;
-import com.midfag.game.Assets;
-import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
-import com.midfag.game.Localisation;
-import com.midfag.game.GUI.ButtonDialogNext;
-import com.midfag.game.GUI.DialogPool;
-import com.midfag.game.GUI.GUIDialog;
 import com.midfag.game.script.ScriptSystem;
 
 public class ScriptActionFindAndPushEntity extends ScriptAction {

@@ -8,7 +8,6 @@ import com.midfag.entity.Entity;
 import com.midfag.equip.energoshield.Energoshield;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Main;
 import com.midfag.game.Phys;
 
 public class EntityVizjun extends Entity {

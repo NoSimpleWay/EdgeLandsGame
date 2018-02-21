@@ -1,8 +1,6 @@
 package com.midfag.game.script.actions;
 
 import com.midfag.game.GScreen;
-import com.midfag.game.GUI.cinematic.CinematicFilm;
-import com.midfag.game.script.ScriptSystem;
 
 public class ScriptActionCameraZoom extends ScriptAction {
 

@@ -3,6 +3,7 @@ package com.midfag.entity.decorations;
 
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
+import com.midfag.entity.LightSource;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
@@ -36,7 +37,16 @@ public class DecorRabitz extends Entity {
 		
 		path=true;
 		
-
+		light_source=new LightSource();
+		
+		light_source.R=0.0f;
+		light_source.G=0.0f;
+		light_source.B=1.0f;
+		
+		//light_source.light_size=30;
+		light_source.light_power=10f;
+		
+		
 		
 		
 		//shield=999999;

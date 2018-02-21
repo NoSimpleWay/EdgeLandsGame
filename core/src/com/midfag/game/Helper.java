@@ -195,6 +195,12 @@ public class Helper {
 			if (!sub_s.equals("no"))
 				{
 					GScreen.tile_map[j][i]=Integer.parseInt(sub_s);
+					
+					int ty=(int)GScreen.tile_map[j][i]/8;
+					int tx=GScreen.tile_map[j][i]-ty*8;
+					
+					GScreen.tile_map_x[j][i]=tx*60+tx+1;
+					GScreen.tile_map_y[j][i]=ty*60+ty+1;
 				}
 		}
 		
@@ -221,6 +227,20 @@ public class Helper {
 				GScreen.tile_map_overlay[j][i]=-1;
 			}
 		}
+		
+		
+		for (int i=0; i<GScreen.cluster.length; i++)
+		for (int j=0; i<GScreen.cluster.length; i++)
+		{
+			for (int k=0; k<GScreen.cluster[j][i].Entity_list.size();k++)
+	    	{
+	    		Entity ee=GScreen.cluster[j][i].Entity_list.get(i);
+	    		
+	    		if (ee.light_source!=null) {ee.light_source.update_light_position(ee.pos.x,ee.pos.y);}
+	    	}
+		}
+		
+		
 	}
 	
 	public static Entity get_object_from_id(String _id)

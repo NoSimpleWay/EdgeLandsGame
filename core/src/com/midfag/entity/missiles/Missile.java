@@ -10,7 +10,6 @@ import com.midfag.entity.Shd;
 import com.midfag.entity.ShdSmoke;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Main;
 
 
 

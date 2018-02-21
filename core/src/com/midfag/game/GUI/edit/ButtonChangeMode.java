@@ -17,13 +17,9 @@ import com.midfag.entity.enemies.*;
 
 
 import com.midfag.game.Enums.EditMode;
-import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
-
 import com.midfag.game.GUI.buttons.Button;
-import com.midfag.game.GUI.buttons.ButtonVertical;
 
 
 public class ButtonChangeMode extends Button {

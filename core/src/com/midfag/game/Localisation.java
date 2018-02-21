@@ -5,7 +5,6 @@ import java.util.List;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
-import com.midfag.game.GUI.DialogPool;
 
 public class Localisation {
 	public static List<String> id=new ArrayList< String>();

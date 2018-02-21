@@ -5,19 +5,11 @@ package com.midfag.entity.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
-import com.midfag.entity.AnimationEffectExpl;
 import com.midfag.entity.Entity;
-import com.midfag.entity.Shd;
-import com.midfag.entity.ShdFire;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
-import com.midfag.game.Phys;
-
-import com.midfag.game.Main;
 
 
 public class EntityTransportDroneContainer extends Entity {

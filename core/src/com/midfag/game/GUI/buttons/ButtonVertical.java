@@ -3,7 +3,6 @@ package com.midfag.game.GUI.buttons;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.edit.GUIEdit;
 

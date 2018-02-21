@@ -22,7 +22,6 @@ import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
-import com.midfag.game.Main;
 import com.midfag.game.skills.Skill;
 import com.midfag.game.skills.SkillGodShield;
 import com.midfag.game.skills.shield_skills.SkillShield;
@@ -118,6 +117,13 @@ public class EntityPlayer extends Entity {
 		friction=0.005f;
 
 		have_ability=true;
+		
+		/*
+		light_source=new LightSource();
+		light_source.light_power=0.0f;
+		*/
+		//light_source.light_size=25;
+		
 		
 		//ammo_count=(int) armored_weapon.total_ammo_size;
 		
@@ -227,12 +233,14 @@ public class EntityPlayer extends Entity {
 	@Override
 	public void draw_action(float _d) {
 
+		spr.setColor(color_multiplier_R, color_multiplier_G, color_multiplier_B, 1);
+		
 		if (rotate_cooldown<=0)
 		{
 			rotate_cooldown=0.1f;
 			
-				float cold_rating=1-buff_cold/(buff_cold+100);
-				spr.setColor(cold_rating, 1, 1, 1);
+				//float cold_rating=1-buff_cold/(buff_cold+100);
+				//spr.setColor(cold_rating, 1, 1, 1);
 				
 				//if ((impulse.x>0)&&(bottom_draw>=0)&&(bottom_draw<=3)){bottom_draw++;}
 				float c=(float) Math.toDegrees(Math.atan2(impulse.x, impulse.y));

@@ -1,7 +1,5 @@
 package com.midfag.game.GUI.edit;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +19,6 @@ import com.midfag.game.Main;
 import com.midfag.game.TextInput;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.buttons.Button;
-import com.midfag.game.script.ScriptSystem;
 
 public class GUIEdit extends GUI {
 	
@@ -495,8 +492,17 @@ public class GUIEdit extends GUI {
 		
 		if ((InputHandler.key==Keys.C)&&(selected_object!=null))
 		{
+			GScreen.need_light_update=true;
 			selected_object.hard_move(xx-selected_object.pos.x, yy-selected_object.pos.y, 1);
 			
+			if (selected_object.light_source!=null) {selected_object.light_source.update_light_position(selected_object.pos.x,selected_object.pos.y);}
+			
+			/*for (int k=0; k<150; k++)
+			for (int i=0; i<300; i++)
+			for (int j=0; j<300; j++)
+			{
+				GScreen.light_mask_B[j][i]=0;
+			}*/
 		}
 		
 		if (indicate_entity!=null)

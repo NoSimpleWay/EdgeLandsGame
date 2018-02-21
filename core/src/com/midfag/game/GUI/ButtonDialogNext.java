@@ -1,6 +1,5 @@
 package com.midfag.game.GUI;
 
-import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;

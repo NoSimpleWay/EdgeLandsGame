@@ -18,7 +18,6 @@ import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Enums.EquipGenerationType;
-import com.midfag.game.Main;
 
 public class ButtonRandomGenerator extends Button {
 

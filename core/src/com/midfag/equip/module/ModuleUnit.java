@@ -14,7 +14,6 @@ import com.midfag.equip.module.attr.ModuleAttributeFastCooldown;
 
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Main;
 import com.midfag.game.Enums.Rarity;
 
 public class ModuleUnit {

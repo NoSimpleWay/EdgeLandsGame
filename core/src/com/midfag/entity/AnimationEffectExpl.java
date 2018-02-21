@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Main;
 
 
 public class AnimationEffectExpl extends AnimationEffect {

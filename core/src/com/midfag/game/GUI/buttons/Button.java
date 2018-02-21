@@ -6,8 +6,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
 
 public class Button {
 	public Vector2 pos=new Vector2();
@@ -60,6 +60,7 @@ public class Button {
 			
 			if (is_overlap())
 			{
+				Helper.log("WTF???");
 				if (!overlaped)
 				{
 					entry();

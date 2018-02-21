@@ -11,7 +11,7 @@ import com.midfag.game.Phys;
 public class DecorBuilding extends Entity {
 	
 	
-	private float alpha=1;
+	//private float alpha=1;
 
 	public DecorBuilding(Vector2 _v) {
 		

@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
 import com.midfag.game.GUI.buttons.Button;
 
 public class ButtonRandomizeTile extends Button {

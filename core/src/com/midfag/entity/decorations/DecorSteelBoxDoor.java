@@ -5,9 +5,6 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
-import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
-import com.midfag.game.Phys;
 
 public class DecorSteelBoxDoor extends DecorBuilding {
 

@@ -13,9 +13,6 @@ import com.midfag.equip.weapon.*;
 
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
-
-import com.midfag.game.Main;
 
 
 public class EntityPyra extends Entity {

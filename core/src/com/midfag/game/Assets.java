@@ -76,6 +76,8 @@ public class Assets {
 	public static Texture stone_pilon_01=new Texture(Gdx.files.internal("stone_pilon_01.png"));
 	public static Texture stone_barak=new Texture(Gdx.files.internal("decor_stone_barak.png"));
 	
+	public static Texture star=new Texture(Gdx.files.internal("star.png"));
+	
 	public static Texture planet0=load("planet_00");
 	public static Texture planet1=load("planet_01");
 	public static Texture planet2=load("planet_02");
@@ -238,6 +240,8 @@ public class Assets {
 		stone_wall_01.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		stone_wall_02.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		stone_pilon_01.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		star.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		/*
 		planet0.setFilter(TextureFilter.Linear, TextureFilter.Linear);

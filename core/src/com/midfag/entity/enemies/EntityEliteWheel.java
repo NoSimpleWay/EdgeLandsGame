@@ -13,8 +13,6 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
 
-import com.midfag.game.Main;
-
 
 public class EntityEliteWheel extends Entity {
 	

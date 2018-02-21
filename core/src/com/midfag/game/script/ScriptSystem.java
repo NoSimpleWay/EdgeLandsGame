@@ -1,6 +1,5 @@
 package com.midfag.game.script;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,15 +8,8 @@ import java.util.List;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.midfag.entity.Entity;
-import com.midfag.equip.energoshield.EnergoshieldSimple;
-import com.midfag.equip.weapon.WeaponSimpleFirle;
-import com.midfag.equip.weapon.WeaponSimpleMinigun;
-import com.midfag.equip.weapon.WeaponSimpleShotgun;
-import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
-import com.midfag.game.Localisation;
-import com.midfag.game.GUI.ButtonDialogNext;
 import com.midfag.game.GUI.DialogPool;
 import com.midfag.game.GUI.GUIDialog;
 import com.midfag.game.GUI.cinematic.GUICinematic;

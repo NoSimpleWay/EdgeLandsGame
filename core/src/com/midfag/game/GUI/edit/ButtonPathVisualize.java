@@ -1,25 +1,10 @@
 package com.midfag.game.GUI.edit;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.midfag.equip.energoshield.Energoshield;
-import com.midfag.equip.energoshield.EnergoshieldSimple;
-import com.midfag.equip.module.ModuleUnitPush;
-import com.midfag.equip.module.ModuleUnitTimeSlow;
-import com.midfag.equip.module.ModuleUnitTurret;
-import com.midfag.equip.weapon.WeaponLegendaryBlender;
-import com.midfag.equip.weapon.WeaponLegendaryChaos;
-import com.midfag.equip.weapon.WeaponLegendaryPing;
-import com.midfag.equip.weapon.WeaponSimpleFirle;
-import com.midfag.equip.weapon.WeaponSimpleLaser;
-import com.midfag.equip.weapon.WeaponSimpleMinigun;
-import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Enums.EquipGenerationType;
 import com.midfag.game.GUI.buttons.Button;
-import com.midfag.game.Main;
 
 public class ButtonPathVisualize extends Button {
 

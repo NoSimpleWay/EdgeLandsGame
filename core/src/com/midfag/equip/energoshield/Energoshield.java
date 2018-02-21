@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.midfag.entity.Entity;
 import com.midfag.equip.energoshield.attr.ESAttribute;
-import com.midfag.equip.energoshield.attr.ESAttributeCharge;
 import com.midfag.equip.energoshield.attr.ESAttributeReflect;
 import com.midfag.equip.energoshield.attr.ESAttributeRegen;
 import com.midfag.equip.energoshield.attr.ESAttributeValue;

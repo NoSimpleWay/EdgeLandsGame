@@ -8,9 +8,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.GScreen;
-import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
-import com.midfag.game.Main;
 import com.midfag.game.GUI.buttons.Button;
 
 public class ButtonPutter extends Button {

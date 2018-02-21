@@ -2,7 +2,6 @@ package com.midfag.entity;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-import com.midfag.equip.module.ModuleUnitTimeSlow;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
