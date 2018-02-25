@@ -14,6 +14,7 @@ import com.midfag.equip.module.attr.ModuleAttributeFastCooldown;
 
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.Enums.Rarity;
 
 public class ModuleUnit {
@@ -44,6 +45,12 @@ public class ModuleUnit {
 	
 	public ModuleUnit()
 	{
+		get_available_attribute();
+	}
+	
+	public void  get_available_attribute()
+	{
+		Available_attribute_list.clear();
 		Available_attribute_list.add(new ModuleAttributeDuration());
 		Available_attribute_list.add(new ModuleAttributeFastCooldown());
 	}
@@ -86,6 +93,10 @@ public class ModuleUnit {
 		if (gennable)
 		{
 
+			get_available_attribute();
+			Attribute_list.clear();
+			
+			/*
 			int r=0;
 			if (rarity.ordinal()==0)
 			{
@@ -101,10 +112,10 @@ public class ModuleUnit {
 				if (r==2) {rarity=Rarity.RARE;}
 				if (r==3) {rarity=Rarity.ELITE;}
 				if (r==4) {rarity=Rarity.LEGENDARY;}
-				if (r==5) {rarity=Rarity.RELICT;}
+				if (r==5) {rarity=Rarity.ANOMALY;}
 			}
+			*/
 			
-				
 			attr_point=level*10*(1+rarity.ordinal()/5f);
 		
 			attr_count=(int) (GScreen.rnd(3))+1;
@@ -206,6 +217,8 @@ public class ModuleUnit {
 		total_duration=base_duration;
 		total_cooldown=base_cooldown;
 		
+		Helper.log("MODULE IS CRAZY");
+		
 		additional_update_stats();
 		
 		for (int i=0; i<Attribute_list.size(); i++)
@@ -218,7 +231,7 @@ public class ModuleUnit {
 		if (rarity==Rarity.RARE){color=Color.ROYAL;}
 		if (rarity==Rarity.ELITE){color=Color.MAGENTA;}
 		if (rarity==Rarity.LEGENDARY){color=Color.ORANGE;}
-		if (rarity==Rarity.RELICT){color=Color.CYAN;}
+		if (rarity==Rarity.ANOMALY){color=Color.CYAN;}
 
 	}
 	

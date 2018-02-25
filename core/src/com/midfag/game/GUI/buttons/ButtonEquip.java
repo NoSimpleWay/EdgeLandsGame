@@ -6,6 +6,7 @@ import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;
 
@@ -130,6 +131,7 @@ public class ButtonEquip extends Button {
 				mov+=25;
 				for (int i=0; i<m.Attribute_list.size(); i++)
 				{
+					//Helper.log("ATTR LIST SIZE="+m.Attribute_list.size());
 					Main.font.setColor(Color.WHITE);
 					draw_info(m.Attribute_list.get(i).get_descr(),"");
 				}
@@ -262,7 +264,7 @@ public class ButtonEquip extends Button {
 		{
 			if (obj instanceof Energoshield)
 			{
-				((Energoshield)obj).spr.setPosition(pos.x-spr.getWidth()/2,pos.y-spr.getHeight()/2);
+				((Energoshield)obj).spr.setPosition(pos.x-spr.getWidth()/2+15,pos.y-spr.getHeight()/2);
 				((Energoshield)obj).spr.draw(GScreen.batch_static);
 				
 				

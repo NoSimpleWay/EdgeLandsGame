@@ -55,8 +55,8 @@ public class EntityPyra extends Entity {
 		offset.y=50;
 		can_rotate=false;
 		
-		friction=0.1f;
-		speed/=0.25f;
+		friction=0.001f;
+		speed/=0.1f;
 	}
 	
 	@Override
@@ -76,8 +76,8 @@ public class EntityPyra extends Entity {
 			
 			if ((is_see)&&(target!=null))
 			{
-				float a=target.pos.x-pos.x;
-		    	float b=target.pos.y-pos.y-offset.y;
+				float a=target.pos.x-(pos.x-target.impulse.x);
+		    	float b=target.pos.y-(pos.y-target.impulse.y)-offset.y;
 		    	//float c=(float) Math.sqrt((a*a)+(b*b));
 		    	float c=(float) Math.toDegrees(Math.atan2(a, b));
 		    	rot=180-c+180;

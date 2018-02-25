@@ -60,7 +60,7 @@ public class Button {
 			
 			if (is_overlap())
 			{
-				Helper.log("WTF???");
+				//Helper.log("WTF???");
 				if (!overlaped)
 				{
 					entry();

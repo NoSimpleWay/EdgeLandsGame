@@ -26,6 +26,7 @@ public class LightSource {
 	
 	public int pos_x;
 	public int pos_y;
+	public boolean is_static=true;
 	
 	public LightSource()
 	{
@@ -34,6 +35,7 @@ public class LightSource {
 	
 	public void update_light()
 	{
+		/*
 		for (int i=0; i<bound; i++)
 		for (int j=0; j<bound; j++)
 		{
@@ -45,12 +47,14 @@ public class LightSource {
 		for (int i=-0; i<=0; i++)
 		for (int j=-0; j<=0; j++)
 		{light_array[(int)(bound/2f)+j][(int)(bound/2f)+i]=(float) (light_power);}
+		*/
 		
 		//{light_array[5][5]=(float) (1f+Math.random());}
 		//light_array[(int)(bound/2f)][(int)(bound/2f)]=1f;
 		
 
 		
+		/*
 		for (int k=0; k<30; k++)
 		for (int i=0; i<bound; i++)
 		for (int j=0; j<bound; j++)
@@ -58,25 +62,27 @@ public class LightSource {
 			if (light_array[j][i]>=0)
 			{
 
-				/*
-				if ((i>0)&&(j>0)&&(light_array[j-1][i-1]==-1)) {light_array[j-1][i-1]=light_array[j][i]*0.65f;}
-				if ((i>0)&&(j<bound-1)&&(light_array[j+1][i-1]==-1)) {light_array[j+1][i-1]=light_array[j][i]*0.65f;}
 				
-				if ((i<bound-1)&&(j<bound-1)&&(light_array[j+1][i+1]==-1)) {light_array[j+1][i+1]=light_array[j][i]*0.65f;}
-				if ((i<bound-1)&&(j>0)&&(light_array[j-1][i+1]==-1)) {light_array[j-1][i+1]=light_array[j][i]*0.65f;}
-				*/
+				//if ((i>0)&&(j>0)&&(light_array[j-1][i-1]==-1)) {light_array[j-1][i-1]=light_array[j][i]*0.65f;}
+				//if ((i>0)&&(j<bound-1)&&(light_array[j+1][i-1]==-1)) {light_array[j+1][i-1]=light_array[j][i]*0.65f;}
 				
-				if ((i>0)&&(light_array[j][i-1]==-1)) {light_array[j][i-1]=light_array[j][i]*0.55f;}
+				//if ((i<bound-1)&&(j<bound-1)&&(light_array[j+1][i+1]==-1)) {light_array[j+1][i+1]=light_array[j][i]*0.65f;}
+				//if ((i<bound-1)&&(j>0)&&(light_array[j-1][i+1]==-1)) {light_array[j-1][i+1]=light_array[j][i]*0.65f;}
+				
+				
+				if ((i>0)&&(light_array[j][i-1]==-1)) {light_array[j][i-1]=light_array[j][i]*0.60f;}
 				if ((j>0)&&(light_array[j-1][i]==-1)) {light_array[j-1][i]=light_array[j][i]*0.75f;}
 				
-				if ((i<bound-1)&&(light_array[j][i+1]==-1)) {light_array[j][i+1]=light_array[j][i]*0.55f;}
+				if ((i<bound-1)&&(light_array[j][i+1]==-1)) {light_array[j][i+1]=light_array[j][i]*0.60f;}
 				if ((j<bound-1)&&(light_array[j+1][i]==-1)) {light_array[j+1][i]=light_array[j][i]*0.75f;}
 				
 				
 
 			}
 		}
+		 */
 		
+		/*
 		for (int i=0; i<bound; i++)
 		for (int j=0; j<bound; j++)
 		{
@@ -86,6 +92,7 @@ public class LightSource {
 		
 
 		update_global_light_mask();
+		*/
 	}
 	
 	public void update_global_light_mask()
@@ -103,6 +110,8 @@ public class LightSource {
 	{
 		//Helper.log("Draw_light");
 		//for (int k=0; k<160; k++)
+		
+		
 		for (int i=1; i<bound-1; i++)
 		for (int j=1; j<bound-1; j++)
 		{
@@ -213,8 +222,9 @@ public class LightSource {
 		pos_x=((int)(_x/30f));
 		pos_y=((int)(_y/30f));
 		
-		Helper.log("LIGHT pos_x="+pos_x+" pos_y="+pos_y);
+		//Helper.log("LIGHT pos_x="+pos_x+" pos_y="+pos_y);
 		
-		update_light();
+		//update_light();
+		
 	}
 }

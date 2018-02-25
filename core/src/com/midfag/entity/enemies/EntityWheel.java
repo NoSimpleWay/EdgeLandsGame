@@ -67,8 +67,8 @@ public class EntityWheel extends Entity {
 		{
 			rotate_cooldown=0.1f;
 			
-			float a=GScreen.pl.pos.x-pos.x;
-	    	float b=GScreen.pl.pos.y-pos.y;
+			float a=GScreen.pl.pos.x-(pos.x-GScreen.pl.impulse.x*2f);
+	    	float b=GScreen.pl.pos.y-(pos.y-GScreen.pl.impulse.y*2f);
 	    	//float c=(float) Math.sqrt((a*a)+(b*b));
 	    	float c=(float) Math.toDegrees(Math.atan2(a, b));
 	    	//spr.setRotation(180-c);

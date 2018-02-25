@@ -16,9 +16,11 @@ import com.midfag.entity.enemies.EntityWheel;
 import com.midfag.entity.friends.EntityTurret;
 import com.midfag.game.Enums.EditMode;
 import com.midfag.game.Enums.EquipGenerationType;
+import com.midfag.game.Enums.Rarity;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.GUIInventory;
 import com.midfag.game.GUI.GUISkillsWheel;
+import com.midfag.game.GUI.buttons.ButtonChangeQuality;
 import com.midfag.game.GUI.buttons.ButtonEquip;
 import com.midfag.game.GUI.buttons.ButtonRandomGenerator;
 import com.midfag.game.GUI.buttons.ButtonVertical;
@@ -228,9 +230,16 @@ public class InputHandler implements InputProcessor {
     			for (int i=0; i<5; i++)
     			{gui.Button_list.add(new ButtonEquip(450+i*100,250,-10-i));}
     			
-    			gui.Button_list.add(new ButtonRandomGenerator(45,45,EquipGenerationType.WEAPON));
-    			gui.Button_list.add(new ButtonRandomGenerator(145,45,EquipGenerationType.SHIELD));
-    			gui.Button_list.add(new ButtonRandomGenerator(245,45,EquipGenerationType.MODULE));
+    			gui.Button_list.add(new ButtonRandomGenerator(150,45,EquipGenerationType.WEAPON));
+    			gui.Button_list.add(new ButtonRandomGenerator(250,45,EquipGenerationType.SHIELD));
+    			gui.Button_list.add(new ButtonRandomGenerator(350,45,EquipGenerationType.MODULE));
+    			
+    			gui.Button_list.add(new ButtonChangeQuality(150,310,Rarity.COMMON));
+    			gui.Button_list.add(new ButtonChangeQuality(250,310,Rarity.UNCOMMON));
+    			gui.Button_list.add(new ButtonChangeQuality(350,310,Rarity.RARE));
+    			gui.Button_list.add(new ButtonChangeQuality(450,310,Rarity.ELITE));
+    			gui.Button_list.add(new ButtonChangeQuality(550,310,Rarity.LEGENDARY));
+    			gui.Button_list.add(new ButtonChangeQuality(650,310,Rarity.ANOMALY));
     			//Assets.shoot00.
     			for (int j=0; j<3; j++)
     			for (int i=0; i<10; i++)

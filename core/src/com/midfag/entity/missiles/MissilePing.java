@@ -21,7 +21,7 @@ public class MissilePing extends Missile {
 
 		
 		super (_v, _a, _s, _b);
-		speed=1;
+		speed=10;
 		lifetime=5;
 	}
 	
@@ -39,8 +39,8 @@ public class MissilePing extends Missile {
 		
 			if (wait_time<=0)
 			{
-				speed=2350+(int)(Math.random()*250);
-				wait_time=0.10f;
+				speed=4350+(int)(Math.random()*250);
+				wait_time=0.02f;
 			}
 			
 			

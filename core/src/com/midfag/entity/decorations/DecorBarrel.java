@@ -35,10 +35,10 @@ public class DecorBarrel extends Entity {
 		diagonal=true;
 		
 		light_source=new LightSource();
-		light_source.light_power=2f;
-		light_source.R=0;
+		light_source.light_power=1f;
+		light_source.R=0.0f;
 		light_source.G=1.0f;
-		light_source.B=0;
+		light_source.B=0.0f;
 		
 		
 		//light_source.update_light_position((pos.x), (pos.y));
@@ -55,6 +55,7 @@ public class DecorBarrel extends Entity {
 	public void update(float _d)
 	{
 		
+		/*
 		color_cooldown+=_d;
 		
 		//if (color_cooldown<=0)	
@@ -66,7 +67,7 @@ public class DecorBarrel extends Entity {
 			light_source.B=((float) Math.sin(color_cooldown/2f)+1f)/2f;
 			
 			GScreen.need_light_update=true;
-		}
+		}*/
 		
 	}
 	

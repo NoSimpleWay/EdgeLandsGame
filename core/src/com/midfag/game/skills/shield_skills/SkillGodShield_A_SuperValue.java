@@ -1,4 +1,4 @@
-package com.midfag.game.skills;
+package com.midfag.game.skills.shield_skills;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -7,24 +7,22 @@ import com.midfag.equip.energoshield.Energoshield;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
-public class SkillGodShield extends Skill {
+public class SkillGodShield_A_SuperValue extends Skill {
 	
 	
 
-	public SkillGodShield()
+	public SkillGodShield_A_SuperValue()
 	{
 		super();
 		
-		pos.x=170;
-		pos.y=215;
+		pos.x=0;
+		pos.y=100;
 		
 		spr.setTexture(new Texture(Gdx.files.internal("skill_shield_of_god.png")));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		name="Божья силушка";
-		info=	"+1000 ёмкость "+"\n"+
-				"+100 регенерация"+"\n"+
-				"+25 отражение";
+		name="Божья ёмкость";
+		info=	"+250% ёмкость ";
 		
 		//skill_a=new SkillShield_A_MoreValue();
 		
@@ -33,9 +31,8 @@ public class SkillGodShield extends Skill {
 	@Override
 	public void shield_gen_action(Energoshield _e)
 	{
-		_e.total_value+=1000;
-		_e.total_regen_speed+=100;
-		_e.total_reflect+=25;
+		_e.total_value+=_e.base_value*2.5f;
+
 	}
 	
 	@Override

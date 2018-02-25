@@ -24,22 +24,51 @@ void main(){
 
 
 
-	value=1-value;
+	//value=1-value;
 	
 	
 	
 	
-		gl_FragColor.rgb=texture2D(u_texture2,v_texCoords*(1-value)+
+/*		gl_FragColor.rgb=texture2D(u_texture2,v_texCoords*0+
 	vec2(
-	(texture2D(u_texture, v_texCoords).r)*value,
-	(texture2D(u_texture, v_texCoords).g)*value
+	(texture2D(u_texture, v_texCoords).r)*1,
+	(texture2D(u_texture, v_texCoords).g)*1
 	)).rgb;
-	
+*/	
 
+/*
+	gl_FragColor.rgb=texture2D(u_texture2,v_texCoords).rgb*0.875;
 	
 	
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0015,0.0015)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(-0.0015,0.0015)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0015,-0.0015)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(-0.0015,-0.0015)).rgb/86;
 	
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0021,0)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0021)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0,-0.0021)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(-0.0021,0)).rgb/86;
 	
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0030,0.0030)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(-0.0030,0.0030)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(0.0030,-0.0030)).rgb/86;
+	gl_FragColor.rgb+=texture2D(u_texture2,v_texCoords+vec2(-0.0030,-0.0030)).rgb/86;
+	*/
+	
+		
+	gl_FragColor.r=texture2D(u_texture2,v_texCoords+vec2(0,0.00125)).g/3.0;
+	gl_FragColor.g=texture2D(u_texture2,v_texCoords+vec2(-0.00075,-0.00075)).b/3.0;
+	gl_FragColor.b=texture2D(u_texture2,v_texCoords+vec2(0.00075,-0.00075)).r/3.0;
+	
+	gl_FragColor.r+=texture2D(u_texture2,v_texCoords+vec2(0,0.005)).b/3.0;
+	gl_FragColor.g+=texture2D(u_texture2,v_texCoords+vec2(-0.003,-0.003)).r/3.0;
+	gl_FragColor.b+=texture2D(u_texture2,v_texCoords+vec2(0.003,-0.003)).g/3.0;
+	
+	gl_FragColor.r+=texture2D(u_texture2,v_texCoords+vec2(0,0.0025)).r/3.0;
+	gl_FragColor.g+=texture2D(u_texture2,v_texCoords+vec2(-0.0015,-0.0015)).r/3.0;
+	gl_FragColor.b+=texture2D(u_texture2,v_texCoords+vec2(0.0015,-0.0015)).g/3.0;
+
 	
 	gl_FragColor.a=texture2D(u_texture, v_texCoords).a;
 	

@@ -29,6 +29,8 @@ public class DecorStoneWall2 extends DecorStoneWall {
 		path_x=0;
 		path_y=1;
 		
+		path_offset_y=15f;
+		
 		id=this.getClass().getName();
 		//spr.setOrigin(10.0f, 65);
 		//spr.setOrigin(80.0f, 10f);

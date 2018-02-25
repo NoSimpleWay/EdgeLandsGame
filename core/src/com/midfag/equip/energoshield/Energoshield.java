@@ -52,14 +52,23 @@ public class Energoshield {
 	
 	public Energoshield()
 	{
-		Available_attribute_list.add(new ESAttributeValue());
-		Available_attribute_list.add(new ESAttributeRegen());
-		Available_attribute_list.add(new ESAttributeReflect());
+
 		//Available_attribute_list.add(new ESAttributeCharge());
 		
 		name="Simple shield";
 		
 		rarity=Rarity.COMMON;
+		
+		get_available_attribute();
+	}
+	
+	public void get_available_attribute()
+	{
+		Available_attribute_list.clear();
+		
+		Available_attribute_list.add(new ESAttributeValue());
+		Available_attribute_list.add(new ESAttributeRegen());
+		Available_attribute_list.add(new ESAttributeReflect());
 	}
 	
 	public void update_attributes_bonus()
@@ -69,7 +78,6 @@ public class Energoshield {
 		total_regen_speed=base_regen_speed;
 		total_reflect=base_reflect;
 		
-
 		
 		for (int i=0; i<Attribute_list.size(); i++)
 		{
@@ -84,7 +92,7 @@ public class Energoshield {
 		if (rarity==Rarity.RARE){spr.setColor(Color.ROYAL);}
 		if (rarity==Rarity.ELITE){spr.setColor(Color.MAGENTA);}
 		if (rarity==Rarity.LEGENDARY){spr.setColor(Color.ORANGE);}
-		if (rarity==Rarity.RELICT){spr.setColor(Color.CYAN);}
+		if (rarity==Rarity.ANOMALY){spr.setColor(Color.CYAN);}
 	}
 	
 	public void update_attributes_bonus(Entity _e)
@@ -103,6 +111,10 @@ public class Energoshield {
 	{
 		if (gennable)
 		{
+			get_available_attribute();
+			
+			Attribute_list.clear();
+			
 			base_value*=level;
 			
 			int r=0;
@@ -120,7 +132,7 @@ public class Energoshield {
 				if (r==2) {rarity=Rarity.RARE;}
 				if (r==3) {rarity=Rarity.ELITE;}
 				if (r==4) {rarity=Rarity.LEGENDARY;}
-				if (r==5) {rarity=Rarity.RELICT;}
+				if (r==5) {rarity=Rarity.ANOMALY;}
 			}
 			
 				

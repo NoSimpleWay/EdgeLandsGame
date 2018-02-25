@@ -452,7 +452,7 @@ public class CustomSpriteBatch implements Batch {
 		if (texture != lastTexture)
 			switchTexture(texture);
 		else if (idx == vertices.length) //
-			flush();
+			{flush();}
 
 		final float u = srcX * invTexWidth;
 		final float v = (srcY + srcHeight) * invTexHeight;
@@ -547,7 +547,7 @@ public class CustomSpriteBatch implements Batch {
 		else if (idx == vertices.length) //
 			{
 				//Helper.log("FLUSH "+idx);
-				flush();
+				//flush();
 				
 			}
 
@@ -1038,7 +1038,7 @@ public class CustomSpriteBatch implements Batch {
 
 		
 		int spritesInBatch = idx / 20;
-		if (spritesInBatch > maxSpritesInBatch) maxSpritesInBatch = spritesInBatch;
+		//if (spritesInBatch > maxSpritesInBatch) maxSpritesInBatch = spritesInBatch;
 		int count = spritesInBatch * 6;
 
 		lastTexture.bind();

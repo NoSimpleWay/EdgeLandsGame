@@ -47,6 +47,7 @@ public class GUIEdit extends GUI {
 	public int id_offset;
 	
 	public TextInput listener;
+	public boolean release_key_C=false;
 	 
 	public GUIEdit()
 	{
@@ -492,10 +493,12 @@ public class GUIEdit extends GUI {
 		
 		if ((InputHandler.key==Keys.C)&&(selected_object!=null))
 		{
-			GScreen.need_light_update=true;
+			release_key_C=true;
+			
 			selected_object.hard_move(xx-selected_object.pos.x, yy-selected_object.pos.y, 1);
 			
-			if (selected_object.light_source!=null) {selected_object.light_source.update_light_position(selected_object.pos.x,selected_object.pos.y);}
+
+			
 			
 			/*for (int k=0; k<150; k++)
 			for (int i=0; i<300; i++)
@@ -503,6 +506,14 @@ public class GUIEdit extends GUI {
 			{
 				GScreen.light_mask_B[j][i]=0;
 			}*/
+		}
+		
+		if ((InputHandler.key!=Keys.C)&&(release_key_C))
+		{
+			release_key_C=false;
+			
+			
+			    	
 		}
 		
 		if (indicate_entity!=null)

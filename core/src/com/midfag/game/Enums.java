@@ -7,7 +7,7 @@ public class Enums {
 	    RARE,
 	    ELITE,
 	    LEGENDARY,
-	    RELICT 
+	    ANOMALY 
 	}
 	
 	public enum EditMode {

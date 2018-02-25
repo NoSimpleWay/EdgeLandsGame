@@ -23,7 +23,10 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
 import com.midfag.game.skills.Skill;
-import com.midfag.game.skills.SkillGodShield;
+import com.midfag.game.skills.shield_skills.SkillGodShield;
+import com.midfag.game.skills.shield_skills.SkillGodShield_A_SuperValue;
+import com.midfag.game.skills.shield_skills.SkillGodShield_B_SuperRegen;
+import com.midfag.game.skills.shield_skills.SkillGodShield_C_SuperReflect;
 import com.midfag.game.skills.shield_skills.SkillShield;
 import com.midfag.game.skills.shield_skills.SkillShield_AA_ValueHalfDamage;
 import com.midfag.game.skills.shield_skills.SkillShield_AB_ValueHalfDamageTime;
@@ -99,6 +102,8 @@ public class EntityPlayer extends Entity {
 		is_player=true;
 		is_enemy=false;
 		
+		time_slow_resist=0.5f;
+		
 		spr.setSize(100, 100);
 		spr.setOrigin(45, 0);
 		
@@ -118,10 +123,15 @@ public class EntityPlayer extends Entity {
 
 		have_ability=true;
 		
-		/*
+		
+		
 		light_source=new LightSource();
-		light_source.light_power=0.0f;
-		*/
+		light_source.light_power=1.0f;
+		light_source.is_static=false;
+		
+		
+		
+		
 		//light_source.light_size=25;
 		
 		
@@ -173,6 +183,16 @@ public class EntityPlayer extends Entity {
 				
 					
 			skl=new SkillGodShield();
+				subskl=new SkillGodShield_A_SuperValue();
+				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+				
+				subskl=new SkillGodShield_B_SuperRegen();
+				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+				
+				subskl=new SkillGodShield_C_SuperReflect();
+				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+				
+				
 			Skills_list.add(skl);	
 			
 			engine_id=Assets.engine.play();

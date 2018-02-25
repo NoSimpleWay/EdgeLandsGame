@@ -20,6 +20,7 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
+import com.midfag.game.Main;
 import com.midfag.game.Phys;
 import com.midfag.game.script.ScriptSystem;
 import com.midfag.game.skills.Skill;
@@ -29,6 +30,11 @@ public class Entity {
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
 	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));
 	
+	public float time_slow_resist=0;
+	
+	public float path_offset_x=0;
+	public float path_offset_y=0;
+	
 	public Vector2 pos=new Vector2();
 	public Vector2 offset=new Vector2();
 	
@@ -37,6 +43,15 @@ public class Entity {
 	public float color_multiplier_R;
 	public float color_multiplier_G;
 	public float color_multiplier_B;
+	
+	public float dynamic_multiplier_R;
+	public float dynamic_multiplier_G;
+	public float dynamic_multiplier_B;
+	
+	public float color_total_R;
+	public float color_total_G;
+	public float color_total_B;
+	
 	List<List<String>> list = new ArrayList<List<String>>();
 	//public List<Entity> list = new ArrayList<Entity>();
 
@@ -154,6 +169,25 @@ public class Entity {
 		}
 	}
 	
+	public void generate_path()
+	{
+		int px=(int)((pos.x+path_offset_x)/GScreen.path_cell);
+		int py=(int)((pos.y+path_offset_y)/GScreen.path_cell);
+		
+		if ((z<=30)&&(path_x>=0))
+			for (int i=px-path_x; i<=px+path_x; i++)
+			for (int j=py-path_y; j<=py+path_y; j++)
+			{
+				GScreen.path[i][j]=-900;
+				/*
+				if (GScreen.path[i+1][j]<900){GScreen.path[i+1][j]=700;}
+				if (GScreen.path[i-1][j]<900){GScreen.path[i-1][j]=700;}
+				
+				if (GScreen.path[i][j+1]<900){GScreen.path[i][j+1]=700;}
+				if (GScreen.path[i][j-1]<900){GScreen.path[i][j-1]=700;}*/
+			}
+	}
+	
 	public void init(String _point)
 	{
     	
@@ -172,22 +206,11 @@ public class Entity {
 				[Math.round(pos.y/GScreen.path_cell)+i]=900;
 			}*/
 			
-			int px=(int)(pos.x/GScreen.path_cell);
-			int py=(int)(pos.y/GScreen.path_cell);
 			
-			if ((z<=30)&&(path_x>0))
-			for (int i=px-path_x; i<=px+path_x; i++)
-			for (int j=py-path_y; j<=py+path_y; j++)
-			{
-				GScreen.path[i][j]=905;
-				
-				/*
-				if (GScreen.path[i+1][j]<900){GScreen.path[i+1][j]=700;}
-				if (GScreen.path[i-1][j]<900){GScreen.path[i-1][j]=700;}
-				
-				if (GScreen.path[i][j+1]<900){GScreen.path[i][j+1]=700;}
-				if (GScreen.path[i][j-1]<900){GScreen.path[i][j-1]=700;}*/
-			}
+			
+
+			generate_path();
+			
 			
 			/*
 			px=Math.round(pos.x/GScreen.path_cell);
@@ -577,14 +600,53 @@ public class Entity {
 				{
 					if (light_source!=null)
 					{
-						light_source.update_light_position(pos.x, pos.y);
-						GScreen.need_light_update=true;
+						light_source.update_light_position(pos.x,pos.y);
+						
 					}
 					else
 					{
-						light_update_cooldown=0.2f;
+						update_dynamic_color_state();
 						update_color_state();
 					}
+					
+				    if (path_x>=0)
+				    {
+				    	int cluster_x=(int)(GScreen.camera.position.x/300f);
+					    int cluster_y=(int)(GScreen.camera.position.y/300f);
+					    
+						for (int i=0; i<300; i++)
+						for (int j=0; j<300; j++)
+						{
+							if (GScreen.path[j][i]<0)
+							{GScreen.path[j][i]=100;}
+						}
+						
+						
+						for (int x=cluster_x-4; x<=cluster_x+4; x++)
+					    for (int y=cluster_y-4; y<=cluster_y+4; y++)
+					    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+					    for (int i=0; i<GScreen.cluster[x][y].Entity_list.size();i++)
+					    {
+					        	Entity e=GScreen.cluster[x][y].Entity_list.get(i);
+					        	
+						    	if ((!e.hidden))
+						    	{
+						    		e.generate_path();
+						    	}
+					    }
+						
+						GScreen.need_shadow_update=true;
+						GScreen.need_light_update=true;
+				    }
+
+				    
+				    if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
+				    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
+				    
+
+				    if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
+					
+					
 				}
 				
 			for (int z=0; z<Phys_list_local.size(); z++)
@@ -644,7 +706,7 @@ public class Entity {
 					(
 						(target!=null)
 						&&
-						(pos.dst(target.pos)<600)
+						(pos.dst(target.pos)<900)
 					)
 					||
 					(is_player)
@@ -1056,10 +1118,10 @@ public class Entity {
 	public void draw_hp()
 	{
 		GScreen.batch.setColor(Color.DARK_GRAY);
-		GScreen.batch.draw(Assets.rect_white, pos.x-15, pos.y-40, 30,10);
+		GScreen.batch.draw(GScreen.rect_white, pos.x-15, pos.y-40, 30,10);
 		
 		GScreen.batch.setColor(Color.GREEN);
-		GScreen.batch.draw(Assets.rect_white, pos.x-15, pos.y-40, 30f*armored_shield.value/armored_shield.total_value,10);
+		GScreen.batch.draw(GScreen.rect_white, pos.x-15, pos.y-40, 30f*armored_shield.value/armored_shield.total_value,10);
 	}
 	
 	public void update_color_state()
@@ -1069,22 +1131,49 @@ public class Entity {
     	color_multiplier_B=0;
     	
     	int summ=0;
+    	long pxm=0;
     	
-    	for (int a=0; a<=2; a++)
-    	for (int b=-2; b<=2; b++)
+		
+    	if (GScreen.pixmap!=null)
     	{
-    		
-    		color_multiplier_R+=GScreen.light_mask_R[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
-    		color_multiplier_G+=GScreen.light_mask_G[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
-    		color_multiplier_B+=GScreen.light_mask_B[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
-    		
-    		//color_multiplier_R+=GScreen.illumination_fbo.getColorBufferTexture().;
-    		
+	    	for (int a=1; a<=2; a++)
+	    	for (int b=-2; b<=2; b++)
+	    	{
+	    		//pxm=GScreen.illumination_fbo.getColorBufferTexture().pix
+	    		pxm=GScreen.pixmap.getPixel((int)(pos.x/30)+b, (int)(pos.y/30)-a);
+	    		
+	    		color_multiplier_R+=((pxm >> 24) & 0xFF)/2550f;
+	    		color_multiplier_G+=((pxm >> 16) & 0xFF)/2550f;
+	    		color_multiplier_B+=((pxm >> 8) & 0xFF)/2550f;
+	    		
+		    	
+	    		/*color_multiplier_R+=GScreen.light_mask_R[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+	    		color_multiplier_G+=GScreen.light_mask_G[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+	    		color_multiplier_B+=GScreen.light_mask_B[(int)(pos.x/30)-b][(int)(pos.y/30f)-a]/15f;
+	    		*/
+	    		//color_multiplier_R+=GScreen.illumination_fbo.getColorBufferTexture().;
+	    		
+	    	}
+	    	
+	    	dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
+			dynamic_multiplier_G=dynamic_multiplier_R;
+			dynamic_multiplier_B=dynamic_multiplier_R;
+			
+	    	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
+	    	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
+	    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
+	    		/*
+	    		float red = ((pxm >> 24) & 0xFF)/255f;
+	    		float green = ((pxm >>16 ) & 0xFF)/255f;
+	    		float blue = ((pxm>>8) & 0xFF)/255f;
+						Helper.log(">> "+red+" >> "+green+" >> "+blue);
+	    	
+	    		*/
+						/*
+	    	color_multiplier_R=Math.min(1, color_multiplier_R);
+	    	color_multiplier_G=Math.min(1, color_multiplier_G);
+	    	color_multiplier_B=Math.min(1, color_multiplier_B);*/
     	}
-    	
-    	color_multiplier_R=Math.min(1, color_multiplier_R);
-    	color_multiplier_G=Math.min(1, color_multiplier_G);
-    	color_multiplier_B=Math.min(1, color_multiplier_B);
     	
     	
 	}
@@ -1106,6 +1195,8 @@ public class Entity {
 		if (!is_decor)
 		{draw_hp();}
 		
+		//Main.font.draw(GScreen.batch, "R "+color_multiplier_R, pos.x, pos.y-20);
+		
 		Color temp_color=spr.getColor();
 		
 
@@ -1116,7 +1207,7 @@ public class Entity {
 		
 		
 		if (light_source==null)
-		{spr.setColor(color_multiplier_R,color_multiplier_G,color_multiplier_B,1f);}
+		{spr.setColor(color_total_R,color_total_G,color_total_B,1f);}
 		else
 		{spr.setColor(1,1,1,1f);}
 		
@@ -1151,6 +1242,19 @@ public class Entity {
 
 	public void sound_init() {
 		// TODO Auto-generated method stub
+		
+	}
+
+	public void update_dynamic_color_state() {
+		// TODO Auto-generated method stub
+		dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
+		dynamic_multiplier_G=dynamic_multiplier_R;
+		dynamic_multiplier_B=dynamic_multiplier_R;
+		
+		
+    	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;} 
+    	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
+    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
 		
 	}
 

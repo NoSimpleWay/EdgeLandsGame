@@ -21,6 +21,7 @@ import com.midfag.equip.weapon.attr.WeaponAttributeDamage;
 import com.midfag.equip.weapon.attr.WeaponAttributeReloadSpeed;
 import com.midfag.equip.weapon.attr.WeaponAttributeStability;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.Enums.Rarity;
 
 public class Weapon {
@@ -71,19 +72,14 @@ public class Weapon {
 	public List<WeaponAttribute> Attribute_list = new ArrayList<WeaponAttribute>();
 	
 	public Rarity rarity;
-	public float missile_speed=2000;
+	public float missile_speed=1000;
 	
 	
 	
 		public Weapon()
 		{
 			super();
-			Available_attribute_list.add(new WeaponAttributeDamage());
-			Available_attribute_list.add(new WeaponAttributeAttackSpeed());
-			Available_attribute_list.add(new WeaponAttributeAccuracy());
-			Available_attribute_list.add(new WeaponAttributeStability());
-			Available_attribute_list.add(new WeaponAttributeClipSize());
-			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
+
 			
 			
 			//update_stats();
@@ -100,6 +96,18 @@ public class Weapon {
 			
 			//System.out.println("Parent class");
 		
+		}
+		
+		
+		public void get_available_attribute()
+		{
+			Available_attribute_list.clear();
+			Available_attribute_list.add(new WeaponAttributeDamage());
+			Available_attribute_list.add(new WeaponAttributeAttackSpeed());
+			Available_attribute_list.add(new WeaponAttributeAccuracy());
+			Available_attribute_list.add(new WeaponAttributeStability());
+			Available_attribute_list.add(new WeaponAttributeClipSize());
+			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
 		}
 		
 		public void update_attributes_bonus()
@@ -144,7 +152,7 @@ public class Weapon {
 			if (rarity==Rarity.RARE){spr.setColor(Color.ROYAL);}
 			if (rarity==Rarity.ELITE){spr.setColor(Color.MAGENTA);}
 			if (rarity==Rarity.LEGENDARY){spr.setColor(Color.ORANGE);}
-			if (rarity==Rarity.RELICT){spr.setColor(Color.CYAN);}
+			if (rarity==Rarity.ANOMALY){spr.setColor(Color.CYAN);}
 			
 		}
 		
@@ -169,10 +177,14 @@ public class Weapon {
 		
 		public void generate()
 		{
-			total_damage=base_damage*level;
-				
-			int r=0;
+			get_available_attribute();
 			
+			total_damage=base_damage*level;
+			Attribute_list.clear();
+			int r=0;
+			Helper.log("IM GENERATED!");
+			
+			/*
 			if (rarity.ordinal()==0)
 			{
 				for (int i=0; i<6; i++)
@@ -187,8 +199,8 @@ public class Weapon {
 				if (r==2) {rarity=Rarity.RARE;}
 				if (r==3) {rarity=Rarity.ELITE;}
 				if (r==4) {rarity=Rarity.LEGENDARY;}
-				if (r==5) {rarity=Rarity.RELICT;}
-			}
+				if (r==5) {rarity=Rarity.ANOMALY;}
+			}*/
 			
 			
 			

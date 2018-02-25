@@ -33,8 +33,10 @@ public class DecorStoneWall extends Entity {
 		spr.setOrigin(50.0f, 10f);
 		id=this.getClass().getName();
 		
+		path_offset_x=0f;
+		
 		path=true;
-		path_x=1;
+		path_x=2;
 		path_y=0;
 		
 
