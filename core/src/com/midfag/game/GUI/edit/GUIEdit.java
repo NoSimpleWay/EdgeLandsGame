@@ -154,7 +154,7 @@ public class GUIEdit extends GUI {
 						int ty=(int)indicate_pattern.layer_main[j][i]/8;
 						int tx=indicate_pattern.layer_main[j][i]-ty*8;
 					
-					//GScreen.batch_static.draw(GScreen.tile_texture, pos.x+(j*5)*mul-50*mul/mulx,  pos.y+(i*5)*mul-50*mul/muly,10f*mul,10f*mul);
+					
 						GScreen.batch.draw 
 							(
 							GScreen.tile_texture,
@@ -178,7 +178,7 @@ public class GUIEdit extends GUI {
 							int ty=(int)indicate_pattern.layer_top[j][i]/8;
 							int tx=indicate_pattern.layer_top[j][i]-ty*8;
 						
-						//GScreen.batch_static.draw(GScreen.tile_texture, pos.x+(j*5)*mul-50*mul/mulx,  pos.y+(i*5)*mul-50*mul/muly,10f*mul,10f*mul);
+						
 							GScreen.batch.draw 
 								(
 								GScreen.tile_texture,

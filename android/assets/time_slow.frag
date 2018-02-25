@@ -57,7 +57,7 @@ void main(){
 	*/
 	
 		
-	gl_FragColor.r=texture2D(u_texture2,v_texCoords+vec2(0,0.00125)).g/3.0;
+gl_FragColor.r=texture2D(u_texture2,v_texCoords+vec2(0,0.00125)).g/3.0;
 	gl_FragColor.g=texture2D(u_texture2,v_texCoords+vec2(-0.00075,-0.00075)).b/3.0;
 	gl_FragColor.b=texture2D(u_texture2,v_texCoords+vec2(0.00075,-0.00075)).r/3.0;
 	
@@ -72,7 +72,7 @@ void main(){
 	
 	gl_FragColor.a=texture2D(u_texture, v_texCoords).a;
 	
-	gl_FragColor*=v_color;
+gl_FragColor*=v_color;
 	
 /*
 	value=(1-value)/2;

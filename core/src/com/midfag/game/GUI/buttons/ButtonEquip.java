@@ -279,7 +279,7 @@ public class ButtonEquip extends Button {
 			if (obj instanceof ModuleUnit)
 			{
 				GScreen.batch_static.setColor(((ModuleUnit)obj).color);
-				GScreen.batch_static.draw(((ModuleUnit)obj).tex, pos.x-spr.getWidth()/2,pos.y-spr.getHeight()/2);
+				GScreen.batch_static.draw(((ModuleUnit)obj).tex, pos.x-spr.getWidth()/2+15f,pos.y-spr.getHeight()/2f);
 				
 			}
 		}

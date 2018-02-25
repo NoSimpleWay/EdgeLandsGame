@@ -11,7 +11,7 @@ public class ModuleAttributeDuration extends ModuleAttribute {
 	{
 		cost=1;
 		
-		max_level=100;
+		max_level=20;
 		name="Увеличение длительности";
 	}
 	

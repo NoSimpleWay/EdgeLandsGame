@@ -29,8 +29,13 @@ public class ModuleUnit {
 	
 	public Texture tex=new Texture(Gdx.files.internal("icon_firle.png"));
 	public Texture indicate_tex=new Texture(Gdx.files.internal("icon_firle.png"));
+	public Texture lock_tex=new Texture(Gdx.files.internal("icon_lock.png"));
+	
 	public Rarity rarity;
 	public float level=1.0f;
+	
+	public boolean lock=false;
+	public boolean can_be_locked=false;
 	
 	public String name;
 	public String description;
@@ -205,6 +210,12 @@ public class ModuleUnit {
 			GScreen.batch_static.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 		}
 		
+		if (lock)
+		{
+			GScreen.batch_static.setColor(Color.WHITE);
+			GScreen.batch_static.draw(lock_tex, _x-22, _y-22);
+		}
+		
 		
 	}
 	
@@ -253,7 +264,7 @@ public class ModuleUnit {
 	
 	public boolean can_use_default()
 	{
-		if ((cooldown<=0)&&(duration<=0))
+		if ((cooldown<=0)&&(duration<=0)&&(!lock))
 		{return true;}
 		
 		return false;

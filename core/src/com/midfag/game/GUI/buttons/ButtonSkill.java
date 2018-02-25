@@ -65,7 +65,7 @@ public class ButtonSkill extends Button {
 	{
 		layout.setText(Main.font_big,_s1);
 		Main.font_big.draw(GScreen.batch_static, _s1, info_x-layout.width/2+GScreen.skills_camera.position.x, info_y-mov+GScreen.skills_camera.position.y+160-(_h-layout.height)/2);
-		//Main.font.draw(GScreen.batch_static, _s2, info_x+100, info_y-mov);
+		//Main.font.draw(GScreen.batch_gui, _s2, info_x+100, info_y-mov);
 		
 		mov+=25;
 	}
@@ -304,7 +304,7 @@ public class ButtonSkill extends Button {
 		for (int i=0; i<skill.Sub_skill.size(); i++)
 		{
 			skill.Sub_skill.get(i).spr.setPosition(pos.x-skill.Sub_skill.get(i).spr.getWidth()/2+skill.Sub_skill.get(i).pos.x,pos.y-skill.Sub_skill.get(i).spr.getHeight()/2+skill.Sub_skill.get(i).pos.y);
-			skill.Sub_skill.get(i).spr.draw(GScreen.batch_static);
+			skill.Sub_skill.get(i).spr.draw(GScreen.batch_gui);
 		}*/
 
 	}

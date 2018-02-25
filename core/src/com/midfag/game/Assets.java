@@ -37,7 +37,7 @@ public class Assets {
 	
 	public static long music_id;
 	
-	static Music music = Gdx.audio.newMusic(Gdx.files.internal("music01.mp3"));
+	public static Music music = Gdx.audio.newMusic(Gdx.files.internal("music01.mp3"));
 
 	public static Sound flash;
 
@@ -305,9 +305,10 @@ public class Assets {
 		music.setVolume(0.25f);
 		music.play();
 		
-		time_slow_id=time_slow.play();
+		/*time_slow_id=time_slow.play();
 		time_slow.setLooping(time_slow_id, true);
 		time_slow.setVolume(time_slow_id, 0.01f);
+		*/
 		
 		select_sprite.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		select_sprite.setAlpha(1.0f);

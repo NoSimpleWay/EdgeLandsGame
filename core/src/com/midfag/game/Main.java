@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
@@ -19,6 +20,7 @@ public class Main extends Game {
     public static ShapeRenderer shapeRenderer;
     public static ShapeRenderer shapeRenderer_static;
     
+   // public static Shader shd;
     public static ShaderProgram shader_default;
     public static ShaderProgram shader_dissolve;
     public static ShaderProgram shader_time_slow;

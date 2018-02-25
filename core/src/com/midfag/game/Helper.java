@@ -111,8 +111,8 @@ public class Helper {
 					GScreen.add_entity_to_map(e);
 					
 					
-					if (e.getClass().equals(EntityHuman.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!"); GScreen.pl_human=e;GScreen.pl=e;}
-					if (e.getClass().equals(EntityPlayer.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!"); GScreen.pl_mech=e;}
+					if (e.getClass().equals(EntityHuman.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!   HUMAN"); GScreen.pl_human=e; GScreen.pl=e;}
+					if (e.getClass().equals(EntityPlayer.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!   MECH"); GScreen.pl_mech=e;}
 					
 					GScreen.camera_target=GScreen.pl;
 					
