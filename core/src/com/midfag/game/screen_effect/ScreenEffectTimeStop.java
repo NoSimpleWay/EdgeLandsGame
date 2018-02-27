@@ -28,6 +28,18 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		if (MasterModule.duration>0)
 		{
 			GScreen.time_speed=0.00f;
+			
+			if (MasterModule.total_duration-MasterModule.duration<0.5f)
+			{
+				GScreen.time_speed=0.5f-(MasterModule.total_duration-MasterModule.duration);
+			}
+			
+			if (MasterModule.duration<0.5f)
+			{
+				GScreen.time_speed=0.5f-MasterModule.duration;
+			}
+			//ScreenEffectTimeStop.java
+			
 			GScreen.batch_static.setShader(Main.shader_time_slow);
 		}
 		
@@ -47,7 +59,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		Assets.music.setVolume(0.5f);
 		
 		shader=GScreen.batch.getShader();
-		GScreen.batch_static.setShader(GScreen.batch.getShader());
+		GScreen.batch_static.setShader(Main.shader_bloom);
 	}
 	
 }

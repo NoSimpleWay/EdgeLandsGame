@@ -56,7 +56,7 @@ public class EntityPyra extends Entity {
 		can_rotate=false;
 		
 		friction=0.001f;
-		speed/=0.1f;
+		speed/=0.5f;
 	}
 	
 	@Override
@@ -111,6 +111,8 @@ public class EntityPyra extends Entity {
 		{
 			body_rotate_cooldown-=_d;
 		}
+		
+		spr.setColor(color_total_R,color_total_G,color_total_B,1f);
 		spr.translate(-25,-80);
 		spr.setSize(100, 200);
 		spr.setTexture(Assets.shadow);

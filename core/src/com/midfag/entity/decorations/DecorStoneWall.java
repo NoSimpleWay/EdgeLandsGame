@@ -30,7 +30,7 @@ public class DecorStoneWall extends Entity {
 		
 		spr.setTexture(Assets.stone_wall_01);
 		spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());
-		spr.setOrigin(50.0f, 10f);
+		spr.setOrigin(spr.getTexture().getWidth()/2.0f, 10f);
 		id=this.getClass().getName();
 		
 		path_offset_x=0f;
@@ -39,7 +39,8 @@ public class DecorStoneWall extends Entity {
 		path_x=2;
 		path_y=0;
 		
-
+		collision_size_x=55;
+		collision_size_y=10;
 		
 		
 		//shield=999999;

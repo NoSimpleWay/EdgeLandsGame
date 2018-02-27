@@ -28,8 +28,12 @@ public class Missile {
 	
 	public Vector2 vector_len=new Vector2();
 	
+	
 	public float next_x;
 	public float next_y;
+	
+	public float start_x;
+	public float start_y;
 	
 	public float sx;
 	public float sy;
@@ -45,6 +49,7 @@ public class Missile {
 	
 	public boolean is_enemy;
 	public boolean have_shd=true;
+	private float shd_lifetime=1f;
 	
 	
 	
@@ -72,15 +77,19 @@ public class Missile {
 	{
 		preupdate(_d);
 		
-		px=pos.x;
-		py=pos.y;
-		pos.add(sx*speed*_d,sy*speed*_d);
-		
+		if (lifetime>0)
+		{
+			px=pos.x;
+			py=pos.y;
+			pos.add(sx*speed*_d,sy*speed*_d);
+		}
 		/*
 		next_x=pos.x+speed_x*speed*_d;
 		next_y=pos.y+speed_y*speed*_d;
 		*/
 		lifetime-=_d;
+		
+		shd_lifetime-=_d;
 		
 		
 
@@ -95,14 +104,17 @@ public class Missile {
 	{
 		sx=(float)Math.sin(angle);
 		sy=(float)Math.cos(angle);
+		
+		start_x=pos.x;
+		start_y=pos.y;
 	}
 	
 	public void check()
 	{
 		if (this.lifetime<0)
 		{
-			destr();
-			lifetime=0;
+			//destr();
+			//lifetime=0;
 		}
 	}
 	
@@ -162,6 +174,13 @@ public class Missile {
 			s.lifetime=0.35f;
 			
 			return s;
+		
+	}
+	public void draw_shd(float delta) {
+		// TODO Auto-generated method stub
+		GScreen.sr.setColor(1,0.5f,0.2f,shd_lifetime/2.0f);
+		
+		GScreen.sr.line(start_x, start_y, pos.x, pos.y);
 		
 	}
 }

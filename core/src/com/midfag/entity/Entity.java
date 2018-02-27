@@ -160,6 +160,10 @@ public class Entity {
 	public boolean updatable=true;
 	
 	public LightSource light_source=null;
+
+	public float collision_size_y;
+
+	public float collision_size_x;
 	
 	public void use_module(int _id)
 	{

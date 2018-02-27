@@ -21,6 +21,7 @@ public class Main extends Game {
     public static ShapeRenderer shapeRenderer_static;
     
    // public static Shader shd;
+    public static ShaderProgram shader_bloom;
     public static ShaderProgram shader_default;
     public static ShaderProgram shader_dissolve;
     public static ShaderProgram shader_time_slow;
@@ -54,6 +55,9 @@ public class Main extends Game {
 	        
 			shader_dissolve=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("dissolve.frag")));
 			if (!shader_dissolve.isCompiled()) {System.err.println(shader_dissolve.getLog()); shader_dissolve=GScreen.batch.getShader();}
+			
+			shader_bloom=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("shader_bloom.frag")));
+			if (!shader_bloom.isCompiled()) {System.err.println(shader_bloom.getLog()); shader_bloom=GScreen.batch.getShader();}
         
         Texture texture = new Texture(Gdx.files.internal("fonts/big.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);// true enables mipmaps

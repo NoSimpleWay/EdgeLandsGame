@@ -118,11 +118,13 @@ public class EntityPlayer extends Entity {
 		foot_shadow.setOrigin(17, 12);
 		//is_player
 		
-		speed=250*5.025f;
-		friction=0.005f;
+		speed=250*7.025f;
+		friction=0.0005f;
 
 		have_ability=true;
 		
+		collision_size_x=45;
+		collision_size_y=45;
 		
 		
 		light_source=new LightSource();

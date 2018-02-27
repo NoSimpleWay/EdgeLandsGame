@@ -194,13 +194,13 @@ public class Helper {
 			
 			if (!sub_s.equals("no"))
 				{
-					GScreen.tile_map[j][i]=Integer.parseInt(sub_s);
+					//GScreen.tile_map[j][i]=Integer.parseInt(sub_s);
+					GScreen.tile_map[j][i]=(int) (Math.random()*4);
+					int ty=(int)GScreen.tile_map[j][i]/5;
+					int tx=GScreen.tile_map[j][i]-ty*5;
 					
-					int ty=(int)GScreen.tile_map[j][i]/8;
-					int tx=GScreen.tile_map[j][i]-ty*8;
-					
-					GScreen.tile_map_x[j][i]=tx*60+tx+1;
-					GScreen.tile_map_y[j][i]=ty*60+ty+1;
+					GScreen.tile_map_x[j][i]=tx*100+1;
+					GScreen.tile_map_y[j][i]=ty*100+1;
 				}
 		}
 		

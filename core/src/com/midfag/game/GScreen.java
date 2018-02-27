@@ -16,6 +16,7 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
+import com.badlogic.gdx.graphics.Texture.TextureWrap;
 import com.badlogic.gdx.graphics.g2d.CustomSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -65,7 +66,7 @@ public class GScreen implements Screen {
     public static Boolean need_shadow_update=true;
     public static Boolean need_pixmap_update=false;
     
-    public static Color global_illumination=new Color(0.05f,0.025f,0.021f, 1f);
+    public static Color global_illumination=new Color(0.15f,0.165f,0.18f, 1f);
 
     public int draw_distance;
     
@@ -146,6 +147,9 @@ public class GScreen implements Screen {
     public static Vector2 temp_vectorA=new Vector2(0.0f,0.0f);
     public static Vector2 temp_vectorB=new Vector2(0.0f,0.0f);
     
+    public static Vector2 temp_vector_collision_result=new Vector2(0.0f,0.0f);
+    public static Vector2 temp_vector=new Vector2(0.0f,0.0f);
+    
     public Vector2 prev_pos=new Vector2();
     
     public static String id="";
@@ -182,6 +186,8 @@ public class GScreen implements Screen {
 
 	private Texture shadow_texture;
 
+	private boolean first_draw=true;
+
 
 
 
@@ -192,7 +198,7 @@ public class GScreen implements Screen {
 	public static boolean path_visualisation=false;
 	public static boolean phys_visualisation=false;
 
-	public static Texture tile_texture=new Texture(Gdx.files.internal("tile/tile_texture.png"));;
+	public static Texture tile_texture=new Texture(Gdx.files.internal("terrain.png"));;
 
 	public static Texture[] tile= new Texture[50];
 
@@ -222,6 +228,41 @@ public class GScreen implements Screen {
 	public static boolean need_static_light_update=false;
 	
     
+	public Vector2 collision_vertical(Entity _target, float _x1, float _y1, float _x2, float _y2, float _dx, float _dy, float _size)
+	{
+		float collision_size_x=_target.collision_size_x;
+		float collision_size_y=_target.collision_size_y;
+		
+	
+		///
+		
+		float dist=_target.pos.y+collision_size_y-_y1;
+		if ((_target.pos.y+collision_size_y<_y1)&&(_target.pos.y+collision_size_y>_y2)&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<collision_size_x))
+		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y+collision_size_y);}
+		
+		////
+		
+		dist=_target.pos.y-collision_size_y-_y1;
+		if ((_target.pos.y-collision_size_y>_y1)&&(_target.pos.y-collision_size_y<_y2)&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<collision_size_x))
+		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y-collision_size_y);}
+		
+		////
+		
+		dist=_target.pos.x+collision_size_x-_x1;
+		if ((_target.pos.x+collision_size_x<_x1)&&(_target.pos.x+collision_size_x>_x2)&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<collision_size_y))
+		{return temp_vectorA.set(_target.pos.x+collision_size_x, _y1+dist*_dy);}
+		
+		////
+		
+		dist=_target.pos.x-collision_size_x-_x1;
+		if ((_target.pos.x-collision_size_x>_x1)&&(_target.pos.x-collision_size_x<_x2)&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<collision_size_y))
+		{return temp_vectorA.set(_target.pos.x-collision_size_x, _y1+dist*_dy);}
+		
+		return temp_vectorA.set(999999, 999999);
+	
+	}
+	
+	
 	public static void add_timer(String _s)
 	{
 		if (Gdx.input.isKeyPressed(Keys.J))
@@ -438,7 +479,7 @@ public class GScreen implements Screen {
         batch_static = new SpriteBatch();
       
         //batch_wheel = new SpriteBatch();
-        batch_static.setShader(batch.getShader());
+        //batch_static.setShader(batch.getShader());
       
         
         batch_illum = new SpriteBatch();
@@ -464,8 +505,8 @@ public class GScreen implements Screen {
         	path[j][i]=100;
         }
         
-        temp_vectorA=new Vector2();
-        temp_vectorB=new Vector2();
+        temp_vectorA=new Vector2(0,0);
+        temp_vectorB=new Vector2(0,0);
         
         this.game = gam;
         Random rn=new Random();
@@ -598,7 +639,7 @@ public class GScreen implements Screen {
 
         }
 
-		camera.zoom=1f;
+		camera.zoom=0.1f;
 		
 
 		
@@ -628,7 +669,7 @@ public class GScreen implements Screen {
         
       
         
-        resize(scr_w, scr_h);
+        //resize(scr_w, scr_h);
 
 	   	
 	   
@@ -702,7 +743,7 @@ public class GScreen implements Screen {
     	if (debug_cooldown<=0) {Timer.clear();}
     	real_delta=delta;
     	
-    	Draw_list.clear();
+    	//Draw_list.clear();
     	
     	//delta/=1f;
     	delta*=Math.min(1, time_speed);
@@ -715,8 +756,8 @@ public class GScreen implements Screen {
     	if (delta>0.1f){delta=0.1f;}
 
     	
-        Gdx.gl.glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+        //Gdx.gl.glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
+        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
     	//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
@@ -736,10 +777,11 @@ public class GScreen implements Screen {
     	int plposy=(int)(camera.position.y/30f);
     	
     	
+    	if (first_draw) {draw_distance=150; first_draw=false;}
+    	else
+    	{draw_distance=Math.round(camera.zoom*(scr_w/55));}
     	
-    	draw_distance=Math.round(camera.zoom*(scr_w/55));
-    	
-    	if (Gdx.input.isKeyPressed(Keys.K)) draw_distance=10; //{iter=10;}
+    	if (Gdx.input.isKeyPressed(Keys.K)) draw_distance=23; //{iter=10;}
     	//draw_distance=Math.min(draw_distance, 300);
     	
     	
@@ -971,191 +1013,100 @@ public class GScreen implements Screen {
 
 
 		
-		if (false)
-		{
-	    	light_fbo.begin();
-			Gdx.gl.glClearColor(global_illumination.r,global_illumination.g,global_illumination.b,1f);
-			Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
-	        batch.begin();
-	        Gdx.gl.glEnable(GL20.GL_BLEND);
-	      
-	
-			
-	       
-			
-			Gdx.gl.glBlendFunc(GL20.GL_ONE, GL20.GL_ONE);
-			
-			
-			
-			add_timer("mask_update");
-			
-			for (int i=bound_y_down; i<bound_y_up; i++)
-			for (int j=bound_x_left; j<bound_x_right; j++)
-			//if ((j>0)&&(j<299)&&(i>0)&&(i<299))
-			{
-				
-					batch.draw4
-					(
-							rect_white,j*30f, i*30f, 30f, 30f,
-							light_mask_total[j][i],
-							light_mask_total[j+1][i],
-							light_mask_total[j+1][i+1],
-							light_mask_total[j][i+1]
-					);
-
-			}
-
-			add_timer("       draw_light_map");
-			batch.flush();
-			light_fbo.end();
-		}
 		
 		
 		
 
-    	
-		batch.begin();
     	terrain_fbo.begin();
+		batch.begin();
+    	
     
+    	int terx=(int)(camera.position.x/90f);
+    	int tery=(int)(camera.position.y/90f);
     	
-    	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+    	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/180));
     	
+    	int terrain_x_left=terx-terrain_draw_distance; if (terrain_x_left<0) {terrain_x_left=0;}
+    	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>299) {terrain_x_right=299;}
+    	
+    	int terrain_y_down=tery-terrain_draw_distance; if (terrain_y_down<0) {terrain_y_down=0;}
+    	int terrain_y_up=tery+terrain_draw_distance; if (terrain_y_up>299) {terrain_y_up=299;}
 
-
-
-    	
-		
-		
-    	//batch.begin();
-    	batch.setColor(Color.WHITE);
-    	
-    	/*
-    	batch.draw(Assets.planet0, 4500-5000000, 4500-5000000, 10000000,10000000);
-    	batch.draw(Assets.planet1, 4500-5000000/5f, 4500-5000000/5f, 10000000/5f,10000000/5f);
-    	batch.draw(Assets.planet2, 4500-5000000/25f, 4500-5000000/25f, 10000000/25f,10000000/25f);
-    	*/
-    	
-    	
     	wave_time+=real_delta;
-    	
-
-		
-		//for (int k=0; k<100; k++)
-		//for (int k=0; k<80; k++)
-		
-    	
-    	
-    	for (int i=bound_y_down; i<bound_y_up; i++)
-		for (int j=bound_x_left; j<bound_x_right; j++)
+    	for (int i=terrain_y_down; i<=terrain_y_up; i++)
+		for (int j=terrain_x_left; j<=terrain_x_right; j++)
 	 	{
 
-			batch.draw(tile_texture, j*30-15, i*30-15, tile_map_x[j][i], tile_map_y[j][i], 60, 60);
+			batch.draw(tile_texture, j*90-5, i*90-5, tile_map_x[j][i], tile_map_y[j][i], 100, 100);
 	 	}
     	//batch.flush();
     	
 		add_timer("       draw_tile");
 		
+			
+
 		
 		
 
-		/*for (int i=bound_y_down; i<bound_y_up; i++)
-		for (int j=bound_x_left; j<bound_x_right; j++)
-		//if ((i>=0)&&(i<300)&&(j>=0)&&(j<300))
-		{	
-			if (tile_map_overlay[j][i]>=0)
-			{
-				int ty=(int)tile_map_overlay[j][i]/8;
-				int tx=tile_map_overlay[j][i]-ty*8;
-				
-				batch.draw(tile_texture, j*30-15, i*30-15, tx*60+tx+1, ty*60+ty+1, 60, 60);
-			}//}
-		}*/
-		
-		
-		add_timer("       draw_overlay");
-			
-			//Gdx.gl.glBlendFuncSeparate(GL20.GL_DST_COLOR,GL20.GL_ZERO,GL20.GL_DST_COLOR,GL20.GL_ZERO);
-			//batch.setColor(Color.WHITE);
-		
-		
 			batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
-			
-			//draw_illum
-			//batch.setColor(Color.WHITE);
-			
-			batch.draw(lightmap_texture,0,9000,9000,-9000);
-			
-			add_timer("draw_lightmap");
-			
-		
-			/*
-			for (int i=0; i<20; i++)
-			{batch.draw(shadow_texture,0-i*60+(4500-pl.pos.x)*i/75f,9000+i*60+(4500-pl.pos.y)*i/75f,9000+i*120,-9000-i*120);}
-			 */
-			
+				batch.draw(lightmap_texture,0,9000,9000,-9000);
 			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
 			
-		batch.end();
-		
-			add_timer("draw_timer");
-		
-		
-		
-
- 		sr.begin(ShapeType.Filled);
- 		Gdx.gl.glEnable(GL20.GL_BLEND);
-        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-        
-        
-			if (Shd_list!=null)
-			for (int k=0; k<Shd_list.size(); k++)
-			{
-				Shd_list.get(k).draw();
-				Shd_list.get(k).update(delta);
-				///Shd_list.get(k).update(delta);
-			}
 			
-
 			
-		sr.end();
+		
+		
 		
 		add_timer("missile_trail");
 		
-		batch.begin();
+		
+
 
         
+		for (int y=cluster_y+4; y>=cluster_y-4; y--)
+		{
+			
+			Draw_list.clear();
+			
+	    	for (int x=cluster_x-4; x<=cluster_x+4; x++)
+	    	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+	    	for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+	    	{
+	    		Entity e=cluster[x][y].Entity_list.get(i);
+	    		
+	    		if (!e.hidden)
+	    		{e.draw();}
+	    		///
+	    	}
+	    	
+	    	 for (int k=0; k<Draw_list.size()-1; k++)
+	    	        for (int i=Draw_list.size()-1; i>0; i--)
+	    	        {
+	    		        	if (
+	    		        		Draw_list.get(i).pos.y
+	    		        		>
+	    		        		Draw_list.get(i-1).pos.y
+	    		        		)
+	    		        	{
+	    			        		Entity swap=Draw_list.get(i);
+	    			        		Draw_list.set(i, Draw_list.get(i-1));
+	    			        		Draw_list.set(i-1,swap);
+	    		        	}
 
-    	for (int x=cluster_x-4; x<=cluster_x+4; x++)
-    	for (int y=cluster_y-4; y<=cluster_y+4; y++)
-    	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-    	for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-    	{
-    		Entity e=cluster[x][y].Entity_list.get(i);
-    		
-    		if (!e.hidden)
-    		{e.draw();}
-    		///
-    	}
+	    	        }
+	    	 
+	         for (int i=0; i<Draw_list.size(); i++)
+	         {
+	         	Draw_list.get(i).draw_action(delta);
+	         	Draw_list.get(i).effect_draw(delta);
+	         }
+		}
         
         
         add_timer("fill_draw_list");
 		
 		
-	    for (int k=0; k<Draw_list.size()-1; k++)
-        for (int i=Draw_list.size()-1; i>0; i--)
-        {
-	        	if (
-	        		Draw_list.get(i).pos.y
-	        		>
-	        		Draw_list.get(i-1).pos.y
-	        		)
-	        	{
-		        		Entity swap=Draw_list.get(i);
-		        		Draw_list.set(i, Draw_list.get(i-1));
-		        		Draw_list.set(i-1,swap);
-	        	}
-
-        }
+	   
 	    
 	    add_timer("sort_draw_list");
 
@@ -1167,145 +1118,200 @@ public class GScreen implements Screen {
         {
         	mis=Missile_list.get(i);
         	
-        	temp_vectorA.x=mis.pos.x;
-        	temp_vectorA.y=mis.pos.y;
-        	{Missile_list.get(i).update(delta);}
-        	
-        	near_dist=99999;
-        	near_object=null;//w
-
-            	 near_object=get_contact(mis.px,mis.py,mis.pos.x,mis.pos.y,mis.sx,mis.sy,mis.speed*delta,false,true,false);
-            
-        	if (near_object!=null)
+        	if (mis.lifetime>0)
         	{
-        		if (near_object.parent==null)
-        		{
-        			mis.pos.x=near_object.goal_x;
-        			mis.pos.y=near_object.goal_y;
-        			
-        			Missile_list.get(i).lifetime=-1;
-        			//System.out.println("Wallstuck");
-        			}
-        		else
-        		if
-        		(
-        				(near_object.parent!=null)
-        				&&
-        				(
-        						(((Entity) near_object.parent).is_enemy!=mis.is_enemy)
-        						||
-        						(((Entity) near_object.parent).burrow)
-        						||
-        						(((Entity) near_object.parent).is_decor)
-        				)
-        		)
-        		{
-        			
-        			mis.pos.x=near_object.goal_x;
-        			mis.pos.y=near_object.goal_y;
-        			
-        			if (!Missile_list.get(i).is_decor)
-        			{
-        				float reflect_value=((Entity) near_object.parent).armored_shield.total_reflect;
-        				float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/Missile_list.get(i).damage);//=1-0=1
-        				
-        				reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
-        				
-	        			if ((Math.random()<reflect_chance))
-	        			{
-	        				Missile_list.get(i).lifetime=-1;
-	        				((Entity) near_object.parent).hit_action(Missile_list.get(i).damage,true);
-	        			}
-	        			else
-	        			{
-	        				for (int k=0; k<((Entity) near_object.parent).Skills_list.size(); k++)
-	        				{
-	        					
-	        					if (((Entity) near_object.parent).Skills_list.get(k).learned)
-	        					{
-	        						((Entity) near_object.parent).Skills_list.get(k).prereflect_action(Missile_list.get(i),((Entity) near_object.parent));
-	        					}
-	        					
-	        				}
-	        				Missile_list.get(i).lifetime=10;
-	        				Missile_list.get(i).angle+=Math.toRadians(180+(Math.random()*10-5));
-	        				
-	        				
-	        				Missile_list.get(i).update_vectors_state();
-	        				
-	        				Missile_list.get(i).is_enemy=((Entity) near_object.parent).is_enemy;
-	        				Missile_list.get(i).col=Color.GREEN;
-	        				
-	        				for (int k=0; k<((Entity) near_object.parent).Skills_list.size(); k++)
-	        				{
-	        					
-	        					if (((Entity) near_object.parent).Skills_list.get(k).learned)
-	        					{
-	        						((Entity) near_object.parent).Skills_list.get(k).reflect_action(Missile_list.get(i),((Entity) near_object.parent));
-	        					}
-	        					
-	        				}
-	        			}
-        			}
-        			else
-        			{Missile_list.get(i).lifetime=-1;}
-        		}        		//pl.pos.add((float)Math.sin(Math.toRadians(near_object.angle))*-(near_object.vector_mul-(speed+0.5f)), (float)Math.cos(Math.toRadians(near_object.angle))*-(near_object.vector_mul-(speed+0.5f)));
+	        	
+	        	
+	        	near_dist=99999;
+	        	near_object=null;//w
+	        	Entity near_entity=null;
+	
+	        	
+	        	int x_min=Math.min((int)(mis.pos.x/300)-1, (int)((mis.pos.x+mis.sx*mis.speed*delta)/300)-1);
+	        	int x_max=Math.max((int)(mis.pos.x/300)+1, (int)((mis.pos.x+mis.sx*mis.speed*delta)/300)+1);
+		    	
+		    	int y_min=Math.min((int)(mis.pos.y/300)-1, (int)((mis.pos.y+mis.sy*mis.speed*delta)/300)-1);
+		    	int y_max=Math.max((int)(mis.pos.y/300)+1, (int)((mis.pos.y+mis.sy*mis.speed*delta)/300)+1);
+		    	
+		    	x_min=Math.max(0, x_min);
+		    	y_min=Math.max(0, y_min);
+		    	
+		    	x_max=Math.min(29, x_max);
+		    	y_max=Math.min(29, y_max);
+		    	
+		    	//sr.line(pl.pos.x, pl.pos.y,InputHandler.posx, InputHandler.posy);
+		    	
+				float min=9999;
+				//float xx;
+				//float yy;
+				float dst=0;
+		    	
+				//for (int k=0; k<1000; k++)
+		    	for (int x=x_min; x<=x_max; x++)
+		    	for (int y=y_min; y<=y_max; y++)
+		    	for (int j=0; j<cluster[x][y].Entity_list.size(); j++)
+		    	{
+		    			Entity e=cluster[x][y].Entity_list.get(j);
+		    			
+		    			
+		    				
+		    				temp_vector_collision_result.set
+		    					(
+			    					collision_vertical
+					    			(
+										e,															//target_entity
+										mis.pos.x,mis.pos.y,											//start_point
+										mis.pos.x+mis.sx*mis.speed*delta,mis.pos.y+mis.sy*mis.speed*delta,						//end_point
+										(mis.sx)/(mis.sy),(mis.sy)/(mis.sx),	//dynamic
+										0															//size
+						    		)
+				    			);
+	
+		    				
+		    				if (temp_vector_collision_result.x<9999)
+		    				{
+		    					mis.lifetime=-1;
+		    					
+		    					dst=Math.abs(temp_vector_collision_result.x-mis.pos.x)+Math.abs(temp_vector_collision_result.y-mis.pos.y);
+		    					
+			    				if (dst<min)
+			    				{
+			    				
+			    					min=dst;
+			    					near_entity=e;
+			    				}
+		    				}
+		    				
+		    	}
+		    	
+		    	if (near_entity!=null)
+		    	{
+		    		if (!near_entity.is_decor)
+		    		{
+		    			float reflect_value=near_entity.armored_shield.total_reflect;
+		    		
+					float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/Missile_list.get(i).damage);//=1-0=1
+					
+					reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
+					
+	    			if ((Math.random()<reflect_chance))
+	    			{
+	    				Missile_list.get(i).lifetime=-0.1f;
+	    				near_entity.hit_action(Missile_list.get(i).damage,true);
+	    			}
+	    			else
+	    			{
+	    				for (int k=0; k<near_entity.Skills_list.size(); k++)
+	    				{
+	    					
+	    					if (near_entity.Skills_list.get(k).learned)
+	    					{
+	    						near_entity.Skills_list.get(k).prereflect_action(Missile_list.get(i),near_entity);
+	    					}
+	    					
+	    				}
+	    				Missile_list.get(i).lifetime=10;
+	    				Missile_list.get(i).angle+=Math.toRadians(180+(Math.random()*10-5));
+	    				
+	    				
+	    				Missile_list.get(i).update_vectors_state();
+	    				
+	    				Missile_list.get(i).is_enemy=near_entity.is_enemy;
+	    				Missile_list.get(i).col=Color.GREEN;
+	    				
+	    				for (int k=0; k<near_entity.Skills_list.size(); k++)
+	    				{
+	    					
+	    					if (near_entity.Skills_list.get(k).learned)
+	    					{
+	    						near_entity.Skills_list.get(k).reflect_action(Missile_list.get(i),near_entity);
+	    					}
+	    					
+	    				}
+	    			}
+		    		}
+		    		else
+		    		{
+		    			Missile_list.get(i).lifetime=-0.1f;
+		    		}
+		    		
+		    	}
         	}
-        	else
-        	{}
+            	
+            
         	
-        	temp_vectorB.x=mis.pos.x;
-        	temp_vectorB.y=mis.pos.y;
-        	
-        	Missile_list.get(i).draw();
+
+	    	{
+	    		mis.update(delta);
+	    		//if (i==0) {Helper.log("LIFETIME="+Missile_list.get(i).lifetime);}
+	    	}
+        if (mis.lifetime>0) {Missile_list.get(i).draw();}
 			
-        	/*
-			if (Missile_list.get(i).have_shd)
-			{Shd_list.add(Missile_list.get(i).get_shd(new Vector2(temp_vectorA.x,temp_vectorA.y), new Vector2(temp_vectorB.x,temp_vectorB.y)));}
-			*/	
+        
         }
         
         add_timer("missile_collision_detect");
         
             for (int i=0; i<Missile_list.size();i++)
             {
-            	if (Missile_list.get(i).lifetime<=0)
+            	if (Missile_list.get(i).lifetime<=-1)
             	{
             		Missile_list.remove(i);
             		i--;
             	}
 
-            	//Missile_list.get(i).check();
+            
             }
 	    
             
-        for (int i=0; i<Draw_list.size(); i++)
-        {
-        	Draw_list.get(i).draw_action(delta);
-        	Draw_list.get(i).effect_draw(delta);
-        }
+
 		
         add_timer("entity");
         
 
 		batch.end();
-		terrain_fbo.end();
 		
-		add_timer("terrain_fbo_end");
+	    	sr.begin(ShapeType.Line);
+	    	Gdx.gl.glEnable(GL20.GL_BLEND);
+	 	   for (int i=0; i<Missile_list.size();i++)
+	        {
+	 		   mis=Missile_list.get(i);
+	 		   
+	 		   mis.draw_shd(delta);
+	        }
+	 	   sr.end();
+	 	   
+    	terrain_fbo.end();
+		
 
-		
+    	
+		add_timer("terrain_fbo_end");
 		
 		batch_static.begin();
-			if (screen_effect!=null)
-			{
-				screen_effect.update(delta, real_delta);
-			}
+		if (Gdx.input.isKeyPressed(Keys.H))
+		{batch_static.setShader(Main.shader_bloom);}
+		else
+		{batch_static.setShader(Main.shader_default);}
+		terrain_fbo.begin();
 		
-			batch_static.setColor(Color.WHITE);
+			
 		
-			batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
+			
+				if (screen_effect!=null)
+				{
+					screen_effect.update(delta, real_delta);
+				}
+			
+				//batch_static.setColor(Color.WHITE);
+			
+				//for (int i=0; i<3; i++)
+				{batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);}
+				//batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
+				
+				
+				terrain_fbo.end();
 		batch_static.end();
-		batch_static.setShader(Main.shader_default);
+		
 		
 		add_timer("draw_FBO");
 
@@ -1328,24 +1334,107 @@ public class GScreen implements Screen {
  		if ((show_edit))
  		{
 			sr.begin(ShapeType.Line);
-			Gdx.gl.glEnable(GL20.GL_BLEND);
-	        Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-	        
-			sr.setColor(0.15f, 0.16f, 0.17f, 0.05f);
-			for (int i=0; i<30; i++)
-			for (int j=0; j<30; j++)
-			{		
-				sr.rect(0, 0, j*30*10,i*30*10);
-			}
-			
-			int px=(int)(camera.position.x/30f);
-			int py=(int)(camera.position.y/30f);
-			
-			for (int i=-10; i<10; i++)
-			for (int j=-10; j<10; j++)
-			{		
-				sr.rect((px+j)*30-30, (py+i)*30-30, 30,30);
-			}
+				Gdx.gl.glEnable(GL20.GL_BLEND);
+		       
+		        
+		        
+				sr.setColor(0.15f, 0.16f, 0.17f, 0.05f);
+				for (int i=0; i<30; i++)
+				for (int j=0; j<30; j++)
+				{		
+					sr.rect(0, 0, j*30*10,i*30*10);
+				}
+				
+				int px=(int)(camera.position.x/30f);
+				int py=(int)(camera.position.y/30f);
+				
+				for (int i=-10; i<10; i++)
+				for (int j=-10; j<10; j++)
+				{		
+					sr.rect((px+j)*30-30, (py+i)*30-30, 30,30);
+				}
+				
+				
+				sr.setColor(Color.GREEN);
+				
+				int x_min=Math.min((int)(pl.pos.x/300)-1, (int)(InputHandler.posx/300)-1);
+		    	int x_max=Math.max((int)(pl.pos.x)+1, (int)(InputHandler.posx/300)+1);
+		    	
+		    	int y_min=Math.min((int)(pl.pos.y/300)-1, (int)(InputHandler.posy/300)-1);
+		    	int y_max=Math.max((int)(pl.pos.y/300)+1, (int)(InputHandler.posy/300)+1);
+		    	
+		    	x_min=Math.max(0, x_min);
+		    	y_min=Math.max(0, y_min);
+		    	
+		    	x_max=Math.min(29, x_max);
+		    	y_max=Math.min(29, y_max);
+		    	
+		    	sr.line(pl.pos.x, pl.pos.y,InputHandler.posx, InputHandler.posy);
+		    	
+    			float min=99999999;
+    			//float xx;
+    			//float yy;
+    			float dst=9999;
+    			Helper.log("======= ");
+    			temp_vector.x=99999;
+    			temp_vector.y=99999;
+    			
+    			int counter=0;
+    			
+    			//for (int k=0; k<1000; k++)
+		    	for (int x=x_min; x<=x_max; x++)
+		    	for (int y=y_min; y<=y_max; y++)
+		    	for (int i=0; i<cluster[x][y].Entity_list.size(); i++)
+		    	{
+		    			Entity e=cluster[x][y].Entity_list.get(i);
+		    			
+		    			if (pl.pos.y!=InputHandler.posy)
+		    			{
+		    				temp_vector_collision_result.set
+		    				(collision_vertical
+				    			(
+									e,															//target_entity
+									pl.pos.x,pl.pos.y,											//start_point
+									InputHandler.posx,InputHandler.posy,						//end_point
+									(pl.pos.x-InputHandler.posx)/(pl.pos.y-InputHandler.posy),(pl.pos.y-InputHandler.posy)/(pl.pos.x-InputHandler.posx),	//dynamic
+									0															//size
+					    		)
+				    		);
+
+		    				
+		    				if (temp_vector_collision_result.x<99999)
+		    				{
+		    					
+		    				
+		    						dst=Math.abs(temp_vector_collision_result.x-pl.pos.x)+Math.abs(temp_vector_collision_result.y-pl.pos.y);
+		    						sr.circle(temp_vector_collision_result.x, temp_vector_collision_result.y, 3);
+			    					
+			    					/*batch.begin();
+			    						Main.font_big.draw(batch, ""+dst+ "("+min+")["+counter+"]", temp_vector_collision_result.x+15, temp_vector_collision_result.y);
+			    					batch.end();*/
+			    					
+			    				if (dst<min)
+			    				{
+
+			    					
+			    					min=dst;
+			    					
+			    					Helper.log("TARGET CHANGED "+dst+"|"+counter);
+			    					
+			    					temp_vector.x=temp_vector_collision_result.x;
+			    					temp_vector.y=temp_vector_collision_result.y;	
+			    					
+			    					counter++;
+			    				}
+		    				}
+		    				
+		    			}
+		    	}
+		    	
+		    	
+		    	{sr.circle(temp_vector.x,temp_vector.y, 15);}
+		    	
+				
 			sr.end();
  		}
 
@@ -1362,7 +1451,7 @@ public class GScreen implements Screen {
  		
  		
 
-        Gdx.gl.glDisable(GL20.GL_BLEND);
+       
         
  		sr.setColor(Color.WHITE);
         
@@ -1410,7 +1499,7 @@ public class GScreen implements Screen {
 	       	 if (Gdx.input.isKeyPressed(Keys.D)){pl.add_impulse( pl.speed, 0,delta*(1-pl.time_slow_resist)+real_delta*pl.time_slow_resist*sp); is_press=true; pl.move_vert=false; pl.direction=1;}
        	 }
        	 
-       
+       	
        	 
        	 if (!is_press)
 	     {
@@ -1462,7 +1551,7 @@ public class GScreen implements Screen {
 		        			if (path[fx][fy]>0) {path[fx][fy]+=10;}
 		        			
 		        			int mov_dir=1;
-		        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<128))
+		        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
 		        			{mov_dir=-1;}
 		        			
 		        			
@@ -1527,8 +1616,8 @@ public class GScreen implements Screen {
 		
 	   //for (int k=0; k<3; k++)
 		
-		 for (int i=plposy-40; i<plposy+40; i++)
-		 for (int j=plposx-40; j<plposx+40; j++)
+		 for (int i=plposy-50; i<plposy+50; i++)
+		 for (int j=plposx-50; j<plposx+50; j++)
 		 		if ((i>0)&&(i<299)&&(j>0)&&(j<299))
 		 		{
 		 		
@@ -1536,7 +1625,7 @@ public class GScreen implements Screen {
 			 					
 			 					if (path[j][i]>0)
 			 		 			{
-			 		 	 			sr.setColor(0,(1-path[j][i]/100f),path[j][i]/100f,0.5f);
+			 		 	 			sr.setColor((1-path[j][i]/50f)*1,(1-path[j][i]/50f)*1.0f,(1-path[j][i]/50f)*1.0f,0.5f);
 			 		 			}
 			 					
 			 					if (path[j][i]==0)
@@ -1564,8 +1653,8 @@ public class GScreen implements Screen {
 			sr.end();
 		}
       	
-		for (int i=Math.max(1, plposy-40); i<plposy+40; i++)
-		for (int j=Math.max(1, plposx-40); j<plposx+40; j++)
+		for (int i=Math.max(1, plposy-50); i<plposy+50; i++)
+		for (int j=Math.max(1, plposx-50); j<plposx+50; j++)
 		if (path[j][i]>=0)
 		{
 			
@@ -1575,7 +1664,7 @@ public class GScreen implements Screen {
 			float curpa=path[j][i];
 			float plus=curpa+1;
 			
-			if ((path[j][i+1]>curpa)) {path[j][i+1]=path[j][i]+1;}
+			if ((path[j][i+1]>curpa)) {path[j][i+1]=plus;}
 			if ((path[j][i-1]>curpa)) {path[j][i-1]=plus;}
 			
 			if ((path[j+1][i]>curpa)) {path[j+1][i]=plus;}
@@ -1586,56 +1675,80 @@ public class GScreen implements Screen {
 		}
       	
       	
-		add_timer("path_calculate");
+	
       
       	
       	batch.setColor(Color.WHITE);
 
         batch.end();
 
-    	
+    		add_timer("path_calculate");
     	
         
-        sr.begin(ShapeType.Filled);
+      
         //0													ענה	ענכ	לכה	לכם	עûס										
         	//float test_float=	99	999	999	999	999	999	999	999	999	999	999	999	999f;
         	if (show_edit)
         	{
-        		for (int i=0; i<Phys_list.size(); i++)
-        		{Phys_list.get(i).draw();}
+        		//for (int i=0; i<Phys_list.size(); i++)
+        		//{Phys_list.get(i).draw();}
         	}
         	
-        
-	      	for (int x=cluster_x-3; x<cluster_x+3; x++)
-	      	for (int y=cluster_y-3; y<cluster_y+3; y++)
-	      	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-	      	{
-	      		if(phys_visualisation)
-	      		for (int i=0; i<cluster[x][y].Phys_list.size(); i++)
-	      		{cluster[x][y].Phys_list.get(i).draw();}
-	      		
-	      		if (show_edit)
-	      		for (int i=0; i<cluster[x][y].Entity_list.size(); i++)
-	      		{
-	      			if (cluster[x][y].Entity_list.get(i).selected)
-	      			{sr.setColor(Color.GREEN);
-	      			sr.circle(cluster[x][y].Entity_list.get(i).pos.x, cluster[x][y].Entity_list.get(i).pos.y, 1);
-	      			
-	      			sr.setColor(Color.RED);
-	      			sr.circle(cluster[x][y].Entity_list.get(i).pos.x, cluster[x][y].Entity_list.get(i).pos.y+cluster[x][y].Entity_list.get(i).z, 1);}
-	      		}
-	      	}
         	
-        	if (pl.dead_time>0)
+        	if(phys_visualisation)
+	        {
+        		sr.begin(ShapeType.Line);
+	        	sr.setColor(Color.CYAN);
+		      	for (int x=cluster_x-3; x<cluster_x+3; x++)
+		      	for (int y=cluster_y-3; y<cluster_y+3; y++)
+		      	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+		      	{
+		      		/*
+		      		if(phys_visualisation)
+		      		for (int i=0; i<cluster[x][y].Phys_list.size(); i++)
+		      		{cluster[x][y].Phys_list.get(i).draw();}
+		      		*/
+		      		
+		      		
+		      		
+		      		
+	
+		      			
+				      	for (int i=0; i<cluster[x][y].Entity_list.size(); i++)
+				      	{
+				      		Entity e=cluster[x][y].Entity_list.get(i);
+				      		float sx=e.collision_size_x;
+				      		float sy=e.collision_size_y;
+				      		
+				      		sr.rect(e.pos.x-sx, e.pos.y-sy,sx*2,sy*2);
+				      	}
+		      		
+		      		
+		      		
+		      		if (show_edit)
+		      		for (int i=0; i<cluster[x][y].Entity_list.size(); i++)
+		      		{
+		      			if (cluster[x][y].Entity_list.get(i).selected)
+		      			{sr.setColor(Color.GREEN);
+		      			sr.circle(cluster[x][y].Entity_list.get(i).pos.x, cluster[x][y].Entity_list.get(i).pos.y, 1);
+		      			
+		      			sr.setColor(Color.RED);
+		      			sr.circle(cluster[x][y].Entity_list.get(i).pos.x, cluster[x][y].Entity_list.get(i).pos.y+cluster[x][y].Entity_list.get(i).z, 1);}
+		      		}
+		      	}
+		        sr.end();
+        	}
+        	
+        	/*if (pl.dead_time>0)
         	{   
         		Gdx.gl.glEnable(GL20.GL_BLEND);
             	Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         		sr.setColor(1, 0.25f, 0.125f, Math.min(1, (pl.dead_time/10f)*0.8f));
         		sr.rect(-10000, -10000, 20000, 20000);
-        	}
+        	}*/
         	
-        sr.end();
-        
+      
+        	 add_timer("01");
     	
        
 		Main.shapeRenderer.begin(ShapeType.Filled);
@@ -1648,7 +1761,7 @@ public class GScreen implements Screen {
 		
         
         
-
+		
 			
 		batch_static.begin();
 			
@@ -1677,7 +1790,7 @@ public class GScreen implements Screen {
 		
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "draw distance: "+draw_distance, 16, 60);
-
+		Main.font.draw(batch_static, "zoom: "+camera.zoom, 16, 160);
 		
 
 		
@@ -1702,21 +1815,7 @@ public class GScreen implements Screen {
 			
 			int pos=0;
 			
-			if (Gdx.input.isKeyPressed(Keys.J))
-			{
-				//batch_static.draw(Assets.star,0,0,900,900);
-				for (int i=0; i<Timer.size(); i++)
-				{
-					
-					Main.font.setColor(Color.BLACK);
-					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500, scr_h-i*25-75.5f);
-					
-					Main.font.setColor(Color.WHITE);
-					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500.5f, scr_h-i*25-76);
-					
-					
-				}
-			}
+			
 			
 			if ((pl.equals(pl_mech)))
 			{
@@ -1777,7 +1876,7 @@ public class GScreen implements Screen {
 			
 			
 
-			if (debug_cooldown<=0) {debug_cooldown=0.1f;}
+		
 			
 			batch_static.end();
 		
@@ -1789,9 +1888,13 @@ public class GScreen implements Screen {
 					{GUI_list.get(i).update2(real_delta);}
 				
 			batch_static.end();
+			
+			 add_timer("02");
+			 
+			
 		//game.shapeRenderer_static.end();
-		
-		
+			
+
 		
 		
 		if ((pl.armored_shield!=null)&&(pl.armored_shield.value<=0))
@@ -1830,7 +1933,7 @@ public class GScreen implements Screen {
 		
 		if (camera_auto_zoom)
 		{
-			camera.zoom+=(need_zoom-camera.zoom)*0.02f;
+			//camera.zoom+=(need_zoom-camera.zoom)*0.02f;
 		}
 		
         batch.setProjectionMatrix(camera.combined);
@@ -1847,6 +1950,31 @@ public class GScreen implements Screen {
        
         
         InputHandler.scroll_amount=0;
+        
+   	 add_timer("03");
+	 
+		
+   		//game.shapeRenderer_static.end();
+   			
+   			if (Gdx.input.isKeyPressed(Keys.J))
+   			{
+   				batch_static.begin();
+   				//batch_static.draw(Assets.star,0,0,900,900);
+   				for (int i=0; i<Timer.size(); i++)
+   				{
+   					
+   					Main.font.setColor(Color.BLACK);
+   					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500, scr_h-i*25-75.5f);
+   					
+   					Main.font.setColor(Color.WHITE);
+   					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500.5f, scr_h-i*25-76);
+   					
+   					
+   				}
+   				batch_static.end();
+   			}
+   			
+   			if (debug_cooldown<=0) {debug_cooldown=0.1f;}
         //InputHandler.but=-1;
     }
 
@@ -1856,7 +1984,7 @@ public class GScreen implements Screen {
     	scr_w=(int) (width/1.0f);
     	scr_h=(int) (height/1.0f);
 
-    	camera.setToOrtho(false, scr_w, scr_h);
+    	camera.setToOrtho(false, scr_w*1.0f, scr_h*1.0f);
     	skills_camera.setToOrtho(false, scr_w, scr_h);
     	
     	skills_camera.position.x=width/2f;
@@ -1867,6 +1995,7 @@ public class GScreen implements Screen {
     	
     	terrain_fbo = new FrameBuffer(Pixmap.Format.RGB888, scr_w, scr_h, false);
     	terrain_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	terrain_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
     	
     	light_fbo = new FrameBuffer(Pixmap.Format.RGB888, (int)(scr_w/1f), (int)(scr_h/1f), false);
     	light_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
