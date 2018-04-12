@@ -6,6 +6,7 @@ package com.midfag.entity.missiles;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Shd;
 import com.midfag.entity.ShdLaser;
+import com.midfag.game.GScreen;
 
 /**
  * @author MidFag
@@ -35,5 +36,12 @@ public class MissileLaser extends Missile {
 		return s;
 	}
 	
-	
+	@Override
+	public void draw_shd(float delta) {
+		// TODO Auto-generated method stub
+		GScreen.sr.setColor(0.0f,0.5f,1.0f,shd_lifetime/2.0f);
+		
+		GScreen.sr.rectLine(start_x, start_y, pos.x, pos.y,7);
+		
+	}
 }

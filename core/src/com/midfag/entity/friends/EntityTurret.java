@@ -21,7 +21,7 @@ public class EntityTurret extends Entity {
 		
 
 		
-		id="pyra";
+		id="turret";
 		
 		armored[0]=new WeaponSimpleShotgun();
 		armored[0].generate();
@@ -40,7 +40,7 @@ public class EntityTurret extends Entity {
 		}	
 		
 		spr.setOrigin(50, 0);
-		offset.y=50;
+		offset.y=20;
 		can_rotate=false;
 		is_enemy=false;
 		

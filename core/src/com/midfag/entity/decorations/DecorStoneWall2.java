@@ -23,7 +23,7 @@ public class DecorStoneWall2 extends DecorStoneWall {
 		
 		
 		spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());
-		spr.setOrigin(11.0f, 5f);
+		spr.setOrigin(10.0f, 28f);
 		diagonal=true;
 		
 		path_x=0;
@@ -32,6 +32,10 @@ public class DecorStoneWall2 extends DecorStoneWall {
 		path_offset_y=15f;
 		
 		id=this.getClass().getName();
+		
+		collision_size_x=10;
+		collision_size_y=30;
+		mass=999999;
 		//spr.setOrigin(10.0f, 65);
 		//spr.setOrigin(80.0f, 10f);
 		
@@ -48,24 +52,7 @@ public class DecorStoneWall2 extends DecorStoneWall {
 	@Override
 	public void do_custom_phys()
 	{
-		int x=(int)(pos.x/300);
-		int y=(int)(pos.y/300);
-		
-		Phys p=new Phys(new Vector2(pos.x-20,pos.y-60),new Vector2(pos.x+20,pos.y-60),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+20,pos.y-60),new Vector2(pos.x+20,pos.y+80),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+20,pos.y+80),new Vector2(pos.x-20,pos.y+80),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-20,pos.y+80),new Vector2(pos.x-20,pos.y-60),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 		
 	}
 	

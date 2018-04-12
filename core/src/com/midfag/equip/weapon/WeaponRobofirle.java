@@ -9,12 +9,12 @@ public class WeaponRobofirle extends Weapon {
 	
 		public WeaponRobofirle()
 		{
-			base_damage=10;
+			base_damage=15;
 			base_missile_count=1;
 			base_shoot_cooldown=0.2f;
-			base_dispersion=3;
+			base_dispersion=2;
 			base_dispersion_additional=0.5f;
-			base_ammo_size=3;
+			base_ammo_size=7;
 			base_reload_time=1.0f;
 			
 			update_stats();

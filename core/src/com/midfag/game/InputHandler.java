@@ -134,16 +134,16 @@ public class InputHandler implements InputProcessor {
     		//GScreen.Button_list.add(new ButtonPutter(250,50,new DecorTube(new Vector2(),true),gui));
     		//GScreen.Button_list.add(new ButtonPutter(150,50,GScreen.Object_list.get(1)));
     		
-    		GScreen.Button_list.add(new ButtonSaveMap(50,650));
-    		GScreen.Button_list.add(new ButtonLoadMap(150,650,gui));
+    		GScreen.Button_list.add(new ButtonSaveMap(50,GScreen.scr_h-50));
+    		GScreen.Button_list.add(new ButtonLoadMap(150,GScreen.scr_h-50));
     		
-    		GScreen.Button_list.add(new ButtonRandomizeTile(650,650));
-    		GScreen.Button_list.add(new ButtonPathVisualize(710,650));
-    		GScreen.Button_list.add(new ButtonPhysVisualize(770,650));
+    		GScreen.Button_list.add(new ButtonRandomizeTile(650,GScreen.scr_h-50));
+    		GScreen.Button_list.add(new ButtonPathVisualize(710,GScreen.scr_h-50));
+    		GScreen.Button_list.add(new ButtonPhysVisualize(770,GScreen.scr_h-50));
     		
-    		GScreen.Button_list.add(new ButtonChangeMode(300,650,EditMode.ENTITY,gui));
-    		GScreen.Button_list.add(new ButtonChangeMode(400,650,EditMode.TILE,gui));
-    		GScreen.Button_list.add(new ButtonChangeMode(500,650,EditMode.PATTERN,gui));
+    		GScreen.Button_list.add(new ButtonChangeMode(300,GScreen.scr_h-50,EditMode.ENTITY,gui));
+    		GScreen.Button_list.add(new ButtonChangeMode(400,GScreen.scr_h-50,EditMode.TILE,gui));
+    		GScreen.Button_list.add(new ButtonChangeMode(500,GScreen.scr_h-50,EditMode.PATTERN,gui));
     		
 			GScreen.Button_list.add(new ButtonVertical(650,40,gui,false));
     		GScreen.Button_list.add(new ButtonVertical(650,65,gui,true));

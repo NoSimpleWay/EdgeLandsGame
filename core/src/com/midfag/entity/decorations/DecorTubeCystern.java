@@ -41,25 +41,7 @@ public class DecorTubeCystern extends DecorStoneWall {
 	@Override
 	public void do_custom_phys()
 	{
-		int x=(int)(pos.x/300);
-		int y=(int)(pos.y/300);
-		
-		
-		Phys p=new Phys(new Vector2(pos.x-28,pos.y-28),new Vector2(pos.x+28,pos.y-28),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+28,pos.y-28),new Vector2(pos.x+28,pos.y+28),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+28,pos.y+28),new Vector2(pos.x-28,pos.y+28),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-28,pos.y+28),new Vector2(pos.x-28,pos.y-28),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 		
 	}
 	

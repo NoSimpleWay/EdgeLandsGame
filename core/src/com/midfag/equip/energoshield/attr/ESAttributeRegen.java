@@ -16,12 +16,12 @@ public class ESAttributeRegen extends ESAttribute {
 	@Override
 	public void calculate(Energoshield _e)
 	{
-		_e.total_regen_speed=_e.base_regen_speed*(1+level*0.10f)+level*2;
+		_e.total_regen_speed+=_e.base_regen_speed*(level*0.02f)+level*0.5f;
 	}
 	
 	@Override
 	public String get_descr() {
 		// TODO Auto-generated method stub
-		return "+"+level*10f+"% скорость регенерации +"+level*2+"/сек скорость регенерации";
+		return "+"+level*2f+"% скорость регенерации +"+level*0.5f+"/сек скорость регенерации";
 	}
 }

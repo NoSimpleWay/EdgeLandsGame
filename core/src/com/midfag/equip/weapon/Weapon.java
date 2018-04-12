@@ -17,7 +17,9 @@ import com.midfag.equip.weapon.attr.WeaponAttribute;
 import com.midfag.equip.weapon.attr.WeaponAttributeAccuracy;
 import com.midfag.equip.weapon.attr.WeaponAttributeAttackSpeed;
 import com.midfag.equip.weapon.attr.WeaponAttributeClipSize;
+import com.midfag.equip.weapon.attr.WeaponAttributeColdDamage;
 import com.midfag.equip.weapon.attr.WeaponAttributeDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeFireDamage;
 import com.midfag.equip.weapon.attr.WeaponAttributeReloadSpeed;
 import com.midfag.equip.weapon.attr.WeaponAttributeStability;
 import com.midfag.game.GScreen;
@@ -72,7 +74,15 @@ public class Weapon {
 	public List<WeaponAttribute> Attribute_list = new ArrayList<WeaponAttribute>();
 	
 	public Rarity rarity;
-	public float missile_speed=1000;
+	public float missile_speed=750;
+	
+	public float total_fire_damage;
+	public float base_fire_damage;
+	
+	public float total_cold_damage;
+	public float base_cold_damage;
+	
+	public boolean is_rotate_reset_charge=false;
 	
 	
 	
@@ -108,6 +118,10 @@ public class Weapon {
 			Available_attribute_list.add(new WeaponAttributeStability());
 			Available_attribute_list.add(new WeaponAttributeClipSize());
 			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
+			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
+			
+			Available_attribute_list.add(new WeaponAttributeFireDamage());
+			Available_attribute_list.add(new WeaponAttributeColdDamage());
 		}
 		
 		public void update_attributes_bonus()
@@ -209,7 +223,7 @@ public class Weapon {
 			
 			
 			
-			attr_count=(int) (GScreen.rnd(3)+3);
+			attr_count=(int) (GScreen.rnd(5)+1);
 			
 			
 			

@@ -47,6 +47,7 @@ public class Energoshield {
 	public String name;
 	
 	public Rarity rarity;
+	public float attr_point_indicate;
 	
 	
 	
@@ -75,8 +76,8 @@ public class Energoshield {
 	{
 		
 		total_value=base_value*level;
-		total_regen_speed=base_regen_speed;
-		total_reflect=base_reflect;
+		total_regen_speed=base_regen_speed*level;
+		total_reflect=base_reflect*level;
 		
 		
 		for (int i=0; i<Attribute_list.size(); i++)
@@ -104,6 +105,8 @@ public class Energoshield {
 			if (_e.Skills_list.get(i).learned)
 			{_e.Skills_list.get(i).shield_gen_action(this);}
 		}
+		
+		value=total_value;
 	}
 	
 	
@@ -136,8 +139,9 @@ public class Energoshield {
 			}
 			
 				
-			attr_point=level*10*(1+rarity.ordinal()/5f);
-		
+			attr_point=(float) (level*10f*(Math.pow(1.26f,rarity.ordinal())));
+			attr_point_indicate = attr_point;
+			
 			attr_count=(int) (GScreen.rnd(3))+1;
 		
 			for (int i=0; i<(Available_attribute_list.size()-attr_count); i++)
@@ -182,6 +186,8 @@ public class Energoshield {
 				{break;}
 			}	
 		}
+		
+		//value=total_value;
 	}
 
 }

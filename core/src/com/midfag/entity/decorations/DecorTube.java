@@ -159,21 +159,7 @@ public class DecorTube extends Entity {
 		Phys p=new Phys(new Vector2(pos.x+20,pos.y-20),new Vector2(pos.x-20,pos.y-20),true,this,true);
 		
 		//System.out.println("X "+x+"; Y "+y);
-		
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-20,pos.y+32),new Vector2(pos.x+20,pos.y+32),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-20,pos.y-20),new Vector2(pos.x-20,pos.y+32),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+20,pos.y+32),new Vector2(pos.x+20,pos.y-20),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 	}
 	
 	

@@ -86,10 +86,10 @@ public class ButtonEquip extends Button {
 	public void color_it(float _a, float _b)
 	{
 		if (_a==_b)
-		{Main.font.setColor(0.9f, 0.95f, 1.0f, 1);}
+		{Main.font.setColor(0.5f, 0.6f, 0.7f, 1);}
 		else
 		if (_a>_b)	
-		{Main.font.setColor(0.65f, 1.0f, 0.75f, 1);}
+		{Main.font.setColor(0.45f, 1.0f, 0.55f, 1);}
 		else	
 		{Main.font.setColor(1.0f, 0.75f, 0.65f, 1);}
 	}
@@ -150,6 +150,8 @@ public class ButtonEquip extends Button {
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=25;
 				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage);
+				if (w.total_fire_damage>0) {color_it (w.total_fire_damage,w.base_fire_damage); draw_info("Урон огнём: ",""+w.total_fire_damage); mov+=5;}
+				if (w.total_cold_damage>0) {color_it (w.total_cold_damage,w.base_fire_damage); draw_info("Урон холодом: ",""+w.total_cold_damage); mov+=5;}
 				mov+=5;
 				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*10.0f)/10.0f);
 				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion));
@@ -174,7 +176,7 @@ public class ButtonEquip extends Button {
 
 				
 				Energoshield e=((Energoshield)obj);
-				draw_info(""+((Energoshield)obj).name,"");
+				draw_info(""+((Energoshield)obj).name,"("+((Energoshield)obj).attr_point_indicate+","+((Energoshield)obj).level+")");
 				
 				mov+=15;
 				

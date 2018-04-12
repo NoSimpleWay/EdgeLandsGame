@@ -27,6 +27,7 @@ import com.midfag.game.skills.shield_skills.SkillGodShield;
 import com.midfag.game.skills.shield_skills.SkillGodShield_A_SuperValue;
 import com.midfag.game.skills.shield_skills.SkillGodShield_B_SuperRegen;
 import com.midfag.game.skills.shield_skills.SkillGodShield_C_SuperReflect;
+import com.midfag.game.skills.shield_skills.SkillNoDeath;
 import com.midfag.game.skills.shield_skills.SkillShield;
 import com.midfag.game.skills.shield_skills.SkillShield_AA_ValueHalfDamage;
 import com.midfag.game.skills.shield_skills.SkillShield_AB_ValueHalfDamageTime;
@@ -123,13 +124,20 @@ public class EntityPlayer extends Entity {
 
 		have_ability=true;
 		
-		collision_size_x=45;
-		collision_size_y=45;
+		collision_size_x=30;
+		collision_size_y=30;
 		
 		
-		light_source=new LightSource();
+		/*light_source=new LightSource();
 		light_source.light_power=1.0f;
-		light_source.is_static=false;
+		light_source.R=0.02f;
+		light_source.G=0.04f;
+		light_source.B=0.9f;
+		light_source.is_static=true;*/
+		
+		size=30;
+		
+		mass=300;
 		
 		
 		
@@ -195,6 +203,12 @@ public class EntityPlayer extends Entity {
 				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
 				
 				
+			Skills_list.add(skl);	
+			
+			
+			
+			skl=new SkillNoDeath();
+			
 			Skills_list.add(skl);	
 			
 			engine_id=Assets.engine.play();
@@ -346,9 +360,10 @@ public class EntityPlayer extends Entity {
 		//if (impulse.x>0)
 		float vol=(Math.abs(impulse.x)+Math.abs(impulse.y))/400f+0.5f;
 		Assets.engine.setPitch(engine_id, vol);
+	
 		
 
-		Assets.engine.setVolume(engine_id, (vol-0.5f)/5f);
+		Assets.engine.setVolume(engine_id, (vol-0.5f)/15f);
 
 		
 		//if (Gdx.input.isKeyPressed(106))

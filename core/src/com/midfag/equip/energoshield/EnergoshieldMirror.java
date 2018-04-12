@@ -10,13 +10,12 @@ public class EnergoshieldMirror extends Energoshield {
 	
 	public EnergoshieldMirror()
 	{
-		base_value=250;
-		base_regen_speed=25;
-		base_reflect=20;
+		base_value=400;
+		base_regen_speed=10;
+		base_reflect=8;
 		
 		name="Mirror shield";
 		
-		level=1;
 		
 		spr=new Sprite(new Texture(Gdx.files.internal("icon_shield_mirror.png")));
 		

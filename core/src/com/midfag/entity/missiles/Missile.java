@@ -49,7 +49,9 @@ public class Missile {
 	
 	public boolean is_enemy;
 	public boolean have_shd=true;
-	private float shd_lifetime=1f;
+	public float shd_lifetime=1f;
+	public float fire_damage;
+	public float cold_damage;
 	
 	
 	

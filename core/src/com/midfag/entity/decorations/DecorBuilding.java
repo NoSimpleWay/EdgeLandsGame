@@ -73,25 +73,7 @@ public class DecorBuilding extends Entity {
 	@Override
 	public void do_custom_phys()
 	{
-		int x=(int)(pos.x/300);
-		int y=(int)(pos.y/300);
-		
-		
-		Phys p=new Phys(new Vector2(pos.x-50,pos.y-10),new Vector2(pos.x+50,pos.y-10),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+50,pos.y-10),new Vector2(pos.x+50,pos.y+20),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+50,pos.y+20),new Vector2(pos.x-50,pos.y+20),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-50,pos.y+20),new Vector2(pos.x-50,pos.y-20),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 		
 	}
 

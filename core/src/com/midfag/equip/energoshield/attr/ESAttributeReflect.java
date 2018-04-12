@@ -17,13 +17,13 @@ public class ESAttributeReflect extends ESAttribute {
 	@Override
 	public void calculate(Energoshield _e)
 	{
-		_e.total_reflect=_e.base_reflect+(level*1f);
-		_e.total_reflect+=_e.base_reflect*level/10f;
+		_e.total_reflect+=(level*0.2f);
+		_e.total_reflect+=_e.base_reflect*level*0.02f;
 	}
 	
 	@Override
 	public String get_descr() {
 		// TODO Auto-generated method stub
-		return "+"+level*10f+"%/+"+level+" уровень отражения";
+		return "+"+level*2f+"%/+"+level*0.2+" уровень отражения";
 	}
 }

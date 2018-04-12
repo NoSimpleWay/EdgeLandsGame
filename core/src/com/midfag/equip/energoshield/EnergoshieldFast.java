@@ -10,13 +10,12 @@ public class EnergoshieldFast extends Energoshield {
 	
 	public EnergoshieldFast()
 	{
-		base_value=250;
-		base_regen_speed=100;
-		base_reflect=5;
+		base_value=380;
+		base_regen_speed=22;
+		base_reflect=3f;
 		
 		name="Fast shield";
 		
-		level=1;
 		
 		spr=new Sprite(new Texture(Gdx.files.internal("icon_shield_fast.png")));
 		

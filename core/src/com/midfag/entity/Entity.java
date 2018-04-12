@@ -28,6 +28,9 @@ import com.midfag.game.skills.Skill;
 public class Entity {
 	
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
+	
+	public float mass=10;
+	
 	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));
 	
 	public float time_slow_resist=0;
@@ -56,7 +59,7 @@ public class Entity {
 	//public List<Entity> list = new ArrayList<Entity>();
 
 	
-	public List<Phys> Phys_list_local = new ArrayList<Phys>();
+	//public List<Phys> Phys_list_local = new ArrayList<Phys>();
 	public List<Skill> Skills_list = new ArrayList<Skill>();
 	public List<AnimationEffect> Effect = new ArrayList<AnimationEffect>();
 
@@ -161,9 +164,13 @@ public class Entity {
 	
 	public LightSource light_source=null;
 
-	public float collision_size_y;
+	public float collision_size_y=20;
 
-	public float collision_size_x;
+	public float collision_size_x=20;
+
+	public  float size=20;
+
+	public float stuck=0f;
 	
 	public void use_module(int _id)
 	{
@@ -198,17 +205,7 @@ public class Entity {
 			sound_init();
 			if (light_source!=null) {light_source.update_light_position(pos.x,pos.y);}
 			
-			/*
-			int sx=Math.round(spr.getTexture().getWidth()/GScreen.path_cell/2f);
-			int sy=Math.round(spr.getTexture().getHeight()/GScreen.path_cell/2f);
 			
-			for (int i=-sx; i<sx; i++)
-			for (int j=-sy; j<sy; j++)
-			{
-				GScreen.path
-				[Math.round(pos.x/GScreen.path_cell)+j]
-				[Math.round(pos.y/GScreen.path_cell)+i]=900;
-			}*/
 			
 			
 			
@@ -216,73 +213,7 @@ public class Entity {
 			generate_path();
 			
 			
-			/*
-			px=Math.round(pos.x/GScreen.path_cell);
-			py=Math.round(pos.y/GScreen.path_cell);
 			
-			if (z<=30)
-			for (int i=px-path_x; i<=px+path_x; i++)
-			for (int j=py-path_y; j<=py+path_y; j++)
-			{
-				GScreen.path[i][j]=905;
-			}*/
-					
-			Phys_list_local.clear();
-			
-			if (z<15)
-			{
-				if (!custom_phys)
-				{
-					
-					int x=(int)(pos.x/300);
-					int y=(int)(pos.y/300);
-					x=Math.min(29, Math.max(x, 1));
-					y=Math.min(29, Math.max(y, 1));
-		
-					;
-					
-					
-						Phys p=new Phys(new Vector2(pos.x,pos.y+20),new Vector2(pos.x-20,pos.y),false,this,true);
-						{p.move_block=false;}
-						Phys_list_local.add(p);
-						
-						p=new Phys(new Vector2(pos.x-20,pos.y),new Vector2(pos.x,pos.y-20),false,this,true);
-						{p.move_block=false;}
-						Phys_list_local.add(p);
-						
-						p=new Phys(new Vector2(pos.x,pos.y-20),new Vector2(pos.x+20,pos.y),false,this,true);
-						{p.move_block=false;}
-						Phys_list_local.add(p);
-						
-						p=new Phys(new Vector2(pos.x+20,pos.y),new Vector2(pos.x,pos.y+20),false,this,true);
-						{p.move_block=false;}
-						Phys_list_local.add(p);
-					
-				}
-				else
-				{
-					do_custom_phys();
-					//System.out.println("create CUSTOM phys ");
-				}
-			
-			}
-			/*
-			for (int i=-5; i<5; i++)
-		    for (int j=-5; j<5; j++)
-		    	{
-		    		if (
-		    				(((int)(pos.x/GScreen.path_cell)+i)>=0)
-		    				&&
-		    				((int)(pos.x/GScreen.path_cell)+i<300)
-		    				&&
-		    				((int)(pos.y/GScreen.path_cell)+j>=0)
-		    				&&
-		    				((int)(pos.y/GScreen.path_cell)+j<300)
-		    			)
-		    		
-		    			if(GScreen.path[(int)(pos.x/GScreen.path_cell)+j][(int)(pos.y/GScreen.path_cell)+i]<800)
-		    			{GScreen.path[(int)(pos.x/GScreen.path_cell)+j][(int)(pos.y/GScreen.path_cell)+i]=800;}
-		    	}*/
 		
 	}
 	
@@ -341,25 +272,7 @@ public class Entity {
 	
 	public void do_custom_phys()
 	{
-		int x=(int)(pos.x/300);
-		int y=(int)(pos.y/300);
-		
-		
-		Phys p=new Phys(new Vector2(pos.x-14,pos.y),new Vector2(pos.x+14,pos.y),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+14,pos.y+20),new Vector2(pos.x+14,pos.y),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-14,pos.y+20),new Vector2(pos.x+14,pos.y+20),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-14,pos.y+20),new Vector2(pos.x-14,pos.y),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 		
 	}
 
@@ -404,9 +317,10 @@ public class Entity {
 				if (Skills_list.get(i).learned)
 				{warm_protect+=Skills_list.get(i).warm_damage_action(this);}
 		}
-		armored_shield.warm-=(_damage/armored_shield.total_value*10f)/warm_protect;
 		
-		armored_shield.warm=Math.max(0, armored_shield.warm);
+		armored_shield.warm+=(_damage/(armored_shield.total_reflect*4f));
+		
+		armored_shield.warm=Math.min(5, armored_shield.warm);
 		
 		if ((hurt_sound_cooldown<=0)&(_sound))
 		{
@@ -480,7 +394,7 @@ public class Entity {
 	public void dead_action( boolean need_dead_anim)
 	{
 		
-		Helper.log("DESTROY <"+id+">");
+		//Helper.log("DESTROY <"+id+">");
 		
 		if ((need_dead_anim))
 		{
@@ -499,13 +413,7 @@ public class Entity {
 		
 		//if (!is_player)
 		{
-			for (int i=0; i<Phys_list_local.size(); i++)
-			{
-				Phys_list_local.get(i).clear_path();
-				GScreen.Phys_list.remove(Phys_list_local.get(i));
-				
-				GScreen.cluster[(int)(pos.x/300f)][(int)(pos.y/300f)].Phys_list.remove(Phys_list_local.get(i));
-			}
+
 			
 			GScreen.cluster[(int)(pos.x/300)][(int)(pos.y/300)].Entity_list.remove(this);
 			
@@ -586,18 +494,8 @@ public class Entity {
 				
 				if ((cx!=ncx)||(cy!=ncy))
 				{
-					
 						{GScreen.cluster[cx][cy].Entity_list.remove(this);
 						GScreen.cluster[ncx][ncy].Entity_list.add(this);}
-					
-					for (int i=0; i<Phys_list_local.size(); i++)
-					{
-						GScreen.cluster[ncx][ncy].Phys_list.add(Phys_list_local.get(i));
-						
-						GScreen.cluster[cx][cy].Phys_list.remove(Phys_list_local.get(i));
-					}
-					
-					
 				}
 				
 				if ((pcx!=npcx)||(pcy!=npcy))
@@ -653,18 +551,7 @@ public class Entity {
 					
 				}
 				
-			for (int z=0; z<Phys_list_local.size(); z++)
-			{
-				Phys_list_local.get(z).start.x+=_x;
-				Phys_list_local.get(z).end.x+=_x;
-				
-				Phys_list_local.get(z).start.y+=_y;
-				Phys_list_local.get(z).end.y+=_y;
-				
-				Phys_list_local.get(z).normal.x+=_x;
-				Phys_list_local.get(z).normal.y+=_y;
-				
-			}
+
 		}
 	}
 	
@@ -686,7 +573,7 @@ public class Entity {
 			{
 				if (miso==0)
 				 {
-					miso = Assets.minigun.play(0.5f,0.1f,0);
+					miso = Assets.minigun.play(0.1f,0.1f,0);
 					Assets.minigun.setLooping(miso, true);
 				 }
 			}
@@ -710,7 +597,7 @@ public class Entity {
 					(
 						(target!=null)
 						&&
-						(pos.dst(target.pos)<900)
+						(pos.dst(target.pos)<9000)
 					)
 					||
 					(is_player)
@@ -744,6 +631,8 @@ public class Entity {
 				GScreen.Missile_list.add(armored[_i].get_missile(this));
 				
 				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).damage=armored[_i].total_damage;
+				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).fire_damage=armored[_i].total_fire_damage;
+				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).cold_damage=armored[_i].total_cold_damage;
 			}
 			
 			armored[_i].add_disp+=armored[_i].total_dispersion_additional;
@@ -755,7 +644,7 @@ public class Entity {
 			}
 			else
 			{
-				{armored[_i].get_shoot_sound().play(0.5f);}
+				{armored[_i].get_shoot_sound().play(0.05f);}
 			}
 		
 			
@@ -802,7 +691,9 @@ public class Entity {
 		float dy=_e.pos.y-pos.y;
 		float spd=(float) Math.sqrt(dx*dx+dy*dy);
 		
-		if (GScreen.get_contact(pos.x,pos.y,_e.pos.x,_e.pos.y,dx/spd,dy/spd,spd,true,false,true)==null)
+		Entity e=GScreen.get_collision(pos.x,pos.y,_e.pos.x,_e.pos.y,(pos.x-_e.pos.x)/(pos.y-_e.pos.y),(pos.y-_e.pos.y)/(pos.x-_e.pos.x),1);
+		
+		if ((e!=null)&&(e.is_enemy!=is_enemy))
 		{return true;}
 		
 		return false;
@@ -894,7 +785,7 @@ public class Entity {
 		{
 			if (armored[i]!=null)
 			{
-				armored[i].add_disp*=Math.pow(0.30f,_d);
+				armored[i].add_disp*=Math.pow(0.10f,_d);
 			
 				
 				armored[i].cd-=_d*cold_rating;
@@ -902,10 +793,11 @@ public class Entity {
 		}
 		if ((armored_shield!=null)&&(armored_shield.value>0))
 		{
-			armored_shield.value+=armored_shield.total_regen_speed*armored_shield.warm*_d/1;
+			if (armored_shield.warm<=0)
+			{armored_shield.value+=armored_shield.total_regen_speed*_d;}
 			
-			armored_shield.warm+=_d/50;
-			armored_shield.warm=Math.min(1, armored_shield.warm);
+			armored_shield.warm-=_d;
+			armored_shield.warm=Math.max(0, armored_shield.warm);
 			armored_shield.value=Math.min(armored_shield.total_value, armored_shield.value);
 		}
 		//удыу
@@ -921,6 +813,9 @@ public class Entity {
 		/*if (Math.abs(impulse.x)<2){impulse.x=0;}
 		if (Math.abs(impulse.y)<2){impulse.y=0;}*/
 		
+		if (Math.abs(impulse.x)<1f) {impulse.x=0;}
+		if (Math.abs(impulse.y)<1f) {impulse.y=0;}
+		
 		float mx=impulse.x*cold_rating;
 		float my=impulse.y*cold_rating;
 		
@@ -928,8 +823,8 @@ public class Entity {
 		if (mx>0){mx+=20;} else if (mx<0){mx-=20;}
 		if (my>0){my+=20;} else if(my<0){my-=20;}*/
 		
-		Phys near_object=null;
-		float spd=(float) (Math.sqrt(mx*mx+my*my));
+		Entity near_object=null;
+		//float spd=(float) (Math.sqrt(mx*mx+my*my));
 		
 
 		
@@ -937,13 +832,20 @@ public class Entity {
 		if (((is_player)&&(GScreen.show_edit))||(z>50))
 		{}
 		else
-		{near_object=GScreen.get_contact(pos.x,pos.y,pos.x+mx*_d,pos.y+my*_d,mx/spd,my/spd,spd*_d,false,false,true);}
+		{
+			float dx=0;
+			float dy=0;
+			if (Math.abs(my)<0.1f) {dx=99999;}else{dx=mx/my;}
+			if (Math.abs(mx)<0.1f) {dy=99999;}else{dy=my/mx;}
+			
+			near_object=GScreen.get_collision(pos.x,pos.y,pos.x+mx*_d,pos.y+my*_d,dx,dy,size);
+		}
 		
 
 		
 		if (near_object==null)
 		{
-			move (impulse.x*cold_rating,impulse.y*cold_rating,_d);
+			move (mx,my,_d);
 			
 			//hit_action(99999);
 			
@@ -951,7 +853,12 @@ public class Entity {
 		else
 		{
 
-			impulse.scl(0.75f);
+			impulse.scl(1f/(near_object.mass/mass+1f));
+			stuck=0.1f;
+			near_object.add_impulse(impulse.x, impulse.y, 0.5f/(near_object.mass/mass+1f));
+			
+			//impulse.x+=near_object.impulse.x/10.0f;
+			//impulse.y+=near_object.impulse.y/10.0f;
 			/*
 			pos.x=near_object.goal_x;
 			pos.y=near_object.goal_y;*/
@@ -962,6 +869,8 @@ public class Entity {
 					-GScreen.cosR(near_object.angle)/100f,
 					1f
 				);*/
+			
+			//hit_action(1f,false);
 			
 			//pos.x=near_object.goal_x-GScreen.sinR(near_object.angle);
 			//pos.y=near_object.goal_y-GScreen.cosR(near_object.angle);
@@ -1159,9 +1068,9 @@ public class Entity {
 	    		
 	    	}
 	    	
-	    	dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
+	    	/*dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
 			dynamic_multiplier_G=dynamic_multiplier_R;
-			dynamic_multiplier_B=dynamic_multiplier_R;
+			dynamic_multiplier_B=dynamic_multiplier_R;*/
 			
 	    	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
 	    	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
@@ -1187,6 +1096,12 @@ public class Entity {
 		draw_action(_d, 1f);
 		//Main.font.draw(GScreen.batch, ""+constant_move_y, pos.x, pos.y);
 	}
+	
+	public float get_cold_rating()
+	{
+		return 1-buff_cold/(buff_cold+100);
+	}
+	
 	public void draw_action(float _d, float _siz) {
 		// TODO Auto-generated method stub
 		
@@ -1251,14 +1166,14 @@ public class Entity {
 
 	public void update_dynamic_color_state() {
 		// TODO Auto-generated method stub
-		dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
+		/*dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
 		dynamic_multiplier_G=dynamic_multiplier_R;
 		dynamic_multiplier_B=dynamic_multiplier_R;
 		
 		
     	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;} 
     	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
-    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
+    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	*/
 		
 	}
 

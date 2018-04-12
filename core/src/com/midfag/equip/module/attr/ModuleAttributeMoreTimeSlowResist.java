@@ -11,9 +11,9 @@ public class ModuleAttributeMoreTimeSlowResist extends ModuleAttribute {
 	
 	public ModuleAttributeMoreTimeSlowResist()
 	{
-		cost=1;
+		cost=10;
 		
-		max_level=90;
+		max_level=5;
 		name="Сопротивление времени";
 	}
 	
@@ -21,12 +21,12 @@ public class ModuleAttributeMoreTimeSlowResist extends ModuleAttribute {
 	public void calculate(ModuleUnit _m)
 	{
 		System.out.println("CALCULATED");
-		((ModuleUnitTimeStop)_m).total_time_slow_resist+=(level*0.01f);
+		((ModuleUnitTimeStop)_m).total_time_slow_resist+=(level*0.1f);
 	}
 	
 	@Override
 	public String get_descr()
 	{
-		return 	"+ сопротивление эффекту замедления времени "+1*level+"%";
+		return 	"+ сопротивление эффекту замедления времени "+10*level+"%";
 	}
 }

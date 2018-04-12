@@ -52,18 +52,18 @@ public class EntityPyra extends Entity {
 		}	
 		
 		spr.setOrigin(50, 0);
-		offset.y=50;
+		offset.y=10;
 		can_rotate=false;
 		
-		friction=0.001f;
+		friction=0.01f;
 		speed/=0.5f;
 	}
 	
 	@Override
 	public void draw_action(float _d) {
 
-		float cold_rating=1.0f-buff_cold/(buff_cold+100.0f);
-		spr.setColor(cold_rating, 1, 1, 1);
+		
+
 		
 		if (!is_enemy)
 		{
@@ -112,12 +112,14 @@ public class EntityPyra extends Entity {
 			body_rotate_cooldown-=_d;
 		}
 		
-		spr.setColor(color_total_R,color_total_G,color_total_B,1f);
-		spr.translate(-25,-80);
+		float cold_rating=1.0f-buff_cold/(buff_cold+100.0f);
+		
+		spr.setColor(color_total_R*cold_rating,color_total_G*cold_rating,color_total_B,1f);
+		spr.translate(-25,-110);
 		spr.setSize(100, 200);
 		spr.setTexture(Assets.shadow);
 		spr.draw(GScreen.batch);
-		spr.translate(25,80);
+		spr.translate(25,110);
 		
 		spr.setSize(100, 100);
 		

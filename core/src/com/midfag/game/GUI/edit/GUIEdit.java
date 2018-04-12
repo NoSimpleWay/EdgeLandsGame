@@ -98,8 +98,8 @@ public class GUIEdit extends GUI {
 		//change alteration
 		if ((selected_object!=null)&&(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)))
 		{
-			selected_object.z+=InputHandler.scroll_amount;
-			selected_object.move(0, -InputHandler.scroll_amount, 1);
+			selected_object.z+=InputHandler.scroll_amount*5;
+			//selected_object.move(0, -InputHandler.scroll_amount, 1);
 			mod=1;
 		}
 		
@@ -229,7 +229,7 @@ public class GUIEdit extends GUI {
 			
 		GScreen.batch.end();
 		
-		if ((InputHandler.realy>70)&&(InputHandler.realy<700-70))
+		if ((InputHandler.realy>70)&&(InputHandler.realy<GScreen.scr_h-70))
 		{
 			if (
 					(InputHandler.but==0)
@@ -242,7 +242,7 @@ public class GUIEdit extends GUI {
 			
 				InputHandler.but=-1;
 				
-				if (InputHandler.realx<800)
+				//if (InputHandler.realx<800)
 				{
 					Entity en=Helper.get_object_from_id(indicate_entity.id);
 					
@@ -392,7 +392,7 @@ public class GUIEdit extends GUI {
 				pattern_edit=false;
 			}
 			
-			if (InputHandler.realx<850)
+			//if (InputHandler.realx<850)
 			{
 				if (!top_layer) {Main.font.setColor(0.5f, 0.5f, 0.5f, 0.5f);}else{Main.font.setColor(0.25f, 1.0f, 0.5f, 1.0f);}
 				Main.font.draw(GScreen.batch_static, "TOP LAYER: ", 170, 530);
@@ -402,8 +402,7 @@ public class GUIEdit extends GUI {
 					(InputHandler.but==0)
 					&&
 					(tile>=0)
-					&&
-					(InputHandler.realx<850)
+					
 				)
 				
 				

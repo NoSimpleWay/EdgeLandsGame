@@ -36,10 +36,11 @@ public class DecorStoneWall extends Entity {
 		path_offset_x=0f;
 		
 		path=true;
-		path_x=2;
+		path_x=1;
 		path_y=0;
+		mass=999999;
 		
-		collision_size_x=55;
+		collision_size_x=45;
 		collision_size_y=10;
 		
 		
@@ -60,25 +61,7 @@ public class DecorStoneWall extends Entity {
 	@Override
 	public void do_custom_phys()
 	{
-		int x=(int)(pos.x/300);
-		int y=(int)(pos.y/300);
-		
-		
-		Phys p=new Phys(new Vector2(pos.x-60,pos.y-10),new Vector2(pos.x+60,pos.y-10),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x+60,pos.y+30),new Vector2(pos.x+60,pos.y-10),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-60,pos.y+30),new Vector2(pos.x+60,pos.y+30),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
-		
-		p=new Phys(new Vector2(pos.x-60,pos.y+30),new Vector2(pos.x-60,pos.y-10),true,this,true);
-		GScreen.cluster[x][y].Phys_list.add(p);
-		Phys_list_local.add(p);
+
 		
 	}
 	

@@ -10,13 +10,12 @@ public class EnergoshieldStone extends Energoshield {
 	
 	public EnergoshieldStone()
 	{
-		base_value=1000;
-		base_regen_speed=25;
-		base_reflect=5;
+		base_value=650;
+		base_regen_speed=8;
+		base_reflect=2f;
 		
 		name="Stone shield";
 		
-		level=1;
 		
 		spr=new Sprite(new Texture(Gdx.files.internal("icon_shield_stone.png")));
 		

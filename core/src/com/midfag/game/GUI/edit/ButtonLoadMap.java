@@ -2,6 +2,9 @@ package com.midfag.game.GUI.edit;
 
 
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
@@ -9,18 +12,20 @@ import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
 
 public class ButtonLoadMap extends Button {
-
+	
+	public Texture tex;
 	
 	public String[] ss=new String[100];
 	public GUIEdit gui;
 	
-	public ButtonLoadMap(float _x, float _y, GUIEdit _gui)
+	public ButtonLoadMap(float _x, float _y)
 	{
 		super(_x,_y);
 		pos.x=_x;
 		pos.y=_y;
 		
-		gui=_gui;
+		tex=new Texture(Gdx.files.internal("button_load_map.png"));
+		//gui=_gui;
 	}
 	
 	@Override
@@ -28,6 +33,14 @@ public class ButtonLoadMap extends Button {
 	{
 		
 	}
+	
+	@Override
+	public void after_draw()
+	{
+		GScreen.batch_static.setColor(Color.WHITE);
+		GScreen.batch_static.draw(tex, pos.x-22, pos.y-22);
+	}
+	
 	
 	@Override
 	public void some_update(float _d)

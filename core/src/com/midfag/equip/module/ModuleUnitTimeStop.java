@@ -28,14 +28,14 @@ public class ModuleUnitTimeStop extends ModuleUnit {
 	{
 		name="Модуль 'Остановка времени'";
 		
-		base_duration=5.0f;
-		base_cooldown=25;
+		base_duration=7.0f;
+		base_cooldown=60;
 		base_time_slow=0.5f;
 		
 		level=5;
 		
-		base_time_slow_resist=0.1f;
-		total_time_slow_resist=0.1f;
+		base_time_slow_resist=0.5f;
+		total_time_slow_resist=0.5f;
 		
 		can_be_locked=true;
 		

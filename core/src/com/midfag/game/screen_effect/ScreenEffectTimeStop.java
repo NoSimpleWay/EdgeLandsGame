@@ -27,7 +27,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 	{
 		if (MasterModule.duration>0)
 		{
-			GScreen.time_speed=0.00f;
+			GScreen.time_speed=0.01f;
 			
 			if (MasterModule.total_duration-MasterModule.duration<0.5f)
 			{

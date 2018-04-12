@@ -2,6 +2,8 @@ package com.midfag.game.GUI.edit;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -11,19 +13,28 @@ public class ButtonSaveMap extends Button {
 	public int[][] tile_map;
 	public int[][] tile_map_overlay;
 	
+	public Texture tex;
+	
 	public ButtonSaveMap(float _x, float _y)
 	{
 		super(_x,_y);
 		pos.x=_x;
 		pos.y=_y;
 		
-		
+		tex=new Texture(Gdx.files.internal("button_save_map.png"));
 	}
 	
 	@Override
 	public void second_draw()
 	{
 		
+	}
+	
+	@Override
+	public void after_draw()
+	{
+		GScreen.batch_static.setColor(Color.WHITE);
+		GScreen.batch_static.draw(tex, pos.x-22, pos.y-22);
 	}
 	
 	//@SuppressWarnings("static-access")
