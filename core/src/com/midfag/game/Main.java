@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g3d.Shader;
 import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.midfag.entity.decorations.DecorBarrel;
 
 public class Main extends Game {
 
@@ -70,7 +71,21 @@ public class Main extends Game {
         this.setScreen(new GScreen(this));
         shader_default=GScreen.batch.getShader();
         
-
+        Class clazz = DecorBarrel.class;
+        Package p = clazz.getPackage();
+        
+        Package[] pc= p.getPackage("com.midfag").getPackages();
+        
+        p.getPackage("com.midfag").getPackages();
+        System.out.println("! " + p.getName() + ";");
+       
+        
+        
+        for (int i=0; i<pc.length; i++)
+        {
+        	if (pc[i].getName().startsWith("com.midfag.entity.decorations")) {System.out.println("! " + pc[i].getName()  + ";");}
+        }
+        
         
     }
 

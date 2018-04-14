@@ -16,7 +16,7 @@ public class ESAttributeRegen extends ESAttribute {
 	@Override
 	public void calculate(Energoshield _e)
 	{
-		_e.total_regen_speed+=_e.base_regen_speed*(level*0.02f)+level*0.5f;
+		_e.total_regen_speed+=_e.base_regen_speed*(level*0.02f)+level*0.5f+_e.base_regen_speed*(_e.level-1);
 	}
 	
 	@Override

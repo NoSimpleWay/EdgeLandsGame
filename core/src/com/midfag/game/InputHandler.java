@@ -14,9 +14,11 @@ import com.midfag.entity.enemies.EntityEliteWheel;
 import com.midfag.entity.enemies.EntityPyra;
 import com.midfag.entity.enemies.EntityWheel;
 import com.midfag.entity.friends.EntityTurret;
+import com.midfag.game.Enums.ButtonVerticalFunction;
 import com.midfag.game.Enums.EditMode;
 import com.midfag.game.Enums.EquipGenerationType;
 import com.midfag.game.Enums.Rarity;
+import com.midfag.game.Enums.WorldConfigMode;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.GUIInventory;
 import com.midfag.game.GUI.GUISkillsWheel;
@@ -71,6 +73,8 @@ public class InputHandler implements InputProcessor {
 	public static boolean keyF_release=false;
 	public static boolean keyE_release=false;
 	public static int scroll_amount;
+	
+	public static WorldConfigMode wcm=WorldConfigMode.ILLUMINATION_BLUR_POWER;
     // Ask for a reference to the Bird when InputHandler is created.
     public InputHandler() {
         // myBird now represents the gameWorld's bird.
@@ -88,6 +92,21 @@ public class InputHandler implements InputProcessor {
     @Override
     public boolean keyDown(int keycode) {
     	key=keycode;
+    	
+
+    	if (key==Keys.LEFT_BRACKET)
+    	{
+    		GScreen.WD_active--;
+    		
+    		if (GScreen.WD_active<0) {GScreen.WD_active=GScreen.WD.size()-1;}
+    	}
+    	
+    	if (key==Keys.RIGHT_BRACKET)
+    	{
+    		GScreen.WD_active++;
+    		
+    		if (GScreen.WD_active>=GScreen.WD.size()) {GScreen.WD_active=0;}
+    	}
     	
     	if (key==Keys.Q)
     	{
@@ -120,6 +139,8 @@ public class InputHandler implements InputProcessor {
     		}
     	}
     	
+    	
+    	
     	//if (key!=Keys.F){keyF_release=true;}
     	
     	if (key==Keys.Z)
@@ -145,8 +166,8 @@ public class InputHandler implements InputProcessor {
     		GScreen.Button_list.add(new ButtonChangeMode(400,GScreen.scr_h-50,EditMode.TILE,gui));
     		GScreen.Button_list.add(new ButtonChangeMode(500,GScreen.scr_h-50,EditMode.PATTERN,gui));
     		
-			GScreen.Button_list.add(new ButtonVertical(650,40,gui,false));
-    		GScreen.Button_list.add(new ButtonVertical(650,65,gui,true));
+			GScreen.Button_list.add(new ButtonVertical(650,40,gui,false,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
+    		GScreen.Button_list.add(new ButtonVertical(650,65,gui,true,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
     		
     		GScreen.GUI_list.add(gui);
     	}
@@ -240,6 +261,10 @@ public class InputHandler implements InputProcessor {
     			gui.Button_list.add(new ButtonChangeQuality(450,310,Rarity.ELITE));
     			gui.Button_list.add(new ButtonChangeQuality(550,310,Rarity.LEGENDARY));
     			gui.Button_list.add(new ButtonChangeQuality(650,310,Rarity.ANOMALY));
+    			
+    			gui.Button_list.add(new ButtonVertical(150,360,null,true,ButtonVerticalFunction.INVENTORY_LEVEL));
+    			gui.Button_list.add(new ButtonVertical(150,330,null,false,ButtonVerticalFunction.INVENTORY_LEVEL));
+    			
     			//Assets.shoot00.
     			for (int j=0; j<3; j++)
     			for (int i=0; i<10; i++)

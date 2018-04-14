@@ -75,10 +75,12 @@ public class Energoshield {
 	public void update_attributes_bonus()
 	{
 		
+		
+		
 		total_value=base_value*level;
 		total_regen_speed=base_regen_speed*level;
 		total_reflect=base_reflect*level;
-		
+
 		
 		for (int i=0; i<Attribute_list.size(); i++)
 		{
@@ -118,7 +120,7 @@ public class Energoshield {
 			
 			Attribute_list.clear();
 			
-			base_value*=level;
+			//base_value*=level;
 			
 			int r=0;
 			if (rarity.ordinal()==0)

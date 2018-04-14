@@ -19,6 +19,7 @@ public class ESAttributeReflect extends ESAttribute {
 	{
 		_e.total_reflect+=(level*0.2f);
 		_e.total_reflect+=_e.base_reflect*level*0.02f;
+		_e.total_reflect+=_e.base_reflect*(_e.level-1f);
 	}
 	
 	@Override

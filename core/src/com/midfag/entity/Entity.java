@@ -503,7 +503,6 @@ public class Entity {
 					if (light_source!=null)
 					{
 						light_source.update_light_position(pos.x,pos.y);
-						
 					}
 					else
 					{
@@ -539,14 +538,17 @@ public class Entity {
 						
 						GScreen.need_shadow_update=true;
 						GScreen.need_light_update=true;
+						
+						if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
+						if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
 				    }
 
 				    
-				    if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
+				   
 				    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
 				    
 
-				    if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
+				    
 					
 					
 				}

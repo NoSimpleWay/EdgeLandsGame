@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.equip.energoshield.Energoshield;
 import com.midfag.equip.energoshield.EnergoshieldSimple;
+import com.midfag.equip.module.LegendaryModuleUnitEXPLOSIONS;
 import com.midfag.equip.module.ModuleUnitPush;
 import com.midfag.equip.module.ModuleUnitTimeSlow;
 import com.midfag.equip.module.ModuleUnitTurret;
@@ -394,7 +395,7 @@ public class EntityPlayer extends Entity {
 	        {
 	        	if (Math.random()>0.05)
 	        	{
-	        		switch ((int)GScreen.rnd(8))
+	        		switch ((int)GScreen.rnd(9))
 		        	{
 		        		case 0: inventory[i]=new WeaponSimpleFirle();		break;
 		        		case 1: inventory[i]=new WeaponSimpleMinigun();		break;
@@ -404,6 +405,7 @@ public class EntityPlayer extends Entity {
 		        		case 5: inventory[i]=new ModuleUnitPush(); 			break;
 		        		case 6: inventory[i]=new ModuleUnitTimeSlow(); 		break;
 		        		case 7: inventory[i]=new ModuleUnitTurret(); 		break;
+		        		case 8: inventory[i]=new LegendaryModuleUnitEXPLOSIONS(); 		break;
 		        	}
 	        	}
 	        	else

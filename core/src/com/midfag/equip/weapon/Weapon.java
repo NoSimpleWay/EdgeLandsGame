@@ -132,7 +132,9 @@ public class Weapon {
 		public void update_attributes_bonus(Entity _e)
 		{
 			
-			total_damage=base_damage;
+			
+			total_damage=base_damage*level;
+			
 			total_missile_count=base_missile_count;
 			total_shoot_cooldown=base_shoot_cooldown;
 			total_dispersion=base_dispersion;
@@ -219,7 +221,7 @@ public class Weapon {
 			
 			
 			
-			attr_point=level*10*(1+rarity.ordinal()/5f);
+			attr_point=(float) (level*10f*(Math.pow(1.26f,rarity.ordinal())));
 			
 			
 			

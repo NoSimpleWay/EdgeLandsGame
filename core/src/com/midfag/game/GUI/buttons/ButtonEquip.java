@@ -145,7 +145,7 @@ public class ButtonEquip extends Button {
 			{
 				
 				Weapon w=((Weapon)obj);
-				draw_info(""+((Weapon)obj).get_name(),"");
+				draw_info(""+((Weapon)obj).get_name()+" ("+w.level+" level)","");
 				//mov+=25;
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=25;

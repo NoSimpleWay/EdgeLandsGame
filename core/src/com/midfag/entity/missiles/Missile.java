@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Color;
 
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.midfag.entity.Entity;
 import com.midfag.entity.Shd;
 
 import com.midfag.entity.ShdSmoke;
@@ -183,6 +184,16 @@ public class Missile {
 		GScreen.sr.setColor(1,0.5f,0.2f,shd_lifetime/2.0f);
 		
 		GScreen.sr.line(start_x, start_y, pos.x, pos.y);
+		
+	}
+	
+	public void hit_action(Entity near_entity) {
+		// TODO Auto-generated method stub
+		lifetime=-0.1f;
+	}
+	
+	public void another_hit_action(Entity near_entity) {
+		// TODO Auto-generated method stub
 		
 	}
 }

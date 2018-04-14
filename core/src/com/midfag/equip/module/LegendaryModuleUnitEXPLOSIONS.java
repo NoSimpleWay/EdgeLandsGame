@@ -1,17 +1,23 @@
 package com.midfag.equip.module;
 
+import java.util.List;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.entity.Entity;
+import com.midfag.equip.module.attr.ModuleAttributeBurnDamage;
 import com.midfag.equip.module.attr.ModuleAttributeDuration;
+import com.midfag.equip.module.attr.ModuleAttributeExplosionDamage;
 import com.midfag.equip.module.attr.ModuleAttributeExplosionIce;
 import com.midfag.equip.module.attr.ModuleAttributeFastCooldown;
 import com.midfag.equip.module.attr.ModuleAttributeMoreTimeSlowResist;
+import com.midfag.equip.module.attr.ModuleAttributeSelfDamageProtect;
 import com.midfag.game.GScreen;
+import com.midfag.game.screen_effect.ScreenEffectEXPLOSIONS;
 import com.midfag.game.screen_effect.ScreenEffectTimeStop;
 import com.midfag.game.Enums.Rarity;
 
-public class ModuleUnitTimeStop extends ModuleUnit {
+public class LegendaryModuleUnitEXPLOSIONS extends ModuleUnit {
 
 	/*
 	public float base_push_damage=50;
@@ -22,55 +28,68 @@ public class ModuleUnitTimeStop extends ModuleUnit {
 	
 	public float base_time_slow_resist;
 	public float total_time_slow_resist;
+	private Entity master;
+	
+	public float base_damage=20;
+	public float base_burn=2;
+	
+	public float total_damage=20;
+	public float total_burn=2;
+	
+	public float self_defence=0;
 
-
-	public ModuleUnitTimeStop()
+	public LegendaryModuleUnitEXPLOSIONS()
 	{
-		name="Модуль 'Остановка времени'";
+		name="Модуль 'Детонатор'";
 		
-		base_duration=7.0f;
+		
+		
+		base_duration=1.5f;
 		base_cooldown=60;
-		base_time_slow=0.5f;
 		
 		level=5;
 		
-		base_time_slow_resist=0.5f;
-		total_time_slow_resist=0.5f;
 		
 		can_be_locked=true;
 		
-		tex=new Texture(Gdx.files.internal("icon_time_stop.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_time_slow.png"));
+		tex=new Texture(Gdx.files.internal("icon_explosion.png"));
+		indicate_tex=new Texture(Gdx.files.internal("icon_explosion.png"));
 		
 		rarity=Rarity.COMMON;
 		
 		//Available_attribute_list.add(new ModuleAttributeExplosionIce());
 		
+		additional_update_stats();
 		generate();
 		update_stats();
+		
+		
+		total_duration=2f;
 	}
 	
 	public void  get_available_attribute()
 	{
 		Available_attribute_list.clear();
-		
-		Available_attribute_list.add(new ModuleAttributeDuration());
+		Available_attribute_list.add(new ModuleAttributeExplosionDamage());
+		Available_attribute_list.add(new ModuleAttributeBurnDamage());
 		Available_attribute_list.add(new ModuleAttributeFastCooldown());
-		Available_attribute_list.add(new ModuleAttributeMoreTimeSlowResist());
+		Available_attribute_list.add(new ModuleAttributeSelfDamageProtect());
 		
 	}
 	
 	@Override
 	public String get_description()
 	{
-		return "Полностью останавливает время на "+total_duration+" сек"+"\n"+ "Cопротивление эффекту ("+(total_time_slow_resist*100)+"%)";
+		return "Подрывает всех противников, нанося им урон от взрыва и поджигет их"+"\n"+"Урон от взрыва: "+total_damage+" dddd"+"Урон от огня: "+total_burn;
 	}
 	
 	@Override
 	public void use(Entity _e)
 	{
+		prepare_time=1.5f;
+		master=_e;
 		duration=total_duration;
-		GScreen.screen_effect=new ScreenEffectTimeStop();
+		GScreen.screen_effect=new ScreenEffectEXPLOSIONS();
 		GScreen.screen_effect.MasterModule=this;
 		GScreen.pl.time_slow_resist=total_time_slow_resist;
 		
@@ -106,13 +125,25 @@ public class ModuleUnitTimeStop extends ModuleUnit {
 	@Override
 	public void additional_update_stats()
 	{
-		total_time_slow=base_time_slow;
-		total_time_slow_resist=base_time_slow_resist;
+		base_damage*=level;
+		base_burn*=level;
+		
+		total_damage=base_damage;
+		total_burn=base_burn;
 	}
 	
 	@Override
 	public void update(Entity _entity, float _delta)
 	{
+			if (prepare_time>0) {prepare_time-=_delta;}
+			
+			
+			if((prepare_time<=0)&&(prepare_time!=-777))
+			{
+				prepare_time=-777;
+				preparing_complete();
+			}
+			
 			cooldown-=GScreen.time_speed*_delta;
 			if (cooldown<=0){cooldown=0;}
 			
@@ -124,8 +155,8 @@ public class ModuleUnitTimeStop extends ModuleUnit {
 					duration=0; cooldown=total_cooldown;
 					use_end_skill(_entity, _delta);	
 					
-					GScreen.screen_effect.end_action();
-					GScreen.screen_effect=null;
+					//GScreen.screen_effect.end_action();
+					//GScreen.screen_effect=null;
 					
 					for (int i=0; i<5; i++)
 					{
@@ -136,6 +167,28 @@ public class ModuleUnitTimeStop extends ModuleUnit {
 					}
 				}
 			}
+	}
+	
+	@Override
+	public void preparing_complete()
+	{
+		List<Entity> el=GScreen.get_entity_list(GScreen.temp_vector.set(master.pos.x,master.pos.y));
+		
+		for (int i=0; i<el.size(); i++)
+		{
+			if ((!el.get(i).is_decor)&&(el.get(i).active)&&(el.get(i).is_enemy!=master.is_enemy))
+			{
+				el.get(i).hit_action(total_damage,false);
+				el.get(i).burn_it(total_burn);
+				
+			
+			}
+		}
+		
+		master.hit_action(total_damage*(1-self_defence), false);
+		master.burn_it(total_burn*(1-self_defence));
+		
+		cooldown=total_cooldown;
 	}
 	
 	

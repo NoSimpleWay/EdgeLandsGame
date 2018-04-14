@@ -264,7 +264,7 @@ public class Assets {
 		panel=new Texture(Gdx.files.internal("panel.png"));
 		diod=new Texture(Gdx.files.internal("diod.png"));
 		particle=new Texture(Gdx.files.internal("particle.png"));
-		explosion=new Texture(Gdx.files.internal("explosion.png"));
+		explosion=new Texture(Gdx.files.internal("explosion0.png"));
 		missile=new Texture(Gdx.files.internal("missile.png"));
 		
 		

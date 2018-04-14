@@ -2,7 +2,7 @@ package com.midfag.equip.module.attr;
 
 import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.module.ModuleUnitPush;
-import com.midfag.equip.module.ModuleUnitTimeStop;
+import com.midfag.equip.module.LegendaryModuleUnitTimeStop;
 
 public class ModuleAttributeMoreTimeSlowResist extends ModuleAttribute {
 
@@ -21,7 +21,7 @@ public class ModuleAttributeMoreTimeSlowResist extends ModuleAttribute {
 	public void calculate(ModuleUnit _m)
 	{
 		System.out.println("CALCULATED");
-		((ModuleUnitTimeStop)_m).total_time_slow_resist+=(level*0.1f);
+		((LegendaryModuleUnitTimeStop)_m).total_time_slow_resist+=(level*0.1f);
 	}
 	
 	@Override

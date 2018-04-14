@@ -38,6 +38,10 @@ import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.buttons.Button;
+import com.midfag.game.GUI.world_debug.WorldDebug;
+import com.midfag.game.GUI.world_debug.WorldDebugIlluminationBlurPass;
+import com.midfag.game.GUI.world_debug.WorldDebugIlluminationPower;
+import com.midfag.game.GUI.world_debug.WorldDebugIlluminationSpreadPass;
 import com.midfag.game.screen_effect.ScreenEffect;
 import com.midfag.game.script.ScriptSystem;
 import com.midfag.game.script.ScriptTimer;
@@ -45,7 +49,14 @@ import com.midfag.game.script.ScriptTimer;
 
 
 public class GScreen implements Screen {
-    public static final int path_cell = 30;
+	
+	public static int WD_active=0;
+	
+	public static List<WorldDebug> WD = new ArrayList<WorldDebug>();//_______________________список физических линий
+	
+    public static float lightmap_spread_power = 0.45f;
+
+	public static final int path_cell = 30;
     
     public static float white=Color.WHITE.toFloatBits();
     
@@ -63,10 +74,10 @@ public class GScreen implements Screen {
     public static int bound_y_down; 
     public static int bound_y_up;
     
-    public static Boolean need_light_update=false;
-    public static Boolean need_dynamic_light_update=false;
+    public static Boolean need_light_update=true;
+    public static Boolean need_dynamic_light_update=true;
     public static Boolean need_shadow_update=true;
-    public static Boolean need_pixmap_update=false;
+    public static Boolean need_pixmap_update=true;
     
     public static Color global_illumination=new Color(0.15f,0.165f,0.18f, 1f);
 
@@ -231,7 +242,10 @@ public class GScreen implements Screen {
 
 	public static float debug_cooldown=1;
 
-	public static boolean need_static_light_update=false;
+	public static boolean need_static_light_update=true;
+
+	public static int lightmap_blur_pass=8;
+	public static int lightmap_spread_pass=8;
 	
     
 	public static Entity get_collision(float _x1, float _y1, float _x2, float _y2, float _dx, float _dy, float _size)
@@ -498,6 +512,10 @@ public class GScreen implements Screen {
     
     
     public GScreen(final Main gam) {
+    	
+    	WD.add(new WorldDebugIlluminationPower());
+    	WD.add(new WorldDebugIlluminationBlurPass());
+    	WD.add(new WorldDebugIlluminationSpreadPass());
     	
     	Localisation.locad_local();
 
@@ -775,6 +793,8 @@ public class GScreen implements Screen {
         	timer_list[i]=0;
         }*/
     	
+
+    	
     	if ((InputHandler.key==Keys.F)&&(InputHandler.keyF_release))
     	{
     		//Helper.log("_-_-_-_--_-_-__--__--");
@@ -804,6 +824,39 @@ public class GScreen implements Screen {
     	
     	if (debug_cooldown<=0) {Timer.clear();}
     	real_delta=delta;
+    	
+    	float world_debug_change=0;
+    	
+    	/*
+    	if (Gdx.input.isKeyPressed(Keys.DOWN))
+    	{
+    		world_debug_change=-real_delta;
+    		//Helper.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    		
+    		
+    	}
+    	
+    	if (Gdx.input.isKeyPressed(Keys.UP))
+    	{
+    		world_debug_change=real_delta;
+    		//Helper.log("@@@@@@@@@@@@@@@@@@@@@@@@@@");
+    		
+    		
+    	}
+    	
+    	if (world_debug_change!=0)
+    	{
+    		lightmap_spread_power+=world_debug_change/10f;
+    		GScreen.need_light_update=true;
+
+    		
+    		if (lightmap_spread_power<0) {lightmap_spread_power=0;}
+    		if (lightmap_spread_power>1) {lightmap_spread_power=1;}
+    		
+    		need_static_light_update=true;
+    		need_pixmap_update=true;
+    	}
+    	*/
     	
     	//Draw_list.clear();
     	
@@ -887,22 +940,7 @@ public class GScreen implements Screen {
 			}
 	    }
 	    
-	    if (need_static_light_update)
-	    {
-	    	need_static_light_update=false;
-	    	
-			for (int x=0; x<30; x++)
-			for (int y=0; y<30; y++)
-			{
-				for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-				 {
-		        	Entity e=cluster[x][y].Entity_list.get(i);
-		        	e.update_color_state();
-				 }	
-			}
-			
-			add_timer("entity_receive_light");
-	    }
+	    
 	    
 	    add_timer("need_shadow_update_begin");
 	    if (need_shadow_update)
@@ -937,6 +975,8 @@ public class GScreen implements Screen {
 	    add_timer("need_light_update_begin");
 	    //LightSystem.static_light_update();
 	   
+	    
+
 	    
     	if (need_light_update)
 		{
@@ -986,10 +1026,10 @@ public class GScreen implements Screen {
 	    			
 	    				batch_illum.setColor(0.1f,0.1f,0.1f,1.0f);
 	    				
-	    				for (int k=0; k<16*light_map_size; k++)
+	    				for (int k=0; k<lightmap_spread_pass*light_map_size; k++)
 	    				{
 	    					batch_illum.setBlendFunction(GL20.GL_ONE, GL20.GL_ONE);
-				        	batch_illum.setColor(0.1f,0.1f,0.10f,1.0f);				
+				        	batch_illum.setColor(lightmap_spread_power,lightmap_spread_power,lightmap_spread_power,1.0f);				
 	    				
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0+1, 300*light_map_size, 300*light_map_size, -300*light_map_size);
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0-1, 300*light_map_size, 300*light_map_size, -300*light_map_size);
@@ -1018,7 +1058,7 @@ public class GScreen implements Screen {
     				batch_illum.enableBlending();
     				
     				
-    				for (int i=0; i<16*light_map_size; i++)
+    				for (int i=0; i<lightmap_blur_pass*light_map_size; i++)
     				{
     					batch_illum.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
     					
@@ -1053,7 +1093,7 @@ public class GScreen implements Screen {
 										need_pixmap_update=false;
 										Gdx.gl.glReadPixels(0, 0, 300, 300, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE,  pixmap.getPixels());
 										
-										Helper.log("PIXMAP UPDATED");
+										Helper.log("PIXMAP UPDATED "+need_pixmap_update);
 									}
     				
 								
@@ -1067,6 +1107,22 @@ public class GScreen implements Screen {
     	
     	//pixmap_update_cooldown-=real_delta;
     	
+	    if (need_static_light_update)
+	    {
+	    	need_static_light_update=false;
+	    	
+			for (int x=0; x<30; x++)
+			for (int y=0; y<30; y++)
+			{
+				for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+				 {
+		        	Entity e=cluster[x][y].Entity_list.get(i);
+		        	e.update_color_state();
+				 }	
+			}
+			
+			add_timer("entity_receive_light");
+	    }
     	
 		/*======================================*/
     	add_timer("need_light_update_end");
@@ -1087,7 +1143,7 @@ public class GScreen implements Screen {
     	int terx=(int)(camera.position.x/90f);
     	int tery=(int)(camera.position.y/90f);
     	
-    	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/180));
+    	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/150f));
     	
     	int terrain_x_left=terx-terrain_draw_distance; if (terrain_x_left<0) {terrain_x_left=0;}
     	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>299) {terrain_x_right=299;}
@@ -1215,7 +1271,9 @@ public class GScreen implements Screen {
 					
 	    			if ((Math.random()<reflect_chance))
 	    			{
-	    				Missile_list.get(i).lifetime=-0.1f;
+	    				mis.hit_action(near_entity);
+	    				mis.another_hit_action(near_entity);
+	    				
 	    				near_entity.hit_action(Missile_list.get(i).damage,true);
 	    				near_entity.burn_it(Missile_list.get(i).fire_damage);
 	    				near_entity.freeze_it(Missile_list.get(i).cold_damage*10);
@@ -1253,7 +1311,8 @@ public class GScreen implements Screen {
 		    		}
 		    		else
 		    		{
-		    			Missile_list.get(i).lifetime=-0.1f;
+		    			mis.hit_action(near_entity);
+	    				mis.another_hit_action(near_entity);
 		    		}
 		    		
 		    	}
@@ -1943,6 +2002,8 @@ public class GScreen implements Screen {
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "FPS: "+fps, 17, 30);
 		
+		WD.get(WD_active).update(real_delta);
+		WD.get(WD_active).draw(real_delta);
 		
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "draw distance: "+draw_distance, 16, 60);

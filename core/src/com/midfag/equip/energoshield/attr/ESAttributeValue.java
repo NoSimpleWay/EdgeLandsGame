@@ -16,13 +16,13 @@ public class ESAttributeValue extends ESAttribute {
 	@Override
 	public void calculate(Energoshield _e)
 	{
-		_e.total_value+=_e.base_value*(level*0.02f);
+		_e.total_value+=_e.base_value*(level*0.02f)+_e.base_value*(_e.level-1);
 		_e.total_value+=(level*5f);
 	}
 	
 	@Override
 	public String get_descr() {
 		// TODO Auto-generated method stub
-		return "+"+level*2+"% ёмкость щита/+"+(level*5f);
+		return "+"+level*2f+"% ёмкость щита/+"+(level*5f);
 	}
 }

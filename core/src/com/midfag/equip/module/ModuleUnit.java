@@ -19,6 +19,7 @@ import com.midfag.game.Enums.Rarity;
 
 public class ModuleUnit {
 
+	public float prepare_time=-777;
 	public float base_cooldown;
 	public float total_cooldown;
 	public float cooldown;
@@ -121,7 +122,8 @@ public class ModuleUnit {
 			}
 			*/
 			
-			attr_point=level*10*(1+rarity.ordinal()/5f);
+			attr_point=(float) (level*10f*(Math.pow(1.26f,rarity.ordinal())));
+			
 		
 			attr_count=(int) (GScreen.rnd(3))+1;
 		
@@ -228,6 +230,8 @@ public class ModuleUnit {
 		total_duration=base_duration;
 		total_cooldown=base_cooldown;
 		
+
+		
 		Helper.log("MODULE IS CRAZY");
 		
 		additional_update_stats();
@@ -268,6 +272,11 @@ public class ModuleUnit {
 		{return true;}
 		
 		return false;
+	}
+	
+	public void preparing_complete()
+	{
+		
 	}
 	
 	

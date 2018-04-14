@@ -27,5 +27,17 @@ public class Enums {
 	    INTERACT_ENTRY
 	}
 	
+	public enum WorldConfigMode {
+	    ILLUMINATION_BLUR_POWER,
+	    ILLUMINATION_BLUR_PASS_COUNT
+
+	}
+	
+	public enum ButtonVerticalFunction {
+	    ENTITY_SELECTOR_OFFSET,
+	    INVENTORY_LEVEL
+
+	}
+	
 	
 }

@@ -10,8 +10,11 @@ import com.midfag.equip.energoshield.EnergoshieldSimple;
 import com.midfag.equip.energoshield.EnergoshieldStone;
 import com.midfag.equip.module.ModuleUnitPush;
 import com.midfag.equip.module.ModuleUnitTimeSlow;
-import com.midfag.equip.module.ModuleUnitTimeStop;
+import com.midfag.equip.module.LegendaryModuleUnitEXPLOSIONS;
+import com.midfag.equip.module.LegendaryModuleUnitTimeStop;
+import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.module.ModuleUnitTurret;
+import com.midfag.equip.weapon.LegendaryWeaponMirrorLaser;
 import com.midfag.equip.weapon.WeaponLegendaryBlender;
 import com.midfag.equip.weapon.WeaponLegendaryChaos;
 import com.midfag.equip.weapon.WeaponLegendaryPing;
@@ -58,13 +61,16 @@ public class ButtonRandomGenerator extends Button {
 				{
 					for (int i=0; i<30; i++)//;
 			        {
-						switch ((int)GScreen.rnd(4))
+						switch ((int)GScreen.rnd(5))
 			        	{
 			        		case 0: GScreen.pl.inventory[i]=new ModuleUnitPush();		break;
 			        		case 1: GScreen.pl.inventory[i]=new ModuleUnitTimeSlow();	break;
 			        		case 2: GScreen.pl.inventory[i]=new ModuleUnitTurret();		break;
-			        		case 3: GScreen.pl.inventory[i]=new ModuleUnitTimeStop();		break;
+			        		case 3: GScreen.pl.inventory[i]=new LegendaryModuleUnitTimeStop();		break;
+			        		case 4: GScreen.pl.inventory[i]=new LegendaryModuleUnitEXPLOSIONS();		break;
 			        	}
+						
+						
 			        }
 				}
 				
@@ -100,11 +106,12 @@ public class ButtonRandomGenerator extends Button {
 				        	}
 			        	}
 			        	else
-			        	switch ((int)GScreen.rnd(3))
+			        	switch ((int)GScreen.rnd(4))
 				        {
 				       		case 0: GScreen.pl.inventory[i]=new WeaponLegendaryBlender();	break;
 				       		case 1: GScreen.pl.inventory[i]=new WeaponLegendaryChaos();		break;
 				       		case 2: GScreen.pl.inventory[i]=new WeaponLegendaryPing();		break;
+				       		case 3: GScreen.pl.inventory[i]=new LegendaryWeaponMirrorLaser();		break;
 				        }
 			        }
 				}
