@@ -3,6 +3,15 @@ package com.midfag.equip.weapon;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.equip.weapon.attr.WeaponAttributeAccuracy;
+import com.midfag.equip.weapon.attr.WeaponAttributeAttackSpeed;
+import com.midfag.equip.weapon.attr.WeaponAttributeChaos;
+import com.midfag.equip.weapon.attr.WeaponAttributeClipSize;
+import com.midfag.equip.weapon.attr.WeaponAttributeColdDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeFireDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeReloadSpeed;
+import com.midfag.equip.weapon.attr.WeaponAttributeStability;
 import com.midfag.game.Assets;
 
 public class WeaponSimpleFirle extends Weapon {
@@ -33,6 +42,8 @@ public class WeaponSimpleFirle extends Weapon {
 		{
 			return Assets.shoot04;
 		}
+		
+
 		
 		//public void
 }

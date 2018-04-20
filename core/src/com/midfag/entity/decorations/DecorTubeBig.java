@@ -20,6 +20,7 @@ public class DecorTubeBig extends DecorStoneWall {
 		spr.setTexture(Assets.decor_tube_big);
 
 		id=this.getClass().getName();
+		uid="507840bf";
 		
 		diagonal=false;
 		

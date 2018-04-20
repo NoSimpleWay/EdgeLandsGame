@@ -12,7 +12,7 @@ public class DecorBarrelCrash extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="fe7d3d76";
 		
 		spr.setTexture(Assets.barrel_crash);
 		icon=Assets.barrel_crash_icon;

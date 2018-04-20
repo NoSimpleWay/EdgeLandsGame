@@ -40,6 +40,7 @@ public class EntityTransportDroneContainer extends Entity {
 		//icon=Assets.dron_container_icon;
 		
 		id=this.getClass().getName();
+		uid="e4e1c705";
 		
 		is_decor=true;
 		is_AI=false;

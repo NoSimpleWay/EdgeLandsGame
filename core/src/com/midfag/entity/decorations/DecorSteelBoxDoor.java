@@ -15,6 +15,7 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="ee7e1529";
 		
 		spr.setTexture(Assets.decoration_steel_box_door);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

@@ -14,6 +14,8 @@ public class DecorRabitz extends Entity {
 		
 		super(_v);
 
+		uid="015a590c";
+		
 		custom_phys=true;
 		
 		is_AI=false;

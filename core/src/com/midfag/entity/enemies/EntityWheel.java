@@ -36,7 +36,7 @@ public class EntityWheel extends Entity {
 		icon=Assets.entity_wheel_icon;
 		
 		id=this.getClass().getName();
-		
+		uid="4669cc39";
 		
 		armored[0]=null;
 		armored[1]=null;

@@ -16,6 +16,7 @@ public class DecorCystern extends DecorStoneWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="3d3919bf";
 		
 		spr.setTexture(Assets.cystern);
 		icon=Assets.decoration_cystern_icon;

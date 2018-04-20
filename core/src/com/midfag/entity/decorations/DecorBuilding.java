@@ -20,6 +20,7 @@ public class DecorBuilding extends Entity {
 		custom_phys=true;
 
 		id=this.getClass().getName();
+		uid="59a1a175";
 		
 		is_decor=true;
 		is_AI=false;

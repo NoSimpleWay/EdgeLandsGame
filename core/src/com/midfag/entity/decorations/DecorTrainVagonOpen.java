@@ -17,6 +17,7 @@ public class DecorTrainVagonOpen extends DecorStoneWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="e664d426";
 		
 		spr.setTexture(Assets.decoration_train_vagon_open);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

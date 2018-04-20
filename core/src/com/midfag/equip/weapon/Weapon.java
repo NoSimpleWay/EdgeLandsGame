@@ -198,7 +198,7 @@ public class Weapon {
 			total_damage=base_damage*level;
 			Attribute_list.clear();
 			int r=0;
-			Helper.log("IM GENERATED!");
+			//Helper.log("IM GENERATED!");
 			
 			/*
 			if (rarity.ordinal()==0)

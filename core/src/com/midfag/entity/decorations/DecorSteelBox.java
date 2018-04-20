@@ -18,6 +18,7 @@ public class DecorSteelBox extends DecorStoneWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="e109337d";
 		
 		spr.setTexture(Assets.decoration_steel_box);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

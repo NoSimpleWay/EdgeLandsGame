@@ -11,6 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.entity.EntityHuman;
 import com.midfag.entity.EntityPlayer;
+import com.midfag.entity.decorations.DecorBarrel;
 import com.midfag.game.script.ScriptSystem;
 
 public class Helper {
@@ -63,7 +64,13 @@ public class Helper {
 				
 				String id=ss[i];
 				
-				e=get_object_from_id(id);
+
+				
+				log ("UID="+id+" | ID="+SysConfig.get_package_path_by_uid(id));
+				
+				if (SysConfig.get_package_path_by_uid(id).equals("")) {e=null;}
+				else
+				{e=get_object_from_id(SysConfig.get_package_path_by_uid(id));}
 				//System.out.println("ID="+id);	
 			}
 			
@@ -111,7 +118,7 @@ public class Helper {
 					GScreen.add_entity_to_map(e);
 					
 					
-					if (e.getClass().equals(EntityHuman.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!   HUMAN"); GScreen.pl_human=e; GScreen.pl=e;}
+					if (e instanceof EntityHuman){log("!!!!!!!!!!!!!!!!!!!!!!!!   HUMAN"); GScreen.pl_human=e; GScreen.pl=e;}
 					if (e.getClass().equals(EntityPlayer.class)){log("!!!!!!!!!!!!!!!!!!!!!!!!   MECH"); GScreen.pl_mech=e;}
 					
 					GScreen.camera_target=GScreen.pl;
@@ -119,6 +126,22 @@ public class Helper {
 					e.fill_path();
 				}
 			}
+		}
+		
+	
+		if (GScreen.pl_human == null)
+		{
+			log(get_error_text("PLAYER HUMAN NOT FOUND ON MAP DATA, AUTO SPAWN"));
+			GScreen.pl_human=GScreen.add_entity_to_map(new EntityHuman(new Vector2(4500,4500)));
+			
+			GScreen.pl=GScreen.pl_human;
+			GScreen.camera_target=GScreen.pl;
+		}
+		
+		if (GScreen.pl_mech == null)
+		{
+			log(get_error_text("PLAYER MECH NOT FOUND ON MAP DATA, AUTO SPAWN"));
+			GScreen.pl_mech=GScreen.add_entity_to_map(new EntityPlayer(new Vector2(4500,4500)));
 		}
 		
 		file = Gdx.files.local("z_tile.txt");
@@ -185,8 +208,8 @@ public class Helper {
 		
 		//System.out.println("FIRST DATA="+ss[0]);
 		
-		for (int i=0; i<300; i++)
-		for (int j=0; j<300; j++)
+		for (int i=0; i<100; i++)
+		for (int j=0; j<100; j++)
 		{
 			String sub_s=ss[i].substring(j*2, j*2+2);
 			
@@ -211,8 +234,8 @@ public class Helper {
 		
 		//System.out.println("FIRST DATA="+ss[0]);
 		
-		for (int i=0; i<300; i++)
-		for (int j=0; j<300; j++)
+		for (int i=0; i<100; i++)
+		for (int j=0; j<100; j++)
 		{
 			String sub_s=ss[i].substring(j*2, j*2+2);
 			
@@ -241,6 +264,11 @@ public class Helper {
 		}
 		
 		
+	}
+	
+	public static String get_error_text(String _t)
+	{
+		return "***************** - ERROR: "+_t+" - *****************";
 	}
 	
 	public static Entity get_object_from_id(String _id)

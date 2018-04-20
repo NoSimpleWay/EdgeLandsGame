@@ -84,6 +84,13 @@ public class Assets {
 	public static Texture planet3=load("planet_03");
 	public static Texture planet4=load("planet_04");
 	
+	public static Texture planet_good0=load("planet_good0");
+	public static Texture planet_good1=load("planet_good1");
+	public static Texture planet_good2=load("planet_good2");
+	public static Texture planet_good3=load("planet_good3");
+	public static Texture planet_good4=load("planet_good4");
+	public static Texture planet_good5=load("planet_good5");
+	
 	public static Texture human=new Texture(Gdx.files.internal("human.png"));
 	public static Texture dialog_texture=load("dialog_gui");
 	
@@ -112,6 +119,7 @@ public class Assets {
 	public static Texture[] human_body=new Texture[12];
 	public static Texture[] human_pants=new Texture[12];
 	
+	public static Texture decor_building_00=new Texture(Gdx.files.internal("decoration_building_00.png"));
 	public static Texture decor_tube_cystern=new Texture(Gdx.files.internal("decoration_tube_cystern.png"));
 	public static Texture decor_tube_big=new Texture(Gdx.files.internal("decoration_tube_big.png"));
 	public static Texture decoration_train=new Texture(Gdx.files.internal("decoration_train.png"));
@@ -222,6 +230,9 @@ public class Assets {
 	public static Texture[] effect_freeze=new Texture[11];
 	
 	public static Texture[] turret_body=new Texture[16];
+	public static Texture decoration_building_00=new Texture(Gdx.files.internal("decoration_building_00_icon.png"));
+	public static Texture decor_building_00_part_00=new Texture(Gdx.files.internal("decoration_building_00_part_00.png"));;
+	public static Texture decor_building_00_part_00_icon=new Texture(Gdx.files.internal("decoration_building_00_part_00_icon.png"));;
 	
 	public Assets()
 	{

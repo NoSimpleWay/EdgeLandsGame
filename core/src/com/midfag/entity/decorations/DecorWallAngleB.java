@@ -17,7 +17,7 @@ public class DecorWallAngleB extends DecorBuilding {
 		
 		spr.setTexture(Assets.wall_angle_B);
 		icon=Assets.wall_angle_B;
-		
+		uid="2fdb6bec";
 		
 		spr.setSize(9, 43);
 		spr.setOrigin(4.5f, 0);

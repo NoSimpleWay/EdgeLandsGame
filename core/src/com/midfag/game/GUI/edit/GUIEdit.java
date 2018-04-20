@@ -48,6 +48,10 @@ public class GUIEdit extends GUI {
 	
 	public TextInput listener;
 	public boolean release_key_C=false;
+	
+	public int array_count=1;
+	public float array_x;
+	public float array_y;
 	 
 	public GUIEdit()
 	{
@@ -110,8 +114,11 @@ public class GUIEdit extends GUI {
 			*/
 		
 		
-		if (InputHandler.key==Keys.COMMA){top_layer=false;}
-		if (InputHandler.key==Keys.PERIOD){top_layer=true;}
+		if ((InputHandler.key_release)||(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)))
+		{
+			if (InputHandler.key==Keys.COMMA){top_layer=false; array_count--; if (array_count<1) {array_count=1;} InputHandler.key_release=false;}
+			if (InputHandler.key==Keys.PERIOD){top_layer=true; array_count++; if (array_count>100) {array_count=100;} InputHandler.key_release=false;}
+		}
 		
 		
 		//name for script
@@ -243,14 +250,15 @@ public class GUIEdit extends GUI {
 				InputHandler.but=-1;
 				
 				//if (InputHandler.realx<800)
+				for (int i=0; i<array_count; i++)
 				{
 					Entity en=Helper.get_object_from_id(indicate_entity.id);
 					
 					
 					if (en!=null)
 					{
-						en.pos.x=xx;
-						en.pos.y=yy;
+						en.pos.x=xx+array_x*i;
+						en.pos.y=yy+array_y*i;
 						
 						en.spr.setRotation(indicate_entity.spr.getRotation());
 						//en.init("gui edit");
@@ -515,11 +523,28 @@ public class GUIEdit extends GUI {
 			    	
 		}
 		
+		if ((InputHandler.key_release)||(Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)))
+		{
+			float am=1; if (Gdx.input.isKeyPressed(Keys.SHIFT_LEFT)) {am=_d*60f;}
+			
+			if (InputHandler.key==Keys.SLASH){array_count=1; array_x=0; array_y=0; InputHandler.key_release=false;}
+			
+			if (InputHandler.key==Keys.UP){array_y+=am;		InputHandler.key_release=false;}
+			if (InputHandler.key==Keys.DOWN){array_y-=am;	InputHandler.key_release=false;}
+			if (InputHandler.key==Keys.LEFT){array_x-=am; 	InputHandler.key_release=false;}
+			if (InputHandler.key==Keys.RIGHT){array_x+=am; 	InputHandler.key_release=false;}
+		}
+				
 		if (indicate_entity!=null)
 		{GScreen.batch.begin();
-			indicate_entity.spr.setPosition(xx-indicate_entity.spr.getOriginX(), yy-indicate_entity.spr.getOriginY());
-			//GScreen.batch.draw(edit_spr.getTexture(), edit_spr.getVertices(), 10, 20);
-			indicate_entity.spr.draw(GScreen.batch);
+			for (int i=0; i<array_count; i++)
+			{
+				indicate_entity.spr.setPosition(xx-indicate_entity.spr.getOriginX()+array_x*i, yy-indicate_entity.spr.getOriginY()+array_y*i);
+				//GScreen.batch.draw(edit_spr.getTexture(), edit_spr.getVertices(), 10, 20);
+				//indicate_entity.spr.draw(GScreen.batch);
+				indicate_entity.pos.set(xx+array_x*i,yy+array_y*i);
+				indicate_entity.draw_action(_d);
+			}
 		GScreen.batch.end();}
 		
 	}

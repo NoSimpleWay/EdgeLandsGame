@@ -19,6 +19,7 @@ public class DecorStoneWall extends Entity {
 		is_player=false;
 		
 		icon=Assets.decoration_stone_wall_01_icon;
+		uid="00da634d";
 		
 		armored_shield.value=10000;
 		armored_shield.total_value=10000;

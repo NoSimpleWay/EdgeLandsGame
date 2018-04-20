@@ -14,7 +14,7 @@ public class DecorBuildingRoof extends DecorBuilding {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="f7fbb5b0";
 		
 		spr.setTexture(Assets.building_roof);
 		icon=Assets.building_roof_icon;

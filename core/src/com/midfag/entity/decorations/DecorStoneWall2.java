@@ -19,7 +19,7 @@ public class DecorStoneWall2 extends DecorStoneWall {
 		spr.setTexture(Assets.stone_wall_02);
 
 		icon=Assets.decoration_stone_wall_02_icon;
-		
+		uid="d5cf250b";
 		
 		
 		spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());

@@ -51,9 +51,9 @@ public class Entity {
 	public float dynamic_multiplier_G;
 	public float dynamic_multiplier_B;
 	
-	public float color_total_R;
-	public float color_total_G;
-	public float color_total_B;
+	public float color_total_R=1f;
+	public float color_total_G=1f;
+	public float color_total_B=1f;
 	
 	List<List<String>> list = new ArrayList<List<String>>();
 	//public List<Entity> list = new ArrayList<Entity>();
@@ -103,6 +103,7 @@ public class Entity {
 	public boolean have_ability=false;
 	
 	public String id;
+	public String uid;
 	
 	public int order=0;
 	
@@ -221,22 +222,23 @@ public class Entity {
 	{
 		pos=_v;
 
-		
-		
-		armored[0]=new WeaponRobofirle();
-		armored[1]=null;
-		
-		if (armored[0]!=null)
+		if (_v != null)
 		{
-			armored[0].cd=(float) (Math.random()*1);
-			armored[0].ammo=(int) armored[0].total_ammo_size;
+			armored[0]=new WeaponRobofirle();
+			armored[1]=null;
+			
+			if (armored[0]!=null)
+			{
+				armored[0].cd=(float) (Math.random()*1);
+				armored[0].ammo=(int) armored[0].total_ammo_size;
+			}
+			
+			if (armored[1]!=null)
+			{
+				armored[1].cd=(float) (Math.random()*1);
+				armored[1].ammo=(int) armored[1].total_ammo_size;
+			}	
 		}
-		
-		if (armored[1]!=null)
-		{
-			armored[1].cd=(float) (Math.random()*1);
-			armored[1].ammo=(int) armored[1].total_ammo_size;
-		}	
 	}
 	
 	
@@ -787,7 +789,7 @@ public class Entity {
 		{
 			if (armored[i]!=null)
 			{
-				armored[i].add_disp*=Math.pow(0.10f,_d);
+				armored[i].add_disp*=Math.pow(0.05f,_d);
 			
 				
 				armored[i].cd-=_d*cold_rating;
@@ -1131,6 +1133,8 @@ public class Entity {
 		{spr.setColor(color_total_R,color_total_G,color_total_B,1f);}
 		else
 		{spr.setColor(1,1,1,1f);}
+		
+		if (selected) {spr.setColor(0f, 1f, 0f, 0.9f);}
 		
 		/*spr.getVertices()[12]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);
 		spr.getVertices()[7]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);

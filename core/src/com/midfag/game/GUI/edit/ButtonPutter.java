@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
+import com.midfag.game.Main;
 import com.midfag.game.GUI.buttons.Button;
 
 public class ButtonPutter extends Button {
@@ -56,6 +57,8 @@ public class ButtonPutter extends Button {
 		
 		if ((entity_id+gui.id_offset<list.size())&&(list.get(entity_id+gui.id_offset).icon!=null))
 		{GScreen.batch_static.draw(list.get(entity_id+gui.id_offset).icon, pos.x-20,pos.y-20);}
+		
+		Main.font.draw(GScreen.batch_static, ""+gui.id_offset, pos.x, pos.y);
 	}
 	
 	@Override
@@ -77,11 +80,21 @@ public class ButtonPutter extends Button {
 			InputHandler.but=-1;
 			
 			//System.out.println ("ENTITY="+gui.e);
+			System.out.println ("ENTITY="+list.get(entity_id+gui.id_offset).getClass().getName());
+			
 			gui.indicate_entity=list.get(entity_id+gui.id_offset);
+			gui.indicate_entity.pos=new Vector2();
 			gui.indicate_entity.spr.setAlpha(0.2f);
-			gui.indicate_entity.spr.setSize(list.get(entity_id+gui.id_offset).spr.getTexture().getWidth(), list.get(entity_id+gui.id_offset).spr.getTexture().getHeight());
+			/*gui.indicate_entity.spr.setSize(
+					list.get(entity_id+gui.id_offset).spr.getTexture().getWidth(),
+					list.get(entity_id+gui.id_offset).spr.getTexture().getHeight()
+					);*/
 			
-			
+			/*
+			gui.indicate_entity.color_total_R=1;
+			gui.indicate_entity.color_total_G=1;
+			gui.indicate_entity.color_total_B=1;
+			*/
 		}
 	}
 }

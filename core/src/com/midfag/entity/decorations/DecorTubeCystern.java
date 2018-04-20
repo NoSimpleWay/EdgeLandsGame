@@ -19,6 +19,7 @@ public class DecorTubeCystern extends DecorStoneWall {
 		spr.setTexture(Assets.decor_tube_cystern);
 
 		id=this.getClass().getName();
+		uid="8caec305";
 		
 		diagonal=false;
 		

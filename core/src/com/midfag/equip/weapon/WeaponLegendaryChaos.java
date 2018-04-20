@@ -7,7 +7,15 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.entity.missiles.Missile;
 import com.midfag.entity.missiles.MissileChaos;
+import com.midfag.equip.weapon.attr.WeaponAttributeAccuracy;
+import com.midfag.equip.weapon.attr.WeaponAttributeAttackSpeed;
 import com.midfag.equip.weapon.attr.WeaponAttributeChaos;
+import com.midfag.equip.weapon.attr.WeaponAttributeClipSize;
+import com.midfag.equip.weapon.attr.WeaponAttributeColdDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeFireDamage;
+import com.midfag.equip.weapon.attr.WeaponAttributeReloadSpeed;
+import com.midfag.equip.weapon.attr.WeaponAttributeStability;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
@@ -45,6 +53,15 @@ public class WeaponLegendaryChaos extends Weapon {
 			
 			generate();
 			update_attributes_bonus();
+		}
+		
+		@Override
+		public void get_available_attribute()
+		{
+			Available_attribute_list.clear();
+
+			
+			Available_attribute_list.add(new WeaponAttributeChaos());
 		}
 		
 

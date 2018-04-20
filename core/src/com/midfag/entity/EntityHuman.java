@@ -22,6 +22,7 @@ public class EntityHuman extends Entity {
 		super(_v);
 		
 		id=this.getClass().getName();
+		uid="2b3ddb9a";
 		
 		is_AI=false;
 		is_player=true;
@@ -44,6 +45,8 @@ public class EntityHuman extends Entity {
 
 		have_ability=false;
 	}
+	
+	
 	
 	@Override
 	public void draw_action(float _d, float _siz) {

@@ -47,8 +47,8 @@ public class ButtonRandomizeTile extends Button {
 		{
 			InputHandler.but=-1;
 			
-			int px=(int)(GScreen.pl.pos.x/30f);
-			int py=(int)(GScreen.pl.pos.y/30f);
+			int px=(int)(GScreen.pl.pos.x/90f);
+			int py=(int)(GScreen.pl.pos.y/90f);
 			
 			for (int j=px-15; j<=px+15; j++)
 			for (int i=py-15; i<=py+15; i++)

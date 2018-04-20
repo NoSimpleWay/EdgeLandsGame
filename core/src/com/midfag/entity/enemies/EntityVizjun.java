@@ -37,7 +37,9 @@ public class EntityVizjun extends Entity {
 		speed=180;
 		armored_shield.value=120;
 		armored_shield.total_value=120;
+		
 		id=this.getClass().getName();
+		uid="1802c5f5";
 
 		
 		/*

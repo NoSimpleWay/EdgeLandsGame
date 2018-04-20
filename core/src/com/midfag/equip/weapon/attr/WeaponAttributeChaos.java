@@ -27,6 +27,8 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 	
 	}
 	
+	
+	
 	@Override
 	public void update(float _d, Entity pl, Weapon _w)
 	{
@@ -41,14 +43,17 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 				
 				
 				_w.Attribute_list.clear();
+				_w.Available_attribute_list.clear();
+				
 				_w.Attribute_list.add(new WeaponAttributeChaos());
 				
-				_w.base_damage=(float)(Math.random()*3)+7;
+				_w.base_damage=(float)(Math.random()*15)+7;
 				_w.base_dispersion=(float)(Math.random()*90);
 				_w.base_dispersion_additional=(float)(Math.random()*90);
 				
 				_w.base_reload_time=(float)(Math.random()*3);
 				_w.base_shoot_cooldown=(float)(Math.random()*1)+0.2f;
+				
 				
 				_w.Available_attribute_list.add(new WeaponAttributeDamage());
 				_w.Available_attribute_list.add(new WeaponAttributeAttackSpeed());
@@ -60,7 +65,7 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 				
 				System.out.println("CHAOS!");
 				
-				Assets.chaos.play();
+				Assets.chaos.play(0.2f);
 				_w.generate();
 				
 				_w.update_attributes_bonus();

@@ -19,6 +19,7 @@ import com.midfag.entity.enemies.*;
 import com.midfag.game.Enums.EditMode;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
+import com.midfag.game.SysConfig;
 import com.midfag.game.GUI.buttons.Button;
 
 
@@ -158,6 +159,8 @@ public class ButtonChangeMode extends Button {
 				entity_list.add(new DecorRabitz2(new Vector2()));
 				
 				entity_list.add(new EntityTransportDrone(new Vector2()));
+				
+				entity_list=SysConfig.EntityRegisterer;
 				
 				for (int i=0; i<10; i++)
 				if (i<entity_list.size())

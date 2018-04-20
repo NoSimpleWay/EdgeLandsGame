@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 
 public class SystemHelper extends Entity {
 
@@ -13,6 +14,8 @@ public class SystemHelper extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="b1d6dc98";
+		Helper.log("package path "+id);
 
 		
 		spr.setTexture(Assets.helper);

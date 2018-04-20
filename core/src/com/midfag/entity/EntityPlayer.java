@@ -77,146 +77,152 @@ public class EntityPlayer extends Entity {
 		super(_v);
 		
 		
-		for (int i=0; i<16; i++)
-		{
-			if (i<10)
-			{tex[i]=new Texture(Gdx.files.internal("mech/mech00"+i+".png"));}
-			else
-			{tex[i]=new Texture(Gdx.files.internal("mech/mech0"+i+".png"));}
-			
-			
-			tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		}
-		
-		for (int i=0; i<16; i++)
-		{
-			if (i<10)
-			{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot0"+i+".png"));}
-			else
-			{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot"+i+".png"));}
-			
-			bottom_tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		}
-		
 		id=this.getClass().getName();
+		uid="016132fe";
 		
-		is_AI=false;
-		is_player=true;
-		is_enemy=false;
+		if (_v!=null)
+		{
+			for (int i=0; i<16; i++)
 		
-		time_slow_resist=0.5f;
-		
-		spr.setSize(100, 100);
-		spr.setOrigin(45, 0);
-		
-		//foot.setSize(30, 6);
-		foot.setOrigin(15, 1);
-		
-		armored_module[0]=new ModuleUnitTimeSlow();
-		armored_module[0].generate();
-		
-		
-		leg.setOrigin(5, 50);
-		foot_shadow.setOrigin(17, 12);
-		//is_player
-		
-		speed=250*7.025f;
-		friction=0.0005f;
-
-		have_ability=true;
-		
-		collision_size_x=30;
-		collision_size_y=30;
-		
-		
-		/*light_source=new LightSource();
-		light_source.light_power=1.0f;
-		light_source.R=0.02f;
-		light_source.G=0.04f;
-		light_source.B=0.9f;
-		light_source.is_static=true;*/
-		
-		size=30;
-		
-		mass=300;
-		
-		
-		
-		
-		//light_source.light_size=25;
-		
-		
-		//ammo_count=(int) armored_weapon.total_ammo_size;
-		
-		Skill skl=new SkillShield();
-		Skills_list.add(skl);
-		
-			Skill subskl=new SkillShield_A_MoreValue();
-			Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+			{
+				if (i<10)
+				{tex[i]=new Texture(Gdx.files.internal("mech/mech00"+i+".png"));}
+				else
+				{tex[i]=new Texture(Gdx.files.internal("mech/mech0"+i+".png"));}
+				
+				
+				tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			}
 			
-				Skills_list.add(subskl.add_subskill(new SkillShield_AA_ValueHalfDamage(), GScreen.pl));
-				Skills_list.add(subskl.add_subskill(new SkillShield_AB_ValueHalfDamageTime(), GScreen.pl));
-				//---
-				//---
+			for (int i=0; i<16; i++)
+			{
+				if (i<10)
+				{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot0"+i+".png"));}
+				else
+				{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot"+i+".png"));}
 				
-			subskl=new SkillShield_B_MoreRegen();
-			Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-				Skills_list.add(subskl.add_subskill(new SkillShield_BA_WarmProtect(), GScreen.pl));
-				Skills_list.add(subskl.add_subskill(new SkillShield_BB_RestoreSpeed(), GScreen.pl));
-		
-			subskl=new SkillShield_C_MoreReflect();
-			Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-				Skills_list.add(subskl.add_subskill(new SkillShield_CA_MoreReflectDouble(), GScreen.pl));
-				Skills_list.add(subskl.add_subskill(new SkillShield_CB_MoreReflectRegen(), GScreen.pl));
-		
-				armored[0]=new WeaponSimpleFirle();
-				armored[1]=null;
-				
-				armored[0].ammo=(int) armored[0].total_ammo_size;
-				armored_shield=new EnergoshieldSimple();
-
-				
-				
-				
-			skl=new SkillWeapon();
-			Skills_list.add(skl);	
-				subskl=new SkillWeapon_A_FastReload();
+				bottom_tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
+			}
+			
+	
+			
+			is_AI=false;
+			is_player=true;
+			is_enemy=false;
+			
+			time_slow_resist=0.5f;
+			
+			spr.setSize(100, 100);
+			spr.setOrigin(45, 0);
+			
+			//foot.setSize(30, 6);
+			foot.setOrigin(15, 1);
+			
+			armored_module[0]=new ModuleUnitTimeSlow();
+			armored_module[0].generate();
+			
+			
+			leg.setOrigin(5, 50);
+			foot_shadow.setOrigin(17, 12);
+			//is_player
+			
+			speed=250*7.025f;
+			friction=0.0005f;
+	
+			have_ability=true;
+			
+			collision_size_x=30;
+			collision_size_y=30;
+			
+			
+			/*light_source=new LightSource();
+			light_source.light_power=1.0f;
+			light_source.R=0.02f;
+			light_source.G=0.04f;
+			light_source.B=0.9f;
+			light_source.is_static=true;*/
+			
+			size=30;
+			
+			mass=300;
+			
+			
+			
+			
+			//light_source.light_size=25;
+			
+			
+			//ammo_count=(int) armored_weapon.total_ammo_size;
+			
+			Skill skl=new SkillShield();
+			Skills_list.add(skl);
+			
+				Skill subskl=new SkillShield_A_MoreValue();
 				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-					Skills_list.add(subskl.add_subskill(new SkillWeapon_AA_ReloadChance(), GScreen.pl));
-					Skills_list.add(subskl.add_subskill(new SkillWeapon_AB_AmmoOrReload(), GScreen.pl));
-				subskl=new SkillWeapon_B_Bloodlust();	
-				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-					Skills_list.add(subskl.add_subskill(new SkillWeapon_BA_TripleShot(), GScreen.pl));
-					Skills_list.add(subskl.add_subskill(new SkillWeapon_BB_AdvancedBloodlust(), GScreen.pl));
-				subskl=new SkillWeapon_D_WeaponMaster();
-				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-					Skills_list.add(subskl.add_subskill(new SkillWeapon_DA_WeaponExpert(), GScreen.pl));
 				
+					Skills_list.add(subskl.add_subskill(new SkillShield_AA_ValueHalfDamage(), GScreen.pl));
+					Skills_list.add(subskl.add_subskill(new SkillShield_AB_ValueHalfDamageTime(), GScreen.pl));
+					//---
+					//---
 					
-			skl=new SkillGodShield();
-				subskl=new SkillGodShield_A_SuperValue();
+				subskl=new SkillShield_B_MoreRegen();
 				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
-				
-				subskl=new SkillGodShield_B_SuperRegen();
+					Skills_list.add(subskl.add_subskill(new SkillShield_BA_WarmProtect(), GScreen.pl));
+					Skills_list.add(subskl.add_subskill(new SkillShield_BB_RestoreSpeed(), GScreen.pl));
+			
+				subskl=new SkillShield_C_MoreReflect();
 				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+					Skills_list.add(subskl.add_subskill(new SkillShield_CA_MoreReflectDouble(), GScreen.pl));
+					Skills_list.add(subskl.add_subskill(new SkillShield_CB_MoreReflectRegen(), GScreen.pl));
+			
+					armored[0]=new WeaponSimpleFirle();
+					armored[1]=null;
+					
+					armored[0].ammo=(int) armored[0].total_ammo_size;
+					armored_shield=new EnergoshieldSimple();
+	
+					
+					
+					
+				skl=new SkillWeapon();
+				Skills_list.add(skl);	
+					subskl=new SkillWeapon_A_FastReload();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+						Skills_list.add(subskl.add_subskill(new SkillWeapon_AA_ReloadChance(), GScreen.pl));
+						Skills_list.add(subskl.add_subskill(new SkillWeapon_AB_AmmoOrReload(), GScreen.pl));
+					subskl=new SkillWeapon_B_Bloodlust();	
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+						Skills_list.add(subskl.add_subskill(new SkillWeapon_BA_TripleShot(), GScreen.pl));
+						Skills_list.add(subskl.add_subskill(new SkillWeapon_BB_AdvancedBloodlust(), GScreen.pl));
+					subskl=new SkillWeapon_D_WeaponMaster();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+						Skills_list.add(subskl.add_subskill(new SkillWeapon_DA_WeaponExpert(), GScreen.pl));
+					
+						
+				skl=new SkillGodShield();
+					subskl=new SkillGodShield_A_SuperValue();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+					
+					subskl=new SkillGodShield_B_SuperRegen();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+					
+					subskl=new SkillGodShield_C_SuperReflect();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
+					
+					
+				Skills_list.add(skl);	
 				
-				subskl=new SkillGodShield_C_SuperReflect();
-				Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
 				
 				
-			Skills_list.add(skl);	
+				skl=new SkillNoDeath();
+				
+				Skills_list.add(skl);	
+				
+				engine_id=Assets.engine.play();
+				Assets.engine.setVolume(engine_id, 0.25f);
+				Assets.engine.setLooping(engine_id, true);
 			
-			
-			
-			skl=new SkillNoDeath();
-			
-			Skills_list.add(skl);	
-			
-			engine_id=Assets.engine.play();
-			Assets.engine.setVolume(engine_id, 0.25f);
-			Assets.engine.setLooping(engine_id, true);
-			
-			
+		}
 		// TODO Auto-generated constructor stub
 	}
 	

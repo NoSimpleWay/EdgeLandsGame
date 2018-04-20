@@ -17,6 +17,7 @@ public class DecorPowerLine extends DecorStoneWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="6f9cdff9";
 		
 		spr.setTexture(Assets.decoration_power_line);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

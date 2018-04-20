@@ -18,7 +18,7 @@ public class DecorBuildingWallWindow extends DecorBuilding {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="bbf0c1b2";
 		
 		spr.setTexture(Assets.beton_wall_window);
 		icon=Assets.beton_wall_window_icon;

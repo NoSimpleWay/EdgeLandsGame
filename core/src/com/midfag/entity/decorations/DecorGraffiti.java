@@ -11,7 +11,7 @@ public class DecorGraffiti extends DecorBuildingWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="25d569cf";
 		
 		spr.setTexture(Assets.graffiti_01);
 		icon=Assets.graffiti_01_icon;

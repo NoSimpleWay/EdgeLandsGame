@@ -32,6 +32,7 @@ public class EntityPyra extends Entity {
 		pos=_v;
 		
 		id=this.getClass().getName();
+		uid="46da9c16";
 		//Helper.log ("THIS ID="+id);
 		icon=Assets.entity_pyra_icon;
 		
@@ -56,7 +57,7 @@ public class EntityPyra extends Entity {
 		can_rotate=false;
 		
 		friction=0.01f;
-		speed/=0.5f;
+		speed/=0.2f;
 	}
 	
 	@Override

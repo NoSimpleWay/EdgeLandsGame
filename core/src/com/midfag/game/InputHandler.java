@@ -75,6 +75,8 @@ public class InputHandler implements InputProcessor {
 	public static int scroll_amount;
 	
 	public static WorldConfigMode wcm=WorldConfigMode.ILLUMINATION_BLUR_POWER;
+
+	public static boolean key_release=false;
     // Ask for a reference to the Bird when InputHandler is created.
     public InputHandler() {
         // myBird now represents the gameWorld's bird.
@@ -297,7 +299,7 @@ public class InputHandler implements InputProcessor {
     public boolean keyUp(int keycode) {
     	key=-777;
     	keyF_release=true;
-    	
+    	key_release=true;
         return false;
     }
 

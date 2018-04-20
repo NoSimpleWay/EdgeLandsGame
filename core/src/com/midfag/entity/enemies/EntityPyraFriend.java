@@ -9,6 +9,7 @@ public class EntityPyraFriend extends EntityPyra {
 		
 		is_enemy=false;
 		id=this.getClass().getName();
+		uid="272b3224";
 		// TODO Auto-generated constructor stub
 	}
 

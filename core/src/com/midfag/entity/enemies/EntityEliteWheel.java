@@ -37,6 +37,7 @@ public class EntityEliteWheel extends Entity {
 		icon=Assets.entity_elite_wheel_icon;
 		
 		id=this.getClass().getName();
+		uid="d3abdbef";
 		
 		
 		armored[0]=null;

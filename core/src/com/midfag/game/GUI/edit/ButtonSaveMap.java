@@ -63,7 +63,7 @@ public class ButtonSaveMap extends Button {
 				for (int k=0; k<GScreen.cluster[j][i].Entity_list.size(); k++)
 				{	
 					s+="###ENTITY"+"\n";
-					s+=GScreen.cluster[j][i].Entity_list.get(k).id+"\n";
+					s+=GScreen.cluster[j][i].Entity_list.get(k).uid+"\n";
 					
 					s+="pos.x"+"\n";
 					s+=Math.round(GScreen.cluster[j][i].Entity_list.get(k).pos.x)+"\n";
@@ -104,12 +104,12 @@ public class ButtonSaveMap extends Button {
 			String ss="";
 		
 			file = Gdx.files.local("z_tile.txt");
-			for (int i=0; i<300; i++)
+			for (int i=0; i<100; i++)
 			{
 				//System.out.println ("READY: "+i/3f+"% "+_d*1000);
 				ss="";
 				
-				for (int j=0; j<300; j++)
+				for (int j=0; j<100; j++)
 				{
 					if (tile_map[j][i]<0) {ss+="no";}
 					else
@@ -129,12 +129,12 @@ public class ButtonSaveMap extends Button {
 			
 			s="";
 			file = Gdx.files.local("z_tile_overlay.txt");
-			for (int i=0; i<300; i++)
+			for (int i=0; i<100; i++)
 			{
 				//System.out.println ("READY: "+i/3f+"% "+_d*1000);
 				ss="";
 				
-				for (int j=0; j<300; j++)
+				for (int j=0; j<100; j++)
 				{
 					if (tile_map_overlay[j][i]<0) {ss+="no";}
 					else

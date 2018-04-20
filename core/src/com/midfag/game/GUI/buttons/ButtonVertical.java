@@ -7,6 +7,7 @@ import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.Enums.ButtonVerticalFunction;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.edit.GUIEdit;
 
@@ -39,7 +40,11 @@ public class ButtonVertical extends Button {
 	public void some_update(float _d)
 	{
 		
-		
+		if ((!GScreen.show_edit)&&(function==ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET))
+		{
+					need_remove=true;
+					//GScreen.Button_list.remove(this);
+		}
 		
 		if ((InputHandler.but==0)&&(is_overlap()))
 		{
@@ -53,11 +58,9 @@ public class ButtonVertical extends Button {
 				if (gui.id_offset>100){gui.id_offset=100;}
 				if (gui.id_offset<0){gui.id_offset=0;}
 				
-				if (!GScreen.show_edit)
-				{
-					need_remove=true;
-					//GScreen.Button_list.remove(this);
-				}
+				
+				
+				Helper.log("OFFSET");
 			}
 			
 			if (function==ButtonVerticalFunction.INVENTORY_LEVEL)

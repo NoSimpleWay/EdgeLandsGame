@@ -24,6 +24,7 @@ public class DecorTube extends Entity {
 		
 		super(_v);
 
+		uid="f189bc84";
 		
 		armored[0]=null;
 		armored[1]=null;
@@ -41,9 +42,9 @@ public class DecorTube extends Entity {
 		
 		//is_decor=true;
 		
-		spr.setTexture(Assets.tube);
-		spr.setSize(40, 64);
-		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear); 
+		//spr.setTexture(Assets.tube);
+		//spr.setSize(40, 64);
+		//spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear); 
 		
 		
 		

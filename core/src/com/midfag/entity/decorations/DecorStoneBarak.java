@@ -16,6 +16,7 @@ public class DecorStoneBarak extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="7cc48571";
 		
 		spr.setTexture(Assets.stone_barak);
 		//id="stone_barak";

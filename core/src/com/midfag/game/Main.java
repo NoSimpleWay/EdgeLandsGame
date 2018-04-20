@@ -39,7 +39,10 @@ public class Main extends Game {
     public void create() {
 
 
+    	
         Assets.load_assets();
+        
+        SysConfig.RegisterEntity();
         
         //Assets.music.play();
         
@@ -71,6 +74,7 @@ public class Main extends Game {
         this.setScreen(new GScreen(this));
         shader_default=GScreen.batch.getShader();
         
+        /*
         Class clazz = DecorBarrel.class;
         Package p = clazz.getPackage();
         
@@ -83,8 +87,12 @@ public class Main extends Game {
         
         for (int i=0; i<pc.length; i++)
         {
-        	if (pc[i].getName().startsWith("com.midfag.entity.decorations")) {System.out.println("! " + pc[i].getName()  + ";");}
+        	if (pc[i].getName().startsWith("com.midfag.entity")) {System.out.println("PACKAGE " + pc[i].getName()  + ";");}
         }
+        */
+        
+        
+        
         
         
     }

@@ -14,9 +14,9 @@ public class DecorSteelWall extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="e52042d9";
 		
-		spr.setTexture(new Texture(Gdx.files.internal("decor_steel_wall.png")));
+		//spr.setTexture(new Texture(Gdx.files.internal("decor_steel_wall.png")));
 		spr.setSize(155, 44);
 		spr.setOrigin(155/2, 44/2f);
 		

@@ -15,6 +15,7 @@ public class DecorStonePilon extends DecorStoneWall {
 
 
 		custom_phys=true;
+		uid="80d2e292";
 		
 		spr.setTexture(Assets.stone_pilon_01);
 		icon=Assets.decoration_stone_pilon_icon;

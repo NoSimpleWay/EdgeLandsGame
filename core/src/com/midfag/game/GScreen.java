@@ -38,10 +38,8 @@ import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.buttons.Button;
-import com.midfag.game.GUI.world_debug.WorldDebug;
-import com.midfag.game.GUI.world_debug.WorldDebugIlluminationBlurPass;
-import com.midfag.game.GUI.world_debug.WorldDebugIlluminationPower;
-import com.midfag.game.GUI.world_debug.WorldDebugIlluminationSpreadPass;
+import com.midfag.game.GUI.world_debug.*;
+
 import com.midfag.game.screen_effect.ScreenEffect;
 import com.midfag.game.script.ScriptSystem;
 import com.midfag.game.script.ScriptTimer;
@@ -79,7 +77,7 @@ public class GScreen implements Screen {
     public static Boolean need_shadow_update=true;
     public static Boolean need_pixmap_update=true;
     
-    public static Color global_illumination=new Color(0.15f,0.165f,0.18f, 1f);
+    public static Color global_illumination=new Color(0.85f,0.81f,0.82f, 1f);
 
     public int draw_distance;
     
@@ -208,7 +206,7 @@ public class GScreen implements Screen {
 	private int fps;
 
 
-	public static boolean camera_auto_zoom=false;
+	public static boolean camera_auto_zoom=true;
 
 	public static float wave_time;
 
@@ -517,6 +515,10 @@ public class GScreen implements Screen {
     	WD.add(new WorldDebugIlluminationBlurPass());
     	WD.add(new WorldDebugIlluminationSpreadPass());
     	
+    	WD.add(new WorldDebugIlluminationColorR());
+    	WD.add(new WorldDebugIlluminationColorG());
+    	WD.add(new WorldDebugIlluminationColorB());
+    	
     	Localisation.locad_local();
 
     	sr=gam.shapeRenderer;	
@@ -719,7 +721,7 @@ public class GScreen implements Screen {
 
         }
 
-		camera.zoom=1.0f;
+		camera.zoom=50000.0f;
 		
 
 		
@@ -759,7 +761,7 @@ public class GScreen implements Screen {
         Assets.post_load_assets();
         
 	   
-	   	
+	   	/*
         for (int i=0; i<30; i++)//;
         {
         	switch (rn.nextInt(4))
@@ -769,7 +771,7 @@ public class GScreen implements Screen {
         		case 2: pl.inventory[i]=new WeaponSimpleShotgun();	break;
         		case 3: pl.inventory[i]=new EnergoshieldSimple();	break;
         	}
-        }
+        }*/
         
 
        // pl.spr.setSize(51,21);
@@ -871,8 +873,8 @@ public class GScreen implements Screen {
     	if (delta>0.1f){delta=0.1f;}
 
     	
-        //Gdx.gl.glClearColor(0.2f, 0.0f, 0.0f, 1.0f);
-        //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+        Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
     	//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
         //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         
@@ -1136,7 +1138,9 @@ public class GScreen implements Screen {
 		
 
     	terrain_fbo.begin();
+    	
 		batch.begin();
+		  Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 		batch.setColor(white);
     	
     
@@ -1146,11 +1150,27 @@ public class GScreen implements Screen {
     	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/150f));
     	
     	int terrain_x_left=terx-terrain_draw_distance; if (terrain_x_left<0) {terrain_x_left=0;}
-    	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>299) {terrain_x_right=299;}
+    	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>99) {terrain_x_right=99;}
     	
     	int terrain_y_down=tery-terrain_draw_distance; if (terrain_y_down<0) {terrain_y_down=0;}
-    	int terrain_y_up=tery+terrain_draw_distance; if (terrain_y_up>299) {terrain_y_up=299;}
+    	int terrain_y_up=tery+terrain_draw_distance; if (terrain_y_up>99) {terrain_y_up=99;}
 
+    	batch.setColor(global_illumination);
+    	
+    	
+    	
+    	
+    	
+    
+    	batch.draw(Assets.planet_good0, 5000-18000*243, 5000-18000*243, 36000*243,36000*243);
+    	batch.draw(Assets.planet_good1, 5000-18000*81, 5000-18000*81, 36000*81,36000*81);
+    	batch.draw(Assets.planet_good2, 5000-18000*27, 5000-18000*27, 36000*27,36000*27);
+    	batch.draw(Assets.planet_good3, 5000-18000*9, 5000-18000*9, 36000*9,36000*9);
+    	batch.draw(Assets.planet_good4, 5000-18000*3, 5000-18000*3, 36000*3,36000*3);
+    	batch.draw(Assets.planet_good5, 5000-18000, 5000-18000, 36000,36000);
+    	
+    	batch.setColor(Color.WHITE);
+    	
     	wave_time+=real_delta;
     	for (int i=terrain_y_down; i<=terrain_y_up; i++)
 		for (int j=terrain_x_left; j<=terrain_x_right; j++)
@@ -1415,7 +1435,7 @@ public class GScreen implements Screen {
 		       
 		        
 		        
-				sr.setColor(0.15f, 0.16f, 0.17f, 0.05f);
+				sr.setColor(0.15f, 0.16f, 0.17f, 0.25f);
 				for (int i=0; i<30; i++)
 				for (int j=0; j<30; j++)
 				{		
@@ -1638,9 +1658,9 @@ public class GScreen implements Screen {
 	        		fx=(int)(e.pos.x/path_cell);
 		            fy=(int)(e.pos.y/path_cell);
 		            
-		        	if ((fx>0)&&(fy>0)&&(fx<299)&&(fy<299))
+		        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
 		        	{
-		        			if (path[fx][fy]>0) {path[fx][fy]=-300;}
+		        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
 		        			
 		        				float dirx=0;
 			        			float diry=0;
@@ -1657,6 +1677,16 @@ public class GScreen implements Screen {
 			        			/*float uncenterx=e.pos.x-fx*path_cell;
 			        			float uncentery=e.pos.y-fy*path_cell;*/
 			        			
+			        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
+			        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
+			        			
+			        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
+			        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
+			        			
+			        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
+			        			//if (Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy])) {dirx=-1;}
+			        			//if (Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy])) {dirx=1;}
+			        			/*
 				        		if (Math.abs(path[fx][fy+1])<dir)
 					        	{dir=Math.abs(path[fx][fy+1]); dirx=0; diry=1;}
 				        		
@@ -1668,14 +1698,15 @@ public class GScreen implements Screen {
 				        		
 				        		if (Math.abs(path[fx-1][fy])<dir)
 					        	{dir=Math.abs(path[fx-1][fy]); dirx=-1; diry=0;}
+					        	*/
 		        			}
 		        			
 			        		if (e.stuck>0)
 			        		{
-				        		if  (path[fx+1][fy-1]<-400) {dirx=-0.7f; diry=0.7f;}
-				        		if  (path[fx+1][fy+1]<-400) {dirx=-0.7f; diry=-0.7f;}
-				        		if  (path[fx-1][fy+1]<-400) {dirx=0.7f; diry=-0.7f;}
-				        		if  (path[fx-1][fy-1]<-400) {dirx=0.7f; diry=0.7f;}
+				        		if  (path[fx+1][fy-1]<-400) {dirx+=-0.7f; diry+=0.7f;}
+				        		if  (path[fx+1][fy+1]<-400) {dirx+=-0.7f; diry+=-0.7f;}
+				        		if  (path[fx-1][fy+1]<-400) {dirx+=0.7f; diry+=-0.7f;}
+				        		if  (path[fx-1][fy-1]<-400) {dirx+=0.7f; diry+=0.7f;}
 				        		
 				        		e.stuck-=delta;
 			        		}
@@ -1750,7 +1781,7 @@ public class GScreen implements Screen {
 			sr.end();
 			
 			
-			/*
+			
 			batch.begin();
 			batch.setColor(Color.WHITE);
 			Main.font.setColor(Color.WHITE);
@@ -1759,7 +1790,7 @@ public class GScreen implements Screen {
 				 if ((i>0)&&(i<299)&&(j>0)&&(j<299)&&(path[j][i]>=0)&&(path[j][i]<100))
 				{Main.font.draw(batch, ""+Math.round(path[j][i]), j*30+15f, i*30+15f);}
 			batch.end();
-			*/
+			
 			
 		}
       	
@@ -1982,32 +2013,55 @@ public class GScreen implements Screen {
 				
 			
 			
-			Main.font.draw(batch_static, "WARM: "+pl.armored_shield.warm, 17, 170);
+			//Main.font.draw(batch_static, "WARM: "+pl.armored_shield.warm, 17, 170);
 
 			
+		
 			batch_static.draw(Assets.panel, 400, 77);
 			
-			for (int i=0; i<50*pl.armored_shield.value/pl.armored_shield.total_value; i++)
+			
+			for (int i=0; i<(int)(50*pl.armored_shield.value/pl.armored_shield.total_value); i++)
 			{
+				if (i==(int)(50*pl.armored_shield.value/pl.armored_shield.total_value)-1)
+				{
+					int hp1=(int)(50*pl.armored_shield.value/pl.armored_shield.total_value)*2;
+					float hp2=pl.armored_shield.value/pl.armored_shield.total_value*100f;
+					float hp3=1f-(hp2-hp1)/2f;
+					
+					Main.font.draw(batch_static, "hp1 "+hp1, 16, 29);
+					Main.font.draw(batch_static, "hp2 "+hp2, 16, 59);
+					
+					batch_static.setColor(hp3,hp3,hp3,hp3);
+				}
+				else
+				{ batch_static.setColor(Color.WHITE);}
+				
 				batch_static.draw(Assets.diod, 400+7*i+5, 77+3);
 			}
 			
-
+		batch_static.setColor(Color.WHITE);
 		if (debug_cooldown<=0)
 		{fps=Math.round(1.0f/real_delta);}
 		
+		/*
 		Main.font.setColor(Color.BLACK);
 		Main.font.draw(batch_static, "FPS: "+fps, 16, 29);
 		
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "FPS: "+fps, 17, 30);
+		*/
 		
-		WD.get(WD_active).update(real_delta);
-		WD.get(WD_active).draw(real_delta);
+		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
+		{
+			WD.get(WD_active).update(real_delta);
+			WD.get(WD_active).draw(real_delta);
+		}
+		
+		
 		
 		Main.font.setColor(Color.WHITE);
-		Main.font.draw(batch_static, "draw distance: "+draw_distance, 16, 60);
-		Main.font.draw(batch_static, "zoom: "+camera.zoom, 16, 160);
+		//Main.font.draw(batch_static, "draw distance: "+draw_distance, 16, 60);
+		//Main.font.draw(batch_static, "zoom: "+camera.zoom, 16, 160);
 		
 
 		
@@ -2148,9 +2202,15 @@ public class GScreen implements Screen {
 		/*camera.position.x=Math.round(camera.position.x);
 		camera.position.y=Math.round(camera.position.y);*/
 		
+		if ((InputHandler.keyF_release)&&(Gdx.input.isKeyPressed(Keys.SPACE)))
+		{
+			InputHandler.keyF_release=false;
+			camera_auto_zoom=!camera_auto_zoom;
+		}
+		
 		if (camera_auto_zoom)
 		{
-			//camera.zoom+=(need_zoom-camera.zoom)*0.02f;
+			camera.zoom+=(need_zoom-camera.zoom)*0.02f;
 		}
 		
         batch.setProjectionMatrix(camera.combined);

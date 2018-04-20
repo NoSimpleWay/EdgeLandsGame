@@ -17,7 +17,8 @@ public class DecorBarrel extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		//uid="749f99770458c816";
+		uid="df238eb5";
 		
 		spr.setTexture(Assets.barrel);
 		icon=Assets.barrel_icon;
@@ -25,7 +26,7 @@ public class DecorBarrel extends Entity {
 		spr.setOrigin(spr.getTexture().getWidth()/2f, 00f);
 
 		is_AI=false;
-		is_decor=false;
+		is_decor=true;
 		
 		armored_shield.value=50;
 		armored_shield.total_value=50;
@@ -35,11 +36,15 @@ public class DecorBarrel extends Entity {
 		diagonal=true;
 		
 		light_source=new LightSource();
-		light_source.light_power=1f;
-		light_source.R=0.0f;
-		light_source.G=1.0f;
-		light_source.B=0.0f;
+		light_source.light_power=1.0f;
+		light_source.R=0.01f;
+		light_source.G=0.00f;
+		light_source.B=1.0f;
+		light_source.is_static=true;
 		
+		path=true;
+		path_x=0;
+		path_y=0;
 		
 		//light_source.update_light_position((pos.x), (pos.y));
 		//spr.setOrigin(10.0f, 65);

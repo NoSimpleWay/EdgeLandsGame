@@ -17,6 +17,7 @@ public class DecorTrain extends Entity {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="18b24a7f";
 		
 		spr.setTexture(Assets.decoration_train);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

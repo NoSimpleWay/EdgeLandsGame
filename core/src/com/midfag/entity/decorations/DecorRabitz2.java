@@ -16,6 +16,8 @@ public class DecorRabitz2 extends Entity {
 
 		custom_phys=true;
 		
+		uid="87f59cab";
+		
 		is_AI=false;
 		is_player=false;
 		

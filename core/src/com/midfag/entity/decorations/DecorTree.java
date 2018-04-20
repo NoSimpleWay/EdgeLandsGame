@@ -17,6 +17,7 @@ public class DecorTree extends DecorStoneWall {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
+		uid="512c5d2e";
 		
 		spr.setTexture(Assets.decoration_tree);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

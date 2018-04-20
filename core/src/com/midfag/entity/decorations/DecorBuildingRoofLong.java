@@ -13,7 +13,7 @@ public class DecorBuildingRoofLong extends DecorBuilding {
 		custom_phys=true;
 		
 		id=this.getClass().getName();
-
+		uid="cfd50a7b";
 		
 		spr.setTexture(Assets.building_roof_long);
 		icon=Assets.building_roof_long_icon;

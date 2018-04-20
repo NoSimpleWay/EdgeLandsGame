@@ -14,6 +14,8 @@ public class DecorTubeCarcas extends DecorTube {
 
 		custom_phys=true;
 		
+		uid="c74a3cfe";
+		
 		isCarcas=true;
 		armored[0]=null;
 		armored[1]=null;
@@ -34,7 +36,7 @@ public class DecorTubeCarcas extends DecorTube {
 		spr.setTexture(Assets.tube_carcas);
 		spr.setSize(40, 64);
 		
-		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Nearest); 
+		//spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Nearest); 
 		
 		
 		
