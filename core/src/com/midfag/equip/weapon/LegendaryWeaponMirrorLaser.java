@@ -34,6 +34,8 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 			
 			 spr.setTexture(new Texture(Gdx.files.internal("icon_mirror_laser.png")));//()=)
 			 spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());
+			 
+			 red_text="Не могли бы вы стоять поплотнее?";
 		}
 		
 		@Override

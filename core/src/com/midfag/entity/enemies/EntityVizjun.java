@@ -141,10 +141,10 @@ public class EntityVizjun extends Entity {
 		      }
 			
 			if (near_object==null)
-			{move(GScreen.sinR(360-spr.getRotation())*speed*10,GScreen.cosR(360-spr.getRotation())*speed*10,_d);}
+			{move(GScreen.sinR(360-spr.getRotation())*speed*10,GScreen.cosR(360-spr.getRotation())*speed*10,_d, "VIZJUN UPDATE");}
 			else
 			{
-				move(GScreen.sinR(360-spr.getRotation())*near_object.vector_mul*0.8f,GScreen.cosR(360-spr.getRotation())*near_object.vector_mul*0.8f,_d);
+				move(GScreen.sinR(360-spr.getRotation())*near_object.vector_mul*0.8f,GScreen.cosR(360-spr.getRotation())*near_object.vector_mul*0.8f,_d, "VIZJUN UPDATE2");
 				jump_time=0;
 			}
 			

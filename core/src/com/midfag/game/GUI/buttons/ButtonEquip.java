@@ -16,7 +16,7 @@ public class ButtonEquip extends Button {
 	public float mov;
 	
 	public float info_x=200;
-	public float info_y=700-100;
+	public float info_y=650;
 	
 	public int inventory_id;
 	
@@ -34,6 +34,9 @@ public class ButtonEquip extends Button {
 	
 	public void update_object()
 	{
+		
+		//info_y=GScreen.scr_h-25;
+		
 		if (inventory_id>=0)
 		{
 			obj=null;
@@ -114,7 +117,7 @@ public class ButtonEquip extends Button {
 			Main.shapeRenderer_static.rect(info_x-10, info_y-10-200, 300, 220);*/
 			
 			Main.font.setColor(1.0f, 1.0f, 1.0f, 1);
-			GScreen.batch_static.draw(Assets.rect, info_x-10, info_y-10-230,650,300);
+			GScreen.batch_static.draw(Assets.rect, info_x-10, info_y-230,650,250);
 			
 			if (obj instanceof ModuleUnit)
 			{
@@ -148,7 +151,7 @@ public class ButtonEquip extends Button {
 				draw_info(""+((Weapon)obj).get_name()+" ("+w.level+" level)","");
 				//mov+=25;
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
-				mov+=25;
+				mov+=15;
 				color_it (w.total_damage,w.base_damage); draw_info("”рон: ",""+w.total_damage);
 				if (w.total_fire_damage>0) {color_it (w.total_fire_damage,w.base_fire_damage); draw_info("”рон огнЄм: ",""+w.total_fire_damage); mov+=5;}
 				if (w.total_cold_damage>0) {color_it (w.total_cold_damage,w.base_fire_damage); draw_info("”рон холодом: ",""+w.total_cold_damage); mov+=5;}
@@ -159,6 +162,9 @@ public class ButtonEquip extends Button {
 				color_it (w.total_ammo_size,w.base_ammo_size);draw_info("Ammo size: ",""+Math.round(w.total_ammo_size));
 				color_it (w.base_reload_time,w.total_reload_time);draw_info("Reload time: ",""+Math.round(w.total_reload_time*10.0f)/10f);
 				
+				mov+=7;
+				Main.font.setColor(1.0f, 0.2f, 0.1f, 1f);
+				draw_info("'"+w.red_text+"'","");
 				
 				
 				//if (Math.random()<0.01){((Weapon)obj).model.setPosition((float)(Math.random()*100),(float)(Math.random()*100));}

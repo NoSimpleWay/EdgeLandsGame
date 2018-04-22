@@ -8,6 +8,8 @@ import com.midfag.entity.EntityHuman;
 import com.midfag.entity.EntityPlayer;
 import com.midfag.entity.decorations.*;
 import com.midfag.entity.enemies.*;
+import com.midfag.equip.weapon.*;
+import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GUI.buttons.Button;
 
 public class SysConfig {
@@ -15,11 +17,27 @@ public class SysConfig {
 	public static String PackagePathDecorations="com.midfag.entity.decorations";
 	
 	public static List<Entity> EntityRegisterer = new ArrayList<Entity>();
+	public static List<Weapon> WeaponRegisterer = new ArrayList<Weapon>();
 	
 	
 	public  SysConfig()
 	{
+
+	}
+	
+	public static void RegisterWeapon()
+	{
+		WeaponRegisterer.clear();
 		
+		WeaponRegisterer.add(new WeaponSimpleShotgun());
+		WeaponRegisterer.add(new WeaponSimpleMinigun());
+		WeaponRegisterer.add(new WeaponSimpleFirle());
+		WeaponRegisterer.add(new WeaponSimpleLaser());
+		WeaponRegisterer.add(new WeaponRobofirle());
+		WeaponRegisterer.add(new LegendaryWeaponPing());
+		WeaponRegisterer.add(new LegendaryWeaponChaos());
+		WeaponRegisterer.add(new LegendaryWeaponBlender());
+		WeaponRegisterer.add(new LegendaryWeaponMirrorLaser());
 	}
 	
 	public static void RegisterEntity()

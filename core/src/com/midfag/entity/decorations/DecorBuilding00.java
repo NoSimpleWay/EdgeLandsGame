@@ -7,6 +7,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorBuilding00 extends Entity {
 
@@ -18,7 +19,7 @@ public class DecorBuilding00 extends Entity {
 		
 		id=this.getClass().getName();
 		uid="78dfcedf";
-		
+		type=EntityType.BUILDING;
 		spr.setTexture(Assets.decor_building_00);
 		
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);

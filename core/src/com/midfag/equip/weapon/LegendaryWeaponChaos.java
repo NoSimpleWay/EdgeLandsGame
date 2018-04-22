@@ -20,12 +20,12 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
 
-public class WeaponLegendaryChaos extends Weapon {
+public class LegendaryWeaponChaos extends Weapon {
 	
 	
 	public float chaos_time=0.2f;
 	
-		public WeaponLegendaryChaos()
+		public LegendaryWeaponChaos()
 		{
 			super();
 			
@@ -53,6 +53,8 @@ public class WeaponLegendaryChaos extends Weapon {
 			
 			generate();
 			update_attributes_bonus();
+			
+			red_text="--- ERROR ERROR ERROR ERROR ERROR ---";
 		}
 		
 		@Override

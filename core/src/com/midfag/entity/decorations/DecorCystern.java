@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorCystern extends DecorStoneWall {
 
@@ -17,7 +18,7 @@ public class DecorCystern extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="3d3919bf";
-		
+		type=EntityType.INDUSTRIAL;
 		spr.setTexture(Assets.cystern);
 		icon=Assets.decoration_cystern_icon;
 		

@@ -99,7 +99,7 @@ public class ModuleUnitPush extends ModuleUnit {
 				
 				if (near_object==null)
 				{
-					_e.move(sx,sy,_d);
+					_e.move(sx,sy,_d, "UNIT PUSH");
 					
 					Shd shd=new ShdMove(new Vector2(_e.pos.x,_e.pos.y),v);
 					shd.lifetime=0.2f;

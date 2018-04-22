@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorSteelBoxDoor extends DecorBuilding {
 
@@ -16,7 +17,7 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 		
 		id=this.getClass().getName();
 		uid="ee7e1529";
-		
+		type=EntityType.INDUSTRIAL;
 		spr.setTexture(Assets.decoration_steel_box_door);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_steel_box_door_icon;

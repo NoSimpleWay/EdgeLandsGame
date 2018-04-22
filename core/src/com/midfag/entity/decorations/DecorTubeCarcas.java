@@ -4,6 +4,7 @@ package com.midfag.entity.decorations;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 
 public class DecorTubeCarcas extends DecorTube {
@@ -15,7 +16,7 @@ public class DecorTubeCarcas extends DecorTube {
 		custom_phys=true;
 		
 		uid="c74a3cfe";
-		
+		type=EntityType.INDUSTRIAL;
 		isCarcas=true;
 		armored[0]=null;
 		armored[1]=null;

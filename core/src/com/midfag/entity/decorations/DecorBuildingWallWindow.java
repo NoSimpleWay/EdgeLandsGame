@@ -4,6 +4,7 @@ package com.midfag.entity.decorations;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 
 public class DecorBuildingWallWindow extends DecorBuilding {
@@ -16,7 +17,7 @@ public class DecorBuildingWallWindow extends DecorBuilding {
 		super(_v);
 
 		custom_phys=true;
-		
+		type=EntityType.BUILDING;
 		id=this.getClass().getName();
 		uid="bbf0c1b2";
 		

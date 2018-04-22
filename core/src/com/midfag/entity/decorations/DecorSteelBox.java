@@ -8,6 +8,7 @@ import com.midfag.entity.LightSource;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorSteelBox extends DecorStoneWall {
 
@@ -19,7 +20,7 @@ public class DecorSteelBox extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="e109337d";
-		
+		type=EntityType.INDUSTRIAL;
 		spr.setTexture(Assets.decoration_steel_box);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_steel_box_icon;
@@ -34,7 +35,7 @@ public class DecorSteelBox extends DecorStoneWall {
 		friction=0.95f;
 		
 		light_source=new LightSource();
-		light_source.light_power=1.0f;
+		light_source.light_power=2.0f;
 		light_source.R=1.0f;
 		light_source.G=1.0f;
 		light_source.B=1.0f;

@@ -7,6 +7,7 @@ import com.midfag.entity.LightSource;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorRabitz2 extends Entity {
 
@@ -17,7 +18,7 @@ public class DecorRabitz2 extends Entity {
 		custom_phys=true;
 		
 		uid="87f59cab";
-		
+		type=EntityType.WALL;
 		is_AI=false;
 		is_player=false;
 		

@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorStonePilon extends DecorStoneWall {
 
@@ -16,7 +17,7 @@ public class DecorStonePilon extends DecorStoneWall {
 
 		custom_phys=true;
 		uid="80d2e292";
-		
+		type=EntityType.WALL;
 		spr.setTexture(Assets.stone_pilon_01);
 		icon=Assets.decoration_stone_pilon_icon;
 		id=this.getClass().getName();

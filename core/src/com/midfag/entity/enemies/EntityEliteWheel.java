@@ -161,7 +161,8 @@ public class EntityEliteWheel extends Entity {
 			
 			if (near_object==null)
 			{
-				move(sx,sy,_d);
+				//move(sx,sy,_d);
+				impulse.set(sx,sy);
 				
 				Shd shd=new ShdFire(new Vector2(pos.x,pos.y),v);
 				shd.lifetime=0.2f;
@@ -175,7 +176,7 @@ public class EntityEliteWheel extends Entity {
 			
 			
 			
-			if (pos.dst(GScreen.pl.pos)<50)
+			if (pos.dst(GScreen.pl.pos)<80)
 			{
 				speed=500;
 				prepare=1;

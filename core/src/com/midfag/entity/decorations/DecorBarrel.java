@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.entity.LightSource;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 
@@ -14,6 +15,8 @@ public class DecorBarrel extends Entity {
 	public DecorBarrel(Vector2 _v) {
 		super(_v);
 		
+		type=EntityType.INDUSTRIAL;
+	
 		custom_phys=true;
 		
 		id=this.getClass().getName();

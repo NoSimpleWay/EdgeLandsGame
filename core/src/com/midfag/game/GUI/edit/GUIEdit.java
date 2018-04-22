@@ -52,6 +52,10 @@ public class GUIEdit extends GUI {
 	public int array_count=1;
 	public float array_x;
 	public float array_y;
+	private ButtonSlider color_r_watcher;
+	private ButtonSlider color_g_watcher;
+	private ButtonSlider color_b_watcher;
+	private ButtonSlider color_power_watcher;
 	 
 	public GUIEdit()
 	{
@@ -78,6 +82,18 @@ public class GUIEdit extends GUI {
 	//@Switcher
 	
 	
+	public void clear_sliders()
+	{
+		GScreen.Button_list.remove(color_r_watcher);
+		GScreen.Button_list.remove(color_g_watcher);
+		GScreen.Button_list.remove(color_b_watcher);
+		
+		color_r_watcher=null;
+		color_g_watcher=null;
+		color_b_watcher=null;
+		color_power_watcher=null;
+	}
+	
 	@Override
 	public void sub_update(float _d) 
 	{
@@ -86,9 +102,42 @@ public class GUIEdit extends GUI {
 		
 		int mod=3;
 		
+		if ((color_r_watcher!=null)&&(color_r_watcher.change)) {selected_object.light_source.R=color_r_watcher.value; GScreen.need_light_update=true; GScreen.need_pixmap_update=true; GScreen.need_static_light_update=true;}
+		if ((color_g_watcher!=null)&&(color_g_watcher.change)) {selected_object.light_source.G=color_g_watcher.value; GScreen.need_light_update=true; GScreen.need_pixmap_update=true; GScreen.need_static_light_update=true;}
+		if ((color_b_watcher!=null)&&(color_b_watcher.change)) {selected_object.light_source.B=color_b_watcher.value; GScreen.need_light_update=true; GScreen.need_pixmap_update=true; GScreen.need_static_light_update=true;}
+		if ((color_power_watcher!=null)&&(color_power_watcher.change)) {selected_object.light_source.light_power=color_power_watcher.value; GScreen.need_light_update=true; GScreen.need_pixmap_update=true; GScreen.need_static_light_update=true;}
+			
+		
+		
+		//open property editor
+		if ((Gdx.input.isKeyPressed(Keys.P)&&(InputHandler.key_release)&&(selected_object!=null)&&(selected_object.light_source!=null)))
+		{
+			InputHandler.key_release=false;
+			
+			//selected_object.standart_slider();
+			color_r_watcher=new ButtonSlider(100,100,0f,1f,0.005f);
+			color_g_watcher=new ButtonSlider(100,150,0f,1f,0.005f);
+			color_b_watcher=new ButtonSlider(100,200,0f,1f,0.005f);
+			color_power_watcher=new ButtonSlider(100,250,0f,10f,0.005f);
+			
+			color_r_watcher.col.set(1f,0.8f,0.8f,1f);
+			color_g_watcher.col.set(0.8f,1.0f,0.8f,1f);
+			color_b_watcher.col.set(0.8f,0.8f,1.0f,1f);
+			color_power_watcher.col.set(1.0f,1.0f,1.0f,1f);
+			
+			color_r_watcher.value=selected_object.light_source.R;
+			color_g_watcher.value=selected_object.light_source.G;
+			color_b_watcher.value=selected_object.light_source.B;
+			color_power_watcher.value=selected_object.light_source.light_power;
+			
+			GScreen.Button_list.add(color_r_watcher);
+			GScreen.Button_list.add(color_g_watcher);
+			GScreen.Button_list.add(color_b_watcher);
+			GScreen.Button_list.add(color_power_watcher);
+		}
 		
 		//delete action
-		if (Gdx.input.isKeyPressed(112)&&(selected_object!=null)){selected_object.dead_action(true); selected_object=null;}
+		if (Gdx.input.isKeyPressed(112)&&(selected_object!=null)){selected_object.need_remove=true; selected_object=null; clear_sliders(); }
 		
 		//clone
 		if ((Gdx.input.isKeyPressed(Keys.V))&&(selected_object!=null))
@@ -97,6 +146,7 @@ public class GUIEdit extends GUI {
 			indicate_entity.z=selected_object.z;
 			
 			selected_object=null;
+			clear_sliders();
 		}
 		
 		//change alteration
@@ -236,7 +286,18 @@ public class GUIEdit extends GUI {
 			
 		GScreen.batch.end();
 		
-		if ((InputHandler.realy>70)&&(InputHandler.realy<GScreen.scr_h-70))
+		boolean have_button_overlap=false;
+		
+		for (int i=0; i<GScreen.Button_list.size(); i++)
+		{
+			if (GScreen.Button_list.get(i).is_overlap()) {have_button_overlap=true;}
+			
+			if (have_button_overlap) { i=99999; break;}
+		}
+		
+		
+		
+		if ((InputHandler.realy>7)&&(InputHandler.realy<GScreen.scr_h-7)&&(!have_button_overlap))
 		{
 			if (
 					(InputHandler.but==0)
@@ -476,6 +537,7 @@ public class GUIEdit extends GUI {
 							near_dist=GScreen.temp_vectorA.dst(GScreen.cluster[i][j].Entity_list.get(k).pos);
 							
 							selected_object=GScreen.cluster[i][j].Entity_list.get(k);
+							clear_sliders();
 							selected_cluster=GScreen.cluster[i][j];
 						}
 					}
@@ -502,7 +564,8 @@ public class GUIEdit extends GUI {
 		{
 			release_key_C=true;
 			
-			selected_object.hard_move(xx-selected_object.pos.x, yy-selected_object.pos.y, 1);
+			//selected_object.hard_move(xx-selected_object.pos.x, yy-selected_object.pos.y, 1);
+			selected_object.reposition(xx, yy);
 			
 
 			

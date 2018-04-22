@@ -3,14 +3,17 @@ package com.midfag.entity.decorations;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorBarrelCrash extends Entity {
 
 	public DecorBarrelCrash(Vector2 _v) {
 		super(_v);
 		
-		custom_phys=true;
+		type=EntityType.INDUSTRIAL;
 		
+		custom_phys=true;
+
 		id=this.getClass().getName();
 		uid="fe7d3d76";
 		

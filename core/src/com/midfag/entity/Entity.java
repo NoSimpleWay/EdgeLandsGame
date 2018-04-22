@@ -22,6 +22,9 @@ import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;
 import com.midfag.game.Phys;
+import com.midfag.game.GUI.buttons.Button;
+import com.midfag.game.GUI.edit.ButtonSlider;
+import com.midfag.game.Enums.EntityType;
 import com.midfag.game.script.ScriptSystem;
 import com.midfag.game.skills.Skill;
 
@@ -29,6 +32,16 @@ public class Entity {
 	
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
 	
+	public int update_calls=0;
+	public String[] update_data=new String[10];
+	
+	public int cx;
+	public int cy;
+	public int ncx;
+	public int ncy;
+	
+	public boolean need_change_cluster=false;
+	public EntityType type=EntityType.ENTITY;
 	public float mass=10;
 	
 	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));
@@ -56,7 +69,7 @@ public class Entity {
 	public float color_total_B=1f;
 	
 	List<List<String>> list = new ArrayList<List<String>>();
-	//public List<Entity> list = new ArrayList<Entity>();
+	//public List<Entity> entity_list = new ArrayList<Entity>();
 
 	
 	//public List<Phys> Phys_list_local = new ArrayList<Phys>();
@@ -172,6 +185,7 @@ public class Entity {
 	public  float size=20;
 
 	public float stuck=0f;
+	public boolean need_remove=false;
 	
 	public void use_module(int _id)
 	{
@@ -320,9 +334,9 @@ public class Entity {
 				{warm_protect+=Skills_list.get(i).warm_damage_action(this);}
 		}
 		
-		armored_shield.warm+=(_damage/(armored_shield.total_reflect*4f));
+		armored_shield.warm+=(_damage/(armored_shield.total_reflect*1f));
 		
-		armored_shield.warm=Math.min(5, armored_shield.warm);
+		armored_shield.warm=Math.min(50, armored_shield.warm);
 		
 		if ((hurt_sound_cooldown<=0)&(_sound))
 		{
@@ -397,7 +411,7 @@ public class Entity {
 	{
 		
 		//Helper.log("DESTROY <"+id+">");
-		
+		need_remove=true;
 		if ((need_dead_anim))
 		{
 			for (int v=0; v<3; v++)
@@ -417,11 +431,11 @@ public class Entity {
 		{
 
 			
-			GScreen.cluster[(int)(pos.x/300)][(int)(pos.y/300)].Entity_list.remove(this);
+			//GScreen.cluster[(int)(pos.x/300)][(int)(pos.y/300)].Entity_list.remove(this);
 			
 			
-				GScreen.Entity_list.remove(this);
-				GScreen.cluster[(int)(pos.x/300f)][(int)(pos.y/300f)].Entity_list.remove(this);
+				//GScreen.Entity_list.remove(this);
+				//GScreen.cluster[(int)(pos.x/300f)][(int)(pos.y/300f)].Entity_list.remove(this);
 			
 		}
 		
@@ -432,23 +446,23 @@ public class Entity {
 
 	}
 	
-	public void hard_move(float _x, float _y, float _d)
+	public void hard_move(float _x, float _y, float _d, String _caller)
 	{
-		do_move(_x,_y,_d,false);
+		do_move(_x,_y,_d,false, _caller);
 	}
 	
-	public void move (float _x, float _y, float _d)
+	public void move (float _x, float _y, float _d, String _caller)
 	{
-		do_move(_x,_y,_d,true);
+		do_move(_x,_y,_d,true, _caller);
 	}
 	
-	public void do_move (float _x, float _y, float _d,boolean _need)
+	public void do_move (float _x, float _y, float _d,boolean _need, String _caller)
 	{
 		
 
-		
-		int cx=(int)(pos.x/300f);
-		int cy=(int)(pos.y/300f);
+		//Helper.log("CALLER IS "+_caller);
+		cx=(int)(pos.x/300f);
+		cy=(int)(pos.y/300f);
 		
 		int pcx=(int)(pos.x/30f);
 		int pcy=(int)(pos.y/30f);
@@ -488,75 +502,172 @@ public class Entity {
 				if (pos.y<100){pos.y=100;}
 				//spr.setColor((float)Math.random()*0.2f+0.8f,(float)Math.random()*0.2f+0.8f, (float)Math.random()*0.2f+0.8f, 1.0f);
 				
-				int ncx=(int)(pos.x/300f);
-				int ncy=(int)(pos.y/300f);
+				ncx=(int)(pos.x/300f);
+				ncy=(int)(pos.y/300f);
 				
 				int npcx=(int)(pos.x/30f);
 				int npcy=(int)(pos.y/30f);
 				
 				if ((cx!=ncx)||(cy!=ncy))
 				{
-						{GScreen.cluster[cx][cy].Entity_list.remove(this);
-						GScreen.cluster[ncx][ncy].Entity_list.add(this);}
+						Helper.log("PRE CHANGE CLUSTER cx="+cx+" cy="+cy+" ncx="+ncx+" ncy="+ncy);
+						need_change_cluster=true;
+						
+						GScreen.cluster[cx][cy].Entity_list.remove(this);
+						GScreen.cluster[ncx][ncy].Entity_list.add(this);
 				}
 				
 				if ((pcx!=npcx)||(pcy!=npcy))
 				{
-					if (light_source!=null)
 					{
-						light_source.update_light_position(pos.x,pos.y);
-					}
-					else
-					{
-						update_dynamic_color_state();
-						update_color_state();
-					}
-					
-				    if (path_x>=0)
-				    {
-				    	int cluster_x=(int)(GScreen.camera.position.x/300f);
-					    int cluster_y=(int)(GScreen.camera.position.y/300f);
-					    
-						for (int i=0; i<300; i++)
-						for (int j=0; j<300; j++)
+						if (light_source!=null)
 						{
-							if (GScreen.path[j][i]<0)
-							{GScreen.path[j][i]=100;}
+							light_source.update_light_position(pos.x,pos.y);
+						}
+						else
+						{
+							update_dynamic_color_state();
+							update_color_state();
 						}
 						
-						
-						for (int x=cluster_x-4; x<=cluster_x+4; x++)
-					    for (int y=cluster_y-4; y<=cluster_y+4; y++)
-					    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-					    for (int i=0; i<GScreen.cluster[x][y].Entity_list.size();i++)
+					    if (path_x>=0)
 					    {
-					        	Entity e=GScreen.cluster[x][y].Entity_list.get(i);
-					        	
-						    	if ((!e.hidden))
-						    	{
-						    		e.generate_path();
-						    	}
+					    	int cluster_x=(int)(GScreen.camera.position.x/300f);
+						    int cluster_y=(int)(GScreen.camera.position.y/300f);
+						    
+							for (int i=0; i<300; i++)
+							for (int j=0; j<300; j++)
+							{
+								if (GScreen.path[j][i]<0)
+								{GScreen.path[j][i]=100;}
+							}
+							
+							
+							for (int x=cluster_x-4; x<=cluster_x+4; x++)
+						    for (int y=cluster_y-4; y<=cluster_y+4; y++)
+						    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+						    for (int i=0; i<GScreen.cluster[x][y].Entity_list.size();i++)
+						    {
+						        	Entity e=GScreen.cluster[x][y].Entity_list.get(i);
+						        	
+							    	if ((!e.hidden))
+							    	{
+							    		e.generate_path();
+							    	}
+						    }
+							
+							GScreen.need_shadow_update=true;
+							GScreen.need_light_update=true;
+							
+							if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
+							if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
 					    }
-						
-						GScreen.need_shadow_update=true;
-						GScreen.need_light_update=true;
-						
-						if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
-						if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
-				    }
 
-				    
-				   
-				    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
-				    
+					    
+					   
+					    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
+					    
 
-				    
-					
-					
+					    
+						
+						
+					}
 				}
 				
 
 		}
+		
+		//if (need_change_cluster)
+		//{Helper.log("PRE PHANGE CLUSTER[2] cx="+cx+" cy="+cy+" ncx="+ncx+" ncy="+ncy);}
+	}
+	
+	public void reposition(float _x, float _y)
+	{
+		int tcx=(int)(pos.x/300f);
+		int tcy=(int)(pos.y/300f);
+		
+		int tncx=(int)(_x/300f);
+		int tncy=(int)(_y/300f);
+		
+		if ((tcx!=tncx)||(tcy!=tncy))
+		{
+				{GScreen.cluster[tcx][tcy].Entity_list.remove(this);
+				GScreen.cluster[tncx][tncy].Entity_list.add(this);}
+				
+		}
+		
+		pos.x=_x;
+		pos.y=_y;
+		
+		{
+			if (light_source!=null)
+			{
+				light_source.update_light_position(pos.x,pos.y);
+			}
+			else
+			{
+				update_dynamic_color_state();
+				update_color_state();
+			}
+			
+		    //if (path_x>=0)
+		    //{
+		    	int cluster_x=(int)(GScreen.camera.position.x/300f);
+			    int cluster_y=(int)(GScreen.camera.position.y/300f);
+			    
+				for (int i=0; i<300; i++)
+				for (int j=0; j<300; j++)
+				{
+					if (GScreen.path[j][i]<0)
+					{GScreen.path[j][i]=100;}
+				}
+				
+				
+				for (int x=cluster_x-4; x<=cluster_x+4; x++)
+			    for (int y=cluster_y-4; y<=cluster_y+4; y++)
+			    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+			    for (int i=0; i<GScreen.cluster[x][y].Entity_list.size();i++)
+			    {
+			        	Entity e=GScreen.cluster[x][y].Entity_list.get(i);
+			        	
+				    	if ((!e.hidden))
+				    	{
+				    		e.generate_path();
+				    	}
+			    }
+				
+				GScreen.need_shadow_update=true;
+				GScreen.need_light_update=true;
+				
+				if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
+				if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
+		    //}
+
+		    
+		   
+		    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
+		    
+
+		    
+			
+			
+		}
+	}
+	
+	public void change_cluster()
+	{
+		GScreen.cluster[cx][cy].Entity_list.remove(this);
+		GScreen.cluster[ncx][ncy].Entity_list.add(this);
+		
+		need_change_cluster=false;
+		Helper.log("CLUSTER CHANGED! "+cx+" "+cy+"| "+ncx+" "+ncy);
+	}
+	
+	public void standart_slider()
+	{
+
+		
+		
 	}
 	
 	public void shoot(float _d, int _i)
@@ -705,6 +816,8 @@ public class Entity {
 	
 	public void update(float _d)
 	{
+			
+			update_calls++;
 			if (is_interact)
 			{
 				GScreen.batch.setColor(1,1,1,(float) ((Math.sin(TimeUtils.millis()/100))+1)/2f);
@@ -795,11 +908,13 @@ public class Entity {
 				armored[i].cd-=_d*cold_rating;
 			}
 		}
+		
 		if ((armored_shield!=null)&&(armored_shield.value>0))
 		{
-			if (armored_shield.warm<=0)
-			{armored_shield.value+=armored_shield.total_regen_speed*_d;}
+			//if (armored_shield.warm<=0)
+			{armored_shield.value+=armored_shield.total_regen_speed*_d*(1f-armored_shield.warm/50f);}
 			
+			// if (this instanceof EntityHuman) {Helper.log("WARM!");}
 			armored_shield.warm-=_d;
 			armored_shield.warm=Math.max(0, armored_shield.warm);
 			armored_shield.value=Math.min(armored_shield.total_value, armored_shield.value);
@@ -831,7 +946,22 @@ public class Entity {
 		//float spd=(float) (Math.sqrt(mx*mx+my*my));
 		
 
-		
+		if ((mx!=0)||(my!=0))
+		for (int i=0; i<GScreen.Missile_list.size(); i++)
+		{
+			float dx=0;
+			float dy=0;
+			if (Math.abs(my)<0.1f) {dx=99999;}else{dx=mx/my;}
+			if (Math.abs(mx)<0.1f) {dy=99999;}else{dy=my/mx;}
+			
+			///GScreen.temp_vector_collision_result.set(99999,99999);
+			GScreen.temp_vector_collision_result.set(GScreen.collision_missile(GScreen.Missile_list.get(i),pos.x,pos.y,pos.x+mx*_d,pos.y+my*_d,dx,dy,size));
+			
+			if (GScreen.temp_vector_collision_result.x<9999)
+			{
+				GScreen.Missile_list.get(i).lifetime=-1;
+			}
+		}
 		
 		if (((is_player)&&(GScreen.show_edit))||(z>50))
 		{}
@@ -849,7 +979,41 @@ public class Entity {
 		
 		if (near_object==null)
 		{
-			move (mx,my,_d);
+			float cmx=0;
+			float cmy=0;
+			
+			if (constant_move_x>0)
+			{
+				constant_move_x-=Math.abs(constant_speed_x*_d);
+				cmx=constant_speed_x;
+			}
+			else
+			{
+				constant_speed_x=0;
+			}
+			
+			
+			if (constant_move_y>0)
+			{
+				constant_move_y-=Math.abs(constant_speed_y*_d);
+				cmy=constant_speed_y;
+			}
+			else
+			{
+				constant_speed_y=0;
+			}
+			
+			if (constant_move_z>0)
+			{
+				constant_move_z-=Math.abs(constant_speed_z*_d);
+				z+=constant_speed_z*_d;
+			}
+			else
+			{
+				constant_speed_z=0;
+			}
+			
+			move (mx+cmx,my+cmy,_d,"ENTITY UPDATE");
 			
 			//hit_action(99999);
 			
@@ -882,41 +1046,9 @@ public class Entity {
 			//System.out.println("###"+near_object.move_block);
 		}
 		
-		float cmx=0;
-		float cmy=0;
-		
-		if (constant_move_x>0)
-		{
-			constant_move_x-=Math.abs(constant_speed_x*_d);
-			cmx=constant_speed_x;
-		}
-		else
-		{
-			constant_speed_x=0;
-		}
 		
 		
-		if (constant_move_y>0)
-		{
-			constant_move_y-=Math.abs(constant_speed_y*_d);
-			cmy=constant_speed_y;
-		}
-		else
-		{
-			constant_speed_y=0;
-		}
-		
-		if (constant_move_z>0)
-		{
-			constant_move_z-=Math.abs(constant_speed_z*_d);
-			z+=constant_speed_z*_d;
-		}
-		else
-		{
-			constant_speed_z=0;
-		}
-		
-		move(cmx,cmy,_d);
+		//move(cmx,cmy,_d);
 		
 
 		
@@ -1018,6 +1150,10 @@ public class Entity {
 
 		}
 		
+		if ((armored_shield!=null)&&(armored_shield.value<=0))
+		{
+			need_remove=true;
+		}
 		
 	}
 

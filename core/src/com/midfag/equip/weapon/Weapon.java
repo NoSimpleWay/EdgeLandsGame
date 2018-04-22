@@ -83,6 +83,7 @@ public class Weapon {
 	public float base_cold_damage;
 	
 	public boolean is_rotate_reset_charge=false;
+	public String red_text="";
 	
 	
 	

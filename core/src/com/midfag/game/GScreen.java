@@ -30,6 +30,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.midfag.entity.Entity;
 import com.midfag.entity.Shd;
+import com.midfag.entity.enemies.EntityPyra;
 import com.midfag.entity.enemies.EntityVizjun;
 import com.midfag.entity.missiles.Missile;
 import com.midfag.equip.energoshield.EnergoshieldSimple;
@@ -52,7 +53,7 @@ public class GScreen implements Screen {
 	
 	public static List<WorldDebug> WD = new ArrayList<WorldDebug>();//_______________________список физических линий
 	
-    public static float lightmap_spread_power = 0.45f;
+    public static float lightmap_spread_power = 0.15f;
 
 	public static final int path_cell = 30;
     
@@ -242,8 +243,12 @@ public class GScreen implements Screen {
 
 	public static boolean need_static_light_update=true;
 
-	public static int lightmap_blur_pass=8;
-	public static int lightmap_spread_pass=8;
+	public static int lightmap_blur_pass=12;
+	public static int lightmap_spread_pass=12;
+
+	public static boolean chunk_info;
+
+	public static boolean time_freeze=false;
 	
     
 	public static Entity get_collision(float _x1, float _y1, float _x2, float _y2, float _dx, float _dy, float _size)
@@ -305,6 +310,40 @@ public class GScreen implements Screen {
 	{
 		float collision_size_x=_target.collision_size_x+_size;
 		float collision_size_y=_target.collision_size_y+_size;
+		
+	
+		///
+		
+		float dist=_target.pos.y+collision_size_y-_y1;
+		if ((Math.abs(_dx)<999)&&(_target.pos.y+collision_size_y<_y1)&&(_target.pos.y+collision_size_y>_y2)&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<collision_size_x))
+		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y+collision_size_y);}
+		
+		////
+		
+		dist=_target.pos.y-collision_size_y-_y1;
+		if ((Math.abs(_dx)<999)&&(_target.pos.y-collision_size_y>_y1)&&(_target.pos.y-collision_size_y<_y2)&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<collision_size_x))
+		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y-collision_size_y);}
+		
+		////
+		
+		dist=_target.pos.x+collision_size_x-_x1;
+		if ((Math.abs(_dy)<999)&&(_target.pos.x+collision_size_x<_x1)&&(_target.pos.x+collision_size_x>_x2)&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<collision_size_y))
+		{return temp_vectorA.set(_target.pos.x+collision_size_x, _y1+dist*_dy);}
+		
+		////
+		
+		dist=_target.pos.x-collision_size_x-_x1;
+		if ((Math.abs(_dy)<999)&&(_target.pos.x-collision_size_x>_x1)&&(_target.pos.x-collision_size_x<_x2)&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<collision_size_y))
+		{return temp_vectorA.set(_target.pos.x-collision_size_x, _y1+dist*_dy);}
+		
+		return temp_vectorA.set(999999, 999999);
+	
+	}
+	
+	public static Vector2 collision_missile(Missile _target, float _x1, float _y1, float _x2, float _y2, float _dx, float _dy, float _size)
+	{
+		float collision_size_x=_size;
+		float collision_size_y=_size;
 		
 	
 		///
@@ -721,7 +760,7 @@ public class GScreen implements Screen {
 
         }
 
-		camera.zoom=50000.0f;
+		camera.zoom=50.0f;
 		
 
 		
@@ -794,8 +833,30 @@ public class GScreen implements Screen {
         {
         	timer_list[i]=0;
         }*/
+    	if (delta>0.1f) {delta=0.1f;}
+    	real_delta=delta;
+    	if (time_freeze) {delta*=0.00f;}
     	
-
+    	
+    	if ((InputHandler.key==Keys.Q)&&(InputHandler.keyF_release))
+    	{
+    		InputHandler.keyF_release=false;
+    		
+    		Entity en;
+    		
+    		for (int i=0; i<10; i++)
+    		{
+    			
+	    		
+	    		
+	    		en=new EntityPyra(new Vector2());
+	    		
+	    		en.pos.x=(float) (GScreen.pl.pos.x+Math.random()*1500-750);
+	    		en.pos.y=(float) (GScreen.pl.pos.y+Math.random()*1500-750);
+	    		
+	    		GScreen.add_entity_to_map(en);
+    		}
+    	}
     	
     	if ((InputHandler.key==Keys.F)&&(InputHandler.keyF_release))
     	{
@@ -813,8 +874,7 @@ public class GScreen implements Screen {
     		{
     			pl=pl_human;
     			pl_human.hidden=false;
-    			pl_human.pos.x=pl_mech.pos.x;
-    			pl_human.pos.y=pl_mech.pos.y-30;
+    			pl_human.reposition(pl_mech.pos.x, pl_mech.pos.y-30);
     			
     			camera_target=pl;
     		}	
@@ -825,7 +885,7 @@ public class GScreen implements Screen {
     	debug_cooldown-=real_delta;
     	
     	if (debug_cooldown<=0) {Timer.clear();}
-    	real_delta=delta;
+    
     	
     	float world_debug_change=0;
     	
@@ -889,6 +949,8 @@ public class GScreen implements Screen {
     	cury=InputHandler.realy;
     	
     	InputHandler.update();
+    	InputHandler.prevx=Gdx.input.getX();
+    	InputHandler.prevy=Gdx.input.getY();
     	
     	int plposx=(int)(camera.position.x/30f);
     	int plposy=(int)(camera.position.y/30f);
@@ -1007,7 +1069,8 @@ public class GScreen implements Screen {
 			        		if ((!e.hidden)&&(e.light_source!=null))
 			        		{
 			        			batch_illum.setColor(e.light_source.R,e.light_source.G,e.light_source.B,1f);
-			        			batch_illum.draw(rect_white, (int)(e.pos.x/30-1)*light_map_size, (int)(e.pos.y/30-1)*light_map_size,3f*light_map_size, 3f*light_map_size); 
+			        			float po=e.light_source.light_power;
+			        			batch_illum.draw(rect_white, (int)(e.pos.x/30f-(po-1f)/2f)*light_map_size, (int)(e.pos.y/30f-(po-1f)/2f)*light_map_size,po*light_map_size, po*light_map_size); 
 			        		}
 			        		
 			        		batch_illum.setColor(1,1,1,1f);
@@ -1225,14 +1288,17 @@ public class GScreen implements Screen {
 	    	 for (int k=0; k<Draw_list.size()-1; k++)
 	    	        for (int i=Draw_list.size()-1; i>0; i--)
 	    	        {
+	    	        		Entity e1=Draw_list.get(i);
+	    	        		Entity e2=Draw_list.get(i-1);
+	    	        		
 	    		        	if (
-	    		        		Draw_list.get(i).pos.y
+	    		        		e1.pos.y
 	    		        		>
-	    		        		Draw_list.get(i-1).pos.y
+	    		        		e2.pos.y
 	    		        		)
 	    		        	{
-	    			        		Entity swap=Draw_list.get(i);
-	    			        		Draw_list.set(i, Draw_list.get(i-1));
+	    			        		Entity swap=e1;
+	    			        		Draw_list.set(i, e2);
 	    			        		Draw_list.set(i-1,swap);
 	    		        	}
 
@@ -1264,7 +1330,8 @@ public class GScreen implements Screen {
         	if (mis.lifetime>0)
         	{
 	        	
-	        	
+
+    	    	
 	        	near_dist=99999;
 	        	near_object=null;//w
 	        	Entity near_entity=null;
@@ -1336,15 +1403,18 @@ public class GScreen implements Screen {
 		    		}
 		    		
 		    	}
+		    	
+		    	
+    	    	{
+    	    		mis.update(delta);
+    	    		//if (i==0) {Helper.log("LIFETIME="+Missile_list.get(i).lifetime);}
+    	    	}
         	}
             	
             
         	
 
-	    	{
-	    		mis.update(delta);
-	    		//if (i==0) {Helper.log("LIFETIME="+Missile_list.get(i).lifetime);}
-	    	}
+
         if (mis.lifetime>0) {Missile_list.get(i).draw();}
 			
         
@@ -1354,7 +1424,7 @@ public class GScreen implements Screen {
         
             for (int i=0; i<Missile_list.size();i++)
             {
-            	if (Missile_list.get(i).lifetime<=-1)
+            	if (Missile_list.get(i).lifetime<=0)
             	{
             		Missile_list.remove(i);
             		i--;
@@ -1368,7 +1438,30 @@ public class GScreen implements Screen {
 		
         add_timer("entity");
         
-
+        	batch.setColor(Color.WHITE);
+        
+        	if (chunk_info)
+        	{
+	  			for (int x=cluster_x-4; x<=cluster_x+4; x++)
+	          	for (int y=cluster_y-4; y<=cluster_y+4; y++)
+	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+	          	{
+	          		Main.font_big.setColor(Color.ORANGE);
+	          		Main.font_big.draw(batch, ""+x+" "+y, x*300+17, y*300+17);
+		            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+		            {
+		            	Entity e=cluster[x][y].Entity_list.get(i);
+		            	
+		            	Main.font.setColor(Color.WHITE);
+		            	{
+		            		Main.font.draw(batch, e.id.replace("com.midfag.entity", "")+" === "+e.cx+" "+e.cy, x*300, y*300+i*17+30);
+		            		
+		            		
+		            	}
+		            }
+	          	}
+        	}
+  		
 		batch.end();
 		
 	    	sr.begin(ShapeType.Filled);
@@ -1381,6 +1474,10 @@ public class GScreen implements Screen {
 	        }
 	 	   sr.end();
 	 	   
+     	
+
+      		
+  		
     	terrain_fbo.end();
 		
 
@@ -1634,7 +1731,7 @@ public class GScreen implements Screen {
 
 
     
-      
+        //Helper.log("UPDATE BEGIN!");
       	for (int x=cluster_x-4; x<=cluster_x+4; x++)
       	for (int y=cluster_y-4; y<=cluster_y+4; y++)
       	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
@@ -1642,96 +1739,140 @@ public class GScreen implements Screen {
         {
         	Entity e=cluster[x][y].Entity_list.get(i);
         	
-	    	if ((!e.hidden)&&(!e.is_decor))
-	    	{e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);}
-        	
-        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
-        	 {
-        		 InputHandler.keyF_release=false;
-        		 ScriptSystem.execute(e.interact_entry_point);
-        	}
-        	 
-        	if (e.is_AI)
-        	{	
-        		if (!e.is_decor)
-        		{
-	        		fx=(int)(e.pos.x/path_cell);
-		            fy=(int)(e.pos.y/path_cell);
-		            
-		        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
-		        	{
-		        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
-		        			
-		        				float dirx=0;
-			        			float diry=0;
-			        			float dir=999.0f;
+        	if (e.update_calls==0)
+	        {
+        		
+		    	if ((!e.hidden)&&(!e.is_decor))
+		    	{
+		    		//e.update_data[e.update_calls]="UPDATE DATA X="+x+" Y="+y+" I="+i;
+		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+		    	}
+		    	
+		    	if (e.need_change_cluster) {i--; e.need_change_cluster=false;}
+		    	
+	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
+	        	 {
+	        		 InputHandler.keyF_release=false;
+	        		 ScriptSystem.execute(e.interact_entry_point);
+	        	}
+	        	 
+	        	if (e.is_AI)
+	        	{	
+	        		if (!e.is_decor)
+	        		{
+		        		fx=(int)(e.pos.x/path_cell);
+			            fy=(int)(e.pos.y/path_cell);
+			            
+			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
+			        	{
+			        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
 			        			
-		        			if (e.stuck<=0)
-		        			{
-			        			int mov_dir=1;
-			        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
-			        			{mov_dir=-0;}
+			        				float dirx=0;
+				        			float diry=0;
+				        			float dir=999.0f;
+				        			
+			        			if (e.stuck<=0)
+			        			{
+				        			int mov_dir=1;
+				        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
+				        			{mov_dir=-0;}
+				        			
+	
+				        			
+				        			/*float uncenterx=e.pos.x-fx*path_cell;
+				        			float uncentery=e.pos.y-fy*path_cell;*/
+				        			
+				        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
+				        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
+				        			
+				        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
+				        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
+				        			
+				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
+				        			//if (Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy])) {dirx=-1;}
+				        			//if (Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy])) {dirx=1;}
+				        			/*
+					        		if (Math.abs(path[fx][fy+1])<dir)
+						        	{dir=Math.abs(path[fx][fy+1]); dirx=0; diry=1;}
+					        		
+					        		if (Math.abs(path[fx+1][fy])<dir)
+						        	{dir=Math.abs(path[fx+1][fy]); dirx=1; diry=0;}
+					        		
+					        		if (Math.abs(path[fx][fy-1])<dir)
+						        	{dir=Math.abs(path[fx][fy-1]); dirx=0; diry=-1;}
+					        		
+					        		if (Math.abs(path[fx-1][fy])<dir)
+						        	{dir=Math.abs(path[fx-1][fy]); dirx=-1; diry=0;}
+						        	*/
+			        			}
 			        			
-
-			        			
-			        			/*float uncenterx=e.pos.x-fx*path_cell;
-			        			float uncentery=e.pos.y-fy*path_cell;*/
-			        			
-			        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
-			        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
-			        			
-			        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
-			        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
-			        			
-			        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
-			        			//if (Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy])) {dirx=-1;}
-			        			//if (Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy])) {dirx=1;}
-			        			/*
-				        		if (Math.abs(path[fx][fy+1])<dir)
-					        	{dir=Math.abs(path[fx][fy+1]); dirx=0; diry=1;}
+				        		if (e.stuck>0)
+				        		{
+					        		if  (path[fx+1][fy-1]<-400) {dirx+=-0.7f; diry+=0.7f;}
+					        		if  (path[fx+1][fy+1]<-400) {dirx+=-0.7f; diry+=-0.7f;}
+					        		if  (path[fx-1][fy+1]<-400) {dirx+=0.7f; diry+=-0.7f;}
+					        		if  (path[fx-1][fy-1]<-400) {dirx+=0.7f; diry+=0.7f;}
+					        		
+					        		e.stuck-=delta;
+				        		}
 				        		
-				        		if (Math.abs(path[fx+1][fy])<dir)
-					        	{dir=Math.abs(path[fx+1][fy]); dirx=1; diry=0;}
 				        		
-				        		if (Math.abs(path[fx][fy-1])<dir)
-					        	{dir=Math.abs(path[fx][fy-1]); dirx=0; diry=-1;}
+				        		 /*Helper.log("=====");
+				        		 Helper.log("dirx="+dirx);
+				        		 Helper.log("diry="+diry);
+				        		 Helper.log("=   =");*/
 				        		
-				        		if (Math.abs(path[fx-1][fy])<dir)
-					        	{dir=Math.abs(path[fx-1][fy]); dirx=-1; diry=0;}
-					        	*/
-		        			}
-		        			
-			        		if (e.stuck>0)
-			        		{
-				        		if  (path[fx+1][fy-1]<-400) {dirx+=-0.7f; diry+=0.7f;}
-				        		if  (path[fx+1][fy+1]<-400) {dirx+=-0.7f; diry+=-0.7f;}
-				        		if  (path[fx-1][fy+1]<-400) {dirx+=0.7f; diry+=-0.7f;}
-				        		if  (path[fx-1][fy-1]<-400) {dirx+=0.7f; diry+=0.7f;}
 				        		
-				        		e.stuck-=delta;
-			        		}
-			        		
-			        		
-			        		 /*Helper.log("=====");
-			        		 Helper.log("dirx="+dirx);
-			        		 Helper.log("diry="+diry);
-			        		 Helper.log("=   =");*/
-			        		
-			        		
-			        		
-				        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
-			        	/*if (path[fx][fy]<100)
-			        	{path[fx][fy]=700+path[fx][fy];}*/
-	    			
-			        	//path_time[fx][fy]=time;
+				        		
+					        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+				        	/*if (path[fx][fy]<100)
+				        	{path[fx][fy]=700+path[fx][fy];}*/
+		    			
+				        	//path_time[fx][fy]=time;
+			        	}
 		        	}
 	        	}
         	}
-        	
 
         	
         }
       	
+      	/*
+      	if (pl.need_change_cluster)
+      	{Helper.log("POST CHANGE CLUSTER "+pl.cx+" "+pl.cy);}
+      	*/
+      	
+      		//batch.begin();
+      		//if (false)
+	      		for (int x=cluster_x-4; x<=cluster_x+4; x++)
+	          	for (int y=cluster_y-4; y<=cluster_y+4; y++)
+	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+	            {
+	            	Entity e=cluster[x][y].Entity_list.get(i);
+	            	
+	            /*if (e.update_calls>1)
+	            {
+	            	e.color_total_G=0.1f;
+	            	e.color_total_B=0.1f;
+	           	time_freeze=true;
+	           
+	           	Helper.log("_______________");
+	           	Helper.log(e.update_data[0]);
+	           	Helper.log(e.update_data[1]);
+	           }*/
+	            e.update_calls=0;
+	            	
+	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); i--;}
+	            	//else
+	            	//if ((!e.hidden)&&(!e.is_decor)&&(e.need_change_cluster))
+	            	//{
+	            	//	
+	            	//	e.change_cluster();
+	            	//	i--;
+	            	//}
+	            }
+      		//batch.end();
       	add_timer("entity_update");
       	
       	if ((path_visualisation))
@@ -1783,12 +1924,14 @@ public class GScreen implements Screen {
 			
 			
 			batch.begin();
-			batch.setColor(Color.WHITE);
-			Main.font.setColor(Color.WHITE);
-			 	for (int i=plposy-50; i<plposy+50; i++)
-				 for (int j=plposx-50; j<plposx+50; j++)
-				 if ((i>0)&&(i<299)&&(j>0)&&(j<299)&&(path[j][i]>=0)&&(path[j][i]<100))
-				{Main.font.draw(batch, ""+Math.round(path[j][i]), j*30+15f, i*30+15f);}
+				batch.setColor(Color.WHITE);
+				Main.font.setColor(Color.WHITE);
+				Main.font.getData().setScale(0.5f);
+				 	for (int i=plposy-51; i<plposy+51; i++)
+					 for (int j=plposx-51; j<plposx+51; j++)
+					 if ((i>0)&&(i<299)&&(j>0)&&(j<299)&&(path[j][i]>=0)&&(path[j][i]<1000))
+					{Main.font.draw(batch, ""+Math.round(path[j][i]), j*30+10f, i*30+15f);}
+				 Main.font.getData().setScale(1.0f);
 			batch.end();
 			
 			
@@ -1797,7 +1940,7 @@ public class GScreen implements Screen {
       		//for (int k=0; k<10; k++)
       	
       	
-      		path_cooldown-=real_delta;	
+      		path_cooldown-=delta;	
       		if (path_cooldown<=0) 
       		//for (int k=0; k<10; k++)
       		{
@@ -1809,20 +1952,20 @@ public class GScreen implements Screen {
       				
 				if (path_calculate_mode==0)
 				{
-					for (int i=plposy-50; i<plposy+50; i++)
-					for (int j=plposx-50; j<plposx+50; j++)
+					for (int i=plposy-51; i<plposy+51; i++)
+					for (int j=plposx-51; j<plposx+51; j++)
 					if ((i>0)&&(i<299)&&(j>0)&&(j<299))
 					if (path[j][i]>-500)	
 					{
 						//if (log) {log=false; Helper.log("WTF clear");}
-						if (path[j][i]>0) {path[j][i]+=25;}else {path[j][i]+=100;}
+						if ((path[j][i]>0)) {path[j][i]+=25;}else {path[j][i]+=100;}
+						if ((path[j][i]>300)) {path[j][i]=300;}
 						if (path[j][i]==0) {path[j][i]=500;}
 						//if (path[j][i]<=0) {path[j][i]+=80;}
 					}
 				}
 				
-				if (path[plposx][plposy]>=0)
-				{path[plposx][plposy]=5;}
+			
 				
 				if (path_calculate_mode==1)
 					for (int i=plposy-50; i<plposy+50; i++)
@@ -1904,6 +2047,8 @@ public class GScreen implements Screen {
 						
 							
 						}
+						if (path[plposx][plposy]>=0)
+						{path[plposx][plposy]=5;}
 				}
 
 
@@ -2009,24 +2154,29 @@ public class GScreen implements Screen {
 		
 			
 		batch_static.begin();
+		batch_static.setColor(Color.WHITE);
+		Main.font.setColor(Color.WHITE);
 			
 				
 			
 			
-			//Main.font.draw(batch_static, "WARM: "+pl.armored_shield.warm, 17, 170);
-
+			Main.font.draw(batch_static, "WARM: "+pl.armored_shield.warm, 17, 170);
+			Main.font.draw(batch_static, "dx: "+InputHandler.dx, 17, 240);
 			
-		
+			float warm_indicate=pl.armored_shield.warm/50f*Assets.panel.getWidth();
+			
 			batch_static.draw(Assets.panel, 400, 77);
+			batch_static.setColor(Color.CYAN);
+			batch_static.draw(Assets.rect_white, 405, 72, warm_indicate,30);
 			
 			
-			for (int i=0; i<(int)(50*pl.armored_shield.value/pl.armored_shield.total_value); i++)
+			for (int i=0; i<=(int)(50*pl.armored_shield.value/pl.armored_shield.total_value); i++)
 			{
-				if (i==(int)(50*pl.armored_shield.value/pl.armored_shield.total_value)-1)
+				if (i==(int)(50*pl.armored_shield.value/pl.armored_shield.total_value))
 				{
 					int hp1=(int)(50*pl.armored_shield.value/pl.armored_shield.total_value)*2;
 					float hp2=pl.armored_shield.value/pl.armored_shield.total_value*100f;
-					float hp3=1f-(hp2-hp1)/2f;
+					float hp3=(hp2-hp1)/2f;
 					
 					Main.font.draw(batch_static, "hp1 "+hp1, 16, 29);
 					Main.font.draw(batch_static, "hp2 "+hp2, 16, 59);
@@ -2036,20 +2186,21 @@ public class GScreen implements Screen {
 				else
 				{ batch_static.setColor(Color.WHITE);}
 				
-				batch_static.draw(Assets.diod, 400+7*i+5, 77+3);
+				batch_static.draw(Assets.diod, 400+7f*i+15, 77+3);
 			}
 			
+		
 		batch_static.setColor(Color.WHITE);
 		if (debug_cooldown<=0)
 		{fps=Math.round(1.0f/real_delta);}
 		
-		/*
+		
 		Main.font.setColor(Color.BLACK);
 		Main.font.draw(batch_static, "FPS: "+fps, 16, 29);
 		
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "FPS: "+fps, 17, 30);
-		*/
+		
 		
 		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
 		{
@@ -2077,7 +2228,7 @@ public class GScreen implements Screen {
 		}
 		else
 		{
-			float camspeed=20;
+			float camspeed=2;
 			if (!main_control){camspeed=50;}
 			
 			camera.position.add(-(camera.position.x-camera_target.pos.x)/camspeed, -(camera.position.y-camera_target.z-camera_target.pos.y)/camspeed, 0.0f);

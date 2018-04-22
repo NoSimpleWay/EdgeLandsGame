@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 
 public class DecorBuilding extends Entity {
@@ -17,8 +18,10 @@ public class DecorBuilding extends Entity {
 		
 		super(_v);
 		
+		type=EntityType.BUILDING;
+		
 		custom_phys=true;
-
+		
 		id=this.getClass().getName();
 		uid="59a1a175";
 		

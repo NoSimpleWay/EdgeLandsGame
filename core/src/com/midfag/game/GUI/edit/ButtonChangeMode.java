@@ -17,6 +17,7 @@ import com.midfag.entity.enemies.*;
 
 
 import com.midfag.game.Enums.EditMode;
+import com.midfag.game.Enums.EntityType;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.SysConfig;
@@ -89,7 +90,7 @@ public class ButtonChangeMode extends Button {
 		{
 			InputHandler.but=-1;
 			
-			System.out.println("EDIT MODE="+em);
+			//System.out.println("EDIT MODE="+em);
 			
 
 			
@@ -118,56 +119,32 @@ public class ButtonChangeMode extends Button {
 				
 				entity_list.clear();
 				
-				entity_list.add(new DecorStoneWall(new Vector2()));
-				entity_list.add(new EntityPyra(new Vector2()));
-				entity_list.add(new DecorStonePilon(new Vector2()));
-				entity_list.add(new DecorStoneWall2(new Vector2()));
-				entity_list.add(new DecorTubeCystern(new Vector2()));
-				entity_list.add(new DecorCystern(new Vector2()));
-				entity_list.add(new EntityWheel(new Vector2()));
-				entity_list.add(new DecorStoneBarak(new Vector2()));
-				entity_list.add(new EntityEliteWheel(new Vector2()));
-				entity_list.add(new DecorTubeBig(new Vector2()));
-				entity_list.add(new DecorTrain(new Vector2()));
-				entity_list.add(new DecorTrainVagonRect(new Vector2()));
-				entity_list.add(new DecorTrainVagonOpen(new Vector2()));
-				entity_list.add(new DecorPowerLine(new Vector2()));
-				entity_list.add(new DecorTree(new Vector2()));
-				entity_list.add(new DecorSteelBox(new Vector2()));
-				entity_list.add(new DecorSteelBoxCap(new Vector2()));
-				entity_list.add(new DecorSteelBoxDoor(new Vector2()));
-				entity_list.add(new EntityHuman(new Vector2()));
-				entity_list.add(new EntityHumanNPC(new Vector2()));
-				entity_list.add(new DecorBuildingWall(new Vector2()));
-				entity_list.add(new DecorWallAngleA(new Vector2()));
 				
-				entity_list.add(new DecorWallAngleB(new Vector2()));
-				entity_list.add(new DecorBuildingFloor(new Vector2()));
 				
-				entity_list.add(new DecorBuildingRoof(new Vector2()));
-				entity_list.add(new DecorBuildingRoofLong(new Vector2()));
+				entity_list=new ArrayList<>(SysConfig.EntityRegisterer);
 				
-				entity_list.add(new DecorBuildingWallWindow(new Vector2()));
 				
-				entity_list.add(new DecorGraffiti(new Vector2()));
+				for (int i=0; i<GScreen.Button_list.size(); i++)
+				{
+					if (GScreen.Button_list.get(i) instanceof ButtonPutter) {GScreen.Button_list.remove(i); i--;}
+				}
 				
-				entity_list.add(new DecorBarrel(new Vector2()));
-				
-				entity_list.add(new SystemHelper(new Vector2()));
-				
-				entity_list.add(new DecorRabitz(new Vector2()));
-				entity_list.add(new DecorRabitz2(new Vector2()));
-				
-				entity_list.add(new EntityTransportDrone(new Vector2()));
-				
-				entity_list=SysConfig.EntityRegisterer;
+				System.out.println("BUTTON POOL SIZE="+GScreen.Button_list.size());
 				
 				for (int i=0; i<10; i++)
 				if (i<entity_list.size())
 	    		{
 					GScreen.Button_list.add(new ButtonPutter(50+55*i,50,i,gui,entity_list));
 				}
-	    		
+				
+				GScreen.Button_list.add(new ButtonShowEntityByType(50,100,EntityType.ENTITY,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*1,100,EntityType.BUILDING,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*2,100,EntityType.INDUSTRIAL,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*3,100,EntityType.VEHICLE,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*4,100,EntityType.WALL,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*5,100,EntityType.DECORATION,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*6,100,EntityType.PLANTS,gui,entity_list));
+				GScreen.Button_list.add(new ButtonShowEntityByType(50+65*7,100,EntityType.SYSTEM,gui,entity_list));
 			}
 			
 			if ((em==EditMode.PATTERN.ordinal())&&(!gui.pattern_mode))

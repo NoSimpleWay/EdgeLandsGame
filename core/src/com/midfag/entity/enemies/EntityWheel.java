@@ -57,6 +57,8 @@ public class EntityWheel extends Entity {
 		offset.y=50;
 		can_rotate=false;
 		
+		mass=100;
+		
 		speed/=4;
 	}
 	
@@ -111,7 +113,7 @@ public class EntityWheel extends Entity {
 		{
 			if (speed!=10)
 			{
-				rot+=GScreen.rnd(20)-10;
+				rot+=GScreen.rnd(10)-5;
 			}
 			speed=10;
 		}
@@ -126,19 +128,20 @@ public class EntityWheel extends Entity {
 			
 			Vector2 v=pos;
 			
-			Phys near_object=null;
-			near_object=GScreen.get_contact(pos.x,pos.y,pos.x+sx*_d,pos.y+sy*_d,sx/spd,sy/spd,spd*_d,true,false,true);
+			//Phys near_object=null;
+			//near_object=GScreen.get_contact(pos.x,pos.y,pos.x+sx*_d,pos.y+sy*_d,sx/spd,sy/spd,spd*_d,true,false,true);
 			
-			if (near_object==null)
+			//if (near_object==null)
 			{
-				move(sx,sy,_d);
+				//move(sx,sy,_d);
+				impulse.set(sx,sy);
 				
 				Shd shd=new ShdMove(new Vector2(pos.x,pos.y),v);
 				shd.lifetime=0.2f;
 				GScreen.Shd_list.add(shd);
 			}
 			
-			if (pos.dst(GScreen.pl.pos)<40)
+			if (pos.dst(GScreen.pl.pos)<80)
 			{
 				speed=50;
 				prepare=1;

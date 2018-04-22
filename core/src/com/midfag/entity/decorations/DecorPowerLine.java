@@ -7,6 +7,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorPowerLine extends DecorStoneWall {
 
@@ -18,7 +19,7 @@ public class DecorPowerLine extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="6f9cdff9";
-		
+		type=EntityType.INDUSTRIAL;
 		spr.setTexture(Assets.decoration_power_line);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_power_line_icon;

@@ -13,9 +13,9 @@ import com.midfag.equip.module.LegendaryModuleUnitEXPLOSIONS;
 import com.midfag.equip.module.ModuleUnitPush;
 import com.midfag.equip.module.ModuleUnitTimeSlow;
 import com.midfag.equip.module.ModuleUnitTurret;
-import com.midfag.equip.weapon.WeaponLegendaryBlender;
-import com.midfag.equip.weapon.WeaponLegendaryChaos;
-import com.midfag.equip.weapon.WeaponLegendaryPing;
+import com.midfag.equip.weapon.LegendaryWeaponBlender;
+import com.midfag.equip.weapon.LegendaryWeaponChaos;
+import com.midfag.equip.weapon.LegendaryWeaponPing;
 import com.midfag.equip.weapon.WeaponSimpleFirle;
 import com.midfag.equip.weapon.WeaponSimpleLaser;
 import com.midfag.equip.weapon.WeaponSimpleMinigun;
@@ -127,7 +127,7 @@ public class EntityPlayer extends Entity {
 			//is_player
 			
 			speed=250*7.025f;
-			friction=0.0005f;
+			friction=0.005f;
 	
 			have_ability=true;
 			
@@ -366,7 +366,7 @@ public class EntityPlayer extends Entity {
 	{
 		//if (impulse.x>0)
 		float vol=(Math.abs(impulse.x)+Math.abs(impulse.y))/400f+0.5f;
-		Assets.engine.setPitch(engine_id, vol);
+		//Assets.engine.setPitch(engine_id, vol);
 	
 		
 
@@ -417,9 +417,9 @@ public class EntityPlayer extends Entity {
 	        	else
 	        	switch ((int)GScreen.rnd(3))
 		        {
-		       		case 0: inventory[i]=new WeaponLegendaryBlender();	break;
-		       		case 1: inventory[i]=new WeaponLegendaryChaos();	break;
-		       		case 2: inventory[i]=new WeaponLegendaryPing();		break;
+		       		case 0: inventory[i]=new LegendaryWeaponBlender();	break;
+		       		case 1: inventory[i]=new LegendaryWeaponChaos();	break;
+		       		case 2: inventory[i]=new LegendaryWeaponPing();		break;
 		        }
 	        	
 	        	//if (inventory[i] instanceof Energoshield)

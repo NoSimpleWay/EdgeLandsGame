@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorTubeCystern extends DecorStoneWall {
 
@@ -20,7 +21,7 @@ public class DecorTubeCystern extends DecorStoneWall {
 
 		id=this.getClass().getName();
 		uid="8caec305";
-		
+		type=EntityType.INDUSTRIAL;
 		diagonal=false;
 		
 		spr.setSize(38, 81);

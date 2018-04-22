@@ -4,6 +4,7 @@ package com.midfag.entity.decorations;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorBuildingFloor extends DecorBuilding {
 
@@ -15,7 +16,7 @@ public class DecorBuildingFloor extends DecorBuilding {
 		
 		id=this.getClass().getName();
 		uid="4a07fd5d";
-		
+		type=EntityType.BUILDING;
 		spr.setTexture(Assets.building_floor);
 		icon=Assets.building_floor_icon;
 		

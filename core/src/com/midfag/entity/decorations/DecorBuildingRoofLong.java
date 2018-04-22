@@ -3,6 +3,7 @@ package com.midfag.entity.decorations;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorBuildingRoofLong extends DecorBuilding {
 
@@ -14,7 +15,7 @@ public class DecorBuildingRoofLong extends DecorBuilding {
 		
 		id=this.getClass().getName();
 		uid="cfd50a7b";
-		
+		type=EntityType.BUILDING;
 		spr.setTexture(Assets.building_roof_long);
 		icon=Assets.building_roof_long_icon;
 		

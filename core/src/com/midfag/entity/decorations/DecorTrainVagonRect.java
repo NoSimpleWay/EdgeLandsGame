@@ -7,6 +7,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorTrainVagonRect extends DecorStoneWall {
 
@@ -18,7 +19,7 @@ public class DecorTrainVagonRect extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="4f093c5a";
-		
+		type=EntityType.VEHICLE;
 		spr.setTexture(Assets.decoration_train_vagon_rect);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_train_vagon_rect_icon;

@@ -39,5 +39,23 @@ public class Enums {
 
 	}
 	
+	public enum EntityType {
+	    ENTITY,
+	    DECORATION,
+	    BUILDING,
+	    INDUSTRIAL,
+	    VEHICLE,
+	    SYSTEM, 
+	    WALL,
+	    //ewdw
+	    //dwe
+	    
+	    PLANTS
+	}
+	
+	public enum DecorType {
+
+	}
+	
 	
 }

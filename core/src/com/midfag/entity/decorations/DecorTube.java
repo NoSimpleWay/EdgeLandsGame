@@ -9,6 +9,7 @@ import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorTube extends Entity {
 
@@ -25,7 +26,7 @@ public class DecorTube extends Entity {
 		super(_v);
 
 		uid="f189bc84";
-		
+		type=EntityType.INDUSTRIAL;
 		armored[0]=null;
 		armored[1]=null;
 		//armored_shield=null;
@@ -72,7 +73,7 @@ public class DecorTube extends Entity {
 		{
 			fall_speed+=10;
 			
-			hard_move(0,-fall_speed,_d);
+			hard_move(0,-fall_speed,_d, "DECOR TUBE SOME UPDATE");
 			
 			if (fall_speed>100.5f){fall_speed=0;}
 		}

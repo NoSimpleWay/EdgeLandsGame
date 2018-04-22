@@ -21,12 +21,16 @@ public class WorldDebugIlluminationColorR extends WorldDebug  {
 				(!Gdx.input.isKeyPressed(Keys.DOWN))
 				&&
 				(!Gdx.input.isKeyPressed(Keys.UP))
+				&&
+				(!Gdx.input.isKeyPressed(Keys.LEFT))
+				&&
+				(!Gdx.input.isKeyPressed(Keys.RIGHT))
 			)
 			{release=true;}
 		
 		if (Gdx.input.isKeyPressed(Keys.DOWN)&(release))
 		{
-			GScreen.global_illumination.r-=0.1f;
+			GScreen.global_illumination.r-=0.02f;
 			GScreen.global_illumination.r=Math.max(0, GScreen.global_illumination.r);
 			
 			release=false;
@@ -38,7 +42,31 @@ public class WorldDebugIlluminationColorR extends WorldDebug  {
 		
 		if (Gdx.input.isKeyPressed(Keys.UP)&(release))
 		{
-			GScreen.global_illumination.r+=0.1f;
+			GScreen.global_illumination.r+=0.02f;
+			GScreen.global_illumination.r=Math.min(1, GScreen.global_illumination.r);
+			
+			release=false;
+			
+			GScreen.need_light_update=true;
+			GScreen.need_static_light_update=true;
+			GScreen.need_pixmap_update=true;
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.LEFT)&(release))
+		{
+			GScreen.global_illumination.r-=0.20f;
+			GScreen.global_illumination.r=Math.max(0, GScreen.global_illumination.r);
+			
+			release=false;
+			
+			GScreen.need_light_update=true;
+			GScreen.need_static_light_update=true;
+			GScreen.need_pixmap_update=true;
+		}
+		
+		if (Gdx.input.isKeyPressed(Keys.RIGHT)&(release))
+		{
+			GScreen.global_illumination.r+=0.20f;
 			GScreen.global_illumination.r=Math.min(1, GScreen.global_illumination.r);
 			
 			release=false;

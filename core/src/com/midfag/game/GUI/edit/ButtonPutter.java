@@ -19,7 +19,7 @@ public class ButtonPutter extends Button {
 	public String id;
 	public GUIEdit gui;
 	public Entity e;
-	public List<Entity> list;
+	public List<Entity> entity_list;
 	public int entity_id;
 	
 	public Vector2 off=new Vector2();
@@ -36,7 +36,7 @@ public class ButtonPutter extends Button {
 		size_x=50;
 		size_y=50;
 		
-		list=_list;
+		entity_list=_list;
 		
 		spr.setSize(50, 50);
 		
@@ -49,16 +49,16 @@ public class ButtonPutter extends Button {
 	public void second_draw()
 	{
 		/*
-		float scal=(80f/Math.max(list.get(entity_id).spr.getWidth(), edit_spr.getHeight()));
+		float scal=(80f/Math.max(entity_list.get(entity_id).spr.getWidth(), edit_spr.getHeight()));
 		edit_spr.setSize(edit_spr.getWidth()*scal, edit_spr.getHeight()*scal);
 		edit_spr.setPosition(pos.x-edit_spr.getWidth()/2f*1,pos.y-edit_spr.getHeight()/2);
 		
 		edit_spr.draw(GScreen.batch_static);*/
 		
-		if ((entity_id+gui.id_offset<list.size())&&(list.get(entity_id+gui.id_offset).icon!=null))
-		{GScreen.batch_static.draw(list.get(entity_id+gui.id_offset).icon, pos.x-20,pos.y-20);}
+		if ((entity_id+gui.id_offset<entity_list.size())&&(entity_list.get(entity_id+gui.id_offset).icon!=null))
+		{GScreen.batch_static.draw(entity_list.get(entity_id+gui.id_offset).icon, pos.x-20,pos.y-20);}
 		
-		Main.font.draw(GScreen.batch_static, ""+gui.id_offset, pos.x, pos.y);
+		//Main.font.draw(GScreen.batch_static, ""+gui.id_offset, pos.x, pos.y);
 	}
 	
 	@Override
@@ -70,24 +70,25 @@ public class ButtonPutter extends Button {
 			//GScreen.Button_list.remove(this);
 		}
 		
+		
 		if(is_overlap())
 		{
 			//Helper.log("BUTTON ID="+e.id);
 		}
 		
-		if ((InputHandler.but==0)&&(is_overlap())&&(entity_id+gui.id_offset<list.size()))
+		if ((InputHandler.but==0)&&(is_overlap())&&(entity_id+gui.id_offset<entity_list.size()))
 		{
 			InputHandler.but=-1;
 			
 			//System.out.println ("ENTITY="+gui.e);
-			System.out.println ("ENTITY="+list.get(entity_id+gui.id_offset).getClass().getName());
+			System.out.println ("ENTITY="+entity_list.get(entity_id+gui.id_offset).getClass().getName());
 			
-			gui.indicate_entity=list.get(entity_id+gui.id_offset);
+			gui.indicate_entity=entity_list.get(entity_id+gui.id_offset);
 			gui.indicate_entity.pos=new Vector2();
 			gui.indicate_entity.spr.setAlpha(0.2f);
 			/*gui.indicate_entity.spr.setSize(
-					list.get(entity_id+gui.id_offset).spr.getTexture().getWidth(),
-					list.get(entity_id+gui.id_offset).spr.getTexture().getHeight()
+					entity_list.get(entity_id+gui.id_offset).spr.getTexture().getWidth(),
+					entity_list.get(entity_id+gui.id_offset).spr.getTexture().getHeight()
 					);*/
 			
 			/*

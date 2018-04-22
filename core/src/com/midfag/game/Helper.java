@@ -11,7 +11,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.entity.EntityHuman;
 import com.midfag.entity.EntityPlayer;
+import com.midfag.entity.LightSource;
 import com.midfag.entity.decorations.DecorBarrel;
+import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.script.ScriptSystem;
 
 public class Helper {
@@ -35,7 +37,13 @@ public class Helper {
 			//alphabet[j]=hex[j];
 		}*/
 		
-
+		for (int i=0; i<300; i++)
+		for (int j=0; j<300; j++)
+		{
+			GScreen.path[j][i]=300;
+		}
+			
+		
 		
 		for (int i=0; i<30; i++)
 		for (int j=0; j<30; j++)
@@ -56,6 +64,8 @@ public class Helper {
 		//System.out.println(ss);
 		//System.out.println(ss[0]);
 		Entity e=null;
+		LightSource li=null;
+		
 		for (int i=0; i<ss.length; i++)
 		{
 			if (ss[i].equals("###ENTITY"))
@@ -112,6 +122,23 @@ public class Helper {
 					
 				}
 				
+								
+				if (ss[i].equals("LightSource"))
+				{
+					//i++;
+					//e.z=Integer.parseInt(ss[i]);
+					li=new LightSource();
+				}
+				
+				
+				
+				if (ss[i].equals("LiR")) {i++; li.R=Float.parseFloat(ss[i]);}
+				if (ss[i].equals("LiG")) {i++; li.G=Float.parseFloat(ss[i]);}
+				if (ss[i].equals("LiB")) {i++; li.B=Float.parseFloat(ss[i]);}
+				if (ss[i].equals("LiP")) {i++; li.light_power=Float.parseFloat(ss[i]);}
+				if (ss[i].equals("LightReady")) {e.light_source=li;}
+				
+				
 				if (ss[i].equals("PUT"))
 				{
 					
@@ -125,6 +152,8 @@ public class Helper {
 					
 					e.fill_path();
 				}
+
+					
 			}
 		}
 		
@@ -132,7 +161,7 @@ public class Helper {
 		if (GScreen.pl_human == null)
 		{
 			log(get_error_text("PLAYER HUMAN NOT FOUND ON MAP DATA, AUTO SPAWN"));
-			GScreen.pl_human=GScreen.add_entity_to_map(new EntityHuman(new Vector2(4500,4500)));
+			GScreen.pl_human=GScreen.add_entity_to_map(new EntityHuman(new Vector2(4400,4400)));
 			
 			GScreen.pl=GScreen.pl_human;
 			GScreen.camera_target=GScreen.pl;
@@ -141,7 +170,7 @@ public class Helper {
 		if (GScreen.pl_mech == null)
 		{
 			log(get_error_text("PLAYER MECH NOT FOUND ON MAP DATA, AUTO SPAWN"));
-			GScreen.pl_mech=GScreen.add_entity_to_map(new EntityPlayer(new Vector2(4500,4500)));
+			GScreen.pl_mech=GScreen.add_entity_to_map(new EntityPlayer(new Vector2(4400,4400)));
 		}
 		
 		file = Gdx.files.local("z_tile.txt");
@@ -283,6 +312,48 @@ public class Helper {
 			//System.out.println("CONSTRUCTOR[1]: "+constructor[1]);
 			
 			Entity enn=(Entity) constructor[0].newInstance(new Vector2());
+			return enn;
+
+
+			
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}   catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		
+		
+    	return null;
+    }
+	
+	public static Weapon get_weapon_from_id(String _id)
+    {
+		try {
+			Class<?> c = Class.forName(_id);
+			//log("INVOKED ID="+_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			
+			
+			//System.out.println("CONSTRUCTOR[0]: "+constructor[0]);
+			//System.out.println("CONSTRUCTOR[1]: "+constructor[1]);
+			
+			Weapon enn=(Weapon) constructor[0].newInstance();
 			return enn;
 
 

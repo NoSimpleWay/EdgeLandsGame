@@ -7,6 +7,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorSteelBoxCap extends DecorStoneWall {
 
@@ -18,7 +19,7 @@ public class DecorSteelBoxCap extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="a4a3a9ca";
-		
+		type=EntityType.INDUSTRIAL;
 		spr.setTexture(Assets.decoration_steel_box_cap);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_steel_box_cap_icon;

@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorStoneWall extends Entity {
 
@@ -17,7 +18,7 @@ public class DecorStoneWall extends Entity {
 		
 		is_AI=false;
 		is_player=false;
-		
+		type=EntityType.WALL;
 		icon=Assets.decoration_stone_wall_01_icon;
 		uid="00da634d";
 		
@@ -41,7 +42,7 @@ public class DecorStoneWall extends Entity {
 		path_y=0;
 		mass=999999;
 		
-		collision_size_x=45;
+		collision_size_x=49;
 		collision_size_y=10;
 		
 		

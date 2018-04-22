@@ -15,15 +15,17 @@ import com.midfag.equip.module.LegendaryModuleUnitTimeStop;
 import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.module.ModuleUnitTurret;
 import com.midfag.equip.weapon.LegendaryWeaponMirrorLaser;
-import com.midfag.equip.weapon.WeaponLegendaryBlender;
-import com.midfag.equip.weapon.WeaponLegendaryChaos;
-import com.midfag.equip.weapon.WeaponLegendaryPing;
+import com.midfag.equip.weapon.LegendaryWeaponBlender;
+import com.midfag.equip.weapon.LegendaryWeaponChaos;
+import com.midfag.equip.weapon.LegendaryWeaponPing;
 import com.midfag.equip.weapon.WeaponSimpleFirle;
 import com.midfag.equip.weapon.WeaponSimpleLaser;
 import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
+import com.midfag.game.SysConfig;
 import com.midfag.game.Enums.EquipGenerationType;
 
 public class ButtonRandomGenerator extends Button {
@@ -93,7 +95,7 @@ public class ButtonRandomGenerator extends Button {
 				
 				if (egt==EquipGenerationType.WEAPON)
 				{  
-					for (int i=0; i<30; i++)//;
+					/*for (int i=0; i<30; i++)//;
 			        {
 						if (Math.random()>0.05)
 			        	{
@@ -108,12 +110,17 @@ public class ButtonRandomGenerator extends Button {
 			        	else
 			        	switch ((int)GScreen.rnd(4))
 				        {
-				       		case 0: GScreen.pl.inventory[i]=new WeaponLegendaryBlender();	break;
-				       		case 1: GScreen.pl.inventory[i]=new WeaponLegendaryChaos();		break;
-				       		case 2: GScreen.pl.inventory[i]=new WeaponLegendaryPing();		break;
+				       		case 0: GScreen.pl.inventory[i]=new LegendaryWeaponBlender();	break;
+				       		case 1: GScreen.pl.inventory[i]=new LegendaryWeaponChaos();		break;
+				       		case 2: GScreen.pl.inventory[i]=new LegendaryWeaponPing();		break;
 				       		case 3: GScreen.pl.inventory[i]=new LegendaryWeaponMirrorLaser();		break;
 				        }
-			        }
+			        }*/
+					
+					for (int i=0; i<SysConfig.WeaponRegisterer.size(); i++)
+					{
+						GScreen.pl.inventory[i]=Helper.get_weapon_from_id(SysConfig.WeaponRegisterer.get(i).getClass().getName());
+					}
 				}
 			
 		}

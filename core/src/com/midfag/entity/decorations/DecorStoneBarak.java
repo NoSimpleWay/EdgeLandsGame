@@ -6,6 +6,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorStoneBarak extends Entity {
 
@@ -17,7 +18,7 @@ public class DecorStoneBarak extends Entity {
 		
 		id=this.getClass().getName();
 		uid="7cc48571";
-		
+		type=EntityType.BUILDING;
 		spr.setTexture(Assets.stone_barak);
 		//id="stone_barak";
 		icon=Assets.decoration_stone_barak_icon;

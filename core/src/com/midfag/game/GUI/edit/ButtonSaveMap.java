@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.entity.Entity;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -62,28 +63,48 @@ public class ButtonSaveMap extends Button {
 			{
 				for (int k=0; k<GScreen.cluster[j][i].Entity_list.size(); k++)
 				{	
+					Entity e=GScreen.cluster[j][i].Entity_list.get(k);
 					s+="###ENTITY"+"\n";
-					s+=GScreen.cluster[j][i].Entity_list.get(k).uid+"\n";
+					s+=e.uid+"\n";
 					
 					s+="pos.x"+"\n";
-					s+=Math.round(GScreen.cluster[j][i].Entity_list.get(k).pos.x)+"\n";
+					s+=Math.round(e.pos.x)+"\n";
 					
 					s+="pos.y"+"\n";
-					s+=Math.round(GScreen.cluster[j][i].Entity_list.get(k).pos.y)+"\n";
+					s+=Math.round(e.pos.y)+"\n";
 					
 					s+="y"+"\n";
-					s+=Math.round(GScreen.cluster[j][i].Entity_list.get(k).z)+"\n";
+					s+=Math.round(e.z)+"\n";
 					
 					s+="angle"+"\n";
-					s+=Math.round(GScreen.cluster[j][i].Entity_list.get(k).spr.getRotation())+"\n";
+					s+=Math.round(e.spr.getRotation())+"\n";
 					
-					if (!GScreen.cluster[j][i].Entity_list.get(k).id_for_script.equals(""))
+					if (!e.id_for_script.equals(""))
 					{s+="script_id"+"\n";
-					s+=GScreen.cluster[j][i].Entity_list.get(k).id_for_script+"\n";}
+					s+=e.id_for_script+"\n";}
 					
-					if (!GScreen.cluster[j][i].Entity_list.get(k).interact_entry_point.equals(""))
+					if (!e.interact_entry_point.equals(""))
 					{s+="interact_entry_point"+"\n";
-					s+=GScreen.cluster[j][i].Entity_list.get(k).interact_entry_point+"\n";}
+					s+=e.interact_entry_point+"\n";}
+					
+					if (e.light_source!=null)
+					{
+						s+="LightSource"+"\n";
+						s+="LiR"+"\n";
+						s+=""+e.light_source.R+"\n";
+						
+						s+="LiG"+"\n";
+						s+=""+e.light_source.G+"\n";
+						
+						s+="LiB"+"\n";
+						s+=""+e.light_source.B+"\n";
+						
+						s+="LiP"+"\n";
+						s+=""+e.light_source.light_power+"\n";
+						
+						s+="LightReady"+"\n";
+					}
+
 					
 					s+="PUT"+"\n";
 					

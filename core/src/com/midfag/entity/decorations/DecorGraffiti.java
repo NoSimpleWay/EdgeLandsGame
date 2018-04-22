@@ -2,6 +2,7 @@ package com.midfag.entity.decorations;
 
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorGraffiti extends DecorBuildingWall {
 
@@ -12,7 +13,7 @@ public class DecorGraffiti extends DecorBuildingWall {
 		
 		id=this.getClass().getName();
 		uid="25d569cf";
-		
+		type=EntityType.DECORATION;
 		spr.setTexture(Assets.graffiti_01);
 		icon=Assets.graffiti_01_icon;
 		spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());

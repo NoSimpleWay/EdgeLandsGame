@@ -7,6 +7,7 @@ import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Phys;
+import com.midfag.game.Enums.EntityType;
 
 public class DecorTree extends DecorStoneWall {
 
@@ -18,7 +19,7 @@ public class DecorTree extends DecorStoneWall {
 		
 		id=this.getClass().getName();
 		uid="512c5d2e";
-		
+		type=EntityType.PLANTS;
 		spr.setTexture(Assets.decoration_tree);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_tree_icon;

@@ -29,6 +29,8 @@ import com.midfag.game.GUI.buttons.ButtonVertical;
 
 import com.midfag.game.GUI.buttons.ButtonSkill;
 import com.midfag.game.GUI.edit.ButtonChangeMode;
+import com.midfag.game.GUI.edit.ButtonChunkInfo;
+import com.midfag.game.GUI.edit.ButtonFreezeTime;
 import com.midfag.game.GUI.edit.ButtonLoadMap;
 import com.midfag.game.GUI.edit.ButtonPathVisualize;
 import com.midfag.game.GUI.edit.ButtonPhysVisualize;
@@ -110,13 +112,14 @@ public class InputHandler implements InputProcessor {
     		if (GScreen.WD_active>=GScreen.WD.size()) {GScreen.WD_active=0;}
     	}
     	
-    	if (key==Keys.Q)
+    	/*if (key==Keys.Q)
     	{
     		
     		Entity en;
     		
-    		for (int i=0; i<25; i++)
+    		for (int i=0; i<1; i++)
     		{
+    			
 	    		if (Math.random()>0.25f)
 	    		{
 	    			if (Math.random()>0.1f)
@@ -134,12 +137,14 @@ public class InputHandler implements InputProcessor {
 	    		
 	    		
 	    		
-	    		en.pos.x=(float) (GScreen.pl.pos.x+Math.random()*3000-1500);
-	    		en.pos.y=(float) (GScreen.pl.pos.y+Math.random()*3000-1500);
+	    		en=new EntityPyra(new Vector2());
+	    		
+	    		en.pos.x=(float) (GScreen.pl.pos.x+Math.random()*1500-750);
+	    		en.pos.y=(float) (GScreen.pl.pos.y+Math.random()*1500-750);
 	    		
 	    		GScreen.add_entity_to_map(en);
     		}
-    	}
+    	}*/
     	
     	
     	
@@ -163,6 +168,8 @@ public class InputHandler implements InputProcessor {
     		GScreen.Button_list.add(new ButtonRandomizeTile(650,GScreen.scr_h-50));
     		GScreen.Button_list.add(new ButtonPathVisualize(710,GScreen.scr_h-50));
     		GScreen.Button_list.add(new ButtonPhysVisualize(770,GScreen.scr_h-50));
+    		GScreen.Button_list.add(new ButtonChunkInfo(830,GScreen.scr_h-50));
+    		GScreen.Button_list.add(new ButtonFreezeTime(890,GScreen.scr_h-50));
     		
     		GScreen.Button_list.add(new ButtonChangeMode(300,GScreen.scr_h-50,EditMode.ENTITY,gui));
     		GScreen.Button_list.add(new ButtonChangeMode(400,GScreen.scr_h-50,EditMode.TILE,gui));
@@ -170,6 +177,8 @@ public class InputHandler implements InputProcessor {
     		
 			GScreen.Button_list.add(new ButtonVertical(650,40,gui,false,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
     		GScreen.Button_list.add(new ButtonVertical(650,65,gui,true,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
+    		
+    		
     		
     		GScreen.GUI_list.add(gui);
     	}
@@ -329,6 +338,7 @@ public class InputHandler implements InputProcessor {
     
     public static void update()
     {
+    	
     	
     	dx=Gdx.input.getX()-prevx;
     	dy=-(Gdx.input.getY()-prevy);
