@@ -36,6 +36,10 @@ public class ButtonRandomGenerator extends Button {
 	public ButtonRandomGenerator(float _x, float _y, EquipGenerationType _egt) {
 		super(_x, _y);
 		
+		size_x=50;
+		size_y=50;
+		spr.setSize(50,50);
+		
 		egt=_egt;
 		if (!GScreen.show_equip){need_remove=true;}
 		

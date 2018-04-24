@@ -74,7 +74,9 @@ public class SysConfig {
 		EntityRegisterer.add(new DecorTubeCystern(null));
 		EntityRegisterer.add(new DecorWallAngleA(null));
 		EntityRegisterer.add(new DecorWallAngleB(null));
+		
 		EntityRegisterer.add(new SystemHelper(null));
+		EntityRegisterer.add(new SystemLight(null));
 		
 		EntityRegisterer.add(new EntityEliteWheel(null));
 		EntityRegisterer.add(new EntityPyra(null));

@@ -48,6 +48,7 @@ import com.midfag.game.skills.weapon_skills.SkillWeapon_BB_AdvancedBloodlust;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_B_Bloodlust;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_DA_WeaponExpert;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_D_WeaponMaster;
+import com.midfag.game.skills.weapon_skills.Skill_Fire;
 
 public class EntityPlayer extends Entity {
 
@@ -126,8 +127,8 @@ public class EntityPlayer extends Entity {
 			foot_shadow.setOrigin(17, 12);
 			//is_player
 			
-			speed=250*7.025f;
-			friction=0.005f;
+			speed=250*5.025f;
+			friction=0.2f;
 	
 			have_ability=true;
 			
@@ -197,8 +198,10 @@ public class EntityPlayer extends Entity {
 					subskl=new SkillWeapon_D_WeaponMaster();
 					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
 						Skills_list.add(subskl.add_subskill(new SkillWeapon_DA_WeaponExpert(), GScreen.pl));
-					
-						
+				
+				skl=new Skill_Fire();
+				Skills_list.add(skl);
+			
 				skl=new SkillGodShield();
 					subskl=new SkillGodShield_A_SuperValue();
 					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));

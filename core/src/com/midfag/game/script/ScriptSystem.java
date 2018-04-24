@@ -189,6 +189,7 @@ public class ScriptSystem {
 		
 		execute_line=get_execute_line(_entry);
 		
+		
 		for (;;)
 		{
 			//Helper.log("execute line <"+execute_line+">");

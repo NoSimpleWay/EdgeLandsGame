@@ -23,6 +23,8 @@ public class ButtonSlider extends Button {
 	
 	public boolean change=false;
 	
+	public boolean hold=false;
+	
 	
 	//public Texture tex;
 	
@@ -55,6 +57,7 @@ public class ButtonSlider extends Button {
 	public void after_draw()
 	{
 		GScreen.batch_static.setColor(col);
+		if (hold) {GScreen.batch_static.setColor(0.2f,0.2f,0.2f,1f);}
 		
 		float shake=0;
 		if (is_overlap()&&(InputHandler.but==0)) {shake=InputHandler.dx/10f;}
@@ -79,6 +82,24 @@ public class ButtonSlider extends Button {
 		{
 			//InputHandler.but=-1;
 			
+			hold=true;
+			
+			
+			
+			//Gdx.input.setCursorPosition((int)(pos.x), (int)(GScreen.scr_h-pos.y));
+		}
+		else
+		{
+			change=false;
+		}
+		
+		if ((InputHandler.but!=0))
+		{
+			hold=false;
+		}
+		
+		if (hold)
+		{
 			if ((value+InputHandler.dx*step>min)&&(value+InputHandler.dx*step<max)) {anim+=InputHandler.dx*0.5f;}
 			if (anim<0) {anim=4;}
 			if (anim>4) {anim=0;}
@@ -89,10 +110,6 @@ public class ButtonSlider extends Button {
 			if (value<min) {value=min;}
 			
 			change=true;
-		}
-		else
-		{
-			change=false;
 		}
 		
 	}

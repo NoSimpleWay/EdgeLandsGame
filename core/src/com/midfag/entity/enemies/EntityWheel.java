@@ -60,6 +60,7 @@ public class EntityWheel extends Entity {
 		mass=100;
 		
 		speed/=4;
+		friction=0.01f;
 	}
 	
 	@Override
@@ -121,7 +122,7 @@ public class EntityWheel extends Entity {
 		if (prepare>-0.75f)
 		{
 			speed=10;
-			float spd=2000*(1f+(prepare+0.25f)*2f);
+			float spd=2000;
 			
 			float sx=spd*GScreen.sinR(360-rot);
 			float sy=spd*GScreen.cosR(360-rot);

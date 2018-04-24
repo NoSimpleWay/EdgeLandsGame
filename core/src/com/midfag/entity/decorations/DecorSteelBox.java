@@ -35,7 +35,7 @@ public class DecorSteelBox extends DecorStoneWall {
 		friction=0.95f;
 		
 		light_source=new LightSource();
-		light_source.light_power=2.0f;
+		light_source.light_power=3.0f;
 		light_source.R=1.0f;
 		light_source.G=1.0f;
 		light_source.B=1.0f;

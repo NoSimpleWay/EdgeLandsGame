@@ -53,7 +53,10 @@ public class ButtonSaveMap extends Button {
 			InputHandler.but=-1;
 			
 			System.out.println("SAVED");
-			FileHandle file = Gdx.files.local("z.txt");
+			FileHandle file = Gdx.files.local("data/level_data/z.txt");
+			
+			System.out.println("LOCAL: "+Gdx.files.getLocalStoragePath());
+			System.out.println("EXTERNAL: "+Gdx.files.getExternalStoragePath());
 			
 			String s="";
 			    // if file doesnt exists, then create it
@@ -124,7 +127,7 @@ public class ButtonSaveMap extends Button {
 			s="";
 			String ss="";
 		
-			file = Gdx.files.local("z_tile.txt");
+			file = Gdx.files.local("data/level_data/z_tile.txt");
 			for (int i=0; i<100; i++)
 			{
 				//System.out.println ("READY: "+i/3f+"% "+_d*1000);
@@ -149,7 +152,7 @@ public class ButtonSaveMap extends Button {
 			file.writeString(s, false);
 			
 			s="";
-			file = Gdx.files.local("z_tile_overlay.txt");
+			file = Gdx.files.local("data/level_data/z_tile_overlay.txt");
 			for (int i=0; i<100; i++)
 			{
 				//System.out.println ("READY: "+i/3f+"% "+_d*1000);

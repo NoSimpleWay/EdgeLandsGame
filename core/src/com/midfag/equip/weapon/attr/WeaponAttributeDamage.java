@@ -7,7 +7,7 @@ public class WeaponAttributeDamage extends WeaponAttribute {
 	public WeaponAttributeDamage()
 	{
 		max_level=100;
-		cost=6;
+		cost=5;
 		
 		name="damage";
 	}

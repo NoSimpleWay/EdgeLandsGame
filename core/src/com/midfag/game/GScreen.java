@@ -11,6 +11,7 @@ import com.badlogic.gdx.Screen;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -26,6 +27,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.BufferUtils;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.midfag.entity.Entity;
@@ -37,6 +39,7 @@ import com.midfag.equip.energoshield.EnergoshieldSimple;
 import com.midfag.equip.weapon.WeaponSimpleFirle;
 import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
+import com.midfag.game.GUI.ButtonLayout;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.buttons.Button;
 import com.midfag.game.GUI.world_debug.*;
@@ -49,8 +52,11 @@ import com.midfag.game.script.ScriptTimer;
 
 public class GScreen implements Screen {
 	
+	public static float battle_music_timer=0;
+	public static boolean enemy_see_player=false;
 	public static int WD_active=0;
 	
+	public static List<ButtonLayout> layouts = new ArrayList<ButtonLayout>();//_______________________список физических линий
 	public static List<WorldDebug> WD = new ArrayList<WorldDebug>();//_______________________список физических линий
 	
     public static float lightmap_spread_power = 0.15f;
@@ -61,7 +67,7 @@ public class GScreen implements Screen {
     
     public static ScreenEffect screen_effect;
 
-    public static Pixmap pixmap= new Pixmap(300, 300, Format.RGBA8888);
+    public static Pixmap pixmap= new Pixmap(300, 300, Format.RGB888);
     
     public float illum_cooldown=1f;
     
@@ -206,6 +212,8 @@ public class GScreen implements Screen {
 
 	private int fps;
 
+	public static float sho;
+
 
 	public static boolean camera_auto_zoom=true;
 
@@ -220,7 +228,7 @@ public class GScreen implements Screen {
 
 	public static float time_speed_value;
 	
-	public static FrameBuffer terrain_fbo= new FrameBuffer(Pixmap.Format.RGB888, 1000/1, 700/1, false);
+	public static FrameBuffer terrain_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 1000/1, 700/1, false);
 	//public static FrameBuffer entity_fbo= new FrameBuffer(Pixmap.Format.RGB888, 900/1, 900/1, false);
 	public static FrameBuffer light_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 90, 90, false);
 	
@@ -229,7 +237,7 @@ public class GScreen implements Screen {
 	public static FrameBuffer lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
 	public static FrameBuffer dynamic_lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
 	
-	public static FrameBuffer shadow_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
+	public static FrameBuffer shadow_fbo= new FrameBuffer(Pixmap.Format.RGB888, 300*light_map_size, 300*light_map_size, false);
 
 	
 	public static Texture lightmap_texture;
@@ -249,6 +257,7 @@ public class GScreen implements Screen {
 	public static boolean chunk_info;
 
 	public static boolean time_freeze=false;
+	public static float enemy_see_player_timer;
 	
     
 	public static Entity get_collision(float _x1, float _y1, float _x2, float _y2, float _dx, float _dy, float _size)
@@ -278,7 +287,8 @@ public class GScreen implements Screen {
     	{
     			Entity e=cluster[x][y].Entity_list.get(j);
 
-    				temp_vector_collision_result.set
+    			if (e.have_collision)
+    			{	temp_vector_collision_result.set
     					(
 	    					collision_vertical
 			    			(
@@ -298,6 +308,7 @@ public class GScreen implements Screen {
     					
 	    				if (dst<min){min=dst;ne=e;}
 	    			}
+    			}
     	}
     	
     				
@@ -558,6 +569,8 @@ public class GScreen implements Screen {
     	WD.add(new WorldDebugIlluminationColorG());
     	WD.add(new WorldDebugIlluminationColorB());
     	
+    	WD.add(new WorldDebugShadowMapOpacity());
+    	
     	Localisation.locad_local();
 
     	sr=gam.shapeRenderer;	
@@ -731,6 +744,7 @@ public class GScreen implements Screen {
 		skills_camera = new OrthographicCamera();
 		skills_camera.setToOrtho(false, 1000/1, 700/1);
 		skills_camera.position.set(new Vector3(500,350,0));
+		skills_camera.zoom=1f;
 		skills_camera.update();
 		
 		lightmap_camera = new OrthographicCamera();
@@ -1019,7 +1033,7 @@ public class GScreen implements Screen {
 					batch_illum.setColor(1.0f,1.0f,1.0f,1f);
 					batch_illum.draw(rect_white, 0, 0, 300*light_map_size, 300*light_map_size);
 					
-					batch_illum.setColor(0.0f,0.0f,0.0f,1f);
+					batch_illum.setColor(sho,sho,sho,1f);
 					//for (int k=0; k<10; k++)
 					for (int i=bound_y_down; i<bound_y_up; i++)
 					for (int j=bound_x_left; j<bound_x_right; j++)
@@ -1082,14 +1096,16 @@ public class GScreen implements Screen {
 		    		batch_illum.end();
 	    		lightmap_fbo.end();
 	    		
-	    					//add_timer("light_source_light_generate");
+	    		
+	    		
+	    					add_timer("light_source_light_generate");
 	    		 
 	    		lightmap_fbo.begin();
 	    			batch_illum.begin();
 
 	    				batch_illum.enableBlending();
 	    			
-	    				batch_illum.setColor(0.1f,0.1f,0.1f,1.0f);
+	    				//batch_illum.setColor(0.1f,0.1f,0.1f,1.0f);
 	    				
 	    				for (int k=0; k<lightmap_spread_pass*light_map_size; k++)
 	    				{
@@ -1109,7 +1125,7 @@ public class GScreen implements Screen {
 
 	    				}
 	    				
-	    									//add_timer("additive_blur");
+	    									add_timer("spread");
 	    				
 	    				batch_illum.setColor(0.0f,1.0f,0.0f,1f);
 			    		batch_illum.draw(rect_white,250,250,50,50);
@@ -1149,17 +1165,21 @@ public class GScreen implements Screen {
     				
     			batch_illum.end();
     			
-									//add_timer("opacity_blur");
+									add_timer("blur");
 						
     								
 									if ((need_pixmap_update))			
 				    				{
+											
+										//Helper.log("#@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"+lightmap_fbo.getColorBufferTexture().getTextureData().);
 										pixmap_update_cooldown=0.1f;
 										need_pixmap_update=false;
-										Gdx.gl.glReadPixels(0, 0, 300, 300, GL20.GL_RGBA, GL20.GL_UNSIGNED_BYTE,  pixmap.getPixels());
+										Gdx.gl.glReadPixels(0, 0, 300, 300, GL20.GL_RGB, GL20.GL_UNSIGNED_BYTE,  pixmap.getPixels());
 										
-										Helper.log("PIXMAP UPDATED "+need_pixmap_update);
+										//Helper.log("PIXMAP UPDATED "+need_pixmap_update);
 									}
+									
+									add_timer("pixmap");
     				
 								
     		lightmap_fbo.end();
@@ -1348,59 +1368,7 @@ public class GScreen implements Screen {
 		    	
 		    	if (near_entity!=null)
 		    	{
-		    		if (!near_entity.is_decor)
-		    		{
-		    			float reflect_value=near_entity.armored_shield.total_reflect;
-		    		
-					float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/Missile_list.get(i).damage);//=1-0=1
-					
-					reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
-					
-	    			if ((Math.random()<reflect_chance))
-	    			{
-	    				mis.hit_action(near_entity);
-	    				mis.another_hit_action(near_entity);
-	    				
-	    				near_entity.hit_action(Missile_list.get(i).damage,true);
-	    				near_entity.burn_it(Missile_list.get(i).fire_damage);
-	    				near_entity.freeze_it(Missile_list.get(i).cold_damage*10);
-	    			}
-	    			else
-	    			{
-	    				for (int k=0; k<near_entity.Skills_list.size(); k++)
-	    				{
-	    					
-	    					if (near_entity.Skills_list.get(k).learned)
-	    					{
-	    						near_entity.Skills_list.get(k).prereflect_action(Missile_list.get(i),near_entity);
-	    					}
-	    					
-	    				}
-	    				Missile_list.get(i).lifetime=10;
-	    				Missile_list.get(i).angle+=Math.toRadians(180+(Math.random()*10-5));
-	    				
-	    				
-	    				Missile_list.get(i).update_vectors_state();
-	    				
-	    				Missile_list.get(i).is_enemy=near_entity.is_enemy;
-	    				Missile_list.get(i).col=Color.GREEN;
-	    				
-	    				for (int k=0; k<near_entity.Skills_list.size(); k++)
-	    				{
-	    					
-	    					if (near_entity.Skills_list.get(k).learned)
-	    					{
-	    						near_entity.Skills_list.get(k).reflect_action(Missile_list.get(i),near_entity);
-	    					}
-	    					
-	    				}
-	    			}
-		    		}
-		    		else
-		    		{
-		    			mis.hit_action(near_entity);
-	    				mis.another_hit_action(near_entity);
-		    		}
+		    		missile_collision_action(mis,near_entity);
 		    		
 		    	}
 		    	
@@ -1485,10 +1453,14 @@ public class GScreen implements Screen {
 		add_timer("terrain_fbo_end");
 		
 		batch_static.begin();
+		
+		
 		if (Gdx.input.isKeyPressed(Keys.H))
 		{batch_static.setShader(Main.shader_bloom);}
 		else
 		{batch_static.setShader(Main.shader_default);}
+		
+		
 		terrain_fbo.begin();
 		
 			
@@ -1730,8 +1702,12 @@ public class GScreen implements Screen {
         int fy=0;
 
 
-    
+        Entity near_interact=null;
+        float interact_dist=99999f;
+        
         //Helper.log("UPDATE BEGIN!");
+
+        
       	for (int x=cluster_x-4; x<=cluster_x+4; x++)
       	for (int y=cluster_y-4; y<=cluster_y+4; y++)
       	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
@@ -1742,7 +1718,7 @@ public class GScreen implements Screen {
         	if (e.update_calls==0)
 	        {
         		
-		    	if ((!e.hidden)&&(!e.is_decor))
+		    	if ((!e.hidden)&&((!e.is_decor)||(e.is_interact)))
 		    	{
 		    		//e.update_data[e.update_calls]="UPDATE DATA X="+x+" Y="+y+" I="+i;
 		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
@@ -1752,8 +1728,13 @@ public class GScreen implements Screen {
 		    	
 	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
 	        	 {
-	        		 InputHandler.keyF_release=false;
-	        		 ScriptSystem.execute(e.interact_entry_point);
+	        		 //InputHandler.keyF_release=false;
+	        		 if (e.pos.dst(pl.pos)<interact_dist)
+	        		 {
+	        			 interact_dist=e.pos.dst(pl.pos);
+	        			 near_interact=e;
+	        		 }
+	        		 
 	        	}
 	        	 
 	        	if (e.is_AI)
@@ -1837,6 +1818,43 @@ public class GScreen implements Screen {
         	
         }
       	
+      	if (enemy_see_player_timer>0)
+      	{
+      		enemy_see_player_timer-=real_delta;
+      		
+      		enemy_see_player=true;
+      		if (enemy_see_player_timer<0) {enemy_see_player=false;}
+      	}
+      	
+      	if (enemy_see_player)
+      	{
+      		//{Assets.battle_music_00.play();}
+      		if ((battle_music_timer<0.2f)&&(battle_music_timer+real_delta>=0.2f)) {if(!Assets.battle_music_00.isPlaying()) {Assets.battle_music_00.play(); Assets.battle_music_00.setVolume(0f);} Helper.log("TRY PLAY BATTLE MUSIC");}
+      		if ((battle_music_timer>0.2)&&(battle_music_timer<1.2f)){Assets.battle_music_00.setVolume((battle_music_timer-0.2f)*Assets.battle_music_multiplier);}
+      		if (battle_music_timer<5) {battle_music_timer+=real_delta;}
+      		
+      	}
+      	else
+      	{
+      		if (battle_music_timer>0)
+      		{
+      			battle_music_timer-=real_delta;
+      			if (battle_music_timer<=2) {Assets.battle_music_00.setVolume((battle_music_timer-1f)*Assets.battle_music_multiplier);}
+      			if (battle_music_timer<=0) {Assets.battle_music_00.pause();}
+      			
+      		}
+      	}
+      	
+      	if (near_interact!=null)
+      	{
+   		 if (near_interact.interact_entry_point.equals("#D"))
+   		 {near_interact.default_interact_action(delta); }
+   		 else
+   		 {ScriptSystem.execute(near_interact.interact_entry_point);}
+   		 
+   		 InputHandler.keyF_release=false;
+      	}
+      	
       	/*
       	if (pl.need_change_cluster)
       	{Helper.log("POST CHANGE CLUSTER "+pl.cx+" "+pl.cy);}
@@ -1844,8 +1862,8 @@ public class GScreen implements Screen {
       	
       		//batch.begin();
       		//if (false)
-	      		for (int x=cluster_x-4; x<=cluster_x+4; x++)
-	          	for (int y=cluster_y-4; y<=cluster_y+4; y++)
+	      		for (int x=cluster_x-6; x<=cluster_x+6; x++)
+	          	for (int y=cluster_y-6; y<=cluster_y+6; y++)
 	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
 	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
 	            {
@@ -2208,7 +2226,14 @@ public class GScreen implements Screen {
 			WD.get(WD_active).draw(real_delta);
 		}
 		
+		Main.font.setColor(Color.WHITE);
+		Main.font.draw(batch_static, "layouts count: "+layouts.size(), 0, 60);
 		
+		Main.font.setColor(Color.WHITE);
+		Main.font.draw(batch_static, "battle music: "+battle_music_timer, 0, 90);
+		
+		Main.font.setColor(Color.WHITE);
+		Main.font.draw(batch_static, "enemy see us: "+enemy_see_player, 0, 120);
 		
 		Main.font.setColor(Color.WHITE);
 		//Main.font.draw(batch_static, "draw distance: "+draw_distance, 16, 60);
@@ -2229,7 +2254,7 @@ public class GScreen implements Screen {
 		else
 		{
 			float camspeed=2;
-			if (!main_control){camspeed=50;}
+			if (!main_control){camspeed=5;}
 			
 			camera.position.add(-(camera.position.x-camera_target.pos.x)/camspeed, -(camera.position.y-camera_target.z-camera_target.pos.y)/camspeed, 0.0f);
 			camera.update();
@@ -2278,6 +2303,43 @@ public class GScreen implements Screen {
 			
 			batch_static.setColor(Color.WHITE);
 		
+			//draw order
+			//layout (pre draw)
+			//button (pre draw)
+			//button (post draw)
+			//layout (post draw)
+			
+			if (show_equip)
+			{
+				batch_static.draw(Assets.gui_module, 73, 107);
+				
+				GScreen.batch_static.draw(Assets.text_bg_blue, 75, 440,850,250);
+				
+				for (int yy=0; yy<2; yy++)
+				for (int xx=0; xx<2; xx++)
+				{
+					batch_static.draw(Assets.gui_module_bg, 95+220*xx, 150+150*yy);
+					
+					if ((pl.armored_module[xx+yy*2]!=null)&&(pl.armored_module[xx+yy*2].model!=null))
+					{
+						batch_static.draw(pl.armored_module[xx+yy*2].model, 90+220*xx, 145+150*yy);
+					}
+				}
+				
+				
+			}
+			
+			for (int i=0; i<layouts.size(); i++)
+			{
+				if (!layouts.get(i).need_remove)
+				{
+					layouts.get(i).update(delta);
+					layouts.get(i).pre_draw(delta);
+				}
+			}
+			
+
+			
 			for (int i=0; i<Button_list.size(); i++)
 			{
 				if (!Button_list.get(i).need_remove)
@@ -2296,7 +2358,19 @@ public class GScreen implements Screen {
 				{Button_list.remove(i); i--;}
 			}
 			
+			for (int i=0; i<layouts.size(); i++)
+			{
+				if (!layouts.get(i).need_remove)
+				{
+					
+					layouts.get(i).post_draw(delta);
+				}
+			}
 			
+			for (int i=0; i<layouts.size(); i++)
+			{
+				if (layouts.get(i).need_remove) {layouts.remove(i); i--;}
+			}
 
 		
 			
@@ -2406,9 +2480,67 @@ public class GScreen implements Screen {
         //InputHandler.but=-1;
     }
 
-    @Override
+    public static void missile_collision_action(Missile mis, Entity near_entity) {
+		// TODO Auto-generated method stub
+    	if (!near_entity.is_decor)
+		{
+			float reflect_value=near_entity.armored_shield.total_reflect;
+		
+		float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/mis.damage);//=1-0=1
+		
+		reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
+		
+		if ((Math.random()<reflect_chance))
+		{
+			mis.hit_action(near_entity);
+			mis.another_hit_action(near_entity);
+			
+			near_entity.hit_action(mis.damage,true);
+			near_entity.burn_it(mis.fire_damage);
+			near_entity.freeze_it(mis.cold_damage*10);
+		}
+		else
+		{
+			for (int k=0; k<near_entity.Skills_list.size(); k++)
+			{
+				
+				if (near_entity.Skills_list.get(k).learned)
+				{
+					near_entity.Skills_list.get(k).prereflect_action(mis,near_entity);
+				}
+				
+			}
+			mis.lifetime=10;
+			mis.angle+=Math.toRadians(180+(Math.random()*10-5));
+			
+			
+			mis.update_vectors_state();
+			
+			mis.is_enemy=near_entity.is_enemy;
+			mis.col=Color.GREEN;
+			
+			for (int k=0; k<near_entity.Skills_list.size(); k++)
+			{
+				
+				if (near_entity.Skills_list.get(k).learned)
+				{
+					near_entity.Skills_list.get(k).reflect_action(mis,near_entity);
+				}
+				
+			}
+		}
+		}
+		else
+		{
+			mis.hit_action(near_entity);
+			mis.another_hit_action(near_entity);
+		}
+	}
+
+	@Override
     public void resize(int width, int height) {
 
+		Helper.log("RESIZED "+width+"|"+height);
     	scr_w=(int) (width/1.0f);
     	scr_h=(int) (height/1.0f);
 
@@ -2421,12 +2553,13 @@ public class GScreen implements Screen {
     	camera.position.x=pl.pos.x;
     	camera.position.y=pl.pos.y;
     	
+    	terrain_fbo.dispose();
     	terrain_fbo = new FrameBuffer(Pixmap.Format.RGB888, scr_w, scr_h, false);
     	terrain_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	terrain_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
     	
-    	light_fbo = new FrameBuffer(Pixmap.Format.RGB888, (int)(scr_w/1f), (int)(scr_h/1f), false);
-    	light_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	//light_fbo = new FrameBuffer(Pixmap.Format.RGB888, (int)(scr_w/1f), (int)(scr_h/1f), false);
+    	//light_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	
     	//illumination_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	

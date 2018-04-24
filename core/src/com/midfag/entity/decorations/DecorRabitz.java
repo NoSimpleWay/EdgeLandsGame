@@ -11,6 +11,8 @@ import com.midfag.game.Enums.EntityType;
 
 public class DecorRabitz extends Entity {
 
+	private int dir=-1;
+
 	public DecorRabitz(Vector2 _v) {
 		
 		super(_v);
@@ -21,6 +23,15 @@ public class DecorRabitz extends Entity {
 		type=EntityType.WALL;
 		is_AI=false;
 		is_player=false;
+		
+		path_x=1;
+		path_y=0;
+		
+		collision_size_x=60;
+		collision_size_y=20;
+		
+		size=60;
+		mass=999999999;
 		
 		spr.setTexture(Assets.rabitz_01);
 		icon=Assets.rabitz_01_icon;
@@ -66,6 +77,21 @@ public class DecorRabitz extends Entity {
 	public Entity put() {
 		// TODO Auto-generated method stub
 		return new DecorRabitz(new Vector2());
+	}
+	
+	@Override
+	public void default_interact_action(float delta) {
+		// TODO Auto-generated method stub
+		
+		dir*=-1;
+		
+
+			if (dir==1) {constant_move_z=60-z;} else {constant_move_z=z;}
+			constant_speed_z=30*dir;
+		
+		
+		
+
 	}
 	
 	@Override

@@ -208,4 +208,9 @@ public class Skill {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void missile_hit_action(Entity master, Entity near_entity) {
+		// TODO Auto-generated method stub
+		
+	}
 }

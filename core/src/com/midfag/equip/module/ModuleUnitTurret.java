@@ -29,7 +29,7 @@ public class ModuleUnitTurret extends ModuleUnit {
 		base_cooldown=25;
 
 		
-		level=5;
+		level=1;
 		
 
 		

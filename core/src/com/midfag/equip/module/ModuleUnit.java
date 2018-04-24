@@ -31,7 +31,7 @@ public class ModuleUnit {
 	public Texture tex=new Texture(Gdx.files.internal("icon_firle.png"));
 	public Texture indicate_tex=new Texture(Gdx.files.internal("icon_firle.png"));
 	public Texture lock_tex=new Texture(Gdx.files.internal("icon_lock.png"));
-	
+	public Texture model;
 	public Rarity rarity;
 	public float level=1.0f;
 	

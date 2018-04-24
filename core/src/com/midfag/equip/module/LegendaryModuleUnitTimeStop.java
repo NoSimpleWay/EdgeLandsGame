@@ -32,7 +32,7 @@ public class LegendaryModuleUnitTimeStop extends ModuleUnit {
 		base_cooldown=60;
 		base_time_slow=0.5f;
 		
-		level=5;
+		level=1;
 		
 		base_time_slow_resist=0.5f;
 		total_time_slow_resist=0.5f;

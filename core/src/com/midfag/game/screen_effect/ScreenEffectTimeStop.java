@@ -18,6 +18,8 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		sound_effect.play();
 		GScreen.batch_static.setShader(Main.shader_time_slow);
 		Assets.music.setVolume(0.05f);
+		Assets.battle_music_multiplier=0.01f;
+		Assets.battle_music_00.setVolume(0);
 		
 		shader=Main.shader_time_slow;
 	}
@@ -31,7 +33,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 			
 			if (MasterModule.total_duration-MasterModule.duration<0.5f)
 			{
-				GScreen.time_speed=0.5f-(MasterModule.total_duration-MasterModule.duration);
+				GScreen.time_speed=0.51f-(MasterModule.total_duration-MasterModule.duration);
 			}
 			
 			if (MasterModule.duration<0.5f)
@@ -56,7 +58,12 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		GScreen.time_speed=1.0f;
 		sound_effect.stop();
 		
+		
+		Assets.battle_music_multiplier=0.333f;
+		
 		Assets.music.setVolume(0.5f);
+		
+			
 		
 		shader=GScreen.batch.getShader();
 		GScreen.batch_static.setShader(Main.shader_bloom);

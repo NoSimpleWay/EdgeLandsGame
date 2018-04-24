@@ -17,13 +17,15 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 	
 		public LegendaryWeaponMirrorLaser()
 		{
-			base_damage=30;
+			base_damage=70;
 			base_missile_count=1;
 			base_shoot_cooldown=0.8f;
 			base_dispersion=10;
 			base_dispersion_additional=10;
 			base_ammo_size=5;
 			base_reload_time=1;
+			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
 			is_rotate_reset_charge=true;
 			
@@ -35,7 +37,7 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 			 spr.setTexture(new Texture(Gdx.files.internal("icon_mirror_laser.png")));//()=)
 			 spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());
 			 
-			 red_text="Ќе могли бы вы сто€ть поплотнее?";
+			 red_text="–азбей большое зеркало - получишь тыс€чу зеркал!";
 		}
 		
 		@Override

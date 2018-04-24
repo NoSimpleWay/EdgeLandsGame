@@ -25,6 +25,7 @@ public class Assets {
 	public static Sound shoot02;
 	public static Sound shoot04=Gdx.audio.newSound(Gdx.files.internal("shoot04.wav"));
 	
+	public static Music battle_music_00=Gdx.audio.newMusic(Gdx.files.internal("battle_00.wav"));
 	public static Sound expl=Gdx.audio.newSound(Gdx.files.internal("expl.wav"));
 	
 	public static Sound metal_sound;
@@ -68,6 +69,9 @@ public class Assets {
 
 	public static Texture missile;
 	
+	public static Texture gui_module_bg=new Texture(Gdx.files.internal("gui_module_bg.png"));
+	public static Texture gui_module=new Texture(Gdx.files.internal("gui_module.png"));
+	
 	public static Texture rect=new Texture(Gdx.files.internal("rect.png"));
 	public static Texture rect_white=new Texture(Gdx.files.internal("rect_white.png"));
 	public static Texture round=new Texture(Gdx.files.internal("round_bg.png"));
@@ -102,6 +106,8 @@ public class Assets {
 	
 	public static Texture helper=load("helper");
 	public static Texture helper_icon=load("helper_icon");
+	
+	public static Texture light=load("light");
 	
 	public static Texture rabitz_01=load("rabitz_01");
 	public static Texture rabitz_01_icon=load("rabitz_01_icon");
@@ -199,6 +205,9 @@ public class Assets {
 	public static Texture point_start=new Texture(Gdx.files.internal("point_start.png"));
 	public static Texture rama=new Texture(Gdx.files.internal("rama.png"));
 	public static Texture text_bg=new Texture(Gdx.files.internal("text_bg.png"));
+	
+	public static Texture text_bg_blue=new Texture(Gdx.files.internal("text_bg_blue.png"));//24.04.2018 03.19 Abyss, Pt. 1 | Dark Ambient Orchestra
+	
 	//public static Texture selected_skill=new Texture(Gdx.files.internal("selected_skill.png"));
 	
 	public static Texture mech_foot_shadow=new Texture(Gdx.files.internal("foot_shadow.png"));
@@ -232,7 +241,8 @@ public class Assets {
 	public static Texture[] turret_body=new Texture[16];
 	public static Texture decoration_building_00=new Texture(Gdx.files.internal("decoration_building_00_icon.png"));
 	public static Texture decor_building_00_part_00=new Texture(Gdx.files.internal("decoration_building_00_part_00.png"));;
-	public static Texture decor_building_00_part_00_icon=new Texture(Gdx.files.internal("decoration_building_00_part_00_icon.png"));;
+	public static Texture decor_building_00_part_00_icon=new Texture(Gdx.files.internal("decoration_building_00_part_00_icon.png"));
+	public static float battle_music_multiplier=0.333f;;
 	
 	public Assets()
 	{
@@ -315,6 +325,8 @@ public class Assets {
 		music.setLooping(true);
 		music.setVolume(0.25f);
 		music.play();
+	
+		battle_music_00.setLooping(true);
 		
 		/*time_slow_id=time_slow.play();
 		time_slow.setLooping(time_slow_id, true);

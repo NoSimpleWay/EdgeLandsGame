@@ -5,10 +5,12 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.game.Assets;
+import com.midfag.game.GScreen;
 import com.midfag.game.Enums.EntityType;
 
 public class DecorSteelBoxDoor extends DecorBuilding {
 
+	public float dir=1;
 	public DecorSteelBoxDoor(Vector2 _v) {
 		
 		super(_v);
@@ -21,7 +23,7 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 		spr.setTexture(Assets.decoration_steel_box_door);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon=Assets.decoration_steel_box_door_icon;
-		
+		mass=99999999;
 		//Helper.log("ID="+id);
 		
 		diagonal=false;
@@ -31,7 +33,8 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 		spr.setOrigin(40, 0);
 		
 		friction=0.95f;
-		
+		//interact_entry_point="#D";
+		is_interact=false;
 		/*
 		constant_move_x=100;
 		constant_speed_x=10;*/
@@ -66,9 +69,20 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 		return new DecorSteelBoxDoor(new Vector2());
 	}
 	
+	@Override
+	public void default_interact_action(float delta) {
+		// TODO Auto-generated method stub
+		
+		dir*=-1;
+		
 
-	
+			if (dir==1) {constant_move_z=60-z;} else {constant_move_z=z;}
+			constant_speed_z=30*dir;
+		
+		
+		
 
+	}
 	
 
 }

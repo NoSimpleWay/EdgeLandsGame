@@ -15,7 +15,7 @@ public class WeaponAttributeFireDamage extends WeaponAttribute {
 	public void calculate(Weapon _w)
 	{
 		//_w.total_damage=_w.base_damage*(1f+0.2f*level);
-		_w.total_fire_damage=+_w.base_damage*level*0.015f;
+		_w.total_fire_damage=+_w.fire_multiplier*level*3f;
 		//_w.total_damage=_w.base_damage;
 	}
 }

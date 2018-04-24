@@ -33,6 +33,12 @@ public class ButtonChangeQuality extends Button {
 	public ButtonChangeQuality(float _x, float _y, Rarity _rar) {
 		super(_x, _y);
 		
+		size_x=50;
+		size_y=45;
+		
+		spr.setSize(50, 45);
+		
+		
 		rar=_rar;
 		if (!GScreen.show_equip){need_remove=true;}
 		
@@ -58,7 +64,8 @@ public class ButtonChangeQuality extends Button {
 		if ((is_overlap())&&(InputHandler.but==0))
 		{
 				InputHandler.but=-1;
-				
+					
+
 					for (int i=0; i<30; i++)//;
 			        {
 						

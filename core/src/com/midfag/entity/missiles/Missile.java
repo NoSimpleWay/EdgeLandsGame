@@ -54,6 +54,8 @@ public class Missile {
 	public float fire_damage;
 	public float cold_damage;
 	
+	public Entity master;
+	
 	
 	
 	public Missile(Vector2 _v,float _a, float _s, boolean _b)
@@ -189,6 +191,11 @@ public class Missile {
 	
 	public void hit_action(Entity near_entity) {
 		// TODO Auto-generated method stub
+		for (int i=0; i<master.Skills_list.size(); i++)
+		{
+			if (master.Skills_list.get(i).learned)
+			{master.Skills_list.get(i).missile_hit_action(master, near_entity);}
+		}
 		lifetime=-0.1f;
 	}
 	

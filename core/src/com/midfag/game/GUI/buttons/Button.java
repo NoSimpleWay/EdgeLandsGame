@@ -23,6 +23,8 @@ public class Button {
 	
 	public int size_x=80;
 	public int size_y=40;
+	public Color standart_color=Color.WHITE;
+	private Color color_overlapped=Color.GREEN;
 	
 	public Button(float _x, float _y)
 	{
@@ -102,10 +104,10 @@ public class Button {
 	public boolean is_overlap()
 	{	//		0<10						0+40>10
 		
-		spr.setColor(0.9f,0.9f,0.9f,0.9f);
+		spr.setColor(standart_color);
 		if ((pos.x-size_x/2f<InputHandler.sposx)&&(pos.x+size_x/2f>InputHandler.sposx)&&(pos.y-size_y/2f<InputHandler.sposy)&&(pos.y+size_y/2>InputHandler.sposy))
 		{
-			spr.setColor(Color.GREEN);
+			spr.setColor(color_overlapped);
 			return true;
 		}
 		

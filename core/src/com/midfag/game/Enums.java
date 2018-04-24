@@ -53,6 +53,33 @@ public class Enums {
 	    PLANTS
 	}
 	
+	
+	public enum LayoutPositionXType {
+	    FREE,
+	    LEFT_CORNER,
+	    RIGHT_CORNER,
+	    CENTER
+	}
+	
+	public enum LayoutPositionYType {
+	    FREE,
+	    TOP_CORNER,
+	    DOWN_CORNER,
+	    CENTER
+	}
+	
+	public enum LayoutOffsetXType {
+	    LEFT,
+	    RIGHT,
+	    CENTER
+	}
+	
+	public enum LayoutOffsetYType {
+	    LEFT,
+	    RIGHT,
+	    CENTER
+	}
+	
 	public enum DecorType {
 
 	}

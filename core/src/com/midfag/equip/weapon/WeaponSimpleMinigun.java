@@ -11,13 +11,15 @@ public class WeaponSimpleMinigun extends Weapon {
 	
 		public WeaponSimpleMinigun()
 		{
-			base_damage=8;
+			base_damage=5;
 			base_missile_count=1;
 			base_shoot_cooldown=0.05f;
 			base_dispersion=10;
 			base_dispersion_additional=1;
 			base_ammo_size=100;
 			base_reload_time=7;
+			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
 			need_warm=3;
 			

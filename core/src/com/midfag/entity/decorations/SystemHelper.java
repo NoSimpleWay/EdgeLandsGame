@@ -13,6 +13,7 @@ public class SystemHelper extends Entity {
 		super(_v);
 		
 		custom_phys=true;
+		have_collision=false;
 		
 		id=this.getClass().getName();
 		uid="b1d6dc98";

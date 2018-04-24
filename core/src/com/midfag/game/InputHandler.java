@@ -17,8 +17,12 @@ import com.midfag.entity.friends.EntityTurret;
 import com.midfag.game.Enums.ButtonVerticalFunction;
 import com.midfag.game.Enums.EditMode;
 import com.midfag.game.Enums.EquipGenerationType;
+import com.midfag.game.Enums.LayoutOffsetXType;
+import com.midfag.game.Enums.LayoutPositionXType;
+import com.midfag.game.Enums.LayoutPositionYType;
 import com.midfag.game.Enums.Rarity;
 import com.midfag.game.Enums.WorldConfigMode;
+import com.midfag.game.GUI.ButtonLayout;
 import com.midfag.game.GUI.GUI;
 import com.midfag.game.GUI.GUIInventory;
 import com.midfag.game.GUI.GUISkillsWheel;
@@ -161,19 +165,60 @@ public class InputHandler implements InputProcessor {
     		//GScreen.Button_list.add(new ButtonPutter(250,50,new DecorPilon3(new Vector2(),false),gui));
     		//GScreen.Button_list.add(new ButtonPutter(250,50,new DecorTube(new Vector2(),true),gui));
     		//GScreen.Button_list.add(new ButtonPutter(150,50,GScreen.Object_list.get(1)));
+    		ButtonLayout bl=new ButtonLayout();
     		
-    		GScreen.Button_list.add(new ButtonSaveMap(50,GScreen.scr_h-50));
-    		GScreen.Button_list.add(new ButtonLoadMap(150,GScreen.scr_h-50));
+    		bl=new ButtonLayout();
     		
-    		GScreen.Button_list.add(new ButtonRandomizeTile(650,GScreen.scr_h-50));
-    		GScreen.Button_list.add(new ButtonPathVisualize(710,GScreen.scr_h-50));
-    		GScreen.Button_list.add(new ButtonPhysVisualize(770,GScreen.scr_h-50));
-    		GScreen.Button_list.add(new ButtonChunkInfo(830,GScreen.scr_h-50));
-    		GScreen.Button_list.add(new ButtonFreezeTime(890,GScreen.scr_h-50));
+	    		bl.lpx=LayoutPositionXType.LEFT_CORNER;
+	    		bl.lpy=LayoutPositionYType.TOP_CORNER;
+	    		
+	    		bl.lox=LayoutOffsetXType.LEFT;
+	    		
+	    		bl.offset_x=80;
+	    		bl.offset_y=0;
+	    		bl.pos_x=7;
+	    		bl.pos_y=7;
+	    		Helper.add_button_with_layout(new ButtonSaveMap(50,GScreen.scr_h-50),bl);
+	    		Helper.add_button_with_layout(new ButtonLoadMap(150,GScreen.scr_h-50),bl);
+    		GScreen.layouts.add(bl);
     		
-    		GScreen.Button_list.add(new ButtonChangeMode(300,GScreen.scr_h-50,EditMode.ENTITY,gui));
-    		GScreen.Button_list.add(new ButtonChangeMode(400,GScreen.scr_h-50,EditMode.TILE,gui));
-    		GScreen.Button_list.add(new ButtonChangeMode(500,GScreen.scr_h-50,EditMode.PATTERN,gui));
+    		bl=new ButtonLayout();
+	    		
+	    		bl.lpx=LayoutPositionXType.RIGHT_CORNER;
+	    		bl.lpy=LayoutPositionYType.TOP_CORNER;
+	    		
+	    		bl.lox=LayoutOffsetXType.RIGHT;
+	    		
+	    		bl.offset_x=57;
+	    		bl.offset_y=0;
+	    		bl.pos_x=7;
+	    		bl.pos_y=7;
+	    		
+	    		Helper.add_button_with_layout(new ButtonRandomizeTile(650,GScreen.scr_h-50),bl);
+	    		Helper.add_button_with_layout(new ButtonPathVisualize(710,GScreen.scr_h-50),bl);
+	    		Helper.add_button_with_layout(new ButtonPhysVisualize(770,GScreen.scr_h-50),bl);
+	    		Helper.add_button_with_layout(new ButtonChunkInfo(830,GScreen.scr_h-50),bl);
+	    		Helper.add_button_with_layout(new ButtonFreezeTime(890,GScreen.scr_h-50),bl);
+	    		
+    		GScreen.layouts.add(bl);
+    		
+    		
+    		
+    		bl=new ButtonLayout();
+	    		bl.lpx=LayoutPositionXType.LEFT_CORNER;
+	    		bl.lpy=LayoutPositionYType.TOP_CORNER;
+	    		
+	    		bl.lox=LayoutOffsetXType.LEFT;
+	    		
+	    		bl.offset_x=80;
+	    		bl.offset_y=0;
+	    		bl.pos_x=190;
+	    		bl.pos_y=7;
+	    		Helper.add_button_with_layout(new ButtonChangeMode(300,GScreen.scr_h-50,EditMode.ENTITY,gui),bl);
+	    		Helper.add_button_with_layout(new ButtonChangeMode(400,GScreen.scr_h-50,EditMode.TILE,gui),bl);
+	    		Helper.add_button_with_layout(new ButtonChangeMode(500,GScreen.scr_h-50,EditMode.PATTERN,gui),bl);
+    		GScreen.layouts.add(bl);
+    		
     		
 			GScreen.Button_list.add(new ButtonVertical(650,40,gui,false,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
     		GScreen.Button_list.add(new ButtonVertical(650,65,gui,true,ButtonVerticalFunction.ENTITY_SELECTOR_OFFSET));
@@ -254,34 +299,35 @@ public class InputHandler implements InputProcessor {
     			
     			GScreen.main_control=false;
     			
-    			gui.Button_list.add(new ButtonEquip(150,250,-1));
-    			gui.Button_list.add(new ButtonEquip(250,250,-2));
+    			gui.Button_list.add(new ButtonEquip(530,117,-1));
+    			gui.Button_list.add(new ButtonEquip(760,117,-2));
     			
-    			gui.Button_list.add(new ButtonEquip(350,250,-5));
+    			gui.Button_list.add(new ButtonEquip(150,525,-5));
     			
-    			for (int i=0; i<5; i++)
-    			{gui.Button_list.add(new ButtonEquip(450+i*100,250,-10-i));}
+    			for (int i=0; i<2; i++)
+    			for (int j=0; j<2; j++)
+    			{gui.Button_list.add(new ButtonEquip(170+j*220,130+275*i,-10-j-i*2));}
     			
-    			gui.Button_list.add(new ButtonRandomGenerator(150,45,EquipGenerationType.WEAPON));
-    			gui.Button_list.add(new ButtonRandomGenerator(250,45,EquipGenerationType.SHIELD));
-    			gui.Button_list.add(new ButtonRandomGenerator(350,45,EquipGenerationType.MODULE));
+    			gui.Button_list.add(new ButtonRandomGenerator(30,350+45*0,EquipGenerationType.WEAPON));
+    			gui.Button_list.add(new ButtonRandomGenerator(30,350+45*1,EquipGenerationType.SHIELD));
+    			gui.Button_list.add(new ButtonRandomGenerator(30,350+45*2,EquipGenerationType.MODULE));
     			
-    			gui.Button_list.add(new ButtonChangeQuality(150,310,Rarity.COMMON));
-    			gui.Button_list.add(new ButtonChangeQuality(250,310,Rarity.UNCOMMON));
-    			gui.Button_list.add(new ButtonChangeQuality(350,310,Rarity.RARE));
-    			gui.Button_list.add(new ButtonChangeQuality(450,310,Rarity.ELITE));
-    			gui.Button_list.add(new ButtonChangeQuality(550,310,Rarity.LEGENDARY));
-    			gui.Button_list.add(new ButtonChangeQuality(650,310,Rarity.ANOMALY));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35,Rarity.COMMON));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35+40*1,Rarity.UNCOMMON));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35+40*2,Rarity.RARE));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35+40*3,Rarity.ELITE));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35+40*4,Rarity.LEGENDARY));
+    			gui.Button_list.add(new ButtonChangeQuality(30,35+40*5,Rarity.ANOMALY));
     			
     			gui.Button_list.add(new ButtonVertical(150,360,null,true,ButtonVerticalFunction.INVENTORY_LEVEL));
     			gui.Button_list.add(new ButtonVertical(150,330,null,false,ButtonVerticalFunction.INVENTORY_LEVEL));
     			
     			//Assets.shoot00.
-    			for (int j=0; j<3; j++)
-    			for (int i=0; i<10; i++)
+    			for (int j=0; j<10; j++)
+    			for (int i=0; i<2; i++)
     			{
     				//if (GScreen.pl.inventory[i] instanceof Weapon)
-    				{gui.Button_list.add(new ButtonEquip(150+i*85,200-j*45,i+j*10));}
+    				{gui.Button_list.add(new ButtonEquip(110+j*81,70-i*41,j+i*10));}
     			}
     			
     			gui.Button_list.add(new ButtonEquip(200,250,99));
@@ -396,7 +442,7 @@ public class InputHandler implements InputProcessor {
     	
     	if (GScreen.show_skills_wheel)
     	{
-    		GScreen.skills_camera.zoom+=amount/100.0f;
+    		GScreen.skills_camera.zoom+=amount/10.0f;
     		if (GScreen.skills_camera.zoom<0.5f){GScreen.skills_camera.zoom=0.5f;}
     		GScreen.skills_camera.update();
     		//A//ssets.skill_wheel.scale(-amount/50f);

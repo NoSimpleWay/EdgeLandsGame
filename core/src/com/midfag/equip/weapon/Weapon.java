@@ -84,6 +84,7 @@ public class Weapon {
 	
 	public boolean is_rotate_reset_charge=false;
 	public String red_text="";
+	public float fire_multiplier=0f;
 	
 	
 	
@@ -164,12 +165,14 @@ public class Weapon {
 			}
 			
 			
-			if (rarity==Rarity.COMMON){spr.setColor(Color.WHITE);}
+			spr.setColor(Color.WHITE);
+			
+			/*if (rarity==Rarity.COMMON){spr.setColor(Color.WHITE);}
 			if (rarity==Rarity.UNCOMMON){spr.setColor(Color.GREEN);}
 			if (rarity==Rarity.RARE){spr.setColor(Color.ROYAL);}
 			if (rarity==Rarity.ELITE){spr.setColor(Color.MAGENTA);}
 			if (rarity==Rarity.LEGENDARY){spr.setColor(Color.ORANGE);}
-			if (rarity==Rarity.ANOMALY){spr.setColor(Color.CYAN);}
+			if (rarity==Rarity.ANOMALY){spr.setColor(Color.CYAN);}*/
 			
 		}
 		

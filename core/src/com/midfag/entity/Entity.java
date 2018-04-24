@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
+import com.midfag.entity.missiles.Missile;
 import com.midfag.entity.missiles.MissileExplosion;
 import com.midfag.entity.missiles.MissileParticlePiece;
 import com.midfag.equip.energoshield.Energoshield;
@@ -31,7 +32,9 @@ import com.midfag.game.skills.Skill;
 public class Entity {
 	
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
+	public Entity near_object=null;
 	
+	public boolean have_collision=true;
 	public int update_calls=0;
 	public String[] update_data=new String[10];
 	
@@ -42,7 +45,7 @@ public class Entity {
 	
 	public boolean need_change_cluster=false;
 	public EntityType type=EntityType.ENTITY;
-	public float mass=10;
+	public float mass=100;
 	
 	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));
 	
@@ -283,6 +286,18 @@ public class Entity {
 				i--;
 			}
 		}
+		
+		if (is_interact)
+		{
+			GScreen.batch.setColor(1,1,1,(float) ((Math.sin(TimeUtils.millis()/100))+1)/2f);
+			
+			if ((Math.abs(pos.x-GScreen.pl.pos.x)+Math.abs(pos.y-GScreen.pl.pos.y)<80))
+			{GScreen.batch.draw(Assets.button_e, GScreen.pl.pos.x-7+20, GScreen.pl.pos.y-7+55);}
+			
+			GScreen.batch.draw(Assets.quest, pos.x-4, pos.y+55);
+			
+			Main.font_big.draw(GScreen.batch, "!"+z, pos.x, pos.y);
+		}
 	}
 	
 	
@@ -371,7 +386,7 @@ public class Entity {
 
 	public void some_draw()
 	{
-		
+
 	}
 	public void draw()
 	{
@@ -517,7 +532,25 @@ public class Entity {
 						GScreen.cluster[ncx][ncy].Entity_list.add(this);
 				}
 				
-				if ((pcx!=npcx)||(pcy!=npcy))
+				if (
+						(pcx!=npcx)||(pcy!=npcy)
+						||
+						(
+							(
+									(z+constant_speed_z>=30)
+									&&
+									(z<31)
+							)
+						)
+						||
+						(
+							(
+									(z+constant_speed_z<=30)
+									&&
+									(z>29)
+							)
+						)
+					)
 				{
 					{
 						if (light_source!=null)
@@ -743,19 +776,25 @@ public class Entity {
 			//System.out.println("TotMisCou: "+armored_weapon.total_missile_count);
 			for (int zz=0; zz<armored[_i].total_missile_count*multiply_missile_count; zz++)
 			{
-				GScreen.Missile_list.add(armored[_i].get_missile(this));
+				Missile mis=armored[_i].get_missile(this);
 				
-				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).damage=armored[_i].total_damage;
-				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).fire_damage=armored[_i].total_fire_damage;
-				GScreen.Missile_list.get(GScreen.Missile_list.size()-1).cold_damage=armored[_i].total_cold_damage;
+				GScreen.Missile_list.add(mis);
+				
+				mis.damage=armored[_i].total_damage;
+				mis.fire_damage=armored[_i].total_fire_damage;
+				mis.cold_damage=armored[_i].total_cold_damage;
+				mis.master=this;
+				
+				//mis.sp
+				
 			}
 			
 			armored[_i].add_disp+=armored[_i].total_dispersion_additional;
 			
 			if (is_AI)
 			{
-				if (pos.dst(GScreen.pl.pos)<800)
-				{armored[_i].get_shoot_sound().play((1f-pos.dst(GScreen.pl.pos)/800.0f)*0.15f);}
+				//if (pos.dst(GScreen.pl.pos)<800)
+				//{armored[_i].get_shoot_sound().play((1f-pos.dst(GScreen.pl.pos)/800.0f)*0.15f);}
 			}
 			else
 			{
@@ -809,7 +848,7 @@ public class Entity {
 		Entity e=GScreen.get_collision(pos.x,pos.y,_e.pos.x,_e.pos.y,(pos.x-_e.pos.x)/(pos.y-_e.pos.y),(pos.y-_e.pos.y)/(pos.x-_e.pos.x),1);
 		
 		if ((e!=null)&&(e.is_enemy!=is_enemy))
-		{return true;}
+		{GScreen.enemy_see_player_timer=3f; return true;}
 		
 		return false;
 	}
@@ -818,15 +857,7 @@ public class Entity {
 	{
 			
 			update_calls++;
-			if (is_interact)
-			{
-				GScreen.batch.setColor(1,1,1,(float) ((Math.sin(TimeUtils.millis()/100))+1)/2f);
-				
-				if ((Math.abs(pos.x-GScreen.pl.pos.x)+Math.abs(pos.y-GScreen.pl.pos.y)<80))
-				{GScreen.batch.draw(Assets.button_e, GScreen.pl.pos.x-7+20, GScreen.pl.pos.y-7+55);}
-				
-				GScreen.batch.draw(Assets.quest, pos.x-4, pos.y+55);
-			}
+
 		
 		rotate_block=false;
 		
@@ -942,24 +973,30 @@ public class Entity {
 		if (mx>0){mx+=20;} else if (mx<0){mx-=20;}
 		if (my>0){my+=20;} else if(my<0){my-=20;}*/
 		
-		Entity near_object=null;
+		near_object=null;
 		//float spd=(float) (Math.sqrt(mx*mx+my*my));
 		
 
 		if ((mx!=0)||(my!=0))
 		for (int i=0; i<GScreen.Missile_list.size(); i++)
 		{
-			float dx=0;
-			float dy=0;
-			if (Math.abs(my)<0.1f) {dx=99999;}else{dx=mx/my;}
-			if (Math.abs(mx)<0.1f) {dy=99999;}else{dy=my/mx;}
-			
-			///GScreen.temp_vector_collision_result.set(99999,99999);
-			GScreen.temp_vector_collision_result.set(GScreen.collision_missile(GScreen.Missile_list.get(i),pos.x,pos.y,pos.x+mx*_d,pos.y+my*_d,dx,dy,size));
-			
-			if (GScreen.temp_vector_collision_result.x<9999)
+			Missile mis=GScreen.Missile_list.get(i);
+			if (is_enemy!=mis.is_enemy)
 			{
-				GScreen.Missile_list.get(i).lifetime=-1;
+				float dx=0;
+				float dy=0;
+				if (Math.abs(my)<0.1f) {dx=99999;}else{dx=mx/my;}
+				if (Math.abs(mx)<0.1f) {dy=99999;}else{dy=my/mx;}
+				
+				///GScreen.temp_vector_collision_result.set(99999,99999);
+				
+				GScreen.temp_vector_collision_result.set(GScreen.collision_missile(mis,pos.x,pos.y,pos.x+mx*_d,pos.y+my*_d,dx,dy,size));
+				
+				if (GScreen.temp_vector_collision_result.x<9999)
+				{
+					
+					GScreen.missile_collision_action(mis, this);
+				}
 			}
 		}
 		
@@ -976,6 +1013,15 @@ public class Entity {
 		}
 		
 
+		if (constant_move_z>0)
+		{
+			constant_move_z-=Math.abs(constant_speed_z*_d);
+			z+=constant_speed_z*_d;
+		}
+		else
+		{
+			constant_speed_z=0;
+		}
 		
 		if (near_object==null)
 		{
@@ -1003,15 +1049,7 @@ public class Entity {
 				constant_speed_y=0;
 			}
 			
-			if (constant_move_z>0)
-			{
-				constant_move_z-=Math.abs(constant_speed_z*_d);
-				z+=constant_speed_z*_d;
-			}
-			else
-			{
-				constant_speed_z=0;
-			}
+			
 			
 			move (mx+cmx,my+cmy,_d,"ENTITY UPDATE");
 			
@@ -1316,6 +1354,11 @@ public class Entity {
     	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;} 
     	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
     	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	*/
+		
+	}
+
+	public void default_interact_action(float delta) {
+		// TODO Auto-generated method stub
 		
 	}
 

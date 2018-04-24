@@ -24,6 +24,8 @@ public class LegendaryWeaponBlender extends Weapon {
 			base_ammo_size=120;
 			base_reload_time=1;
 			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
+			
 			need_warm=3;
 			
 			generate();

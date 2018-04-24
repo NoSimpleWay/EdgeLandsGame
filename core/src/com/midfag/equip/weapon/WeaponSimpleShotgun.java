@@ -11,13 +11,15 @@ public class WeaponSimpleShotgun extends Weapon {
 	
 		public WeaponSimpleShotgun()
 		{
-			base_damage=7;
+			base_damage=12;
 			base_missile_count=10;
 			base_shoot_cooldown=1.2f;
 			base_dispersion=20;
 			base_dispersion_additional=30;
 			base_ammo_size=7;
 			base_reload_time=3;
+			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
 			missile_speed=2100;
 			

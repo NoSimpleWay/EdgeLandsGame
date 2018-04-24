@@ -33,19 +33,33 @@ public class ModuleUnitPush extends ModuleUnit {
 		base_cooldown=7;
 		base_push_damage=50;
 		
+		/*
 		Available_attribute_list.add(new ModuleAttributePushDamage());
 		Available_attribute_list.add(new ModuleAttributeExplosionFire());
 		Available_attribute_list.add(new ModuleAttributeExplosionIce());
+		*/
+		model=new Texture(Gdx.files.internal("module_push_model.png"));
 
 		
 		tex=new Texture(Gdx.files.internal("icon_push.png"));
 		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_push.png"));
 		rarity=Rarity.COMMON;
 		
-		level=5;
+		level=1;
 		
 		generate();
 		update_stats();
+	}
+	
+	@Override
+	public void  get_available_attribute()
+	{
+		Available_attribute_list.clear();
+		
+		Available_attribute_list.add(new ModuleAttributeDuration());
+		Available_attribute_list.add(new ModuleAttributeFastCooldown());
+		Available_attribute_list.add(new ModuleAttributePushDamage());
+		
 	}
 	
 	@Override
@@ -94,6 +108,15 @@ public class ModuleUnitPush extends ModuleUnit {
 				
 				Vector2 v=_e.pos;
 				
+				_e.impulse.set(sx,sy);
+				
+				if (_e.near_object!=null)
+				{
+					Assets.crash.play(0.1f);
+					duration=0.01f;
+				_e.near_object.hit_action(total_push_damage, true);
+				}
+				/*
 				Phys near_object=null;
 				near_object=GScreen.get_contact(_e.pos.x,_e.pos.y,_e.pos.x+sx*_d,_e.pos.y+sy*_d,sx/spd,sy/spd,spd*_d,true,false,true);
 				
@@ -141,7 +164,7 @@ public class ModuleUnitPush extends ModuleUnit {
 							break;
 						}
 				}
-				
+				*/
 			
 
 		}

@@ -14,6 +14,8 @@ import com.midfag.entity.EntityPlayer;
 import com.midfag.entity.LightSource;
 import com.midfag.entity.decorations.DecorBarrel;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.game.GUI.ButtonLayout;
+import com.midfag.game.GUI.buttons.Button;
 import com.midfag.game.script.ScriptSystem;
 
 public class Helper {
@@ -26,6 +28,8 @@ public class Helper {
 	{
 		
 	}
+	
+	
 	
 	public static void LoadMap()
 	{
@@ -53,7 +57,7 @@ public class Helper {
 			if (GScreen.cluster[j][i].Phys_list!=null){GScreen.cluster[j][i].Phys_list.clear();}
 		}
 		
-		FileHandle file = Gdx.files.local("z.txt");
+		FileHandle file = Gdx.files.local("level_data/z.txt");
 		
 		String s=file.readString();
 		
@@ -173,7 +177,7 @@ public class Helper {
 			GScreen.pl_mech=GScreen.add_entity_to_map(new EntityPlayer(new Vector2(4400,4400)));
 		}
 		
-		file = Gdx.files.local("z_tile.txt");
+		file = Gdx.files.local("level_data/z_tile.txt");
 		
 		s=file.readString();
 		
@@ -256,7 +260,7 @@ public class Helper {
 				}
 		}
 		
-		file = Gdx.files.local("z_tile_overlay.txt");
+		file = Gdx.files.local("level_data/z_tile_overlay.txt");
 		
 		s=file.readString();
 		ss=s.split("\n");
@@ -383,6 +387,12 @@ public class Helper {
 		
     	return null;
     }
+	
+	public static void add_button_with_layout(Button _b, ButtonLayout _l)
+	{
+		GScreen.Button_list.add(_b);
+		_l.buttons.add(_b);
+	}
 
 	public static void log(String _s) {
 		// TODO Auto-generated method stub

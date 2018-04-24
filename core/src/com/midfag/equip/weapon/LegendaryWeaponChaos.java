@@ -37,6 +37,8 @@ public class LegendaryWeaponChaos extends Weapon {
 			base_ammo_size=20;
 			base_reload_time=3;
 			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
+			
 			need_warm=0;
 			
 			name="c h a o s";

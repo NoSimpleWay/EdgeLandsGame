@@ -18,13 +18,15 @@ public class LegendaryWeaponPing extends Weapon {
 		public LegendaryWeaponPing()
 		{
 			super ();
-			base_damage=10;
+			base_damage=5;
 			base_missile_count=1;
 			base_shoot_cooldown=0.03f;
 			base_dispersion=8;
 			base_dispersion_additional=3;
 			base_ammo_size=120;
 			base_reload_time=10/10;
+			
+			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
 			need_warm=7;
 			

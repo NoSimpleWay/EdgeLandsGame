@@ -47,7 +47,7 @@ public class LegendaryModuleUnitEXPLOSIONS extends ModuleUnit {
 		base_duration=1.5f;
 		base_cooldown=60;
 		
-		level=5;
+		level=1;
 		
 		
 		can_be_locked=true;

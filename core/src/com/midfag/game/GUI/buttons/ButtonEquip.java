@@ -1,10 +1,13 @@
 package com.midfag.game.GUI.buttons;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.midfag.equip.energoshield.Energoshield;
 import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.Assets;
+import com.midfag.game.Enums.Rarity;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
@@ -15,8 +18,8 @@ public class ButtonEquip extends Button {
 	public Object obj;
 	public float mov;
 	
-	public float info_x=200;
-	public float info_y=650;
+	public float info_x=90;
+	public float info_y=670;
 	
 	public int inventory_id;
 	
@@ -24,6 +27,9 @@ public class ButtonEquip extends Button {
 	{
 		super (_x,_y);
 		mov=0;
+		
+		spr.setTexture(new Texture(Gdx.files.internal("button_bg_equip.png")));
+		
 		
 		inventory_id=_id;
 		
@@ -98,13 +104,26 @@ public class ButtonEquip extends Button {
 	}
 	
 	
+	public void get_color_by_rarity(Rarity _rar)
+	{
+		if (_rar.equals(Rarity.COMMON)) {standart_color=Color.WHITE;}
+		if (_rar.equals(Rarity.UNCOMMON)) {standart_color=Color.GREEN;}
+		if (_rar.equals(Rarity.RARE)) {standart_color=Color.BLUE;}
+		if (_rar.equals(Rarity.ELITE)) {standart_color=Color.MAGENTA;}
+		if (_rar.equals(Rarity.LEGENDARY)) {standart_color=Color.YELLOW;}
+		if (_rar.equals(Rarity.ANOMALY)) {standart_color=Color.CYAN;}
+		
+	}
+	
 	@Override
 	public void some_update(float _d)
 	{
 		if (!GScreen.show_equip){need_remove=true;}
 		update_object();
 		
-
+		if (obj instanceof ModuleUnit){get_color_by_rarity(((ModuleUnit)obj).rarity);}
+		if (obj instanceof Weapon){get_color_by_rarity(((Weapon)obj).rarity);}
+		if (obj instanceof Energoshield){get_color_by_rarity(((Energoshield)obj).rarity);}
 		
 		if (is_overlap())
 		{
@@ -116,13 +135,16 @@ public class ButtonEquip extends Button {
 			/*Main.shapeRenderer_static.setColor(0.1f, 0.12f, 0.15f,0.5f);
 			Main.shapeRenderer_static.rect(info_x-10, info_y-10-200, 300, 220);*/
 			
-			Main.font.setColor(1.0f, 1.0f, 1.0f, 1);
-			GScreen.batch_static.draw(Assets.rect, info_x-10, info_y-230,650,250);
+			Main.font.setColor(Color.WHITE);
+			//GScreen.batch_static.setColor(1.0f,1.0f,1.0f,1.0f);
+		
+			GScreen.batch_static.setColor(Color.WHITE);
 			
 			if (obj instanceof ModuleUnit)
 			{
 				
 				ModuleUnit m=((ModuleUnit)obj);
+				
 				draw_info(""+((ModuleUnit)obj).get_name(),"");
 				mov+=25;
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
@@ -148,14 +170,17 @@ public class ButtonEquip extends Button {
 			{
 				
 				Weapon w=((Weapon)obj);
+				
+				float mx=0;
+				
 				draw_info(""+((Weapon)obj).get_name()+" ("+w.level+" level)","");
 				//mov+=25;
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=15;
-				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage);
-				if (w.total_fire_damage>0) {color_it (w.total_fire_damage,w.base_fire_damage); draw_info("Урон огнём: ",""+w.total_fire_damage); mov+=5;}
-				if (w.total_cold_damage>0) {color_it (w.total_cold_damage,w.base_fire_damage); draw_info("Урон холодом: ",""+w.total_cold_damage); mov+=5;}
-				mov+=5;
+				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage,1);
+				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage,mx); }
+				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage,mx); }
+				mov+=28;
 				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*10.0f)/10.0f);
 				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion));
 				color_it (w.base_dispersion_additional,w.total_dispersion_additional);draw_info("Dispersion add: ",""+Math.round(w.total_dispersion_additional));
@@ -255,6 +280,7 @@ public class ButtonEquip extends Button {
 					
 					if ((inventory_id<=-10)&&(inventory_id>-15)&&(GScreen.pl.inventory[99] instanceof ModuleUnit))
 					{
+						Gdx.audio.newSound(Gdx.files.internal("module_put.wav")).play(0.2f);
 						Object swap=(ModuleUnit)GScreen.pl.armored_module[Math.abs(inventory_id)-10];
 						GScreen.pl.armored_module[Math.abs(inventory_id)-10]=(ModuleUnit)GScreen.pl.inventory[99];
 						GScreen.pl.inventory[99]=swap;
@@ -297,13 +323,18 @@ public class ButtonEquip extends Button {
 		
 	}
 	
-	public void draw_info(String _s1, String _s2)
+	public void draw_info(String _s1, String _s2, float _x)
 	{
-		Main.font.draw(GScreen.batch_static, _s1, info_x, info_y-mov);
+		Main.font.draw(GScreen.batch_static, _s1, info_x+_x, info_y-mov);
 		
 		if (!_s2.equals(""))
-		{Main.font.draw(GScreen.batch_static, "- "+_s2+" -", info_x+150, info_y-mov);}
-		mov+=20;
+		{Main.font.draw(GScreen.batch_static, _s2, info_x+180+_x, info_y-mov);}
+		if (_x==0) {mov+=17;} 
+	}
+	
+	public void draw_info(String _s1, String _s2)
+	{
+		draw_info(_s1, _s2, 0);
 	}
 	
 }

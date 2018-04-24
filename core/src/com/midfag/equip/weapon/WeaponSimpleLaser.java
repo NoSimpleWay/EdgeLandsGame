@@ -17,13 +17,15 @@ public class WeaponSimpleLaser extends Weapon {
 	
 		public WeaponSimpleLaser()
 		{
-			base_damage=80;
+			base_damage=120;
 			base_missile_count=1;
 			base_shoot_cooldown=1.50f;
 			base_dispersion=10;
 			base_dispersion_additional=10;
 			base_ammo_size=5;
 			base_reload_time=1;
+			
+			fire_multiplier=base_shoot_cooldown/base_missile_count*1.1f;
 			
 			is_rotate_reset_charge=true;
 			
