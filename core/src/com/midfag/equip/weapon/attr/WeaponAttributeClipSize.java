@@ -10,6 +10,7 @@ public class WeaponAttributeClipSize extends WeaponAttribute {
 		cost=3;
 		
 		name="clip size";
+		uid="attr_clip_size";
 	}
 	
 	 //electro engine https://www.freesound.org/home/pending/ 21.02.2017 04^36^13

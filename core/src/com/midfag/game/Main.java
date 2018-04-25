@@ -51,26 +51,26 @@ public class Main extends Game {
         shapeRenderer_static=new ShapeRenderer();
         
 	        ShaderProgram.pedantic = false;
-	        
-			shader=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("d.frag")));
+	       
+			shader=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/d.frag")));
 			if (!shader.isCompiled()) {System.err.println(shader.getLog()); shader=GScreen.batch.getShader();}
 		
-	        shader_time_slow=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("time_slow.frag")));
+	        shader_time_slow=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/time_slow.frag")));
 			if (!shader_time_slow.isCompiled()) {System.err.println(shader_time_slow.getLog()); shader_time_slow=GScreen.batch.getShader();}
 	        
-			shader_dissolve=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("dissolve.frag")));
+			shader_dissolve=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/dissolve.frag")));
 			if (!shader_dissolve.isCompiled()) {System.err.println(shader_dissolve.getLog()); shader_dissolve=GScreen.batch.getShader();}
 			
-			shader_bloom=new ShaderProgram(Gdx.files.internal("d.vert"),(Gdx.files.internal("shader_bloom.frag")));
+			shader_bloom=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/shader_bloom.frag")));
 			if (!shader_bloom.isCompiled()) {System.err.println(shader_bloom.getLog()); shader_bloom=GScreen.batch.getShader();}
         
-        Texture texture = new Texture(Gdx.files.internal("fonts/big.png"));
+        Texture texture = new Texture(Gdx.files.internal("data/fonts/big.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);// true enables mipmaps
-        font_big = new BitmapFont(Gdx.files.internal("fonts/big.fnt"), new TextureRegion(texture), false);
+        font_big = new BitmapFont(Gdx.files.internal("data/fonts/big.fnt"), new TextureRegion(texture), false);
         
-        texture = new Texture(Gdx.files.internal("rus.png"));
+        texture = new Texture(Gdx.files.internal("data/rus.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);// true enables mipmaps
-        font = new BitmapFont(Gdx.files.internal("rus.fnt"), new TextureRegion(texture), false);
+        font = new BitmapFont(Gdx.files.internal("data/rus.fnt"), new TextureRegion(texture), false);
         
         this.setScreen(new GScreen(this));
         shader_default=GScreen.batch.getShader();

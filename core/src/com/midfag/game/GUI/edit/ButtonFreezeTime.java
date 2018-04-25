@@ -2,6 +2,7 @@ package com.midfag.game.GUI.edit;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -19,8 +20,8 @@ public class ButtonFreezeTime extends Button {
 		
 		spr.setSize(55, 55);
 		
-		tex=new Texture(Gdx.files.internal("button_time_freeze_off.png"));
-		tex2=new Texture(Gdx.files.internal("button_time_freeze_on.png"));
+		tex=Assets.load("button_time_freeze_off");
+		tex2=Assets.load("button_time_freeze_on");
 		
 		
 		// TODO Auto-generated constructor stub

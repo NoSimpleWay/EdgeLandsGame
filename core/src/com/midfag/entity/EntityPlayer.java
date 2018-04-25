@@ -48,7 +48,8 @@ import com.midfag.game.skills.weapon_skills.SkillWeapon_BB_AdvancedBloodlust;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_B_Bloodlust;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_DA_WeaponExpert;
 import com.midfag.game.skills.weapon_skills.SkillWeapon_D_WeaponMaster;
-import com.midfag.game.skills.weapon_skills.Skill_Fire;
+import com.midfag.game.skills.weapon_skills.SkillFire;
+import com.midfag.game.skills.weapon_skills.SkillFire_A_ExplodingFire;
 
 public class EntityPlayer extends Entity {
 
@@ -56,9 +57,9 @@ public class EntityPlayer extends Entity {
 	
 	public float teleport_cooldown;
 	
-	public Sprite leg=new Sprite(new Texture(Gdx.files.internal("leg.png")));
-	public Sprite foot=new Sprite(new Texture(Gdx.files.internal("foot.png")));
-	public Sprite foot_shadow=new Sprite(new Texture(Gdx.files.internal("foot_shadow.png")));
+	//public Sprite leg=new Sprite(new Texture(Gdx.files.internal("leg.png")));
+	//public Sprite foot=new Sprite(new Texture(Gdx.files.internal("foot.png")));
+	//public Sprite foot_shadow=new Sprite(new Texture(Gdx.files.internal("foot_shadow.png")));
 	
 	public float leg1_anim;
 	public float leg2_anim;
@@ -87,9 +88,9 @@ public class EntityPlayer extends Entity {
 		
 			{
 				if (i<10)
-				{tex[i]=new Texture(Gdx.files.internal("mech/mech00"+i+".png"));}
+				{tex[i]= Assets.load("mech/mech00"+i);}
 				else
-				{tex[i]=new Texture(Gdx.files.internal("mech/mech0"+i+".png"));}
+				{tex[i]=Assets.load("mech/mech0"+i);}
 				
 				
 				tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
@@ -98,9 +99,9 @@ public class EntityPlayer extends Entity {
 			for (int i=0; i<16; i++)
 			{
 				if (i<10)
-				{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot0"+i+".png"));}
+				{bottom_tex[i]=Assets.load("mech/bot0"+i);}
 				else
-				{bottom_tex[i]=new Texture(Gdx.files.internal("mech/bot"+i+".png"));}
+				{bottom_tex[i]=Assets.load("mech/bot"+i);}
 				
 				bottom_tex[i].setFilter(TextureFilter.Linear, TextureFilter.Linear);
 			}
@@ -117,14 +118,14 @@ public class EntityPlayer extends Entity {
 			spr.setOrigin(45, 0);
 			
 			//foot.setSize(30, 6);
-			foot.setOrigin(15, 1);
+			//foot.setOrigin(15, 1);
 			
 			armored_module[0]=new ModuleUnitTimeSlow();
 			armored_module[0].generate();
 			
 			
-			leg.setOrigin(5, 50);
-			foot_shadow.setOrigin(17, 12);
+			//leg.setOrigin(5, 50);
+			//foot_shadow.setOrigin(17, 12);
 			//is_player
 			
 			speed=250*5.025f;
@@ -199,8 +200,10 @@ public class EntityPlayer extends Entity {
 					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
 						Skills_list.add(subskl.add_subskill(new SkillWeapon_DA_WeaponExpert(), GScreen.pl));
 				
-				skl=new Skill_Fire();
+				skl=new SkillFire();
 				Skills_list.add(skl);
+					subskl=new SkillFire_A_ExplodingFire();
+					Skills_list.add(skl.add_subskill(subskl, GScreen.pl));
 			
 				skl=new SkillGodShield();
 					subskl=new SkillGodShield_A_SuperValue();
@@ -234,7 +237,7 @@ public class EntityPlayer extends Entity {
 		float up=0;
 		if (((leg_anim_mode>=0)&&(_dim==1))||((leg_anim_mode<0)&&(_dim==-1))){up=GScreen.sinR((1-leg1_anim)*90)*5;}
 		
-		leg.setScale(1, 1);
+		/*leg.setScale(1, 1);
 		leg.setRotation((leg1_anim*60*_dim));
 		
 		
@@ -254,6 +257,7 @@ public class EntityPlayer extends Entity {
 		
 		leg.setPosition(pos.x+5, pos.y+5+_y-1.2f);
 		leg.draw(GScreen.batch);
+		*/
 
 	}
 	
@@ -262,6 +266,7 @@ public class EntityPlayer extends Entity {
 		float up=0;
 		if (((leg2_anim_mode>=0)&&(_dim==1))||((leg2_anim_mode<0)&&(_dim==-1))){up=GScreen.sinR((1-leg2_anim)*90)*5;}
 		
+		/*
 		foot.setPosition(pos.x+_x-7, pos.y+_y+up+leg2_anim*24*_dim);
 		foot.draw(GScreen.batch);
 		
@@ -274,6 +279,7 @@ public class EntityPlayer extends Entity {
 		leg.setPosition(pos.x+5+_x, pos.y+5+_y);
 		leg.setScale(1, 1-leg2_anim/2*_dim);
 		leg.draw(GScreen.batch);
+		*/
 	}
 	
 	@Override

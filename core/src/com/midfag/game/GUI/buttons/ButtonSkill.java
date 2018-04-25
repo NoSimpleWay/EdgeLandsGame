@@ -37,7 +37,7 @@ public class ButtonSkill extends Button {
 	{
 		super (_x, _y);
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_bg.png")));
+		spr.setTexture(Assets.load("skill_bg"));
 		spr.setSize(50, 50);
 		
 		size_x=50;

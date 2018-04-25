@@ -5,6 +5,7 @@ import com.midfag.equip.weapon.Weapon;
 
 public class WeaponAttribute {
 	
+	public String uid="base";
 	public float cost;
 	
 	public float level;

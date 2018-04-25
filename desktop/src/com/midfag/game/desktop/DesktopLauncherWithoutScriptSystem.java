@@ -19,7 +19,7 @@ public class DesktopLauncherWithoutScriptSystem {
 		config.height=700;
 		
 		System.gc();
-		config.samples=2;
+		config.samples=4;
 		config.fullscreen=false;
 		//config.fullscreen=false;
 		//config.foregroundFPS = 90;

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -18,7 +19,7 @@ public class SkillWeapon_A_FastReload extends Skill {
 		pos.x=50;
 		pos.y=50;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("icon_fast_reload.png")));
+		spr.setTexture(Assets.load("icon_fast_reload"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Искуссная перезарядка";

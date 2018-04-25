@@ -14,8 +14,7 @@ import com.midfag.entity.EntityHumanNPC;
 import com.midfag.entity.decorations.*;
 
 import com.midfag.entity.enemies.*;
-
-
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.EditMode;
 import com.midfag.game.Enums.EntityType;
 import com.midfag.game.GScreen;
@@ -27,7 +26,7 @@ import com.midfag.game.GUI.buttons.Button;
 public class ButtonChangeMode extends Button {
 
 
-	public Sprite edit_spr=new Sprite(new Texture(Gdx.files.internal("button_entity.png")));; 
+	public Sprite edit_spr=new Sprite(Assets.load("button_entity")); 
 	public String id;
 	public GUIEdit gui;
 	public int em;
@@ -43,9 +42,9 @@ public class ButtonChangeMode extends Button {
 		pos.y=_y;
 	
 		em=_em.ordinal();
-		if (em==EditMode.TILE.ordinal()){edit_spr.setTexture(new Texture(Gdx.files.internal("button_tile.png")));}
-		if (em==EditMode.PATTERN.ordinal()){edit_spr.setTexture(new Texture(Gdx.files.internal("button_pattern.png")));}
-		//spr.setTexture(new Texture(Gdx.files.internal("button_entity.png")));
+		if (em==EditMode.TILE.ordinal()){edit_spr.setTexture(Assets.load("button_tile"));}
+		if (em==EditMode.PATTERN.ordinal()){edit_spr.setTexture(Assets.load("button_pattern"));}
+		//spr.setTexture(Assets.load("button_entity.png")));
 		
 		
 		

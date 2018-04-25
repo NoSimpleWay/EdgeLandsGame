@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;
@@ -44,7 +45,7 @@ public class ButtonSlider extends Button {
 	
 		
 		for (int i=0; i<5; i++)
-		{tex[i]=new Texture(Gdx.files.internal("gui/slider/slider"+i+".png"));}
+		{tex[i]=Assets.load("gui/slider/slider"+i+".png");}
 	}
 	
 	@Override

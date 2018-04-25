@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.skills.Skill;
 
 
@@ -16,7 +17,7 @@ public class SkillShield_AA_ValueHalfDamage extends Skill {
 		pos.x=-00;
 		pos.y=75;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_value_half_damage.png")));
+		spr.setTexture(Assets.load("skill_value_half_damage"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Укрепление";

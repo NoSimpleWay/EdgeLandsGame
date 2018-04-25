@@ -17,6 +17,8 @@ public class WeaponSimpleLaser extends Weapon {
 	
 		public WeaponSimpleLaser()
 		{
+			uid="weapon_simple_laser";
+			
 			base_damage=120;
 			base_missile_count=1;
 			base_shoot_cooldown=1.50f;
@@ -34,7 +36,7 @@ public class WeaponSimpleLaser extends Weapon {
 			
 			name="Лазер";
 			
-			 spr.setTexture(new Texture(Gdx.files.internal("icon_laser.png")));//()=)
+			 spr.setTexture(Assets.load("icon_laser"));//()=)
 		}
 		
 		@Override

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.entity.Entity;
 import com.midfag.equip.module.attr.ModuleAttributeExplosionIce;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Enums.Rarity;
 
@@ -30,8 +31,8 @@ public class ModuleUnitTimeSlow extends ModuleUnit {
 		
 
 		
-		tex=new Texture(Gdx.files.internal("icon_time_control.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_time_slow.png"));
+		tex=Assets.load("icon_time_control");
+		indicate_tex=Assets.load("icon_indicate_time_slow");
 		
 		rarity=Rarity.COMMON;
 		

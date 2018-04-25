@@ -38,11 +38,11 @@ public class ModuleUnitPush extends ModuleUnit {
 		Available_attribute_list.add(new ModuleAttributeExplosionFire());
 		Available_attribute_list.add(new ModuleAttributeExplosionIce());
 		*/
-		model=new Texture(Gdx.files.internal("module_push_model.png"));
+		model=Assets.load("module_push_model");
 
 		
-		tex=new Texture(Gdx.files.internal("icon_push.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_push.png"));
+		tex=Assets.load("icon_push");
+		indicate_tex=Assets.load("icon_indicate_push");
 		rarity=Rarity.COMMON;
 		
 		level=1;

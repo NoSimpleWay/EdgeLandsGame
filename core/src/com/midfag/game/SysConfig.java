@@ -9,7 +9,7 @@ import com.midfag.entity.EntityPlayer;
 import com.midfag.entity.decorations.*;
 import com.midfag.entity.enemies.*;
 import com.midfag.equip.weapon.*;
-import com.midfag.equip.weapon.WeaponSimpleShotgun;
+import com.midfag.equip.weapon.attr.*;
 import com.midfag.game.GUI.buttons.Button;
 
 public class SysConfig {
@@ -18,11 +18,25 @@ public class SysConfig {
 	
 	public static List<Entity> EntityRegisterer = new ArrayList<Entity>();
 	public static List<Weapon> WeaponRegisterer = new ArrayList<Weapon>();
+	public static List<WeaponAttribute> WeaponAttributeRegisterer = new ArrayList<WeaponAttribute>();
 	
 	
 	public  SysConfig()
 	{
 
+	}
+	
+	public static void RegisterWeaponAttribute()
+	{
+		WeaponAttributeRegisterer.add(new WeaponAttributeAccuracy());
+		WeaponAttributeRegisterer.add(new WeaponAttributeAttackSpeed());
+		WeaponAttributeRegisterer.add(new WeaponAttributeChaos());
+		WeaponAttributeRegisterer.add(new WeaponAttributeClipSize());
+		WeaponAttributeRegisterer.add(new WeaponAttributeColdDamage());
+		WeaponAttributeRegisterer.add(new WeaponAttributeDamage());
+		WeaponAttributeRegisterer.add(new WeaponAttributeFireDamage());
+		WeaponAttributeRegisterer.add(new WeaponAttributeReloadSpeed());
+		WeaponAttributeRegisterer.add(new WeaponAttributeStability());
 	}
 	
 	public static void RegisterWeapon()
@@ -91,6 +105,8 @@ public class SysConfig {
 		
 		EntityRegisterer.add(new DecorBuilding00(null));
 		EntityRegisterer.add(new DecorBuilding00_Part00(null));
+		
+		EntityRegisterer.add(new EntitySpawnTower(null));
 		
 		for (int i=0; i<EntityRegisterer.size(); i++)
 		{

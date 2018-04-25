@@ -2,6 +2,7 @@ package com.midfag.game.GUI.edit;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -22,7 +23,7 @@ public class ButtonRandomizeTile extends Button {
 		
 		spr.setSize(55, 55);
 		
-		tex=new Texture(Gdx.files.internal("button_randomize_tile.png"));
+		tex=Assets.load("button_randomize_tile");
 		
 		
 	}

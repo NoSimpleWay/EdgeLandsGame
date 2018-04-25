@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.skills.Skill;
 
 public class SkillWeapon_AA_ReloadChance extends Skill {
@@ -18,7 +19,7 @@ public class SkillWeapon_AA_ReloadChance extends Skill {
 		pos.x=-0;
 		pos.y=50;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("icon_reload_chance.png")));
+		spr.setTexture(Assets.load("icon_reload_chance"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
 		
@@ -29,7 +30,7 @@ public class SkillWeapon_AA_ReloadChance extends Skill {
 		
 		need_to_indicate=true;
 		//skill_a=new SkillShield_A_MoreValue();
-		indicate_tex=new Texture(Gdx.files.internal("icon_reload_chance.png"));
+		indicate_tex=Assets.load("icon_reload_chance");
 		indicate_text="0%";
 		
 	}

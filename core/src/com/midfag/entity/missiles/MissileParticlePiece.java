@@ -18,9 +18,9 @@ public class MissileParticlePiece extends Missile {
 		lifetime=(float) Math.random()*2;
 		
 		if (Math.random()<0.5)
-		{spr.setTexture(new Texture(Gdx.files.internal("particle.png")));}
+		{spr.setTexture(Assets.load("particle"));}
 		else
-		{spr.setTexture(new Texture(Gdx.files.internal("particle2.png")));}
+		{spr.setTexture(Assets.load("particle2"));}
 	
 		spr.setSize((float)(Math.random()*100+5),(float)(Math.random()*100+5));
 		

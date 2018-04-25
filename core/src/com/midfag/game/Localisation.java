@@ -17,7 +17,7 @@ public class Localisation {
 	
 	public static void locad_local()
 	{
-		FileHandle file = Gdx.files.local("local_rus.txt");
+		FileHandle file = Gdx.files.local("data/local_rus.txt");
 		
 		String s=file.readString();
 		String[] lines = s.split("\n");

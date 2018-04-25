@@ -5,6 +5,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -22,7 +23,7 @@ public class ButtonSaveMap extends Button {
 		pos.x=_x;
 		pos.y=_y;
 		
-		tex=new Texture(Gdx.files.internal("button_save_map.png"));
+		tex=Assets.load("button_save_map");
 	}
 	
 	@Override
@@ -106,6 +107,30 @@ public class ButtonSaveMap extends Button {
 						s+=""+e.light_source.light_power+"\n";
 						
 						s+="LightReady"+"\n";
+					}
+					
+					if (e.armored[0]!=null)
+					{
+						s+="ArmoredWeapon"+"\n";
+						s+="weapon_uid"+"\n";
+						s+=""+e.armored[0].uid+"\n";
+						
+						s+="weapon_rarity"+"\n";
+						s+=""+e.armored[0].rarity.ordinal()+"\n";
+						
+						s+="weapon_level"+"\n";
+						s+=""+e.armored[0].level+"\n";
+						
+						s+="WeaponReady"+"\n";
+						
+						for (int attr=0; attr<e.armored[0].Attribute_list.size(); attr++)
+						{
+							s+="WeaponAttr"+"\n";
+							s+=e.armored[0].Attribute_list.get(attr).uid+"\n";
+							s+="WeaponAttrLevel"+"\n";
+							s+=e.armored[0].Attribute_list.get(attr).level+"\n";
+							s+="WeaponAttrReady"+"\n";
+						}
 					}
 
 					

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.energoshield.Energoshield;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -18,7 +19,7 @@ public class SkillNoDeath extends Skill {
 		pos.x=670;
 		pos.y=615;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_no_death.png")));
+		spr.setTexture(Assets.load("skill_no_death"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Достаточно для каждого";

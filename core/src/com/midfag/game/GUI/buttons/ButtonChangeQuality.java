@@ -22,6 +22,7 @@ import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.EquipGenerationType;
 import com.midfag.game.Enums.Rarity;
 
@@ -42,12 +43,12 @@ public class ButtonChangeQuality extends Button {
 		rar=_rar;
 		if (!GScreen.show_equip){need_remove=true;}
 		
-		if (rar==Rarity.COMMON)	{tex=new Texture(Gdx.files.internal("rarity_common.png"));}
-		if (rar==Rarity.UNCOMMON)	{tex=new Texture(Gdx.files.internal("rarity_uncommon.png"));}
-		if (rar==Rarity.RARE)	{tex=new Texture(Gdx.files.internal("rarity_rare.png"));}
-		if (rar==Rarity.ELITE)	{tex=new Texture(Gdx.files.internal("rarity_elite.png"));}
-		if (rar==Rarity.LEGENDARY)	{tex=new Texture(Gdx.files.internal("rarity_legendary.png"));}
-		if (rar==Rarity.ANOMALY)	{tex=new Texture(Gdx.files.internal("rarity_anomaly.png"));}
+		if (rar==Rarity.COMMON)	{tex=Assets.load("rarity_common");}
+		if (rar==Rarity.UNCOMMON)	{tex=Assets.load("rarity_uncommon");}
+		if (rar==Rarity.RARE)	{tex=Assets.load("rarity_rare");}
+		if (rar==Rarity.ELITE)	{tex=Assets.load("rarity_elite");}
+		if (rar==Rarity.LEGENDARY)	{tex=Assets.load("rarity_legendary");}
+		if (rar==Rarity.ANOMALY)	{tex=Assets.load("rarity_anomaly");}
 		
 		// TODO Auto-generated constructor stub
 	}

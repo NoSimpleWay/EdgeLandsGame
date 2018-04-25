@@ -7,6 +7,7 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.EntityType;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
@@ -39,14 +40,14 @@ public class ButtonShowEntityByType extends Button {
 		
 		
 		
-		if (type==EntityType.ENTITY) {tex=new Texture(Gdx.files.internal("button_entity_type_enemy.png"));}
-		if (type==EntityType.BUILDING) {tex=new Texture(Gdx.files.internal("button_entity_type_building.png"));}
-		if (type==EntityType.INDUSTRIAL) {tex=new Texture(Gdx.files.internal("button_entity_type_industrial.png"));}
-		if (type==EntityType.VEHICLE) {tex=new Texture(Gdx.files.internal("button_entity_type_vehicle.png"));}
-		if (type==EntityType.WALL) {tex=new Texture(Gdx.files.internal("button_entity_type_wall.png"));}
-		if (type==EntityType.DECORATION) {tex=new Texture(Gdx.files.internal("button_entity_type_decor.png"));}
-		if (type==EntityType.PLANTS) {tex=new Texture(Gdx.files.internal("button_entity_type_plants.png"));}
-		if (type==EntityType.SYSTEM) {tex=new Texture(Gdx.files.internal("button_entity_type_system.png"));}
+		if (type==EntityType.ENTITY) {tex=Assets.load("button_entity_type_enemy");}
+		if (type==EntityType.BUILDING) {tex=Assets.load("button_entity_type_building");}
+		if (type==EntityType.INDUSTRIAL) {tex=Assets.load("button_entity_type_industrial");}
+		if (type==EntityType.VEHICLE) {tex=Assets.load("button_entity_type_vehicle");}
+		if (type==EntityType.WALL) {tex=Assets.load("button_entity_type_wall");}
+		if (type==EntityType.DECORATION) {tex=Assets.load("button_entity_type_decor");}
+		if (type==EntityType.PLANTS) {tex=Assets.load("button_entity_type_plants");}
+		if (type==EntityType.SYSTEM) {tex=Assets.load("button_entity_type_system");}
 	}
 	
 	@Override

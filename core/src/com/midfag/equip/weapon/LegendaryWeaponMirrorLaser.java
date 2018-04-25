@@ -17,7 +17,9 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 	
 		public LegendaryWeaponMirrorLaser()
 		{
-			base_damage=70;
+			uid="weapon_mirror_laser";
+			
+			base_damage=50;
 			base_missile_count=1;
 			base_shoot_cooldown=0.8f;
 			base_dispersion=10;
@@ -34,7 +36,7 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 			
 			name="Разбитое зеркало";
 			
-			 spr.setTexture(new Texture(Gdx.files.internal("icon_mirror_laser.png")));//()=)
+			 spr.setTexture(Assets.load("icon_mirror_laser"));//()=)
 			 spr.setSize(spr.getTexture().getWidth(), spr.getTexture().getHeight());
 			 
 			 red_text="Разбей большое зеркало - получишь тысячу зеркал!";

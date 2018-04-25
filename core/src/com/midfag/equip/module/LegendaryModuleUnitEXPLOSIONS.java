@@ -12,6 +12,7 @@ import com.midfag.equip.module.attr.ModuleAttributeExplosionIce;
 import com.midfag.equip.module.attr.ModuleAttributeFastCooldown;
 import com.midfag.equip.module.attr.ModuleAttributeMoreTimeSlowResist;
 import com.midfag.equip.module.attr.ModuleAttributeSelfDamageProtect;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.screen_effect.ScreenEffectEXPLOSIONS;
 import com.midfag.game.screen_effect.ScreenEffectTimeStop;
@@ -52,8 +53,8 @@ public class LegendaryModuleUnitEXPLOSIONS extends ModuleUnit {
 		
 		can_be_locked=true;
 		
-		tex=new Texture(Gdx.files.internal("icon_explosion.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_explosion.png"));
+		tex=Assets.load("icon_explosion");
+		indicate_tex=Assets.load("icon_explosion");
 		
 		rarity=Rarity.COMMON;
 		

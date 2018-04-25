@@ -18,7 +18,7 @@ public class MissileExplosion extends Missile {
 		lifetime=0.5f;
 		
 		
-		spr.setTexture(new Texture(Gdx.files.internal("explosion.png")));
+		spr.setTexture(Assets.load("explosion"));
 
 		
 		spr.setSize((float)(Math.random()*5+20),(float)(Math.random()*5+20));
@@ -30,7 +30,7 @@ public class MissileExplosion extends Missile {
 	}
 	
 	
-	public void preupdate(float _d)
+	public void time_action(float _d)
 	{
 		spr.setOrigin(spr.getScaleX()/2f, spr.getScaleY()/2f);
 		

@@ -10,6 +10,7 @@ public class WeaponAttributeStability extends WeaponAttribute {
 		cost=1;
 		
 		name="stability";
+		uid="attr_stability";
 	}
 	
 	@Override

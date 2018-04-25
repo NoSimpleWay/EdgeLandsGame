@@ -7,6 +7,7 @@ import com.midfag.equip.module.attr.ModuleAttributeDuration;
 import com.midfag.equip.module.attr.ModuleAttributeExplosionIce;
 import com.midfag.equip.module.attr.ModuleAttributeFastCooldown;
 import com.midfag.equip.module.attr.ModuleAttributeMoreTimeSlowResist;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.screen_effect.ScreenEffectTimeStop;
 import com.midfag.game.Enums.Rarity;
@@ -39,8 +40,8 @@ public class LegendaryModuleUnitTimeStop extends ModuleUnit {
 		
 		can_be_locked=true;
 		
-		tex=new Texture(Gdx.files.internal("icon_time_stop.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_time_slow.png"));
+		tex=Assets.load("icon_time_stop");
+		indicate_tex=Assets.load("icon_indicate_time_slow");
 		
 		rarity=Rarity.COMMON;
 		

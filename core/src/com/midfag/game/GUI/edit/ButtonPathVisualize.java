@@ -2,6 +2,7 @@ package com.midfag.game.GUI.edit;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.GUI.buttons.Button;
@@ -19,7 +20,7 @@ public class ButtonPathVisualize extends Button {
 		
 		spr.setSize(55, 55);
 		
-		tex=new Texture(Gdx.files.internal("button_path_visualize.png"));
+		tex=Assets.load("button_path_visualize");
 		
 		
 		// TODO Auto-generated constructor stub

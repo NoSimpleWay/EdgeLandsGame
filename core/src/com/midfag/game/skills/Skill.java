@@ -22,7 +22,7 @@ import com.midfag.game.Phys;
 
 @SuppressWarnings("unused")
 public class Skill {
-	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("button.png")));
+	public Sprite spr=new Sprite(Assets.load("button"));
 	public String name="some skill";
 	public Texture indicate_tex;
 	
@@ -78,6 +78,11 @@ public class Skill {
 		
 		
 
+	}
+	
+	public void child_learned()
+	{
+		
 	}
 	
 	public Skill add_subskill(Skill _s, Entity _e)
@@ -209,7 +214,7 @@ public class Skill {
 		
 	}
 
-	public void missile_hit_action(Entity master, Entity near_entity) {
+	public void missile_hit_action(Entity master, Entity near_entity, Missile _mis) {
 		// TODO Auto-generated method stub
 		
 	}

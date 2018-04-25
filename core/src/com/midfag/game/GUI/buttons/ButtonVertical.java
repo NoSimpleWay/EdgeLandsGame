@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.midfag.equip.energoshield.Energoshield;
 import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.ButtonVerticalFunction;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
@@ -20,9 +21,9 @@ public class ButtonVertical extends Button {
 		super(_x, _y);
 		
 		if (_up)
-		{spr.setTexture(new Texture(Gdx.files.internal("button_up.png")));}
+		{spr.setTexture(Assets.load("button_up"));}
 		else
-		{spr.setTexture(new Texture(Gdx.files.internal("button_down.png")));}	
+		{spr.setTexture(Assets.load("button_down"));}	
 		
 		spr.setSize(50, 20);
 		

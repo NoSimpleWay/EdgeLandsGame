@@ -13,9 +13,9 @@ import com.midfag.game.Main;
 public class ScreenEffectEXPLOSIONS extends ScreenEffect {
 	
 	boolean played=false;
-	public Texture exp0=new Texture(Gdx.files.internal("explosion0.png"));
-	public Texture exp1=new Texture(Gdx.files.internal("explosion1.png"));
-	public Texture exp2=new Texture(Gdx.files.internal("explosion2.png"));
+	public Texture exp0=Assets.load("explosion0");
+	public Texture exp1=Assets.load("explosion1");
+	public Texture exp2=Assets.load("explosion2");
 	
 	public Texture big_exp[]=new Texture[11];
 	
@@ -26,7 +26,7 @@ public class ScreenEffectEXPLOSIONS extends ScreenEffect {
 	
 	public ScreenEffectEXPLOSIONS()
 	{
-		sound_effect=Gdx.audio.newSound(Gdx.files.internal("EXPLOSIONS.wav"));
+		sound_effect=Gdx.audio.newSound(Gdx.files.internal("data/EXPLOSIONS.wav"));
 		sound_effect.play();
 		
 		String path="";
@@ -34,7 +34,7 @@ public class ScreenEffectEXPLOSIONS extends ScreenEffect {
 		{
 			if (i<10) {path="0";}else {path="";}
 			
-			big_exp[i]=new Texture(Gdx.files.internal("effect_explosion2/explosion00"+path+i+".png"));
+			big_exp[i]=Assets.load("effect_explosion2/explosion00"+path+i);
 		}
 		//GScreen.batch_static.setShader(Main.shader_time_slow);
 		//Assets.music.setVolume(0.05f);
@@ -71,7 +71,7 @@ public class ScreenEffectEXPLOSIONS extends ScreenEffect {
 			}
 		}
 
-		if ((progress>=1.5f)&&(!played)) {played=true; Gdx.audio.newSound(Gdx.files.internal("bomb_explosion_1.wav")).play();}
+		if ((progress>=1.5f)&&(!played)) {played=true; Gdx.audio.newSound(Gdx.files.internal("data/bomb_explosion_1.wav")).play();}
 		
 		if ((progress>=1.5f))
 		{

@@ -13,6 +13,7 @@ import com.midfag.equip.energoshield.attr.ESAttributeReflect;
 import com.midfag.equip.energoshield.attr.ESAttributeRegen;
 import com.midfag.equip.energoshield.attr.ESAttributeValue;
 import com.midfag.game.GScreen;
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.Rarity;
 
 
@@ -35,7 +36,7 @@ public class Energoshield {
 	public boolean gennable=true;
 	
 	//public Sprite spr=New;
-	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("icon_shield.png")));
+	public Sprite spr=new Sprite(Assets.load("icon_shield"));
 	
 	public List<ESAttribute> Available_attribute_list = new ArrayList<ESAttribute>();
 	

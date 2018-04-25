@@ -28,9 +28,9 @@ public class ModuleUnit {
 	public float total_duration;
 	public float duration;
 	
-	public Texture tex=new Texture(Gdx.files.internal("icon_firle.png"));
-	public Texture indicate_tex=new Texture(Gdx.files.internal("icon_firle.png"));
-	public Texture lock_tex=new Texture(Gdx.files.internal("icon_lock.png"));
+	public Texture tex=Assets.load("icon_firle");
+	public Texture indicate_tex=Assets.load("icon_firle");
+	public Texture lock_tex=Assets.load("icon_firle");
 	public Texture model;
 	public Rarity rarity;
 	public float level=1.0f;

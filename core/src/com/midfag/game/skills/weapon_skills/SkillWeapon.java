@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -18,7 +19,7 @@ public class SkillWeapon extends Skill {
 		pos.x=-110;
 		pos.y=110;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_weapon.png")));
+		spr.setTexture(Assets.load("skill_weapon"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Модернизация оружия";

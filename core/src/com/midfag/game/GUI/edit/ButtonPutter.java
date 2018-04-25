@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;
@@ -15,7 +16,7 @@ import com.midfag.game.GUI.buttons.Button;
 public class ButtonPutter extends Button {
 
 
-	public Sprite edit_spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));; 
+	public Sprite edit_spr=new Sprite(Assets.load("eye")); 
 	public String id;
 	public GUIEdit gui;
 	public Entity e;

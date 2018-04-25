@@ -28,7 +28,7 @@ public class ButtonEquip extends Button {
 		super (_x,_y);
 		mov=0;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("button_bg_equip.png")));
+		spr.setTexture(Assets.load("button_bg_equip"));
 		
 		
 		inventory_id=_id;
@@ -173,13 +173,13 @@ public class ButtonEquip extends Button {
 				
 				float mx=0;
 				
-				draw_info(""+((Weapon)obj).get_name()+" ("+w.level+" level)","");
+				draw_info(""+((Weapon)obj).get_name()+" ("+w.level+" level) "+w.attr_point_indicate,"");
 				//mov+=25;
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=15;
 				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage,1);
-				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage,mx); }
-				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage,mx); }
+				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage*10,mx); }
+				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage*10,mx); }
 				mov+=28;
 				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*10.0f)/10.0f);
 				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion));
@@ -207,7 +207,7 @@ public class ButtonEquip extends Button {
 
 				
 				Energoshield e=((Energoshield)obj);
-				draw_info(""+((Energoshield)obj).name,"("+((Energoshield)obj).attr_point_indicate+","+((Energoshield)obj).level+")");
+				draw_info(""+e.name,"("+e.attr_point_indicate+","+e.level+")");
 				
 				mov+=15;
 				
@@ -280,7 +280,7 @@ public class ButtonEquip extends Button {
 					
 					if ((inventory_id<=-10)&&(inventory_id>-15)&&(GScreen.pl.inventory[99] instanceof ModuleUnit))
 					{
-						Gdx.audio.newSound(Gdx.files.internal("module_put.wav")).play(0.2f);
+						Gdx.audio.newSound(Gdx.files.internal("data/module_put.wav")).play(0.2f);
 						Object swap=(ModuleUnit)GScreen.pl.armored_module[Math.abs(inventory_id)-10];
 						GScreen.pl.armored_module[Math.abs(inventory_id)-10]=(ModuleUnit)GScreen.pl.inventory[99];
 						GScreen.pl.inventory[99]=swap;

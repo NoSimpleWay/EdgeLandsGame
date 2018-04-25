@@ -16,6 +16,8 @@ public class LegendaryWeaponBlender extends Weapon {
 	
 		public LegendaryWeaponBlender()
 		{
+			uid="blender";
+			
 			base_damage=10;
 			base_missile_count=15;
 			base_shoot_cooldown=0.025f;
@@ -35,7 +37,7 @@ public class LegendaryWeaponBlender extends Weapon {
 			
 			missile_speed=1500;
 			
-			spr.setTexture(new Texture(Gdx.files.internal("icon_legendary_ping_minigun.png")));
+			spr.setTexture(Assets.load("icon_legendary_ping_minigun"));
 			
 			red_text="İÒÎ ÂÎÎÁÙÅ ÇÀÊÎÍÍÎ?";
 		}

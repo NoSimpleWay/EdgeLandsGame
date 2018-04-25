@@ -22,7 +22,7 @@ public class EntityTransportDrone extends Entity {
 	
 	public boolean container[]={true, true, true};
 	
-	public static Sound engine=Gdx.audio.newSound(Gdx.files.internal("big_drone_engine.wav"));;
+	public static Sound engine=Gdx.audio.newSound(Gdx.files.internal("data/big_drone_engine.wav"));;
 	long engine_id;
 	
 	public float timer=1f;

@@ -20,6 +20,8 @@ public class WeaponSimpleFirle extends Weapon {
 	
 		public WeaponSimpleFirle()
 		{
+			uid="weapon_simple_firle";
+			
 			base_damage=10;
 			base_missile_count=1;
 			base_shoot_cooldown=0.10f;
@@ -35,7 +37,7 @@ public class WeaponSimpleFirle extends Weapon {
 			
 			name="Винтовка";
 			
-			 spr.setTexture(new Texture(Gdx.files.internal("icon_firle.png")));//()=)
+			 spr.setTexture(Assets.load("icon_firle"));//()=)
 		}
 		
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.energoshield.Energoshield;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -15,7 +16,7 @@ public class SkillShield_C_MoreReflect extends Skill {
 		pos.x=0;
 		pos.y=-70;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_shield_reflect.png")));
+		spr.setTexture(Assets.load("skill_shield_reflect"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Улучшенное отражение";

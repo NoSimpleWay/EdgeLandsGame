@@ -10,6 +10,7 @@ public class WeaponAttributeAccuracy extends WeaponAttribute {
 		cost=1;
 		
 		name="accuracy";
+		uid="attr_accuracy";
 	}
 	
 	@Override

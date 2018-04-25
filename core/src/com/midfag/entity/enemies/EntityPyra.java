@@ -77,8 +77,10 @@ public class EntityPyra extends Entity {
 			
 			if ((is_see)&&(target!=null))
 			{
-				float a=target.pos.x-(pos.x-target.impulse.x);
-		    	float b=target.pos.y-(pos.y-target.impulse.y)-offset.y;
+				float dst=pos.dst(target.pos);
+				
+				float a=target.pos.x+target.impulse.x*dst/750f-(pos.x);
+		    	float b=target.pos.y+target.impulse.y*dst/750f-(pos.y)-offset.y;
 		    	//float c=(float) Math.sqrt((a*a)+(b*b));
 		    	float c=(float) Math.toDegrees(Math.atan2(a, b));
 		    	rot=180-c+180;

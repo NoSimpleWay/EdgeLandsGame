@@ -52,6 +52,7 @@ import com.midfag.game.script.ScriptTimer;
 
 public class GScreen implements Screen {
 	
+	public static List<Entity> temp_entity_list=new ArrayList<Entity>();
 	public static float battle_music_timer=0;
 	public static boolean enemy_see_player=false;
 	public static int WD_active=0;
@@ -88,7 +89,7 @@ public class GScreen implements Screen {
 
     public int draw_distance;
     
-	public static Texture rect_white=new Texture(Gdx.files.internal("rect_white.png"));
+	public static Texture rect_white=Assets.load("rect_white");
     
     Color col1=new Color();
     Color col2=new Color();
@@ -222,7 +223,7 @@ public class GScreen implements Screen {
 	public static boolean path_visualisation=false;
 	public static boolean phys_visualisation=false;
 
-	public static Texture tile_texture=new Texture(Gdx.files.internal("terrain.png"));;
+	public static Texture tile_texture=Assets.load("terrain");
 
 	public static Texture[] tile= new Texture[50];
 
@@ -398,21 +399,22 @@ public class GScreen implements Screen {
 	
 	public static List<Entity> get_entity_list(Vector2 _v)
 	{
-		List<Entity> l=new ArrayList<Entity>();
+		//List<Entity> l=new ArrayList<Entity>();
+		temp_entity_list.clear();
 		
-		cluster_x=(int)(_v.x/300f);
-	    cluster_y=(int)(_v.y/300f);
+		int temp_cluster_x=(int)(_v.x/300f);
+		int temp_cluster_y=(int)(_v.y/300f);
 	        
 	  
-	    for (int x=cluster_x-2; x<=cluster_x+2; x++)
-	    for (int y=cluster_y-2; y<=cluster_y+2; y++)
+	    for (int x=temp_cluster_x-2; x<=temp_cluster_x+2; x++)
+	    for (int y=temp_cluster_y-2; y<=temp_cluster_y+2; y++)
 	    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
 	    for (int i=0; i<cluster[x][y].Entity_list.size();i++)
 	    {
-	    		l.add(cluster[x][y].Entity_list.get(i));
+	    	temp_entity_list.add(cluster[x][y].Entity_list.get(i));
 	    }
 	    
-	    return l;
+	    return temp_entity_list;
 	}
 	
     public GScreen get_this()
@@ -839,7 +841,7 @@ public class GScreen implements Screen {
 
 
 
-    @SuppressWarnings("static-access")
+    //@SuppressWarnings("static-access")
 	@Override
     public void render(float delta) {
     	
@@ -849,7 +851,7 @@ public class GScreen implements Screen {
         }*/
     	if (delta>0.1f) {delta=0.1f;}
     	real_delta=delta;
-    	if (time_freeze) {delta*=0.00f;}
+    	if (time_freeze) {delta*=0.10f;}
     	
     	
     	if ((InputHandler.key==Keys.Q)&&(InputHandler.keyF_release))
@@ -1289,58 +1291,10 @@ public class GScreen implements Screen {
 
 
         
-		for (int y=cluster_y+4; y>=cluster_y-4; y--)
-		{
-			
-			Draw_list.clear();
-			
-	    	for (int x=cluster_x-4; x<=cluster_x+4; x++)
-	    	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-	    	for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-	    	{
-	    		Entity e=cluster[x][y].Entity_list.get(i);
-	    		
-	    		if (!e.hidden)
-	    		{e.draw();}
-	    		///
-	    	}
-	    	
-	    	 for (int k=0; k<Draw_list.size()-1; k++)
-	    	        for (int i=Draw_list.size()-1; i>0; i--)
-	    	        {
-	    	        		Entity e1=Draw_list.get(i);
-	    	        		Entity e2=Draw_list.get(i-1);
-	    	        		
-	    		        	if (
-	    		        		e1.pos.y
-	    		        		>
-	    		        		e2.pos.y
-	    		        		)
-	    		        	{
-	    			        		Entity swap=e1;
-	    			        		Draw_list.set(i, e2);
-	    			        		Draw_list.set(i-1,swap);
-	    		        	}
-
-	    	        }
-	    	 
-	         for (int i=0; i<Draw_list.size(); i++)
-	         {
-	         	Draw_list.get(i).draw_action(delta);
-	         	Draw_list.get(i).effect_draw(delta);
-	         }
-		}
-        
-        
-        add_timer("fill_draw_list");
 		
-		
-	   
-	    
-	    add_timer("sort_draw_list");
 
 	    
-	    @SuppressWarnings("unused")
+	   // @SuppressWarnings("unused")
 		Phys po=null;
     	Missile mis=null;
         for (int i=0; i<Missile_list.size();i++)
@@ -1429,6 +1383,212 @@ public class GScreen implements Screen {
 		            }
 	          	}
         	}
+        	
+        	int fx=0;
+            int fy=0;
+
+
+            Entity near_interact=null;
+            float interact_dist=99999f;
+            
+            //Helper.log("UPDATE BEGIN!");
+
+            //batch.begin();
+          	for (int x=cluster_x-4; x<=cluster_x+4; x++)
+          	for (int y=cluster_y-4; y<=cluster_y+4; y++)
+          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+            {
+            	Entity e=cluster[x][y].Entity_list.get(i);
+            	
+            	if (e.update_calls==0)
+    	        {
+            		
+    		    	if ((!e.hidden)&&((!e.is_decor)||(e.is_interact)))
+    		    	{
+    		    		//e.update_data[e.update_calls]="UPDATE DATA X="+x+" Y="+y+" I="+i;
+    		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+    		    		e.bottom_draw(delta);
+    		    	}
+    		    	
+    		    	if (e.need_change_cluster) {i--; e.need_change_cluster=false;}
+    		    	
+    	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
+    	        	 {
+    	        		 //InputHandler.keyF_release=false;
+    	        		 if (e.pos.dst(pl.pos)<interact_dist)
+    	        		 {
+    	        			 interact_dist=e.pos.dst(pl.pos);
+    	        			 near_interact=e;
+    	        		 } 
+    	        	}
+    	        	 
+    	        	if (e.is_AI)
+    	        	{	
+    	        		if (!e.is_decor)
+    	        		{
+    		        		fx=(int)(e.pos.x/path_cell);
+    			            fy=(int)(e.pos.y/path_cell);
+    			            
+    			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
+    			        	{
+    			        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
+    			        			
+    			        				float dirx=0;
+    				        			float diry=0;
+    				        			float dir=999.0f;
+    				        			
+    			        			
+    				        			int mov_dir=1;
+    				        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
+    				        			{mov_dir=-0;}
+
+    				        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
+    				        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
+    				        			
+    				        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
+    				        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
+    				        			
+    				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
+    			        			
+    			        			
+
+    				        		
+    					        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+    			        	}
+    		        	}
+    	        	}
+            	}
+
+            	
+            }
+          
+          	
+          	if (enemy_see_player_timer>0)
+          	{
+          		enemy_see_player_timer-=real_delta;
+          		
+          		enemy_see_player=true;
+          		if (enemy_see_player_timer<0) {enemy_see_player=false;}
+          	}
+          	
+          	if (enemy_see_player)
+          	{
+          		//{Assets.battle_music_00.play();}
+          		if ((battle_music_timer<0.2f)&&(battle_music_timer+real_delta>=0.2f)) {if(!Assets.battle_music_00.isPlaying()) {Assets.battle_music_00.play(); Assets.battle_music_00.setVolume(0f);} Helper.log("TRY PLAY BATTLE MUSIC");}
+          		if ((battle_music_timer>0.2)&&(battle_music_timer<1.2f)){Assets.battle_music_00.setVolume((battle_music_timer-0.2f)*Assets.battle_music_multiplier);}
+          		if (battle_music_timer<5) {battle_music_timer+=real_delta;}
+          		
+          	}
+          	else
+          	{
+          		if (battle_music_timer>0)
+          		{
+          			battle_music_timer-=real_delta;
+          			if (battle_music_timer<=2) {Assets.battle_music_00.setVolume((battle_music_timer-1f)*Assets.battle_music_multiplier);}
+          			if (battle_music_timer<=0) {Assets.battle_music_00.pause();}
+          			
+          		}
+          	}
+          	
+          	if (near_interact!=null)
+          	{
+       		 if (near_interact.interact_entry_point.equals("#D"))
+       		 {near_interact.default_interact_action(delta); }
+       		 else
+       		 {ScriptSystem.execute(near_interact.interact_entry_point);}
+       		 
+       		 InputHandler.keyF_release=false;
+          	}
+          	
+          	/*
+          	if (pl.need_change_cluster)
+          	{Helper.log("POST CHANGE CLUSTER "+pl.cx+" "+pl.cy);}
+          	*/
+          	
+          		//batch.begin();
+          		//if (false)
+    	      		for (int x=cluster_x-6; x<=cluster_x+6; x++)
+    	          	for (int y=cluster_y-6; y<=cluster_y+6; y++)
+    	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+    	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+    	            {
+    	            	Entity e=cluster[x][y].Entity_list.get(i);
+    	            	
+    	            /*if (e.update_calls>1)
+    	            {
+    	            	e.color_total_G=0.1f;
+    	            	e.color_total_B=0.1f;
+    	           	time_freeze=true;
+    	           
+    	           	Helper.log("_______________");
+    	           	Helper.log(e.update_data[0]);
+    	           	Helper.log(e.update_data[1]);
+    	           }*/
+    	            e.update_calls=0;
+    	            	
+    	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); i--;}
+    	            	//else
+    	            	//if ((!e.hidden)&&(!e.is_decor)&&(e.need_change_cluster))
+    	            	//{
+    	            	//	
+    	            	//	e.change_cluster();
+    	            	//	i--;
+    	            	//}
+    	            }
+    	      		
+    	      		
+          		//batch.end();
+    	      		
+          	add_timer("entity_update");
+          	
+          	
+          	for (int draw_y=cluster_y+4; draw_y>=cluster_y-4; draw_y--)
+    		{
+    			
+    			Draw_list.clear();
+    			
+    	    	for (int draw_x=cluster_x-4; draw_x<=cluster_x+4; draw_x++)
+    	    	if ((draw_x>=0)&&(draw_y>=0)&&(draw_x<30)&&(draw_y<30))
+    	    	for (int i=0; i<cluster[draw_x][draw_y].Entity_list.size();i++)
+    	    	{
+    	    		Entity e=cluster[draw_x][draw_y].Entity_list.get(i);
+    	    		
+    	    		if (!e.hidden)
+    	    		{
+    	    		
+    	    			e.draw();
+    	    		}
+    	    		///
+    	    	}
+    	    	
+    	    	 for (int k=0; k<Draw_list.size()-1; k++)
+    	    	        for (int itr=Draw_list.size()-1; itr>0; itr--)
+    	    	        {
+    	    	        		Entity e1=Draw_list.get(itr);
+    	    	        		Entity e2=Draw_list.get(itr-1);
+    	    	        		
+    	    		        	if (
+    	    		        		e1.pos.y
+    	    		        		>
+    	    		        		e2.pos.y
+    	    		        		)
+    	    		        	{
+    	    			        		Entity swap=e1;
+    	    			        		Draw_list.set(itr, e2);
+    	    			        		Draw_list.set(itr-1,swap);
+    	    		        	}
+
+    	    	        }
+    	    	 
+    	         for (int i=0; i<Draw_list.size(); i++)
+    	         {
+    	         	Draw_list.get(i).draw_action(delta);
+    	         	Draw_list.get(i).effect_draw(delta);
+    	         }
+    		}
+          	
+        	//batch.end();
   		
 		batch.end();
 		
@@ -1478,8 +1638,9 @@ public class GScreen implements Screen {
 				//batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
 				
 				
-				terrain_fbo.end();
+		terrain_fbo.end();
 		batch_static.end();
+		
 		
 		
 		add_timer("draw_FBO");
@@ -1495,7 +1656,7 @@ public class GScreen implements Screen {
 		
 
 		
-
+	   
  		
  		if ((show_edit))
  		{
@@ -1619,7 +1780,8 @@ public class GScreen implements Screen {
 
        
         
- 		sr.setColor(Color.WHITE);
+ 					
+ 		
         
  		if (!pl.rotate_block)
 	    {
@@ -1638,9 +1800,9 @@ public class GScreen implements Screen {
 	    		pl.armored[0].cd+=difference/50f;
 	    		if (pl.armored[0].cd>pl.armored[0].total_shoot_cooldown) {pl.armored[0].cd=pl.armored[0].total_shoot_cooldown;}
 	    		
-	    		sr.begin(ShapeType.Filled);
-	    			sr.circle(pl.pos.x, pl.pos.y, pl.armored[0].cd/pl.armored[0].total_shoot_cooldown*30f);
-	    		sr.end();
+	    		//sr.begin(ShapeType.Filled);
+	    		//	sr.circle(pl.pos.x, pl.pos.y, pl.armored[0].cd/pl.armored[0].total_shoot_cooldown*30f);
+	    		//sr.end();
 	    	}
 	    	
 	    	if (c<0){c=360+c;}
@@ -1680,218 +1842,22 @@ public class GScreen implements Screen {
 	       	 if (Gdx.input.isKeyPressed(Keys.D)){pl.add_impulse( pl.speed, 0,delta*(1-pl.time_slow_resist)+real_delta*pl.time_slow_resist*sp); is_press=true; pl.move_vert=false; pl.direction=1;}
        	 }
        	 
-       	
-       	 
        	 if (!is_press)
 	     {
 
 	       	 //if (time_speed<0.025f){time_speed=0.025f;}
        	 }
-       	
-       	
-       	
 
-       	
-       	
-       	
-
-     	
-    	
             
-        int fx=0;
-        int fy=0;
-
-
-        Entity near_interact=null;
-        float interact_dist=99999f;
         
-        //Helper.log("UPDATE BEGIN!");
-
         
-      	for (int x=cluster_x-4; x<=cluster_x+4; x++)
-      	for (int y=cluster_y-4; y<=cluster_y+4; y++)
-      	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-        for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-        {
-        	Entity e=cluster[x][y].Entity_list.get(i);
-        	
-        	if (e.update_calls==0)
-	        {
-        		
-		    	if ((!e.hidden)&&((!e.is_decor)||(e.is_interact)))
-		    	{
-		    		//e.update_data[e.update_calls]="UPDATE DATA X="+x+" Y="+y+" I="+i;
-		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
-		    	}
-		    	
-		    	if (e.need_change_cluster) {i--; e.need_change_cluster=false;}
-		    	
-	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
-	        	 {
-	        		 //InputHandler.keyF_release=false;
-	        		 if (e.pos.dst(pl.pos)<interact_dist)
-	        		 {
-	        			 interact_dist=e.pos.dst(pl.pos);
-	        			 near_interact=e;
-	        		 }
-	        		 
-	        	}
-	        	 
-	        	if (e.is_AI)
-	        	{	
-	        		if (!e.is_decor)
-	        		{
-		        		fx=(int)(e.pos.x/path_cell);
-			            fy=(int)(e.pos.y/path_cell);
-			            
-			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
-			        	{
-			        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
-			        			
-			        				float dirx=0;
-				        			float diry=0;
-				        			float dir=999.0f;
-				        			
-			        			if (e.stuck<=0)
-			        			{
-				        			int mov_dir=1;
-				        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
-				        			{mov_dir=-0;}
-				        			
-	
-				        			
-				        			/*float uncenterx=e.pos.x-fx*path_cell;
-				        			float uncentery=e.pos.y-fy*path_cell;*/
-				        			
-				        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
-				        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
-				        			
-				        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
-				        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
-				        			
-				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
-				        			//if (Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy])) {dirx=-1;}
-				        			//if (Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy])) {dirx=1;}
-				        			/*
-					        		if (Math.abs(path[fx][fy+1])<dir)
-						        	{dir=Math.abs(path[fx][fy+1]); dirx=0; diry=1;}
-					        		
-					        		if (Math.abs(path[fx+1][fy])<dir)
-						        	{dir=Math.abs(path[fx+1][fy]); dirx=1; diry=0;}
-					        		
-					        		if (Math.abs(path[fx][fy-1])<dir)
-						        	{dir=Math.abs(path[fx][fy-1]); dirx=0; diry=-1;}
-					        		
-					        		if (Math.abs(path[fx-1][fy])<dir)
-						        	{dir=Math.abs(path[fx-1][fy]); dirx=-1; diry=0;}
-						        	*/
-			        			}
-			        			
-				        		if (e.stuck>0)
-				        		{
-					        		if  (path[fx+1][fy-1]<-400) {dirx+=-0.7f; diry+=0.7f;}
-					        		if  (path[fx+1][fy+1]<-400) {dirx+=-0.7f; diry+=-0.7f;}
-					        		if  (path[fx-1][fy+1]<-400) {dirx+=0.7f; diry+=-0.7f;}
-					        		if  (path[fx-1][fy-1]<-400) {dirx+=0.7f; diry+=0.7f;}
-					        		
-					        		e.stuck-=delta;
-				        		}
-				        		
-				        		
-				        		 /*Helper.log("=====");
-				        		 Helper.log("dirx="+dirx);
-				        		 Helper.log("diry="+diry);
-				        		 Helper.log("=   =");*/
-				        		
-				        		
-				        		
-					        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
-				        	/*if (path[fx][fy]<100)
-				        	{path[fx][fy]=700+path[fx][fy];}*/
-		    			
-				        	//path_time[fx][fy]=time;
-			        	}
-		        	}
-	        	}
-        	}
-
-        	
-        }
-      	
-      	if (enemy_see_player_timer>0)
-      	{
-      		enemy_see_player_timer-=real_delta;
-      		
-      		enemy_see_player=true;
-      		if (enemy_see_player_timer<0) {enemy_see_player=false;}
-      	}
-      	
-      	if (enemy_see_player)
-      	{
-      		//{Assets.battle_music_00.play();}
-      		if ((battle_music_timer<0.2f)&&(battle_music_timer+real_delta>=0.2f)) {if(!Assets.battle_music_00.isPlaying()) {Assets.battle_music_00.play(); Assets.battle_music_00.setVolume(0f);} Helper.log("TRY PLAY BATTLE MUSIC");}
-      		if ((battle_music_timer>0.2)&&(battle_music_timer<1.2f)){Assets.battle_music_00.setVolume((battle_music_timer-0.2f)*Assets.battle_music_multiplier);}
-      		if (battle_music_timer<5) {battle_music_timer+=real_delta;}
-      		
-      	}
-      	else
-      	{
-      		if (battle_music_timer>0)
-      		{
-      			battle_music_timer-=real_delta;
-      			if (battle_music_timer<=2) {Assets.battle_music_00.setVolume((battle_music_timer-1f)*Assets.battle_music_multiplier);}
-      			if (battle_music_timer<=0) {Assets.battle_music_00.pause();}
-      			
-      		}
-      	}
-      	
-      	if (near_interact!=null)
-      	{
-   		 if (near_interact.interact_entry_point.equals("#D"))
-   		 {near_interact.default_interact_action(delta); }
-   		 else
-   		 {ScriptSystem.execute(near_interact.interact_entry_point);}
-   		 
-   		 InputHandler.keyF_release=false;
-      	}
-      	
-      	/*
-      	if (pl.need_change_cluster)
-      	{Helper.log("POST CHANGE CLUSTER "+pl.cx+" "+pl.cy);}
-      	*/
-      	
-      		//batch.begin();
-      		//if (false)
-	      		for (int x=cluster_x-6; x<=cluster_x+6; x++)
-	          	for (int y=cluster_y-6; y<=cluster_y+6; y++)
-	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-	            {
-	            	Entity e=cluster[x][y].Entity_list.get(i);
-	            	
-	            /*if (e.update_calls>1)
-	            {
-	            	e.color_total_G=0.1f;
-	            	e.color_total_B=0.1f;
-	           	time_freeze=true;
-	           
-	           	Helper.log("_______________");
-	           	Helper.log(e.update_data[0]);
-	           	Helper.log(e.update_data[1]);
-	           }*/
-	            e.update_calls=0;
-	            	
-	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); i--;}
-	            	//else
-	            	//if ((!e.hidden)&&(!e.is_decor)&&(e.need_change_cluster))
-	            	//{
-	            	//	
-	            	//	e.change_cluster();
-	            	//	i--;
-	            	//}
-	            }
-      		//batch.end();
-      	add_timer("entity_update");
+        
+        add_timer("fill_draw_list");
+		
+		
+	   
+	    
+	    add_timer("sort_draw_list");
       	
       	if ((path_visualisation))
 		{
@@ -2246,8 +2212,10 @@ public class GScreen implements Screen {
 		{
 
 			float camlen=(float) Math.sqrt((camera_target.pos.x-InputHandler.posx)*(camera_target.pos.x-InputHandler.posx)+(camera_target.pos.y-camera_target.z-InputHandler.posy)*(camera_target.pos.y-camera_target.z-InputHandler.posy));
-			camlen/=2;
-		    camera.position.add(-(camera.position.x-camera_target.pos.x+sinR(180-pl.rot)*camlen)/20, -(camera.position.y-camera_target.pos.y+cosR(180-pl.rot)*camlen)/20, 0.0f);
+			camlen/=4;
+			need_zoom=camlen*0.0002f+1;
+			//camera.zoom=camlen*0.001f+1;
+		    camera.position.add(-(camera.position.x-camera_target.pos.x+sinR(180-pl.rot)*camlen)/5, -(camera.position.y-camera_target.pos.y+cosR(180-pl.rot)*camlen)/5, 0.0f);
 		    camera.update();
 			
 		}
@@ -2497,7 +2465,7 @@ public class GScreen implements Screen {
 			
 			near_entity.hit_action(mis.damage,true);
 			near_entity.burn_it(mis.fire_damage);
-			near_entity.freeze_it(mis.cold_damage*10);
+			near_entity.freeze_it(mis.cold_damage);
 		}
 		else
 		{

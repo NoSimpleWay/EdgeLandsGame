@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.entity.Entity;
+import com.midfag.game.Assets;
 import com.midfag.game.skills.Skill;
 
 public class SkillWeapon_BA_TripleShot extends Skill {
@@ -17,7 +18,7 @@ public class SkillWeapon_BA_TripleShot extends Skill {
 		pos.x=-50;
 		pos.y=0;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("icon_triple_shot.png")));
+		spr.setTexture(Assets.load("icon_triple_shot"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Утроение";

@@ -8,6 +8,7 @@ import com.midfag.entity.friends.EntityTurret;
 import com.midfag.equip.module.attr.ModuleAttributeExplosionIce;
 import com.midfag.equip.weapon.Weapon;
 import com.midfag.equip.weapon.WeaponSimpleFirle;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Enums.Rarity;
 
@@ -33,8 +34,8 @@ public class ModuleUnitTurret extends ModuleUnit {
 		
 
 		
-		tex=new Texture(Gdx.files.internal("icon_reload_chance.png"));
-		indicate_tex=new Texture(Gdx.files.internal("icon_indicate_turret.png"));
+		tex=Assets.load("icon_reload_chance");
+		indicate_tex=Assets.load("icon_indicate_turret");
 
 		rarity=Rarity.COMMON;
 		

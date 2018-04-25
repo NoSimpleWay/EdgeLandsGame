@@ -18,7 +18,7 @@ public class EntityVizjun extends Entity {
 	public float jump_time;
 	public float jump_prepare_time;
 	
-	Sprite spr_dust=new Sprite(new Texture(Gdx.files.internal("dust.png")));
+	Sprite spr_dust=new Sprite(Assets.load("dust"));
 	
 	public EntityVizjun(Vector2 _v) {
 		
@@ -29,7 +29,7 @@ public class EntityVizjun extends Entity {
 		
 		burrow=true;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("vizjun.png")));
+		spr.setTexture(Assets.load("vizjun"));
 		spr.setSize(42, 42);
 		
 		armored_shield=new Energoshield();

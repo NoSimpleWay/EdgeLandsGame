@@ -29,6 +29,8 @@ public class LegendaryWeaponChaos extends Weapon {
 		{
 			super();
 			
+			uid="weapon_chaos";
+			
 			base_damage=10;
 			base_missile_count=2;
 			base_shoot_cooldown=0.3f;
@@ -45,10 +47,10 @@ public class LegendaryWeaponChaos extends Weapon {
 			
 			//gennable=false;
 			
-			spr.setTexture(new Texture(Gdx.files.internal("icon_legendary_chaos_shotgun.png")));
+			spr.setTexture(Assets.load("icon_legendary_chaos_shotgun"));
 			spr.setSize(75, 40);
 			
-			model.setTexture(new Texture(Gdx.files.internal("model_shotgun_chaos.png")));
+			model.setTexture(Assets.load("model_shotgun_chaos"));
 			model.setSize(200, 90);
 			
 			Attribute_list.add(new WeaponAttributeChaos());

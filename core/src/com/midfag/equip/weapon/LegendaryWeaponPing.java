@@ -18,6 +18,8 @@ public class LegendaryWeaponPing extends Weapon {
 		public LegendaryWeaponPing()
 		{
 			super ();
+			uid="weapon_ping";
+			
 			base_damage=5;
 			base_missile_count=1;
 			base_shoot_cooldown=0.03f;
@@ -37,10 +39,10 @@ public class LegendaryWeaponPing extends Weapon {
 			
 			name="-Ping 454.739.223.565";
 			
-			spr.setTexture(new Texture(Gdx.files.internal("icon_legendary_ping_minigun.png")));
+			spr.setTexture(Assets.load("icon_firle"));
 			spr.setSize(75, 40);
 			
-			model.setTexture(new Texture(Gdx.files.internal("model_minigun_ping.png")));
+			model.setTexture(Assets.load("model_minigun_ping"));
 			model.setSize(200, 90);
 			
 			 red_text="ѕревышен интервал ожидани€ дл€ запроса.";

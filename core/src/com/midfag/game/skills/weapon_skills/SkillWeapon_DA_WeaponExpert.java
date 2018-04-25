@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -18,7 +19,7 @@ public class SkillWeapon_DA_WeaponExpert extends Skill {
 		pos.x=-50;
 		pos.y=-50;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("icon_weapon_expert.png")));
+		spr.setTexture(Assets.load("icon_weapon_expert"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="На доске почёта";

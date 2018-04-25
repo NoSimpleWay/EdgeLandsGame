@@ -33,6 +33,7 @@ public class Entity {
 	
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
 	public Entity near_object=null;
+	public Texture main_tex=null;
 	
 	public boolean have_collision=true;
 	public int update_calls=0;
@@ -47,7 +48,7 @@ public class Entity {
 	public EntityType type=EntityType.ENTITY;
 	public float mass=100;
 	
-	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("eye.png")));
+	public Sprite spr=new Sprite(Assets.load("eye"));
 	
 	public float time_slow_resist=0;
 	
@@ -241,7 +242,8 @@ public class Entity {
 
 		if (_v != null)
 		{
-			armored[0]=new WeaponRobofirle();
+			//armored[0]=new WeaponRobofirle();
+			armored[0]=null;
 			armored[1]=null;
 			
 			if (armored[0]!=null)
@@ -355,11 +357,14 @@ public class Entity {
 		
 		if ((hurt_sound_cooldown<=0)&(_sound))
 		{
+			/*
 			if (is_AI)
 			{Assets.metal_sound.play(0.05f, (float) (Math.random()*0.2f+1.9f), 0);}
 			else
 			{Assets.plastic.play(0.25f, (float) (Math.random()*0.1f+0.55f), 0);}
+			*/
 			
+			if (!is_AI) {Assets.plastic.play(0.25f, (float) (Math.random()*0.1f+0.55f), 0);}
 			hurt_sound_cooldown=0.25f;
 		}
 		
@@ -1059,10 +1064,29 @@ public class Entity {
 		else
 		{
 
-			impulse.scl(1f/(near_object.mass/mass+1f));
+			//impulse.scl(Math.max(1f/(near_object.mass/mass+1f),0.9f));
 			stuck=0.1f;
-			near_object.add_impulse(impulse.x, impulse.y, 0.5f/(near_object.mass/mass+1f));
+			//near_object.add_impulse(impulse.x, impulse.y, 0.5f/(near_object.mass/mass+1f));
+			float additive_impulse_x=(impulse.x-near_object.impulse.x);
+			float additive_impulse_y=(impulse.y-near_object.impulse.y);
+			//-20-0=-20
 			
+			if (Math.abs(impulse.x)>Math.abs(near_object.impulse.x))
+			{
+				near_object.impulse.x+=additive_impulse_x*mass/(mass+near_object.mass);
+				impulse.x-=additive_impulse_x*(1f-mass/(mass+near_object.mass));
+			}	
+			
+			if (Math.abs(impulse.y)>Math.abs(near_object.impulse.y))
+			{
+				near_object.impulse.y+=additive_impulse_y*mass/(mass+near_object.mass);
+				impulse.y-=additive_impulse_y*(1f-mass/(mass+near_object.mass));
+			}
+			
+			/*
+			pos.x=GScreen.temp_vector_collision_result.x;
+			pos.y=GScreen.temp_vector_collision_result.y;
+			*/
 			//impulse.x+=near_object.impulse.x/10.0f;
 			//impulse.y+=near_object.impulse.y/10.0f;
 			/*
@@ -1102,7 +1126,7 @@ public class Entity {
 			{
 
 				
-				look_cooldown=0.5f;
+				look_cooldown=1.5f;
 				
 				is_see=false;
 				if ((is_enemy)){target=GScreen.pl;}
@@ -1127,11 +1151,11 @@ public class Entity {
 				{
 					List<Entity> l=GScreen.get_entity_list(pos);
 					
-					for (int i=0; i<l.size(); i++)
+					for (int zzz=0; zzz<l.size(); zzz++)
 						{
 						//System.out.println("check "+i);
-							if ((l.get(i).is_enemy!=is_enemy)&&(!l.get(i).is_decor)&&(can_see(l.get(i))))
-							{target=l.get(i); System.out.println("IS_ENEMY "+(l.get(i).is_enemy)); i=999; is_see=true;   break;}
+							if ((l.get(zzz).is_enemy!=is_enemy)&&(!l.get(zzz).is_decor)&&(can_see(l.get(zzz))))
+							{target=l.get(zzz); System.out.println("IS_ENEMY "+(l.get(zzz).is_enemy)); zzz=999; is_see=true;   break;}
 						}
 				}
 			}
@@ -1358,6 +1382,11 @@ public class Entity {
 	}
 
 	public void default_interact_action(float delta) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void bottom_draw(float _d) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -249,7 +249,7 @@ public class InputHandler implements InputProcessor {
 
     			GScreen.skills_camera.update();
     			
-    			Assets.skill_wheel.setTexture(new Texture(Gdx.files.internal("skills_wheel.png")));
+    			Assets.skill_wheel.setTexture(Assets.load("skills_wheel"));
     			Assets.skill_wheel.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear); 
     			GScreen.main_control=false;
     			
@@ -271,8 +271,8 @@ public class InputHandler implements InputProcessor {
     			
     			
     			GScreen.skills_camera.zoom=1;
-    			GScreen.skills_camera.position.x=500;
-    			GScreen.skills_camera.position.y=350;
+    			GScreen.skills_camera.position.x=GScreen.scr_w/2f;
+    			GScreen.skills_camera.position.y=GScreen.scr_h/2f;
     			GScreen.skills_camera.update();
 
     		}

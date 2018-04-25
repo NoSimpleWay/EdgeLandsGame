@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.entity.Entity;
 import com.midfag.entity.missiles.Missile;
+import com.midfag.game.Assets;
 import com.midfag.game.skills.Skill;
 
 public class SkillShield_CB_MoreReflectRegen extends Skill {
@@ -15,7 +16,7 @@ public class SkillShield_CB_MoreReflectRegen extends Skill {
 		pos.x=-35;
 		pos.y=-67;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_shield_reflect_regen.png")));
+		spr.setTexture(Assets.load("skill_shield_reflect_regen"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Возмещение";

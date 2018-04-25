@@ -14,7 +14,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 	
 	public ScreenEffectTimeStop()
 	{
-		sound_effect=Gdx.audio.newSound(Gdx.files.internal("time_stop.wav"));
+		sound_effect=Gdx.audio.newSound(Gdx.files.internal("data/time_stop.wav"));
 		sound_effect.play();
 		GScreen.batch_static.setShader(Main.shader_time_slow);
 		Assets.music.setVolume(0.05f);
@@ -48,7 +48,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		if ((MasterModule.duration<1.5f)&(!played))
 		{
 			played=true;
-			Gdx.audio.newSound(Gdx.files.internal("time_stop_reverse.wav")).play();
+			Gdx.audio.newSound(Gdx.files.internal("data/time_stop_reverse.wav")).play();
 		}
 	}
 	

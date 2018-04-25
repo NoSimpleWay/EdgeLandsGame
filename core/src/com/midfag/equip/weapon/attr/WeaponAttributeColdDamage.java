@@ -10,6 +10,7 @@ public class WeaponAttributeColdDamage extends WeaponAttribute {
 		cost=1;
 		
 		name="fire damage";
+		uid="attr_cold_damage";
 	}
 	
 	public void calculate(Weapon _w)

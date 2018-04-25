@@ -3,6 +3,7 @@ package com.midfag.equip.energoshield;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.midfag.game.Assets;
 
 public class EnergoshieldMirror extends Energoshield {
 	
@@ -17,7 +18,7 @@ public class EnergoshieldMirror extends Energoshield {
 		name="Mirror shield";
 		
 		
-		spr=new Sprite(new Texture(Gdx.files.internal("icon_shield_mirror.png")));
+		spr=new Sprite(Assets.load("icon_shield_mirror"));
 		
 		generate();
 		update_attributes_bonus();

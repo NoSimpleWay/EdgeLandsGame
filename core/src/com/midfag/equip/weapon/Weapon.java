@@ -22,12 +22,14 @@ import com.midfag.equip.weapon.attr.WeaponAttributeDamage;
 import com.midfag.equip.weapon.attr.WeaponAttributeFireDamage;
 import com.midfag.equip.weapon.attr.WeaponAttributeReloadSpeed;
 import com.midfag.equip.weapon.attr.WeaponAttributeStability;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.Enums.Rarity;
 
 public class Weapon {
 
+	public String uid="base"; 
 	public float base_damage=777;
 	public float base_missile_count;
 	public float base_shoot_cooldown;
@@ -58,8 +60,8 @@ public class Weapon {
 	public float add_disp;
 	public float reload_timer;
 	
-	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("icon_firle.png")));
-	public Sprite model=new Sprite(new Texture(Gdx.files.internal("icon_firle.png")));
+	public Sprite spr=new Sprite(Assets.load("icon_firle"));
+	public Sprite model=new Sprite(Assets.load("icon_firle"));
 	
 	public String name;
 	
@@ -85,6 +87,7 @@ public class Weapon {
 	public boolean is_rotate_reset_charge=false;
 	public String red_text="";
 	public float fire_multiplier=0f;
+	public float attr_point_indicate;
 	
 	
 	
@@ -119,7 +122,6 @@ public class Weapon {
 			Available_attribute_list.add(new WeaponAttributeAccuracy());
 			Available_attribute_list.add(new WeaponAttributeStability());
 			Available_attribute_list.add(new WeaponAttributeClipSize());
-			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
 			Available_attribute_list.add(new WeaponAttributeReloadSpeed());
 			
 			Available_attribute_list.add(new WeaponAttributeFireDamage());
@@ -226,10 +228,10 @@ public class Weapon {
 			
 			
 			attr_point=(float) (level*10f*(Math.pow(1.26f,rarity.ordinal())));
+			attr_point_indicate=attr_point;
 			
 			
-			
-			attr_count=(int) (GScreen.rnd(5)+1);
+			attr_count=(int) (GScreen.rnd(3)+1);
 			
 			
 			

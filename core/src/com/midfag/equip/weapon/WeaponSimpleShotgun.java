@@ -11,6 +11,8 @@ public class WeaponSimpleShotgun extends Weapon {
 	
 		public WeaponSimpleShotgun()
 		{
+			uid="weapon_simple_shotgun";
+			
 			base_damage=12;
 			base_missile_count=10;
 			base_shoot_cooldown=1.2f;
@@ -28,10 +30,10 @@ public class WeaponSimpleShotgun extends Weapon {
 			
 			name="Стандартный дробовик";
 			
-			spr.setTexture(new Texture(Gdx.files.internal("icon_shotgun.png")));
+			spr.setTexture(Assets.load("icon_shotgun"));
 			spr.setSize(75, 40);
 			
-			model.setTexture(new Texture(Gdx.files.internal("model_shotgun.png")));
+			model.setTexture(Assets.load("model_shotgun"));
 			model.setSize(200, 90);
 		}
 		

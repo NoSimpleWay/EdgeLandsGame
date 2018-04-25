@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.midfag.equip.energoshield.Energoshield;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.skills.Skill;
 
@@ -18,7 +19,7 @@ public class SkillGodShield extends Skill {
 		pos.x=170;
 		pos.y=215;
 		
-		spr.setTexture(new Texture(Gdx.files.internal("skill_shield_of_god.png")));
+		spr.setTexture(Assets.load("skill_shield_of_god"));
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Божья силушка";

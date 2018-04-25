@@ -5,13 +5,14 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 
 public class Button {
 	public Vector2 pos=new Vector2();
-	public Sprite spr=new Sprite(new Texture(Gdx.files.internal("button.png")));
+	public Sprite spr=new Sprite(Assets.load("button"));
 	
 	public boolean need_remove=false;
 	

@@ -5,6 +5,7 @@ package com.midfag.game.GUI.edit;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
@@ -24,7 +25,7 @@ public class ButtonLoadMap extends Button {
 		pos.x=_x;
 		pos.y=_y;
 		
-		tex=new Texture(Gdx.files.internal("button_load_map.png"));
+		tex=Assets.load("button_load_map");
 		//gui=_gui;
 	}
 	

@@ -183,18 +183,19 @@ public class Missile {
 	}
 	public void draw_shd(float delta) {
 		// TODO Auto-generated method stub
-		GScreen.sr.setColor(1,0.5f,0.2f,shd_lifetime/2.0f);
+		GScreen.sr.setColor(0.2f,0.1f,0.02f,shd_lifetime/2f);
 		
-		GScreen.sr.line(start_x, start_y, pos.x, pos.y);
+		GScreen.sr.rectLine(start_x, start_y, pos.x, pos.y,2);
 		
 	}
 	
 	public void hit_action(Entity near_entity) {
 		// TODO Auto-generated method stub
+		if ((master!=null)&&(master.have_ability))
 		for (int i=0; i<master.Skills_list.size(); i++)
 		{
 			if (master.Skills_list.get(i).learned)
-			{master.Skills_list.get(i).missile_hit_action(master, near_entity);}
+			{master.Skills_list.get(i).missile_hit_action(master, near_entity, this);}
 		}
 		lifetime=-0.1f;
 	}

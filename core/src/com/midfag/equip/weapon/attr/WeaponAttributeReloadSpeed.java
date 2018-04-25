@@ -10,6 +10,7 @@ public class WeaponAttributeReloadSpeed extends WeaponAttribute {
 		cost=4;
 		
 		name="reload speed";
+		uid="attr_reload_speed";
 	}
 	
 	@Override

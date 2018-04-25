@@ -21,7 +21,7 @@ public class EntityTransportDroneContainer extends Entity {
 	Texture tex=Assets.transport_drone;
 	
 	
-	public static Sound engine=Gdx.audio.newSound(Gdx.files.internal("big_drone_engine.wav"));;
+	public static Sound engine=Gdx.audio.newSound(Gdx.files.internal("data/big_drone_engine.wav"));;
 	long engine_id;
 	
 	public float impulse_z=-200;

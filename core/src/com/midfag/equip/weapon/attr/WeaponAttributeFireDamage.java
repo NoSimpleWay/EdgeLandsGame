@@ -10,12 +10,13 @@ public class WeaponAttributeFireDamage extends WeaponAttribute {
 		cost=1;
 		
 		name="fire damage";
+		uid="attr_fire_damage";
 	}
 	
 	public void calculate(Weapon _w)
 	{
 		//_w.total_damage=_w.base_damage*(1f+0.2f*level);
-		_w.total_fire_damage=+_w.fire_multiplier*level*3f;
+		_w.total_fire_damage=+_w.fire_multiplier*level*0.25f;
 		//_w.total_damage=_w.base_damage;
 	}
 }

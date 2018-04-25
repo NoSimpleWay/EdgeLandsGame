@@ -11,6 +11,8 @@ public class WeaponSimpleMinigun extends Weapon {
 	
 		public WeaponSimpleMinigun()
 		{
+			uid="weapon_simple_minigun";
+			
 			base_damage=5;
 			base_missile_count=1;
 			base_shoot_cooldown=0.05f;
@@ -28,10 +30,10 @@ public class WeaponSimpleMinigun extends Weapon {
 			
 			name="Стандартный пулемет";
 			
-			spr.setTexture(new Texture(Gdx.files.internal("icon_minigun.png")));
+			spr.setTexture(Assets.load("icon_minigun"));
 			spr.setSize(75, 40);
 			
-			model.setTexture(new Texture(Gdx.files.internal("model_minigun.png")));
+			model.setTexture(Assets.load("model_minigun"));
 			model.setSize(200, 90);
 		}
 		

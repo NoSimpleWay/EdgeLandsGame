@@ -26,6 +26,7 @@ import com.midfag.game.GScreen;
 import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.SysConfig;
+import com.midfag.game.Assets;
 import com.midfag.game.Enums.EquipGenerationType;
 
 public class ButtonRandomGenerator extends Button {
@@ -43,9 +44,9 @@ public class ButtonRandomGenerator extends Button {
 		egt=_egt;
 		if (!GScreen.show_equip){need_remove=true;}
 		
-		if (egt==EquipGenerationType.WEAPON)	{tex=new Texture(Gdx.files.internal("skill_weapon.png"));}
-		if (egt==EquipGenerationType.SHIELD)	{tex=new Texture(Gdx.files.internal("skill_shield.png"));}
-		if (egt==EquipGenerationType.MODULE)	{tex=new Texture(Gdx.files.internal("icon_time_control.png"));}
+		if (egt==EquipGenerationType.WEAPON)	{tex=Assets.load("skill_weapon");}
+		if (egt==EquipGenerationType.SHIELD)	{tex=Assets.load("skill_shield");}
+		if (egt==EquipGenerationType.MODULE)	{tex=Assets.load("icon_time_control");}
 		
 		// TODO Auto-generated constructor stub
 	}
