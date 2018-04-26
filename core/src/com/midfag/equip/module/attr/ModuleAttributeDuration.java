@@ -12,6 +12,7 @@ public class ModuleAttributeDuration extends ModuleAttribute {
 		cost=1;
 		
 		max_level=300;
+		uid="madu";
 		name="Увеличение длительности";
 	}
 	

@@ -34,8 +34,7 @@ public class LegendaryWeaponPing extends Weapon {
 			
 			rarity=Rarity.LEGENDARY;
 			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="-Ping 454.739.223.565";
 			

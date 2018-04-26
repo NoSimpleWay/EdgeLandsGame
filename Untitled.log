@@ -1,0 +1,869 @@
+Excelsior JET v14.0 Evaluation 64-bit (c) Excelsior 1997,2017
+Active Java SE Version 1.8.0_144 (profile 8144)
+************************  JET v14.0 EVALUATION **************************
+*  This program cannot be used in a business, commercial, government,  *
+*  or  institutional  environment  except  for  evaluation  purposes.  *
+************************************************************************
+Make project "D:\Users\Tom\Downloads\EdgeLandsGame\EdgeLandsGame\Untitled.prj"
+Reading ../../../Documents/compile/EL_optimal.jar ...  251 classes
+Reading ../../../Documents/compile ...  0 classes
+
+Total compilable classes within classpath entries: 251
+
+------------------------  Parsing Stage  ---------------------------------------
+
+   1/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JIJConstants.class
+   2/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader$ManifestInfo.class
+   3/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader.class
+   4/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLConnection.class
+   5/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandler.class
+   6/251: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandlerFactory.class
+   7/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/CubocDesktop.class
+   8/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/desktop/DesktopLauncher.class
+   9/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/desktop/DesktopLauncherWithoutScriptSystem.class
+  10/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/badlogic/gdx/graphics/g2d/CustomSpriteBatch.class
+  11/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Shd.class
+  12/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectShield.class
+  13/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityHumanNPC.class
+  14/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Entity.class
+  15/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityHuman.class
+  16/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdLaser.class
+  17/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdSmoke.class
+  18/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffect.class
+  19/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/LightSource.class
+  20/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdMove.class
+  21/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityPlayer.class
+  22/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Player.class
+  23/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectFreeze.class
+  24/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectExpl.class
+  25/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdFire.class
+  26/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorPowerLine.class
+  27/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeCarcas.class
+  28/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingFloor.class
+  29/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBoxDoor.class
+  30/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStonePilon.class
+  31/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeCystern.class
+  32/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorGraffiti.class
+  33/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneWall.class
+  34/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingRoofLong.class
+  35/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorWallAngleA.class
+  36/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTree.class
+  37/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingWallWindow.class
+  38/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneBarak.class
+  39/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorRabitz2.class
+  40/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTube.class
+  41/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrainVagonRect.class
+  42/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/SystemHelper.class
+  43/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBoxCap.class
+  44/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrainVagonOpen.class
+  45/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding00.class
+  46/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBox.class
+  47/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBarrel.class
+  48/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeBig.class
+  49/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorCystern.class
+  50/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBarrelCrash.class
+  51/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding00_Part00.class
+  52/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/SystemLight.class
+  53/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrain.class
+  54/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingRoof.class
+  55/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelWall.class
+  56/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingWall.class
+  57/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding.class
+  58/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorRabitz.class
+  59/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneWall2.class
+  60/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorWallAngleB.class
+  61/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityPyraFriend.class
+  62/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityVizjun.class
+  63/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityPyra.class
+  64/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityTransportDrone.class
+  65/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityTransportDroneContainer.class
+  66/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityEliteWheel.class
+  67/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityWheel.class
+  68/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/friends/EntityTurret.class
+  69/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileMirrorLaser.class
+  70/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileExplosion.class
+  71/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileLaser.class
+  72/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileParticlePiece.class
+  73/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissilePing.class
+  74/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/Missile.class
+  75/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileChaos.class
+  76/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileCharge.class
+  77/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileSimple.class
+  78/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/Energoshield.class
+  79/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldFast.class
+  80/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldStone.class
+  81/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldSimple.class
+  82/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldRobo.class
+  83/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldMirror.class
+  84/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttribute.class
+  85/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeRegen.class
+  86/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeCharge.class
+  87/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeReflect.class
+  88/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeValue.class
+  89/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitPush.class
+  90/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/LegendaryModuleUnitEXPLOSIONS.class
+  91/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitTurret.class
+  92/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnit.class
+  93/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitTimeSlow.class
+  94/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/LegendaryModuleUnitTimeStop.class
+  95/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeDuration.class
+  96/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionFire.class
+  97/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeBurnDamage.class
+  98/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributePushDamage.class
+  99/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttribute.class
+ 100/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeSelfDamageProtect.class
+ 101/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeMoreTimeSlowResist.class
+ 102/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionDamage.class
+ 103/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeFastCooldown.class
+ 104/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionIce.class
+ 105/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponMirrorLaser.class
+ 106/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponPing.class
+ 107/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleShotgun.class
+ 108/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponBlender.class
+ 109/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleMinigun.class
+ 110/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponRobofirle.class
+ 111/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleLaser.class
+ 112/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponChaos.class
+ 113/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/Weapon.class
+ 114/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleFirle.class
+ 115/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeAttackSpeed.class
+ 116/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeClipSize.class
+ 117/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeAccuracy.class
+ 118/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeColdDamage.class
+ 119/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeDamage.class
+ 120/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttribute.class
+ 121/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeChaos.class
+ 122/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeStability.class
+ 123/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeFireDamage.class
+ 124/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeReloadSpeed.class
+ 125/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$ButtonVerticalFunction.class
+ 126/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$DecorType.class
+ 127/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EditMode.class
+ 128/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EntityType.class
+ 129/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EquipGenerationType.class
+ 130/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutOffsetXType.class
+ 131/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutOffsetYType.class
+ 132/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutPositionXType.class
+ 133/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutPositionYType.class
+ 134/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$Rarity.class
+ 135/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$TextInputMode.class
+ 136/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$WorldConfigMode.class
+ 137/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums.class
+ 138/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Localisation.class
+ 139/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/LightSystem.class
+ 140/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/TextInput.class
+ 141/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Assets.class
+ 142/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Main.class
+ 143/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Phys.class
+ 144/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Cluster.class
+ 145/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/InputHandler.class
+ 146/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GScreen.class
+ 147/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Helper.class
+ 148/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/SysConfig.class
+ 149/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUI.class
+ 150/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUIDialog.class
+ 151/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonDialogSelect.class
+ 152/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/DialogPool.class
+ 153/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUISkillsWheel.class
+ 154/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUIInventory.class
+ 155/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonDialogNext.class
+ 156/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonLayout.class
+ 157/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonSkill.class
+ 158/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonVertical.class
+ 159/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonEquip.class
+ 160/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonChangeQuality.class
+ 161/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonRandomGenerator.class
+ 162/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/Button.class
+ 163/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/cinematic/GUICinematic.class
+ 164/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/cinematic/CinematicFilm.class
+ 165/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPutterTile.class
+ 166/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonSlider.class
+ 167/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/GUIEdit.class
+ 168/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonChangeMode.class
+ 169/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPutter.class
+ 170/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonLoadMap.class
+ 171/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPhysVisualize.class
+ 172/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPathVisualize.class
+ 173/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonRandomizeTile.class
+ 174/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPattern.class
+ 175/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonFreezeTime.class
+ 176/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonShowEntityByType.class
+ 177/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/TilePattern.class
+ 178/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonEdit.class
+ 179/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonChunkInfo.class
+ 180/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonSaveMap.class
+ 181/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugShadowMapOpacity.class
+ 182/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationSpreadPass.class
+ 183/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebug.class
+ 184/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationBlurPass.class
+ 185/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorB.class
+ 186/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationPower.class
+ 187/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorR.class
+ 188/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorG.class
+ 189/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffectEXPLOSIONS.class
+ 190/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffect.class
+ 191/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffectTimeStop.class
+ 192/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/ScriptSystem.class
+ 193/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/ScriptTimer.class
+ 194/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionEntityCount.class
+ 195/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionEntryPoint.class
+ 196/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogInit.class
+ 197/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraZoom.class
+ 198/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicClose.class
+ 199/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddEntityToMap.class
+ 200/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicInit.class
+ 201/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicAddFilm.class
+ 202/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddTimer.class
+ 203/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraAutoZoom.class
+ 204/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionPlayerInMech.class
+ 205/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogAddText.class
+ 206/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionEntityTarget.class
+ 207/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddDialogSelectButton.class
+ 208/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionDistantionToEntity.class
+ 209/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraTarget.class
+ 210/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionPlaySound.class
+ 211/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionZ.class
+ 212/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionID.class
+ 213/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogRemoveButton.class
+ 214/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionTimerAction.class
+ 215/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogAddFlyText.class
+ 216/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionFindAndPushEntity.class
+ 217/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDroneDrop.class
+ 218/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionFindAndChangeData.class
+ 219/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptAction.class
+ 220/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionControl.class
+ 221/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogExitPoint.class
+ 222/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionSay.class
+ 223/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/VariableNum.class
+ 224/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/VariableBool.class
+ 225/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/Variable.class
+ 226/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/Skill.class
+ 227/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/GlobalSkillList.class
+ 228/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_BA_WarmProtect.class
+ 229/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_CB_MoreReflectRegen.class
+ 230/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillNoDeath.class
+ 231/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield.class
+ 232/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_BB_RestoreSpeed.class
+ 233/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_AA_ValueHalfDamage.class
+ 234/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_A_MoreValue.class
+ 235/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_CA_MoreReflectDouble.class
+ 236/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_C_MoreReflect.class
+ 237/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_A_SuperValue.class
+ 238/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_C_SuperReflect.class
+ 239/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield.class
+ 240/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_B_SuperRegen.class
+ 241/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_AB_ValueHalfDamageTime.class
+ 242/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_B_MoreRegen.class
+ 243/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_AA_ReloadChance.class
+ 244/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_DA_WeaponExpert.class
+ 245/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_B_Bloodlust.class
+ 246/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_A_FastReload.class
+ 247/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_D_WeaponMaster.class
+ 248/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_BA_TripleShot.class
+ 249/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_AB_AmmoOrReload.class
+ 250/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon.class
+ 251/251: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_BB_AdvancedBloodlust.class
+
+List of absent classes:
+  com/badlogic/gdx/backends/lwjgl/LwjglApplication
+  com/badlogic/gdx/Game
+  com/badlogic/gdx/Audio
+  com/badlogic/gdx/Gdx
+  com/badlogic/gdx/Files
+  com/badlogic/gdx/files/FileHandle
+  com/badlogic/gdx/audio/Sound
+  com/badlogic/gdx/audio/Music
+  com/badlogic/gdx/graphics/g2d/Sprite
+  com/badlogic/gdx/graphics/Texture
+  com/badlogic/gdx/graphics/Texture$TextureFilter
+  com/badlogic/gdx/Screen
+  com/badlogic/gdx/graphics/Color
+  com/badlogic/gdx/graphics/Pixmap
+  com/badlogic/gdx/graphics/Pixmap$Format
+  com/badlogic/gdx/math/Vector2
+  com/badlogic/gdx/graphics/glutils/FrameBuffer
+  com/badlogic/gdx/graphics/g2d/SpriteBatch
+  com/badlogic/gdx/graphics/g2d/Batch
+  com/badlogic/gdx/graphics/g2d/BitmapFont
+  com/badlogic/gdx/graphics/g2d/GlyphLayout
+  com/badlogic/gdx/graphics/Mesh$VertexDataType
+  com/badlogic/gdx/graphics/glutils/ShaderProgram
+  com/badlogic/gdx/math/Matrix4
+  com/badlogic/gdx/graphics/GL30
+  com/badlogic/gdx/graphics/Mesh
+  com/badlogic/gdx/graphics/VertexAttribute
+  com/badlogic/gdx/Graphics
+  com/badlogic/gdx/graphics/GL20
+  com/badlogic/gdx/graphics/glutils/ShapeRenderer
+  com/badlogic/gdx/graphics/OrthographicCamera
+  com/badlogic/gdx/math/Vector3
+  com/badlogic/gdx/Input
+  com/badlogic/gdx/InputProcessor
+  com/badlogic/gdx/Input$TextInputListener
+  com/badlogic/gdx/utils/NumberUtils
+  com/badlogic/gdx/math/MathUtils
+  com/badlogic/gdx/graphics/g2d/TextureRegion
+  com/badlogic/gdx/math/Affine2
+  com/badlogic/gdx/utils/TimeUtils
+  com/badlogic/gdx/graphics/GLTexture
+  com/badlogic/gdx/Graphics$BufferFormat
+  com/badlogic/gdx/graphics/glutils/ShapeRenderer$ShapeType
+  com/badlogic/gdx/graphics/g2d/BitmapFont$BitmapFontData
+  com/badlogic/gdx/ApplicationListener
+  com/badlogic/gdx/Application
+  com/badlogic/gdx/backends/lwjgl/LwjglApplicationConfiguration
+  com/badlogic/gdx/Graphics$DisplayMode
+
+List of classes with absent superclass or superinterface:
+  com/midfag/game/Main 
+	superclass com/badlogic/gdx/Game
+  com/midfag/game/GScreen 
+	superclass com/badlogic/gdx/Screen
+  com/badlogic/gdx/graphics/g2d/CustomSpriteBatch 
+	superclass com/badlogic/gdx/graphics/g2d/Batch
+  com/midfag/game/InputHandler 
+	superclass com/badlogic/gdx/InputProcessor
+  com/midfag/game/TextInput 
+	superclass com/badlogic/gdx/Input$TextInputListener
+-------------------------------------------------------------------
+files: 251  errors: 0  warnings: 0  notices: 0
+
+--------------------  Inline Planning Stage  -----------------------------------
+                    
+
+-------------------------------------------------------------------
+
+------------------------  Codegen Stage  ---------------------------------------
+
+  0% done, 246/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_BB_AdvancedBloodlust.class
+errors(0), warnings(0), notes(0); bytes(13129), time  0.54
+  0% done, 245/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon.class
+errors(0), warnings(0), notes(0); bytes(12461), time  0.52
+  0% done, 244/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_AB_AmmoOrReload.class
+errors(0), warnings(0), notes(0); bytes(13527), time  0.50
+  1% done, 243/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_BA_TripleShot.class
+errors(0), warnings(0), notes(0); bytes(10476), time  0.37
+  1% done, 242/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_D_WeaponMaster.class
+errors(0), warnings(0), notes(0); bytes(13121), time  0.49
+  2% done, 241/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_A_FastReload.class
+errors(0), warnings(0), notes(0); bytes(12824), time  0.51
+  2% done, 240/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_B_Bloodlust.class
+errors(0), warnings(0), notes(0); bytes(12847), time  0.50
+  2% done, 239/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_DA_WeaponExpert.class
+errors(0), warnings(0), notes(0); bytes(13152), time  0.50
+  3% done, 238/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/weapon_skills/SkillWeapon_AA_ReloadChance.class
+errors(0), warnings(0), notes(0); bytes(11944), time  0.39
+  3% done, 237/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_B_MoreRegen.class
+errors(0), warnings(0), notes(0); bytes(11904), time  0.47
+  4% done, 236/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_AB_ValueHalfDamageTime.class
+errors(0), warnings(0), notes(0); bytes(11153), time  0.37
+  4% done, 235/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_B_SuperRegen.class
+errors(0), warnings(0), notes(0); bytes(12487), time  0.48
+  4% done, 234/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield.class
+errors(0), warnings(0), notes(0); bytes(12138), time  0.47
+  5% done, 233/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_C_SuperReflect.class
+errors(0), warnings(0), notes(0); bytes(12578), time  0.47
+  5% done, 232/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield_A_SuperValue.class
+errors(0), warnings(0), notes(0); bytes(12510), time  0.48
+  6% done, 231/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_C_MoreReflect.class
+errors(0), warnings(0), notes(0); bytes(11975), time  0.48
+  6% done, 230/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_CA_MoreReflectDouble.class
+errors(0), warnings(0), notes(0); bytes(10433), time  0.06
+  6% done, 229/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_A_MoreValue.class
+errors(0), warnings(0), notes(0); bytes(12496), time  0.48
+  7% done, 228/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_AA_ValueHalfDamage.class
+errors(0), warnings(0), notes(0); bytes(10858), time  0.37
+  7% done, 227/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_BB_RestoreSpeed.class
+errors(0), warnings(0), notes(0); bytes(9767), time  0.06
+  8% done, 226/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillGodShield.class
+errors(0), warnings(0), notes(0); bytes(12198), time  0.77
+  8% done, 225/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillNoDeath.class
+errors(0), warnings(0), notes(0); bytes(12009), time  0.48
+  8% done, 224/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_CB_MoreReflectRegen.class
+errors(0), warnings(0), notes(0); bytes(10497), time  0.37
+  9% done, 223/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/shield_skills/SkillShield_BA_WarmProtect.class
+errors(0), warnings(0), notes(0); bytes(10828), time  0.36
+  9% done, 222/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/GlobalSkillList.class
+errors(0), warnings(0), notes(0); bytes(4135), time  0.03
+ 10% done, 221/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/skills/Skill.class
+errors(0), warnings(0), notes(0); bytes(22814), time  0.92
+ 10% done, 220/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/Variable.class
+errors(0), warnings(0), notes(0); bytes(3464), time  0.01
+ 10% done, 219/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/VariableBool.class
+errors(0), warnings(0), notes(0); bytes(3714), time  0.02
+ 11% done, 218/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/variables/VariableNum.class
+errors(0), warnings(0), notes(0); bytes(3696), time  0.01
+ 11% done, 217/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionSay.class
+errors(0), warnings(0), notes(0); bytes(4599), time  0.01
+ 12% done, 216/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogExitPoint.class
+errors(0), warnings(0), notes(0); bytes(5174), time  0.31
+ 12% done, 215/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionControl.class
+errors(0), warnings(0), notes(0); bytes(5460), time  0.05
+ 13% done, 214/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptAction.class
+errors(0), warnings(0), notes(0); bytes(4014), time  0.01
+ 13% done, 213/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionFindAndChangeData.class
+errors(0), warnings(0), notes(0); bytes(7104), time  0.43
+ 13% done, 212/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDroneDrop.class
+errors(0), warnings(0), notes(0); bytes(6470), time  0.42
+ 14% done, 211/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionFindAndPushEntity.class
+errors(0), warnings(0), notes(0); bytes(7531), time  0.40
+ 14% done, 210/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogAddFlyText.class
+errors(0), warnings(0), notes(0); bytes(8212), time  0.41
+ 15% done, 209/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionTimerAction.class
+errors(0), warnings(0), notes(0); bytes(5901), time  0.38
+ 15% done, 208/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogRemoveButton.class
+errors(0), warnings(0), notes(0); bytes(7264), time  0.47
+ 15% done, 207/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionID.class
+errors(0), warnings(0), notes(0); bytes(3620), time  0.02
+ 16% done, 206/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionZ.class
+errors(0), warnings(0), notes(0); bytes(3835), time  0.02
+ 16% done, 205/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionPlaySound.class
+errors(0), warnings(0), notes(0); bytes(6857), time  0.35
+ 17% done, 204/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraTarget.class
+errors(0), warnings(0), notes(0); bytes(5453), time  0.04
+ 17% done, 203/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionDistantionToEntity.class
+errors(0), warnings(0), notes(0); bytes(8203), time  0.37
+ 17% done, 202/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddDialogSelectButton.class
+errors(0), warnings(0), notes(0); bytes(5041), time  0.06
+ 18% done, 201/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionEntityTarget.class
+errors(0), warnings(0), notes(0); bytes(6256), time  0.34
+ 18% done, 200/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogAddText.class
+errors(0), warnings(0), notes(0); bytes(7522), time  0.39
+ 19% done, 199/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionPlayerInMech.class
+errors(0), warnings(0), notes(0); bytes(6279), time  0.06
+ 19% done, 198/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraAutoZoom.class
+errors(0), warnings(0), notes(0); bytes(5181), time  0.33
+ 19% done, 197/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddTimer.class
+errors(0), warnings(0), notes(0); bytes(5802), time  0.05
+ 20% done, 196/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicAddFilm.class
+errors(0), warnings(0), notes(0); bytes(4711), time  0.34
+ 20% done, 195/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicInit.class
+errors(0), warnings(0), notes(0); bytes(5590), time  0.05
+ 21% done, 194/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionAddEntityToMap.class
+errors(0), warnings(0), notes(0); bytes(7107), time  0.37
+ 21% done, 193/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCinematicClose.class
+errors(0), warnings(0), notes(0); bytes(5714), time  0.06
+ 21% done, 192/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionCameraZoom.class
+errors(0), warnings(0), notes(0); bytes(6638), time  0.34
+ 22% done, 191/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionDialogInit.class
+errors(0), warnings(0), notes(0); bytes(7221), time  0.42
+ 22% done, 190/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptActionEntryPoint.class
+errors(0), warnings(0), notes(0); bytes(3716), time  0.02
+ 23% done, 189/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/actions/ScriptConditionEntityCount.class
+errors(0), warnings(0), notes(0); bytes(5999), time  0.04
+ 23% done, 188/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/ScriptTimer.class
+errors(0), warnings(0), notes(0); bytes(4145), time  0.32
+ 23% done, 187/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/script/ScriptSystem.class
+errors(0), warnings(0), notes(0); bytes(32049), time  2.68
+ 24% done, 186/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffectTimeStop.class
+errors(0), warnings(0), notes(0); bytes(13024), time  0.52
+ 24% done, 185/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffect.class
+errors(0), warnings(0), notes(0); bytes(5193), time  0.03
+ 25% done, 184/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/screen_effect/ScreenEffectEXPLOSIONS.class
+errors(0), warnings(0), notes(0); bytes(16195), time  1.05
+ 25% done, 183/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorG.class
+errors(0), warnings(0), notes(0); bytes(13512), time  0.97
+ 26% done, 182/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorR.class
+errors(0), warnings(0), notes(0); bytes(13512), time  0.97
+ 26% done, 181/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationPower.class
+errors(0), warnings(0), notes(0); bytes(9193), time  0.40
+ 26% done, 180/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationColorB.class
+errors(0), warnings(0), notes(0); bytes(13512), time  0.97
+ 27% done, 179/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationBlurPass.class
+errors(0), warnings(0), notes(0); bytes(9940), time  0.49
+ 27% done, 178/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebug.class
+errors(0), warnings(0), notes(0); bytes(7805), time  0.05
+ 28% done, 177/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugIlluminationSpreadPass.class
+errors(0), warnings(0), notes(0); bytes(9990), time  0.48
+ 28% done, 176/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/world_debug/WorldDebugShadowMapOpacity.class
+errors(0), warnings(0), notes(0); bytes(10071), time  0.48
+ 28% done, 175/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonSaveMap.class
+errors(0), warnings(0), notes(0); bytes(22957), time  1.58
+ 29% done, 174/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonChunkInfo.class
+errors(0), warnings(0), notes(0); bytes(10369), time  0.39
+ 29% done, 173/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonEdit.class
+errors(0), warnings(0), notes(0); bytes(11065), time  0.42
+ 30% done, 172/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/TilePattern.class
+errors(0), warnings(0), notes(0); bytes(4750), time  0.03
+ 30% done, 171/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonShowEntityByType.class
+errors(0), warnings(0), notes(0); bytes(17646), time  0.93
+ 30% done, 170/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonFreezeTime.class
+errors(0), warnings(0), notes(0); bytes(11986), time  0.54
+ 31% done, 169/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPattern.class
+errors(0), warnings(0), notes(0); bytes(15238), time  1.33
+ 31% done, 168/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonRandomizeTile.class
+errors(0), warnings(0), notes(0); bytes(13808), time  1.26
+ 32% done, 167/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPathVisualize.class
+errors(0), warnings(0), notes(0); bytes(10517), time  0.54
+ 32% done, 166/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPhysVisualize.class
+errors(0), warnings(0), notes(0); bytes(10517), time  0.09
+ 32% done, 165/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonLoadMap.class
+errors(0), warnings(0), notes(0); bytes(11074), time  0.68
+ 33% done, 164/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPutter.class
+errors(0), warnings(0), notes(0); bytes(15341), time  0.12
+ 33% done, 163/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonChangeMode.class
+errors(0), warnings(0), notes(0); bytes(25938), time  0.51
+ 34% done, 162/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/GUIEdit.class
+errors(0), warnings(0), notes(0); bytes(75164), time  0.90
+ 34% done, 161/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonSlider.class
+errors(0), warnings(0), notes(0); bytes(16803), time  0.40
+ 34% done, 160/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/edit/ButtonPutterTile.class
+errors(0), warnings(0), notes(0); bytes(11213), time  0.10
+ 35% done, 159/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/cinematic/CinematicFilm.class
+errors(0), warnings(0), notes(0); bytes(14602), time  0.14
+ 35% done, 158/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/cinematic/GUICinematic.class
+errors(0), warnings(0), notes(0); bytes(10770), time  0.11
+ 36% done, 157/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/Button.class
+errors(0), warnings(0), notes(0); bytes(16783), time  0.21
+ 36% done, 156/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonRandomGenerator.class
+errors(0), warnings(0), notes(0); bytes(19278), time  0.52
+ 36% done, 155/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonChangeQuality.class
+errors(0), warnings(0), notes(0); bytes(16122), time  0.44
+ 37% done, 154/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonEquip.class
+errors(0), warnings(0), notes(0); bytes(39357), time  2.14
+ 37% done, 153/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonVertical.class
+errors(0), warnings(0), notes(0); bytes(11598), time  0.24
+ 38% done, 152/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/buttons/ButtonSkill.class
+errors(0), warnings(0), notes(0); bytes(33695), time  0.77
+ 38% done, 151/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonLayout.class
+errors(0), warnings(0), notes(0); bytes(15714), time  0.42
+ 39% done, 150/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonDialogNext.class
+errors(0), warnings(0), notes(0); bytes(10949), time  0.18
+ 39% done, 149/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUIInventory.class
+errors(0), warnings(0), notes(0); bytes(5225), time  0.05
+ 39% done, 148/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUISkillsWheel.class
+errors(0), warnings(0), notes(0); bytes(10820), time  0.15
+ 40% done, 147/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/DialogPool.class
+errors(0), warnings(0), notes(0); bytes(4422), time  0.02
+ 40% done, 146/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/ButtonDialogSelect.class
+errors(0), warnings(0), notes(0); bytes(10716), time  0.14
+ 41% done, 145/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUIDialog.class
+errors(0), warnings(0), notes(0); bytes(24440), time  0.51
+ 41% done, 144/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/GUI/GUI.class
+errors(0), warnings(0), notes(0); bytes(7342), time  0.08
+ 41% done, 143/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/SysConfig.class
+errors(0), warnings(0), notes(0); bytes(25120), time  0.93
+ 42% done, 142/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Helper.class
+errors(0), warnings(0), notes(0); bytes(30824), time  0.96
+ 42% done, 141/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Cluster.class
+errors(0), warnings(0), notes(0); bytes(4481), time  0.02
+ 43% done, 140/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Phys.class
+errors(0), warnings(0), notes(0); bytes(22788), time  0.61
+ 43% done, 139/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Assets.class
+errors(0), warnings(0), notes(0); bytes(118179), time  2.16
+ 43% done, 138/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/LightSystem.class
+errors(0), warnings(0), notes(0); bytes(24096), time  0.69
+ 44% done, 137/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Localisation.class
+errors(0), warnings(0), notes(0); bytes(10748), time  0.12
+ 44% done, 136/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums.class
+errors(0), warnings(0), notes(0); bytes(3915), time  0.01
+ 45% done, 135/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$WorldConfigMode.class
+errors(0), warnings(0), notes(0); bytes(7569), time  0.04
+ 45% done, 134/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$TextInputMode.class
+errors(0), warnings(0), notes(0); bytes(7403), time  0.03
+ 45% done, 133/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$Rarity.class
+errors(0), warnings(0), notes(0); bytes(8239), time  0.04
+ 46% done, 132/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutPositionYType.class
+errors(0), warnings(0), notes(0); bytes(8101), time  0.03
+ 46% done, 131/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutPositionXType.class
+errors(0), warnings(0), notes(0); bytes(8109), time  0.04
+ 47% done, 130/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutOffsetYType.class
+errors(0), warnings(0), notes(0); bytes(7714), time  0.03
+ 47% done, 129/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$LayoutOffsetXType.class
+errors(0), warnings(0), notes(0); bytes(7714), time  0.03
+ 47% done, 128/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EquipGenerationType.class
+errors(0), warnings(0), notes(0); bytes(7778), time  0.04
+ 48% done, 127/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EntityType.class
+errors(0), warnings(0), notes(0); bytes(8921), time  0.04
+ 48% done, 126/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$EditMode.class
+errors(0), warnings(0), notes(0); bytes(7488), time  0.03
+ 49% done, 125/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$DecorType.class
+errors(0), warnings(0), notes(0); bytes(6667), time  0.02
+ 49% done, 124/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/Enums$ButtonVerticalFunction.class
+errors(0), warnings(0), notes(0); bytes(7677), time  0.03
+ 50% done, 123/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeReloadSpeed.class
+errors(0), warnings(0), notes(0); bytes(4325), time  0.01
+ 50% done, 122/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeFireDamage.class
+errors(0), warnings(0), notes(0); bytes(4269), time  0.01
+ 50% done, 121/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeStability.class
+errors(0), warnings(0), notes(0); bytes(4294), time  0.01
+ 51% done, 120/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeChaos.class
+errors(0), warnings(0), notes(0); bytes(10093), time  0.09
+ 51% done, 119/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttribute.class
+errors(0), warnings(0), notes(0); bytes(4827), time  0.01
+ 52% done, 118/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeDamage.class
+errors(0), warnings(0), notes(0); bytes(4278), time  0.00
+ 52% done, 117/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeColdDamage.class
+errors(0), warnings(0), notes(0); bytes(4269), time  0.01
+ 52% done, 116/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeAccuracy.class
+errors(0), warnings(0), notes(0); bytes(4312), time  0.01
+ 53% done, 115/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeClipSize.class
+errors(0), warnings(0), notes(0); bytes(4269), time  0.01
+ 53% done, 114/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/attr/WeaponAttributeAttackSpeed.class
+errors(0), warnings(0), notes(0); bytes(4325), time  0.01
+ 54% done, 113/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleFirle.class
+errors(0), warnings(0), notes(0); bytes(7731), time  0.03
+ 54% done, 112/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/Weapon.class
+errors(0), warnings(0), notes(0); bytes(23213), time  0.36
+ 54% done, 111/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponChaos.class
+errors(0), warnings(0), notes(0); bytes(14784), time  0.11
+ 55% done, 110/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleLaser.class
+errors(0), warnings(0), notes(0); bytes(10278), time  0.06
+ 55% done, 109/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponRobofirle.class
+errors(0), warnings(0), notes(0); bytes(5459), time  0.01
+ 56% done, 108/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleMinigun.class
+errors(0), warnings(0), notes(0); bytes(8681), time  0.06
+ 56% done, 107/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponBlender.class
+errors(0), warnings(0), notes(0); bytes(10626), time  0.05
+ 56% done, 106/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/WeaponSimpleShotgun.class
+errors(0), warnings(0), notes(0); bytes(8683), time  0.05
+ 57% done, 105/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponPing.class
+errors(0), warnings(0), notes(0); bytes(11641), time  0.11
+ 57% done, 104/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/weapon/LegendaryWeaponMirrorLaser.class
+errors(0), warnings(0), notes(0); bytes(11556), time  0.07
+ 58% done, 103/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionIce.class
+errors(0), warnings(0), notes(0); bytes(9079), time  0.09
+ 58% done, 102/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeFastCooldown.class
+errors(0), warnings(0), notes(0); bytes(5975), time  0.03
+ 58% done, 101/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionDamage.class
+errors(0), warnings(0), notes(0); bytes(6158), time  0.02
+ 59% done, 100/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeMoreTimeSlowResist.class
+errors(0), warnings(0), notes(0); bytes(6234), time  0.02
+ 59% done, 99/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeSelfDamageProtect.class
+errors(0), warnings(0), notes(0); bytes(6098), time  0.02
+ 60% done, 98/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttribute.class
+errors(0), warnings(0), notes(0); bytes(5148), time  0.01
+ 60% done, 97/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributePushDamage.class
+errors(0), warnings(0), notes(0); bytes(6076), time  0.03
+ 60% done, 96/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeBurnDamage.class
+errors(0), warnings(0), notes(0); bytes(6082), time  0.02
+ 61% done, 95/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeExplosionFire.class
+errors(0), warnings(0), notes(0); bytes(9054), time  0.09
+ 61% done, 94/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/attr/ModuleAttributeDuration.class
+errors(0), warnings(0), notes(0); bytes(5941), time  0.02
+ 62% done, 93/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/LegendaryModuleUnitTimeStop.class
+errors(0), warnings(0), notes(0); bytes(15316), time  0.26
+ 62% done, 92/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitTimeSlow.class
+errors(0), warnings(0), notes(0); bytes(11311), time  0.06
+ 63% done, 91/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnit.class
+errors(0), warnings(0), notes(0); bytes(26906), time  0.41
+ 63% done, 90/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitTurret.class
+errors(0), warnings(0), notes(0); bytes(12710), time  0.11
+ 63% done, 89/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/LegendaryModuleUnitEXPLOSIONS.class
+errors(0), warnings(0), notes(0); bytes(18695), time  0.21
+ 64% done, 88/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/module/ModuleUnitPush.class
+errors(0), warnings(0), notes(0); bytes(14597), time  0.11
+ 64% done, 87/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeValue.class
+errors(0), warnings(0), notes(0); bytes(5467), time  0.02
+ 65% done, 86/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeReflect.class
+errors(0), warnings(0), notes(0); bytes(5592), time  0.01
+ 65% done, 85/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeCharge.class
+errors(0), warnings(0), notes(0); bytes(9638), time  0.10
+ 65% done, 84/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttributeRegen.class
+errors(0), warnings(0), notes(0); bytes(5588), time  0.01
+ 66% done, 83/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/attr/ESAttribute.class
+errors(0), warnings(0), notes(0); bytes(5976), time  0.02
+ 66% done, 82/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldMirror.class
+errors(0), warnings(0), notes(0); bytes(6701), time  0.02
+ 67% done, 81/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldRobo.class
+errors(0), warnings(0), notes(0); bytes(4194), time  0.00
+ 67% done, 80/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldSimple.class
+errors(0), warnings(0), notes(0); bytes(4212), time  0.01
+ 67% done, 79/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldStone.class
+errors(0), warnings(0), notes(0); bytes(6679), time  0.03
+ 68% done, 78/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/EnergoshieldFast.class
+errors(0), warnings(0), notes(0); bytes(6657), time  0.08
+ 68% done, 77/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/equip/energoshield/Energoshield.class
+errors(0), warnings(0), notes(0); bytes(18856), time  0.26
+ 69% done, 76/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileSimple.class
+errors(0), warnings(0), notes(0); bytes(5178), time  0.01
+ 69% done, 75/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileCharge.class
+errors(0), warnings(0), notes(0); bytes(8543), time  0.03
+ 69% done, 74/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileChaos.class
+errors(0), warnings(0), notes(0); bytes(7727), time  0.02
+ 70% done, 73/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/Missile.class
+errors(0), warnings(0), notes(0); bytes(20194), time  0.20
+ 70% done, 72/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissilePing.class
+errors(0), warnings(0), notes(0); bytes(6010), time  0.01
+ 71% done, 71/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileParticlePiece.class
+errors(0), warnings(0), notes(0); bytes(10278), time  0.06
+ 71% done, 70/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileLaser.class
+errors(0), warnings(0), notes(0); bytes(7882), time  0.03
+ 71% done, 69/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileExplosion.class
+errors(0), warnings(0), notes(0); bytes(10541), time  0.05
+ 72% done, 68/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/missiles/MissileMirrorLaser.class
+errors(0), warnings(0), notes(0); bytes(10166), time  0.06
+ 72% done, 67/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/friends/EntityTurret.class
+errors(0), warnings(0), notes(0); bytes(14585), time  0.14
+ 73% done, 66/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityWheel.class
+errors(0), warnings(0), notes(0); bytes(20115), time  0.29
+ 73% done, 65/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityEliteWheel.class
+errors(0), warnings(0), notes(0); bytes(22680), time  0.41
+ 73% done, 64/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityTransportDroneContainer.class
+errors(0), warnings(0), notes(0); bytes(18760), time  0.14
+ 74% done, 63/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityTransportDrone.class
+errors(0), warnings(0), notes(0); bytes(21886), time  0.22
+ 74% done, 62/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityPyra.class
+errors(0), warnings(0), notes(0); bytes(16759), time  0.22
+ 75% done, 61/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityVizjun.class
+errors(0), warnings(0), notes(0); bytes(21496), time  0.29
+ 75% done, 60/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/enemies/EntityPyraFriend.class
+errors(0), warnings(0), notes(0); bytes(6894), time  0.01
+ 76% done, 59/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorWallAngleB.class
+errors(0), warnings(0), notes(0); bytes(9417), time  0.03
+ 76% done, 58/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneWall2.class
+errors(0), warnings(0), notes(0); bytes(10537), time  0.04
+ 76% done, 57/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorRabitz.class
+errors(0), warnings(0), notes(0); bytes(11603), time  0.06
+ 77% done, 56/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding.class
+errors(0), warnings(0), notes(0); bytes(10875), time  0.05
+ 77% done, 55/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingWall.class
+errors(0), warnings(0), notes(0); bytes(10410), time  0.04
+ 78% done, 54/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelWall.class
+errors(0), warnings(0), notes(0); bytes(8573), time  0.02
+ 78% done, 53/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingRoof.class
+errors(0), warnings(0), notes(0); bytes(9281), time  0.02
+ 78% done, 52/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrain.class
+errors(0), warnings(0), notes(0); bytes(11305), time  0.05
+ 79% done, 51/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/SystemLight.class
+errors(0), warnings(0), notes(0); bytes(13392), time  0.07
+ 79% done, 50/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding00_Part00.class
+errors(0), warnings(0), notes(0); bytes(12189), time  0.06
+ 80% done, 49/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBarrelCrash.class
+errors(0), warnings(0), notes(0); bytes(9845), time  0.04
+ 80% done, 48/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorCystern.class
+errors(0), warnings(0), notes(0); bytes(9346), time  0.03
+ 80% done, 47/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeBig.class
+errors(0), warnings(0), notes(0); bytes(9365), time  0.03
+ 81% done, 46/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBarrel.class
+errors(0), warnings(0), notes(0); bytes(11831), time  0.12
+ 81% done, 45/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBox.class
+errors(0), warnings(0), notes(0); bytes(11737), time  0.04
+ 82% done, 44/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuilding00.class
+errors(0), warnings(0), notes(0); bytes(11965), time  0.06
+ 82% done, 43/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrainVagonOpen.class
+errors(0), warnings(0), notes(0); bytes(11078), time  0.04
+ 82% done, 42/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBoxCap.class
+errors(0), warnings(0), notes(0); bytes(11532), time  0.04
+ 83% done, 41/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/SystemHelper.class
+errors(0), warnings(0), notes(0); bytes(13212), time  0.06
+ 83% done, 40/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTrainVagonRect.class
+errors(0), warnings(0), notes(0); bytes(11078), time  0.04
+ 84% done, 39/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTube.class
+errors(0), warnings(0), notes(0); bytes(14682), time  0.16
+ 84% done, 38/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorRabitz2.class
+errors(0), warnings(0), notes(0); bytes(10589), time  0.06
+ 84% done, 37/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneBarak.class
+errors(0), warnings(0), notes(0); bytes(9531), time  0.03
+ 85% done, 36/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingWallWindow.class
+errors(0), warnings(0), notes(0); bytes(10558), time  0.04
+ 85% done, 35/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTree.class
+errors(0), warnings(0), notes(0); bytes(11344), time  0.05
+ 86% done, 34/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorWallAngleA.class
+errors(0), warnings(0), notes(0); bytes(9417), time  0.03
+ 86% done, 33/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingRoofLong.class
+errors(0), warnings(0), notes(0); bytes(9365), time  0.02
+ 86% done, 32/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStoneWall.class
+errors(0), warnings(0), notes(0); bytes(10798), time  0.05
+ 87% done, 31/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorGraffiti.class
+errors(0), warnings(0), notes(0); bytes(9756), time  0.04
+ 87% done, 30/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeCystern.class
+errors(0), warnings(0), notes(0); bytes(11236), time  0.06
+ 88% done, 29/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorStonePilon.class
+errors(0), warnings(0), notes(0); bytes(9445), time  0.03
+ 88% done, 28/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorSteelBoxDoor.class
+errors(0), warnings(0), notes(0); bytes(11946), time  0.05
+ 89% done, 27/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorBuildingFloor.class
+errors(0), warnings(0), notes(0); bytes(9525), time  0.03
+ 89% done, 26/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorTubeCarcas.class
+errors(0), warnings(0), notes(0); bytes(8250), time  0.03
+ 89% done, 25/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/decorations/DecorPowerLine.class
+errors(0), warnings(0), notes(0); bytes(11492), time  0.04
+ 90% done, 24/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdFire.class
+errors(0), warnings(0), notes(0); bytes(5504), time  0.02
+ 90% done, 23/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectExpl.class
+errors(0), warnings(0), notes(0); bytes(8187), time  0.08
+ 91% done, 22/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectFreeze.class
+errors(0), warnings(0), notes(0); bytes(8224), time  0.08
+ 91% done, 21/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Player.class
+errors(0), warnings(0), notes(0); bytes(18105), time  0.23
+ 91% done, 20/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityPlayer.class
+errors(0), warnings(0), notes(0); bytes(51073), time  1.18
+ 92% done, 19/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdMove.class
+errors(0), warnings(0), notes(0); bytes(5504), time  0.02
+ 92% done, 18/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/LightSource.class
+errors(0), warnings(0), notes(0); bytes(12465), time  0.18
+ 93% done, 17/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffect.class
+errors(0), warnings(0), notes(0); bytes(10917), time  0.08
+ 93% done, 16/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdSmoke.class
+errors(0), warnings(0), notes(0); bytes(5524), time  0.03
+ 93% done, 15/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/ShdLaser.class
+errors(0), warnings(0), notes(0); bytes(5524), time  0.02
+ 94% done, 14/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityHuman.class
+errors(0), warnings(0), notes(0); bytes(16201), time  0.25
+ 94% done, 13/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Entity.class
+errors(0), warnings(0), notes(0); bytes(81226), time  2.40
+ 95% done, 12/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/EntityHumanNPC.class
+errors(0), warnings(0), notes(0); bytes(7453), time  0.02
+ 95% done, 11/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/AnimationEffectShield.class
+errors(0), warnings(0), notes(0); bytes(4817), time  0.03
+ 95% done, 10/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/entity/Shd.class
+errors(0), warnings(0), notes(0); bytes(5816), time  0.03
+ 96% done, 9/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/desktop/DesktopLauncherWithoutScriptSystem.class
+errors(0), warnings(0), notes(0); bytes(9066), time  0.05
+ 96% done, 8/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/desktop/DesktopLauncher.class
+errors(0), warnings(0), notes(0); bytes(6797), time  0.02
+ 97% done, 7/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/com/midfag/game/CubocDesktop.class
+errors(0), warnings(0), notes(0); bytes(6531), time  0.03
+ 97% done, 6/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandlerFactory.class
+errors(0), warnings(0), notes(0); bytes(5958), time  0.05
+ 97% done, 5/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLStreamHandler.class
+errors(0), warnings(0), notes(0); bytes(10615), time  0.02
+ 98% done, 4/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/RsrcURLConnection.class
+errors(0), warnings(0), notes(0); bytes(15877), time  0.01
+ 98% done, 3/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader.class
+errors(0), warnings(0), notes(0); bytes(18718), time  0.24
+ 99% done, 2/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JarRsrcLoader$ManifestInfo.class
+errors(0), warnings(0), notes(0); bytes(4907), time  0.01
+ 99% done, 1/246 to go: ..\..\..\Documents\compile\EL_optimal.jar:/org/eclipse/jdt/internal/jarinjarloader/JIJConstants.class
+errors(0), warnings(0), notes(0); bytes(6956), time  0.00
+Processing startup profile...
+Preparing resources for packing ...
+Processing ../../../Documents/compile/EL_optimal.jar ...
+Resources were successfully prepared for packing.
+-------------------------------------------------------------------
+files: 246  errors: 0  warnings: 0  notices: 0
+
+2 methods were compiled with a lower optimization level
+due to their very large sizes. These methods' names are logged in Untitled.vaz
+with the "LONGLONGTIME:" prefix.
+
+For more details, see JET User's Guide (Chapter "Application considerations",
+Section "Baseline compilation").
+
+
+XDS Link Version 2.25.39 Copyright (c) Excelsior 1995-2017.
+No errors, no warnings
+
+Link time 0:01.08
+
+Total compilation time 1:50.92
+Startup Accelerator Helper Version 1.2 Copyright (c) Excelsior 2010-2015.
+
+Running application:
+  "D:\Users\Tom\Downloads\EdgeLandsGame\EdgeLandsGame\Untitled.exe"
+
+
+Application terminated with exit code 1
+Profile successfully hard-wired into "D:\Users\Tom\Downloads\EdgeLandsGame\EdgeLandsGame\Untitled.exe"
+Exception in thread "main" java.lang.NoClassDefFoundError: com.badlogic.gdx.ApplicationListener
+	at java.lang.Class.<unknown>(Unknown Source)
+	at java.lang.Class.forName(Unknown Source)
+Caused by: java.lang.ClassNotFoundException: com.badlogic.gdx.ApplicationListener
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 2 more
+Could not find the main class: com/midfag/game/desktop/DesktopLauncherWithoutScriptSystem
+

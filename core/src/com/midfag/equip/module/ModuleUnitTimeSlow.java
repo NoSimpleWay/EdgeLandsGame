@@ -22,6 +22,7 @@ public class ModuleUnitTimeSlow extends ModuleUnit {
 	public ModuleUnitTimeSlow()
 	{
 		name="Модуль 'конденсатор времени'";
+		uid="modtislow";
 		
 		base_duration=5.0f;
 		base_cooldown=15;

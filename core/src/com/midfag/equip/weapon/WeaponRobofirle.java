@@ -19,25 +19,16 @@ public class WeaponRobofirle extends Weapon {
 			
 			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
-			update_stats();
+			/*generate();
+			update			generate();
+			update_attributes_bonus();*/
+			
+			generate();
+			update_attributes_bonus();
+			//update_stats();
 		}
 		
-		public void update_stats()
-		{
 
-			
-			//system.
-			/*
-			total_damage=base_damage;
-			total_missile_count=base_missile_count;
-			total_shoot_cooldown=base_shoot_cooldown;
-			total_dispersion=base_dispersion;
-			total_dispersion_additional=base_dispersion_additional;
-			total_ammo_size=base_ammo_size;
-			total_reload_time=base_reload_time;*/
-			generate();
-			
-		}
 		@Override
 		public Sound get_shoot_sound()
 		{

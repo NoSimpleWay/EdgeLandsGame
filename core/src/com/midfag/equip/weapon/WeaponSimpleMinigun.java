@@ -25,8 +25,7 @@ public class WeaponSimpleMinigun extends Weapon {
 			
 			need_warm=3;
 			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="Стандартный пулемет";
 			

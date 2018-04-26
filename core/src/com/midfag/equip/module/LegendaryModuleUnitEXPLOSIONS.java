@@ -42,7 +42,7 @@ public class LegendaryModuleUnitEXPLOSIONS extends ModuleUnit {
 	public LegendaryModuleUnitEXPLOSIONS()
 	{
 		name="Модуль 'Детонатор'";
-		
+		uid="modexpl";
 		
 		
 		base_duration=1.5f;

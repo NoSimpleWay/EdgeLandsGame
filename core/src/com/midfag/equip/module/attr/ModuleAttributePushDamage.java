@@ -13,6 +13,7 @@ public class ModuleAttributePushDamage extends ModuleAttribute {
 		cost=1;
 		
 		max_level=100;
+		uid="mapuda";
 		name="Улучшние урона";
 	}
 	

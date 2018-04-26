@@ -54,9 +54,7 @@ public class LegendaryWeaponChaos extends Weapon {
 			model.setSize(200, 90);
 			
 			Attribute_list.add(new WeaponAttributeChaos());
-			
-			generate();
-			update_attributes_bonus();
+
 			
 			red_text="--- ERROR ERROR ERROR ERROR ERROR ---";
 		}

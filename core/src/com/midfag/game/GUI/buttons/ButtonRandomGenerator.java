@@ -18,6 +18,7 @@ import com.midfag.equip.weapon.LegendaryWeaponMirrorLaser;
 import com.midfag.equip.weapon.LegendaryWeaponBlender;
 import com.midfag.equip.weapon.LegendaryWeaponChaos;
 import com.midfag.equip.weapon.LegendaryWeaponPing;
+import com.midfag.equip.weapon.Weapon;
 import com.midfag.equip.weapon.WeaponSimpleFirle;
 import com.midfag.equip.weapon.WeaponSimpleLaser;
 import com.midfag.equip.weapon.WeaponSimpleMinigun;
@@ -66,7 +67,7 @@ public class ButtonRandomGenerator extends Button {
 				
 				if (egt==EquipGenerationType.MODULE)
 				{
-					for (int i=0; i<30; i++)//;
+					/*for (int i=0; i<30; i++)//;
 			        {
 						switch ((int)GScreen.rnd(5))
 			        	{
@@ -78,7 +79,17 @@ public class ButtonRandomGenerator extends Button {
 			        	}
 						
 						
-			        }
+			        }*/
+					
+					for (int i=0; i<SysConfig.ModuleRegisterer.size(); i++)
+					{
+						ModuleUnit m=Helper.get_module_from_id(SysConfig.ModuleRegisterer.get(i).getClass().getName());
+						m.generate();
+						m.update_attributes_bonus(GScreen.pl);
+						GScreen.pl.inventory[i]=m;
+						
+					}
+					
 				}
 				
 								
@@ -124,7 +135,11 @@ public class ButtonRandomGenerator extends Button {
 					
 					for (int i=0; i<SysConfig.WeaponRegisterer.size(); i++)
 					{
-						GScreen.pl.inventory[i]=Helper.get_weapon_from_id(SysConfig.WeaponRegisterer.get(i).getClass().getName());
+						Weapon w=Helper.get_weapon_from_id(SysConfig.WeaponRegisterer.get(i).getClass().getName());
+						w.generate();
+						w.update_attributes_bonus(GScreen.pl);
+						GScreen.pl.inventory[i]=w;
+						
 					}
 				}
 			

@@ -30,9 +30,7 @@ public class WeaponSimpleLaser extends Weapon {
 			fire_multiplier=base_shoot_cooldown/base_missile_count*1.1f;
 			
 			is_rotate_reset_charge=true;
-			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="Лазер";
 			

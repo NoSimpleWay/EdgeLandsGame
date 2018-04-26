@@ -10,6 +10,7 @@ public class ESAttributeReflect extends ESAttribute {
 	public ESAttributeReflect()
 	{
 		name="regeneration";
+		uid="refl";
 		cost=1;
 		max_level=100;
 	}

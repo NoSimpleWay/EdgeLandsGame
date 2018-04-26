@@ -9,6 +9,7 @@ public class ESAttributeRegen extends ESAttribute {
 	public ESAttributeRegen()
 	{
 		name="regeneration";
+		uid="reg";
 		cost=2.0f;
 		max_level=100;
 	}

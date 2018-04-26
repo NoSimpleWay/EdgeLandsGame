@@ -15,6 +15,7 @@ public class EnergoshieldRobo extends Energoshield {
 		base_reflect=3;
 		
 		name="Roboshield";
+		uid="shrobo";
 		gennable=false;
 		
 		generate();

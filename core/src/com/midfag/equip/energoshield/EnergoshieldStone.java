@@ -16,7 +16,7 @@ public class EnergoshieldStone extends Energoshield {
 		base_reflect=2f;
 		
 		name="Stone shield";
-		
+		uid="shstone";
 		
 		spr=new Sprite(Assets.load("icon_shield_stone"));
 		

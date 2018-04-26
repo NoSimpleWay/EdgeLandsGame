@@ -45,7 +45,7 @@ public class ButtonSlider extends Button {
 	
 		
 		for (int i=0; i<5; i++)
-		{tex[i]=Assets.load("gui/slider/slider"+i+".png");}
+		{tex[i]=Assets.load("gui/slider/slider"+i);}
 	}
 	
 	@Override

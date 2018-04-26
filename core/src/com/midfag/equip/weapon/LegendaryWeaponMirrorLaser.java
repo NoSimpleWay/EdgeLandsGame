@@ -31,8 +31,7 @@ public class LegendaryWeaponMirrorLaser extends Weapon {
 			
 			is_rotate_reset_charge=true;
 			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="Разбитое зеркало";
 			

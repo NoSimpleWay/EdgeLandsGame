@@ -14,6 +14,7 @@ public class ModuleAttributeSelfDamageProtect extends ModuleAttribute {
 		cost=1;
 		
 		max_level=500;
+		uid="masdp";
 		name="Уменьшение ущерба";
 	}
 	

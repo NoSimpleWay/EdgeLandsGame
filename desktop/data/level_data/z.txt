@@ -8,6 +8,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -20,6 +31,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -32,6 +54,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -44,6 +77,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -56,6 +100,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -68,6 +123,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -80,6 +146,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -92,6 +169,17 @@ y
 55
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -104,6 +192,17 @@ y
 85
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -116,6 +215,17 @@ y
 50
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -128,6 +238,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -140,6 +261,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -152,6 +284,17 @@ y
 90
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -164,6 +307,17 @@ y
 40
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -176,6 +330,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -188,6 +353,17 @@ y
 55
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -200,6 +376,17 @@ y
 55
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -212,6 +399,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -224,6 +422,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -236,6 +445,17 @@ y
 55
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -248,6 +468,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -260,6 +491,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -272,6 +514,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -284,6 +537,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -296,6 +560,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -308,6 +583,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -320,6 +606,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -332,6 +629,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -344,6 +652,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -356,6 +675,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -368,6 +698,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -380,6 +721,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -392,6 +744,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -404,6 +767,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -416,6 +790,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -428,6 +813,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -440,6 +836,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -452,6 +859,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -464,6 +882,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -476,6 +905,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -488,6 +928,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -500,6 +951,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -512,6 +974,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -524,6 +997,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -536,6 +1020,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -548,6 +1043,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -560,6 +1066,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -572,6 +1089,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -594,6 +1122,17 @@ LiB
 LiP
 5.0149994
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -616,6 +1155,17 @@ LiB
 LiP
 5.0300055
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -628,6 +1178,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -640,6 +1201,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -652,6 +1224,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -664,6 +1247,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -676,6 +1270,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -698,6 +1303,17 @@ LiB
 LiP
 5.090005
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -710,6 +1326,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -722,6 +1349,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -734,6 +1372,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -746,6 +1395,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -758,6 +1418,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -770,6 +1441,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -792,43 +1474,255 @@ LiB
 LiP
 3.0
 LightReady
-PUT
-
-###ENTITY
-016132fe
-pos.x
-5487
-pos.y
-5099
-y
+ArmoredShield
+shrobo
+shield_rarity
 0
-angle
-0
-ArmoredWeapon
-weapon_uid
-weapon_simple_firle
-weapon_rarity
-0
-weapon_level
+shield_level
 1.0
-WeaponReady
-WeaponAttr
-attr_stability
-WeaponAttrLevel
-10.0
-WeaponAttrReady
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
 2b3ddb9a
 pos.x
-5427
+5432
 pos.y
-5067
+4928
 y
 0
 angle
 0
+ArmoredWeapon
+0
+weapon_simple_shotgun
+weapon_rarity
+2
+weapon_level
+1.0
+WeaponAttr
+attr_as
+weapon_attr_level
+3.0
+WeaponAttrReady
+WeaponAttr
+attr_clip_size
+weapon_attr_level
+1.0
+WeaponAttrReady
+WeaponAttr
+attr_stability
+weapon_attr_level
+3.0
+WeaponAttrReady
+WeaponReady
+ArmoredWeapon
+1
+weapon_simple_shotgun
+weapon_rarity
+2
+weapon_level
+1.0
+WeaponAttr
+attr_as
+weapon_attr_level
+3.0
+WeaponAttrReady
+WeaponAttr
+attr_clip_size
+weapon_attr_level
+1.0
+WeaponAttrReady
+WeaponAttr
+attr_stability
+weapon_attr_level
+3.0
+WeaponAttrReady
+WeaponReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
+PUT
+
+###ENTITY
+016132fe
+pos.x
+5408
+pos.y
+5001
+y
+0
+angle
+0
+ArmoredWeapon
+0
+weapon_simple_firle
+weapon_rarity
+4
+weapon_level
+1.0
+WeaponAttr
+attr_damage
+weapon_attr_level
+3.0
+WeaponAttrReady
+WeaponAttr
+attr_reload_speed
+weapon_attr_level
+1.0
+WeaponAttrReady
+WeaponAttr
+attr_stability
+weapon_attr_level
+6.0
+WeaponAttrReady
+WeaponReady
+ArmoredWeapon
+1
+weapon_simple_shotgun
+weapon_rarity
+4
+weapon_level
+1.0
+WeaponAttr
+attr_clip_size
+weapon_attr_level
+5.0
+WeaponAttrReady
+WeaponReady
+ArmoredModule
+0
+modheal
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+madu
+module_attr_level
+12
+ModuleAttrReady
+ModuleAttr
+mafscd
+module_attr_level
+8
+ModuleAttrReady
+ModuleAttr
+mafscd
+module_attr_level
+8
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+1
+modheal
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+mafscd
+module_attr_level
+26
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+2
+modheal
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+madu
+module_attr_level
+9
+ModuleAttrReady
+ModuleAttr
+mafscd
+module_attr_level
+11
+ModuleAttrReady
+ModuleAttr
+maheal
+module_attr_level
+8
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+3
+modheal
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+madu
+module_attr_level
+12
+ModuleAttrReady
+ModuleAttr
+mafscd
+module_attr_level
+8
+ModuleAttrReady
+ModuleAttr
+maheal
+module_attr_level
+8
+ModuleAttrReady
+ModuleReady
+ArmoredShield
+shmirr
+shield_rarity
+4
+shield_level
+1.0
+ShieldAttr
+refl
+shield_attr_level
+26.0
+ShieldAttrReady
+ShieldReady
+shield_value
+550.0
+shield_total_value
+550.0
+PUT
+
+###ENTITY
+spwntwr
+pos.x
+6162
+pos.y
+4908
+y
+0
+angle
+0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+15000.0
+shield_total_value
+15000.0
 PUT
 
 ###ENTITY
@@ -841,6 +1735,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -853,6 +1758,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -865,6 +1781,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -877,6 +1804,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -889,6 +1827,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -901,6 +1850,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -913,6 +1873,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -925,6 +1896,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -937,6 +1919,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -949,6 +1942,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -961,6 +1965,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -973,6 +1988,17 @@ y
 -5
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -985,6 +2011,17 @@ y
 60
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -997,6 +2034,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1009,6 +2057,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1021,6 +2080,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1033,6 +2103,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1045,6 +2126,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1057,6 +2149,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1069,6 +2172,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1081,6 +2195,17 @@ y
 -5
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1093,6 +2218,17 @@ y
 -5
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1105,6 +2241,17 @@ y
 10
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1117,6 +2264,17 @@ y
 45
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1129,6 +2287,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1141,6 +2310,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1153,6 +2333,17 @@ y
 125
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1165,6 +2356,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1177,6 +2379,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1189,6 +2402,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1201,6 +2425,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1213,6 +2448,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1225,6 +2471,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1237,6 +2494,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1249,6 +2517,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1263,18 +2542,17 @@ angle
 0
 interact_entry_point
 #D
-PUT
-
-###ENTITY
-spwntwr
-pos.x
-6000
-pos.y
-5100
-y
+ArmoredShield
+shrobo
+shield_rarity
 0
-angle
-0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1287,6 +2565,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1299,6 +2588,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1311,6 +2611,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1323,6 +2634,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1335,6 +2657,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1347,6 +2680,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1359,6 +2703,17 @@ y
 35
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1371,6 +2726,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1383,6 +2749,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1395,6 +2772,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1407,6 +2795,17 @@ y
 40
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1419,6 +2818,17 @@ y
 40
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1431,6 +2841,17 @@ y
 50
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1443,6 +2864,17 @@ y
 70
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1455,6 +2887,17 @@ y
 70
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1467,6 +2910,17 @@ y
 70
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1479,6 +2933,17 @@ y
 80
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1491,6 +2956,17 @@ y
 80
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1503,6 +2979,17 @@ y
 80
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1515,6 +3002,17 @@ y
 100
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1527,6 +3025,17 @@ y
 100
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1539,6 +3048,17 @@ y
 100
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1551,6 +3071,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1563,6 +3094,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1575,6 +3117,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1587,6 +3140,17 @@ y
 35
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1599,6 +3163,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1621,6 +3196,17 @@ LiB
 LiP
 5.53
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1633,6 +3219,17 @@ y
 0
 angle
 0
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1655,6 +3252,17 @@ LiB
 LiP
 1.0
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1677,6 +3285,17 @@ LiB
 LiP
 1.0
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1699,6 +3318,17 @@ LiB
 LiP
 1.0
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1721,6 +3351,17 @@ LiB
 LiP
 1.0
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 
 ###ENTITY
@@ -1743,5 +3384,16 @@ LiB
 LiP
 1.0
 LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
 PUT
 

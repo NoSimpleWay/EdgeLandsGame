@@ -18,7 +18,7 @@ import com.midfag.game.Enums.Rarity;
 
 
 public class Energoshield {
-	
+	public String uid;
 	public float base_value;
 	public float base_regen_speed;
 	public float base_reflect;

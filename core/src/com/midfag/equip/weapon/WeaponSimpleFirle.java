@@ -32,8 +32,7 @@ public class WeaponSimpleFirle extends Weapon {
 			
 			fire_multiplier=base_shoot_cooldown/base_missile_count;
 			
-			generate();
-			update_attributes_bonus();
+			
 			
 			name="Винтовка";
 			

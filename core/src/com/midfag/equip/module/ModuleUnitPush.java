@@ -28,6 +28,7 @@ public class ModuleUnitPush extends ModuleUnit {
 	public ModuleUnitPush()
 	{
 		name="Модуль 'торпеда'";
+		uid="modpush";
 		
 		base_duration=0.3f;
 		base_cooldown=7;

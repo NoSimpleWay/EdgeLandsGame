@@ -199,6 +199,7 @@ public class Weapon {
 		
 		public void generate()
 		{
+			Helper.log("=======GENERATOR======= ["+name+"]");
 			get_available_attribute();
 			
 			total_damage=base_damage*level;

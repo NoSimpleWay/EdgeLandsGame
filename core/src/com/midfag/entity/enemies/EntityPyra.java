@@ -56,7 +56,7 @@ public class EntityPyra extends Entity {
 		offset.y=10;
 		can_rotate=false;
 		
-		friction=0.01f;
+		friction=0.05f;
 		speed/=0.2f;
 	}
 	

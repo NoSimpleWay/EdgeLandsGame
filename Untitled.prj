@@ -1,0 +1,48 @@
+%%Excelsior JET v14.0 project file
+
+-compilewithfixedheap-
+-genstackalloc+
+-genstacktrace-
+-global-
+-gui-
+-ignoreclassduplication+
+-ignorememberabsence+
+-inline+
+-jetcpenablemanualsettings+
+-multiapp-
+-pgo+
+-splashgetfrommanifest-
+
+-apptype=Plain
+-classabsence=HANDLE
+-compilerheap=1744830464
+-inlinelimit=100
+-inlinetolimit=1000
+-jetcplastpage:=PageCompile
+-jetrt=Desktop
+-jetvmprop=-Djet.gc.heaplimit:0 -Djet.stack.trace
+-jprofile=./Untitled.jprof
+-main=com/midfag/game/desktop/DesktopLauncherWithoutScriptSystem
+-outputdir=.
+-outputname=Untitled
+-saprofmode=JETCPONLY
+-saproftimeout=20
+-stacklimit=900000
+-startupprofile=./Untitled.startup
+
+
+
+
+!classpathentry ../../../Documents/compile/EL_optimal.jar
+  -pack=noncompiled
+  -protect=all
+  -optimize=all
+!end
+!classpathentry ../../../Documents/compile
+  -pack=none
+  -protect=all
+  -optimize=all
+!end
+
+!module ./Untitled.usg
+

@@ -30,8 +30,7 @@ public class LegendaryWeaponBlender extends Weapon {
 			
 			need_warm=3;
 			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="Αλενδεπ";
 			

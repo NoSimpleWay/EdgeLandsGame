@@ -14,6 +14,7 @@ public class ModuleAttributeExplosionDamage extends ModuleAttribute {
 		cost=1;
 		
 		max_level=100;
+		uid="maexdm";
 		name="”рон от взрыва";
 	}
 	

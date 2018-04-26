@@ -13,10 +13,17 @@ import com.midfag.entity.EntityHuman;
 import com.midfag.entity.EntityPlayer;
 import com.midfag.entity.LightSource;
 import com.midfag.entity.decorations.DecorBarrel;
+import com.midfag.equip.energoshield.Energoshield;
+import com.midfag.equip.energoshield.attr.ESAttribute;
+import com.midfag.equip.module.ModuleUnit;
+import com.midfag.equip.module.attr.ModuleAttribute;
 import com.midfag.equip.weapon.Weapon;
+import com.midfag.equip.weapon.attr.WeaponAttribute;
+import com.midfag.game.Enums.Rarity;
 import com.midfag.game.GUI.ButtonLayout;
 import com.midfag.game.GUI.buttons.Button;
 import com.midfag.game.script.ScriptSystem;
+import com.midfag.game.script.ScriptTimer;
 
 public class Helper {
 	
@@ -69,6 +76,17 @@ public class Helper {
 		//System.out.println(ss[0]);
 		Entity e=null;
 		LightSource li=null;
+		
+		Weapon wea = null;
+		WeaponAttribute w_attr = null;
+		
+		ModuleUnit m = null;
+		ModuleAttribute ma = null;
+		
+		Energoshield sh= null;
+		ESAttribute sha = null; 
+		
+		int slot=0;
 		
 		for (int i=0; i<ss.length; i++)
 		{
@@ -141,6 +159,115 @@ public class Helper {
 				if (ss[i].equals("LiB")) {i++; li.B=Float.parseFloat(ss[i]);}
 				if (ss[i].equals("LiP")) {i++; li.light_power=Float.parseFloat(ss[i]);}
 				if (ss[i].equals("LightReady")) {e.light_source=li;}
+				
+			
+				if (ss[i].equals("ArmoredWeapon"))
+				{
+					i++;
+					slot=Integer.parseInt(ss[i]);
+					
+					i++;
+					wea=get_weapon_by_uid(ss[i]);
+					
+					wea.Attribute_list.clear();
+					wea.Available_attribute_list.clear();
+					
+					log("get weapon="+(wea.getClass().getName()));
+				}
+				
+				if (ss[i].equals("weapon_rarity")) {i++; wea.rarity=Rarity.values()[Integer.parseInt(ss[i])];}
+				if (ss[i].equals("weapon_level")) {i++; wea.level=Float.parseFloat(ss[i]);}
+				
+				if (ss[i].equals("WeaponAttr")) {i++;  w_attr=get_weapon_attr_by_uid(ss[i]);  		log ("attr: "+w_attr.name);}
+				if (ss[i].equals("weapon_attr_level")) {i++; w_attr.level=Float.parseFloat(ss[i]);	log ("attr level: "+w_attr.level);}
+				if (ss[i].equals("WeaponAttrReady")) {wea.Attribute_list.add(w_attr); log ("attr level: "+w_attr.level);}
+				
+				if (ss[i].equals("WeaponReady"))
+				{
+					log("weapon ready! "+slot);
+					log("put weapon="+(wea.getClass().getName())+" "+slot);
+					e.armored[slot]=wea;
+					
+					wea.update_attributes_bonus(e);
+					log ("attr count: "+wea.Attribute_list.size());
+				}
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				if (ss[i].equals("ArmoredModule"))
+				{
+					i++;
+					slot=Integer.parseInt(ss[i]);
+					
+					i++;
+					m=get_module_by_uid(ss[i]);
+					
+					m.Attribute_list.clear();
+					m.Available_attribute_list.clear();
+					
+					log("get module="+(m.getClass().getName()));
+				}
+				
+				if (ss[i].equals("module_rarity")) {i++; m.rarity=Rarity.values()[Integer.parseInt(ss[i])];}
+				if (ss[i].equals("module_level"))
+				{
+					i++;
+					m.level=Float.parseFloat(ss[i]);
+				}
+				
+				if (ss[i].equals("ModuleAttr")) {i++;  ma=get_module_attr_by_uid(ss[i]);  		log ("attr: "+ma.name);}
+				if (ss[i].equals("module_attr_level")) {i++; ma.level=Integer.parseInt(ss[i]);	log ("attr level: "+ma.level);}
+				if (ss[i].equals("ModuleAttrReady")) {m.Attribute_list.add(ma); log ("attr level: "+ma.level);}
+				
+				if (ss[i].equals("ModuleReady"))
+				{
+					log("module ready! "+slot);
+					log("put module="+(m.getClass().getName())+" "+slot);
+					e.armored_module[slot]=m;
+					
+					m.update_attributes_bonus(e);
+					log ("attr count: "+m.Attribute_list.size());
+				}
+				
+					//for (ScriptTimer tim:Timer_pool)
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				
+				if (ss[i].equals("ArmoredShield"))
+				{
+					
+					i++;
+					log("try get shield with uid ["+ss[i]+"]");
+					sh=get_shield_by_uid(ss[i]);
+					
+					
+					sh.Attribute_list.clear();
+					sh.Available_attribute_list.clear();
+					
+					log("get shield="+(sh.getClass().getName()));
+				}
+				
+				if (ss[i].equals("shield_rarity")) {i++; sh.rarity=Rarity.values()[Integer.parseInt(ss[i])];}
+				if (ss[i].equals("shield_level")) {i++; sh.level=Float.parseFloat(ss[i]);}
+				
+			
+				
+				if (ss[i].equals("ShieldAttr")) {i++;  sha=get_shield_attr_by_uid(ss[i]);  		log ("attr: "+sha.name);}
+				if (ss[i].equals("shield_attr_level")) {i++; sha.level=Float.parseFloat(ss[i]);	log ("attr level: "+sha.level);}
+				if (ss[i].equals("ShieldAttrReady")) {sh.Attribute_list.add(sha); log ("attr level: "+sha.level);}
+				
+				if (ss[i].equals("ShieldReady"))
+				{
+					log("shield ready! "+slot);
+					log("put shield="+(sh.getClass().getName()));
+					e.armored_shield=sh;
+					
+					sh.update_attributes_bonus(e);
+					log ("attr count: "+sh.Attribute_list.size());
+				}
+				
+				if (ss[i].equals("shield_value")) {i++; sh.value=Float.parseFloat(ss[i]);}
+				if (ss[i].equals("shield_total_value")) {i++; sh.total_value=Float.parseFloat(ss[i]);}
+				
+					//for (ScriptTimer tim:Timer_pool)
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 				
 				
 				if (ss[i].equals("PUT"))
@@ -299,6 +426,163 @@ public class Helper {
 		
 	}
 	
+	public static Weapon get_weapon_by_uid(String _uid)
+	{
+		//for ()
+		for (Weapon w:SysConfig.WeaponRegisterer)
+		{
+			if (w.uid.equals(_uid))
+			{
+				log("weapon="+get_weapon_from_id(w.getClass().getName()));
+				return get_weapon_from_id(w.getClass().getName());
+			}
+		}
+		return null;
+	}
+	
+	public static ModuleUnit get_module_by_uid(String _uid)
+	{
+		//for ()
+		for (ModuleUnit m:SysConfig.ModuleRegisterer)
+		{
+			if (m.uid.equals(_uid))
+			{
+				log("module="+get_module_from_id(m.getClass().getName()));
+				return get_module_from_id(m.getClass().getName());
+			}
+		}
+		return null;
+	}
+	
+	public static ModuleUnit get_module_from_id(String _id)
+    {
+		try 
+		{
+			Class<?> c = Class.forName(_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			ModuleUnit enn=(ModuleUnit) constructor[0].newInstance();
+
+			return enn;
+		} 
+		
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SecurityException e) {e.printStackTrace();}
+		catch (IllegalArgumentException e) {e.printStackTrace();}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+		catch (InvocationTargetException e) {e.printStackTrace();}
+		
+    	return null;
+    }
+	
+	public static Energoshield get_shield_by_uid(String _uid)
+	{
+		//for ()
+		for (Energoshield sh:SysConfig.ShieldRegisterer)
+		{
+			if (sh.uid.equals(_uid))
+			{
+				log("shield="+get_shield_from_id(sh.getClass().getName()));
+				return get_shield_from_id(sh.getClass().getName());
+			}
+		}
+		return null;
+	}
+	
+	public static Energoshield get_shield_from_id(String _id)
+    {
+		try 
+		{
+			Class<?> c = Class.forName(_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			Energoshield enn=(Energoshield) constructor[0].newInstance();
+
+			return enn;
+		} 
+		
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SecurityException e) {e.printStackTrace();}
+		catch (IllegalArgumentException e) {e.printStackTrace();}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+		catch (InvocationTargetException e) {e.printStackTrace();}
+		
+    	return null;
+    }
+	
+
+	public static ESAttribute get_shield_attr_by_uid(String _uid)
+	{
+		//for ()
+		for (ESAttribute sh:SysConfig.ShieldAttrRegisterer)
+		{
+			if (sh.uid.equals(_uid))
+			{
+				log("shield attr="+get_shield_attr_from_id(sh.getClass().getName()));
+				return get_shield_attr_from_id(sh.getClass().getName());
+			}
+		}
+		return null;
+	}
+	
+	public static ESAttribute get_shield_attr_from_id(String _id)
+    {
+		try 
+		{
+			Class<?> c = Class.forName(_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			ESAttribute enn=(ESAttribute) constructor[0].newInstance();
+
+			return enn;
+		} 
+		
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SecurityException e) {e.printStackTrace();}
+		catch (IllegalArgumentException e) {e.printStackTrace();}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+		catch (InvocationTargetException e) {e.printStackTrace();}
+		
+    	return null;
+    }
+	
+	public static ModuleAttribute get_module_attr_by_uid(String _uid)
+	{
+		//for ()
+		for (ModuleAttribute m:SysConfig.ModuleAttrRegisterer)
+		{
+			if (m.uid.equals(_uid))
+			{
+				log("module_attr="+get_module_attr_from_id(m.getClass().getName()));
+				return get_module_attr_from_id(m.getClass().getName());
+			}
+		}
+		
+		return null;
+	}
+	
+	public static ModuleAttribute get_module_attr_from_id(String _id)
+    {
+		try 
+		{
+			Class<?> c = Class.forName(_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			ModuleAttribute enn=(ModuleAttribute) constructor[0].newInstance();
+
+			return enn;
+		} 
+		
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SecurityException e) {e.printStackTrace();}
+		catch (IllegalArgumentException e) {e.printStackTrace();}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+		catch (InvocationTargetException e) {e.printStackTrace();}
+		
+    	return null;
+    }
+	
+	
 	public static String get_error_text(String _t)
 	{
 		return "***************** - ERROR: "+_t+" - *****************";
@@ -384,6 +668,41 @@ public class Helper {
 		
 		
 		
+		
+    	return null;
+    }
+	
+	public static WeaponAttribute get_weapon_attr_by_uid(String _uid)
+	{
+		//for ()
+		for (WeaponAttribute wa:SysConfig.WeaponAttributeRegisterer)
+		{
+			if (wa.uid.equals(_uid))
+			{
+				//log("attr="+get_weapon_attr_from_id(wa.getClass().getName()));
+				return get_weapon_attr_from_id(wa.getClass().getName());
+			}
+		}
+		return null;
+	}
+	
+	public static WeaponAttribute get_weapon_attr_from_id(String _id)
+    {
+		try 
+		{
+			Class<?> c = Class.forName(_id);
+			Constructor<?>[] constructor=c.getConstructors(); 
+			WeaponAttribute enn=(WeaponAttribute) constructor[0].newInstance();
+
+			return enn;
+		} 
+		
+		catch (ClassNotFoundException e) {e.printStackTrace();} 
+		catch (SecurityException e) {e.printStackTrace();}
+		catch (IllegalArgumentException e) {e.printStackTrace();}
+		catch (InstantiationException e) {e.printStackTrace();}
+		catch (IllegalAccessException e) {e.printStackTrace();}
+		catch (InvocationTargetException e) {e.printStackTrace();}
 		
     	return null;
     }

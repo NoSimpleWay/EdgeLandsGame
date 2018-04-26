@@ -61,7 +61,7 @@ public class Missile {
 	public Missile(Vector2 _v,float _a, float _s, boolean _b)
 	{
 
-		lifetime=(float)(Math.random()*0.2f)+1.5f;
+		lifetime=(float)(Math.random()*0.2f)+3.5f;
 		pos=_v;
 		angle=_a;
 		speed=_s;

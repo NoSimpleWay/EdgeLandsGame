@@ -43,7 +43,20 @@ public class Main extends Game {
         Assets.load_assets();
         
         SysConfig.RegisterEntity();
+        
         SysConfig.RegisterWeapon();
+        SysConfig.RegisterWeaponAttribute();
+        
+        SysConfig.RegisterShield();
+        SysConfig.RegisterShieldAttribute();
+        
+        SysConfig.RegisterModule();
+        SysConfig.RegisterModuleAttribute();
+        
+        SysConfig.RegisterShield();
+        SysConfig.RegisterShieldAttribute();
+        
+        
         
         //Assets.music.play();
         

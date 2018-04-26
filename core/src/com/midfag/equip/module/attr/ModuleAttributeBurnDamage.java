@@ -14,6 +14,7 @@ public class ModuleAttributeBurnDamage extends ModuleAttribute {
 		cost=1;
 		
 		max_level=1000;
+		uid="mabd";
 		name="Урон от горения";
 	}
 	

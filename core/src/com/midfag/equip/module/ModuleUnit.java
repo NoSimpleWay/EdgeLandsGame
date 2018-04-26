@@ -47,6 +47,7 @@ public class ModuleUnit {
 	public List<ModuleAttribute> Available_attribute_list = new ArrayList<ModuleAttribute>();
 	public List<ModuleAttribute> Attribute_list = new ArrayList<ModuleAttribute>();
 	public Color color;
+	public String uid;
 	
 	
 	public ModuleUnit()
@@ -241,12 +242,14 @@ public class ModuleUnit {
 			Attribute_list.get(i).calculate(this);
 		}
 		
+		color=Color.WHITE;
+		/*
 		if (rarity==Rarity.COMMON){color=Color.WHITE;}
 		if (rarity==Rarity.UNCOMMON){color=Color.GREEN;}
 		if (rarity==Rarity.RARE){color=Color.ROYAL;}
 		if (rarity==Rarity.ELITE){color=Color.MAGENTA;}
 		if (rarity==Rarity.LEGENDARY){color=Color.ORANGE;}
-		if (rarity==Rarity.ANOMALY){color=Color.CYAN;}
+		if (rarity==Rarity.ANOMALY){color=Color.CYAN;}*/
 
 	}
 	

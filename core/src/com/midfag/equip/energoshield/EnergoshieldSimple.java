@@ -13,7 +13,7 @@ public class EnergoshieldSimple extends Energoshield {
 		base_reflect=4;
 		
 		name="Sample shield";
-		
+		uid="shsimple";
 		
 		generate();
 		update_attributes_bonus();

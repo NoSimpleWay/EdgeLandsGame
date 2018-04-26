@@ -25,8 +25,7 @@ public class WeaponSimpleShotgun extends Weapon {
 			
 			missile_speed=2100;
 			
-			generate();
-			update_attributes_bonus();
+
 			
 			name="Стандартный дробовик";
 			

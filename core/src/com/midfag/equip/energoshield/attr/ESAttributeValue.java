@@ -9,6 +9,7 @@ public class ESAttributeValue extends ESAttribute {
 	public ESAttributeValue()
 	{
 		name="shield";
+		uid="val";
 		cost=2;
 		max_level=100;
 	}

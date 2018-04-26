@@ -109,30 +109,93 @@ public class ButtonSaveMap extends Button {
 						s+="LightReady"+"\n";
 					}
 					
-					if (e.armored[0]!=null)
+					for (int f=0; f<2; f++){
+					if (e.armored[f]!=null)
 					{
-						s+="ArmoredWeapon"+"\n";
-						s+="weapon_uid"+"\n";
-						s+=""+e.armored[0].uid+"\n";
-						
-						s+="weapon_rarity"+"\n";
-						s+=""+e.armored[0].rarity.ordinal()+"\n";
-						
-						s+="weapon_level"+"\n";
-						s+=""+e.armored[0].level+"\n";
-						
-						s+="WeaponReady"+"\n";
-						
-						for (int attr=0; attr<e.armored[0].Attribute_list.size(); attr++)
-						{
-							s+="WeaponAttr"+"\n";
-							s+=e.armored[0].Attribute_list.get(attr).uid+"\n";
-							s+="WeaponAttrLevel"+"\n";
-							s+=e.armored[0].Attribute_list.get(attr).level+"\n";
-							s+="WeaponAttrReady"+"\n";
+							s+="ArmoredWeapon"+"\n"+f+"\n";
+							//s+="weapon_uid"+"\n";
+							s+=""+e.armored[f].uid+"\n";
+							
+							s+="weapon_rarity"+"\n";
+							s+=""+e.armored[f].rarity.ordinal()+"\n";
+							
+							s+="weapon_level"+"\n";
+							s+=""+e.armored[f].level+"\n";
+							for (int attr=0; attr<e.armored[f].Attribute_list.size(); attr++)
+							{
+								s+="WeaponAttr"+"\n";
+								s+=e.armored[f].Attribute_list.get(attr).uid+"\n";
+								s+="weapon_attr_level"+"\n";//s+="WeaponAttrLevel"+"\n";
+								s+=e.armored[f].Attribute_list.get(attr).level+"\n";
+								s+="WeaponAttrReady"+"\n";
+							}
+							s+="WeaponReady"+"\n";
 						}
 					}
+					
+					for (int f=0; f<4; f++){
+					if (e.armored_module[f]!=null)
+					{
+							s+="ArmoredModule"+"\n"+f+"\n";
+							//s+="weapon_uid"+"\n";
+							s+=""+e.armored_module[f].uid+"\n";
+							
+							s+="module_rarity"+"\n";
+							s+=""+e.armored_module[f].rarity.ordinal()+"\n";
+							
+							s+="module_level"+"\n";
+							s+=""+e.armored_module[f].level+"\n";
+							for (int attr=0; attr<e.armored_module[f].Attribute_list.size(); attr++)
+							{
+								s+="ModuleAttr"+"\n";
+								s+=e.armored_module[f].Attribute_list.get(attr).uid+"\n";
+								s+="module_attr_level"+"\n";//s+="WeaponAttrLevel"+"\n";
+								s+=e.armored_module[f].Attribute_list.get(attr).level+"\n";
+								s+="ModuleAttrReady"+"\n";
+							}
+							s+="ModuleReady"+"\n";
+						}
+					}
+					
+					
+					
+					if (e.armored_shield!=null)
+					{
+							s+="ArmoredShield"+"\n";
+							//s+="weapon_uid"+"\n";
+							s+=""+e.armored_shield.uid+"\n";
+							
+							s+="shield_rarity"+"\n";
+							s+=""+e.armored_shield.rarity.ordinal()+"\n";
+							
+							s+="shield_level"+"\n";
+							s+=""+e.armored_shield.level+"\n";
+							
 
+							
+							
+							
+							/*shrobo
+							shield_rarity
+							0
+							module_level*/
+							for (int attr=0; attr<e.armored_shield.Attribute_list.size(); attr++)
+							{
+								s+="ShieldAttr"+"\n";
+								s+=e.armored_shield.Attribute_list.get(attr).uid+"\n";
+								s+="shield_attr_level"+"\n";//s+="WeaponAttrLevel"+"\n";
+								s+=e.armored_shield.Attribute_list.get(attr).level+"\n";
+								s+="ShieldAttrReady"+"\n";
+							}
+							s+="ShieldReady"+"\n";
+							
+							s+="shield_value"+"\n";
+							s+=""+e.armored_shield.value+"\n";
+							
+							s+="shield_total_value"+"\n";
+							s+=""+e.armored_shield.total_value+"\n";
+						
+					}
 					
 					s+="PUT"+"\n";
 					

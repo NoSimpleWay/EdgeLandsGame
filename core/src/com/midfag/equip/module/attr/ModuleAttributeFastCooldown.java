@@ -12,6 +12,7 @@ public class ModuleAttributeFastCooldown extends ModuleAttribute {
 		cost=1;
 		
 		max_level=1000;
+		uid="mafscd";
 		name="Ускорение перезарядки";;
 	}
 	

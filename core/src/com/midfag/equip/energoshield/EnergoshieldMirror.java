@@ -16,7 +16,7 @@ public class EnergoshieldMirror extends Energoshield {
 		base_reflect=8;
 		
 		name="Mirror shield";
-		
+		uid="shmirr";
 		
 		spr=new Sprite(Assets.load("icon_shield_mirror"));
 		

@@ -28,6 +28,7 @@ public class LegendaryModuleUnitTimeStop extends ModuleUnit {
 	public LegendaryModuleUnitTimeStop()
 	{
 		name="Модуль 'Остановка времени'";
+		uid="modtistop";
 		
 		base_duration=7.0f;
 		base_cooldown=60;

@@ -15,6 +15,8 @@ public class ESAttribute {
 	public String name;
 	
 	public boolean base=true;
+
+	public String uid;
 	
 	public ESAttribute()
 	{

@@ -17,6 +17,7 @@ public class ModuleAttributeExplosionIce extends ModuleAttribute {
 		cost=1;
 		
 		max_level=100;
+		uid="maexic";
 		name="Волна холода";
 	}
 	

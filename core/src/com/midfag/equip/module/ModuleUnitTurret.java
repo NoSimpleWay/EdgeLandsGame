@@ -25,7 +25,7 @@ public class ModuleUnitTurret extends ModuleUnit {
 	public ModuleUnitTurret()
 	{
 		name="Модуль 'турель'";
-		
+		uid="modturret";
 		base_duration=10.0f;
 		base_cooldown=25;
 

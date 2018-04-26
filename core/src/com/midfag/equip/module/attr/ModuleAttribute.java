@@ -10,6 +10,7 @@ public class ModuleAttribute {
 	public float max_level;
 	//public
 	public String name;
+	public String uid;
 	
 	public ModuleAttribute()
 	{
