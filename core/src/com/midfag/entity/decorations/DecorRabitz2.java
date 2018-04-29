@@ -59,11 +59,7 @@ public class DecorRabitz2 extends Entity {
 	
 	
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorRabitz2(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

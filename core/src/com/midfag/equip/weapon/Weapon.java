@@ -139,6 +139,9 @@ public class Weapon {
 			
 			total_damage=base_damage*level;
 			
+			total_fire_damage=base_fire_damage*level;
+			total_cold_damage=base_cold_damage*level;
+			
 			total_missile_count=base_missile_count;
 			total_shoot_cooldown=base_shoot_cooldown;
 			total_dispersion=base_dispersion;
@@ -176,6 +179,8 @@ public class Weapon {
 			if (rarity==Rarity.LEGENDARY){spr.setColor(Color.ORANGE);}
 			if (rarity==Rarity.ANOMALY){spr.setColor(Color.CYAN);}*/
 			
+			ammo=(int) total_ammo_size;
+			
 		}
 		
 		public Missile get_missile(Entity pl)
@@ -203,30 +208,10 @@ public class Weapon {
 			get_available_attribute();
 			
 			total_damage=base_damage*level;
+			
 			Attribute_list.clear();
 			int r=0;
 			//Helper.log("IM GENERATED!");
-			
-			/*
-			if (rarity.ordinal()==0)
-			{
-				for (int i=0; i<6; i++)
-				{
-					r=i;
-					
-					if (Math.random()>0.5f){break;}
-				}
-				
-				if (r==0) {rarity=Rarity.COMMON;}
-				if (r==1) {rarity=Rarity.UNCOMMON;}
-				if (r==2) {rarity=Rarity.RARE;}
-				if (r==3) {rarity=Rarity.ELITE;}
-				if (r==4) {rarity=Rarity.LEGENDARY;}
-				if (r==5) {rarity=Rarity.ANOMALY;}
-			}*/
-			
-			
-			
 			
 			attr_point=(float) (level*10f*(Math.pow(1.26f,rarity.ordinal())));
 			attr_point_indicate=attr_point;
@@ -314,6 +299,21 @@ public class Weapon {
 		public float get_dispersion()
 		{
 			return GScreen.rnd(total_dispersion)-(total_dispersion)/2f;
+		}
+		
+		public void equip()
+		{
+		
+		}
+		
+		public void unequip()
+		{
+			
+		}
+		
+		public void ability_hit(Missile _m, Entity _target)
+		{
+			
 		}
 		
 		//public void

@@ -94,6 +94,8 @@ public class ButtonEquip extends Button {
 	
 	public void color_it(float _a, float _b)
 	{
+		if (Math.abs(_a-_b)>0.01)
+		{
 		if (_a==_b)
 		{Main.font.setColor(0.5f, 0.6f, 0.7f, 1);}
 		else
@@ -101,6 +103,9 @@ public class ButtonEquip extends Button {
 		{Main.font.setColor(0.45f, 1.0f, 0.55f, 1);}
 		else	
 		{Main.font.setColor(1.0f, 0.75f, 0.65f, 1);}
+		}
+		else
+		{Main.font.setColor(0.5f, 0.6f, 0.7f, 1);}	
 	}
 	
 	
@@ -178,19 +183,23 @@ public class ButtonEquip extends Button {
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=15;
 				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage,1);
-				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage*10,mx); }
-				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage*10,mx); }
+				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage*10f,mx); }
+				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage*10f,mx); }
 				mov+=28;
-				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*10.0f)/10.0f);
+				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown/GScreen.pl.bonus_attack_speed); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*GScreen.pl.bonus_attack_speed*10.0f)/10.0f);
 				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion));
 				color_it (w.base_dispersion_additional,w.total_dispersion_additional);draw_info("Dispersion add: ",""+Math.round(w.total_dispersion_additional));
 				color_it (w.total_ammo_size,w.base_ammo_size);draw_info("Ammo size: ",""+Math.round(w.total_ammo_size));
-				color_it (w.base_reload_time,w.total_reload_time);draw_info("Reload time: ",""+Math.round(w.total_reload_time*10.0f)/10f);
+				color_it (w.base_reload_time,w.total_reload_time/GScreen.pl.bonus_attack_speed);draw_info("Reload time: ",""+Math.round(w.total_reload_time/GScreen.pl.bonus_reload_speed*10.0f)/10f);
 				
 				mov+=7;
 				Main.font.setColor(1.0f, 0.2f, 0.1f, 1f);
 				draw_info("'"+w.red_text+"'","");
 				
+				for (int i=0; i<w.Attribute_list.size(); i++)
+				{
+					draw_info (w.Attribute_list.get(i).name,""+w.Attribute_list.get(i).level);
+				}
 				
 				//if (Math.random()<0.01){((Weapon)obj).model.setPosition((float)(Math.random()*100),(float)(Math.random()*100));}
 				
@@ -259,16 +268,24 @@ public class ButtonEquip extends Button {
 					
 					if ((inventory_id==-1)&&(GScreen.pl.inventory[99] instanceof Weapon))
 					{
+						GScreen.pl.armored[0].unequip();
+						
 						Object swap=(Weapon)GScreen.pl.armored[0];
 						GScreen.pl.armored[0]=(Weapon)GScreen.pl.inventory[99];
 						GScreen.pl.inventory[99]=swap;
+						
+						GScreen.pl.armored[0].equip();
 					}
 					
 					if ((inventory_id==-2)&&(GScreen.pl.inventory[99] instanceof Weapon))
 					{
+						GScreen.pl.armored[1].unequip();
+						
 						Object swap=(Weapon)GScreen.pl.armored[1];
 						GScreen.pl.armored[1]=(Weapon)GScreen.pl.inventory[99];
 						GScreen.pl.inventory[99]=swap;
+						
+						GScreen.pl.armored[1].equip();
 					}
 					
 					if ((inventory_id==-5)&&(GScreen.pl.inventory[99] instanceof Energoshield))

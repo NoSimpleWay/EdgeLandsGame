@@ -9,6 +9,7 @@ import com.midfag.entity.Entity;
 import com.midfag.entity.Shd;
 
 import com.midfag.entity.ShdSmoke;
+import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
 
@@ -55,6 +56,7 @@ public class Missile {
 	public float cold_damage;
 	
 	public Entity master;
+	public Weapon master_weapon;
 	
 	
 	
@@ -197,6 +199,7 @@ public class Missile {
 			if (master.Skills_list.get(i).learned)
 			{master.Skills_list.get(i).missile_hit_action(master, near_entity, this);}
 		}
+		if (master_weapon!=null) {master_weapon.ability_hit(this, near_entity);}
 		lifetime=-0.1f;
 	}
 	

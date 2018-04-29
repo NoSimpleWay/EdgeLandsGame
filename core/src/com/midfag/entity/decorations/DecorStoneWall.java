@@ -54,11 +54,7 @@ public class DecorStoneWall extends Entity {
 	
 	
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorStoneWall(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

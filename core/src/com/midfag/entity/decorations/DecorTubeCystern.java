@@ -34,11 +34,7 @@ public class DecorTubeCystern extends DecorStoneWall {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorTubeCystern(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

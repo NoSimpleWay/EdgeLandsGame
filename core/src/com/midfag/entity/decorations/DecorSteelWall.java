@@ -26,10 +26,6 @@ public class DecorSteelWall extends Entity {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorSteelWall(new Vector2());
-	}
+
 
 }

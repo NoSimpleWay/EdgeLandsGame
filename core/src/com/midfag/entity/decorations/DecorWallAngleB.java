@@ -30,11 +30,7 @@ public class DecorWallAngleB extends DecorBuilding {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorWallAngleB(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

@@ -76,8 +76,8 @@ public class InputHandler implements InputProcessor {
     
     public static boolean press=false;
 
-	public static boolean keyF_release=false;
-	public static boolean keyE_release=false;
+	public static boolean keyF_release=true;
+	public static boolean keyE_release=true;
 	public static int scroll_amount;
 	
 	public static WorldConfigMode wcm=WorldConfigMode.ILLUMINATION_BLUR_POWER;

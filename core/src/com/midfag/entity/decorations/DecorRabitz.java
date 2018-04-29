@@ -73,11 +73,7 @@ public class DecorRabitz extends Entity {
 	
 	
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorRabitz(new Vector2());
-	}
+
 	
 	@Override
 	public void default_interact_action(float delta) {

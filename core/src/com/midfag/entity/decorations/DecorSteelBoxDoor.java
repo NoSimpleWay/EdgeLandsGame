@@ -63,11 +63,7 @@ public class DecorSteelBoxDoor extends DecorBuilding {
 			
 	
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorSteelBoxDoor(new Vector2());
-	}
+
 	
 	@Override
 	public void default_interact_action(float delta) {

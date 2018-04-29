@@ -42,27 +42,9 @@ public class DecorPowerLine extends DecorStoneWall {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void some_update(float _d)
-	{
-		//add_impulse(-30f, 0, _d);
-	}
 
-			
 	
-	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorPowerLine(new Vector2());
-	}
-	
-	@Override
-	public void do_custom_phys()
-	{
 
-		
-	}
-	
 
 	
 

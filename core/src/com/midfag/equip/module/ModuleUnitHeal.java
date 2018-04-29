@@ -48,7 +48,7 @@ public class ModuleUnitHeal extends ModuleUnit {
 
 		
 		tex=Assets.load("icon_module_heal");
-		indicate_tex=Assets.load("icon_indicate_push");
+		indicate_tex=Assets.load("icon_indicate_heal");
 		rarity=Rarity.COMMON;
 		
 		level=1;
@@ -63,7 +63,6 @@ public class ModuleUnitHeal extends ModuleUnit {
 		Available_attribute_list.clear();
 		
 		Available_attribute_list.add(new ModuleAttributeDuration());
-		Available_attribute_list.add(new ModuleAttributeFastCooldown());
 		Available_attribute_list.add(new ModuleAttributeFastCooldown());
 		Available_attribute_list.add(new ModuleAttributeMoreHeal());
 		

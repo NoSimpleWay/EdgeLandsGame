@@ -48,7 +48,7 @@ public class ScreenEffectTimeStop extends ScreenEffect {
 		if ((MasterModule.duration<1.5f)&(!played))
 		{
 			played=true;
-			Gdx.audio.newSound(Gdx.files.internal("data/time_stop_reverse.wav")).play();
+			Gdx.audio.newSound(Gdx.files.internal("data/time_stop_reverse.wav")).play(Assets.battle_music_multiplier);
 		}
 	}
 	

@@ -29,11 +29,6 @@ public class DecorBuildingRoofLong extends DecorBuilding {
 		//shield=999999;
 		// TODO Auto-generated constructor stub
 	}
-	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorBuildingRoofLong(new Vector2());
-	}
+
 
 }

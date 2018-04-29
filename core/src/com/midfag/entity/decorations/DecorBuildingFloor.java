@@ -31,11 +31,7 @@ public class DecorBuildingFloor extends DecorBuilding {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorBuildingFloor(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

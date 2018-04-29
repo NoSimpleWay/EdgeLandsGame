@@ -1,6 +1,7 @@
 package com.midfag.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.loaders.SoundLoader.SoundParameter;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
@@ -11,6 +12,7 @@ public class Assets {
 	
 
 	
+	
 	public static Texture panel;
 	public static Texture diod;
 	public static Texture particle;
@@ -20,10 +22,13 @@ public class Assets {
 	
 	public static Texture explosion;
 	
+	public static Sound smiler_saw=Gdx.audio.newSound(Gdx.files.internal("data/smiler_saw.wav"));
+	
 	public static Sound shoot00;
 	public static Sound shoot01;
 	public static Sound shoot02;
 	public static Sound shoot04=Gdx.audio.newSound(Gdx.files.internal("data/shoot04.wav"));
+	public static Sound shoot_fire=Gdx.audio.newSound(Gdx.files.internal("data/fire.wav"));
 	
 	public static Music battle_music_00=Gdx.audio.newMusic(Gdx.files.internal("data/battle_00.wav"));
 	public static Sound expl=Gdx.audio.newSound(Gdx.files.internal("data/expl.wav"));
@@ -64,6 +69,7 @@ public class Assets {
 	public static Sound door=Gdx.audio.newSound(Gdx.files.internal("data/door.wav"));
 	public static Sound engine_start=Gdx.audio.newSound(Gdx.files.internal("data/engine_start.wav"));
 	
+	public static Texture smiler=load ("smiler");
 	public static Sprite skill_wheel=new Sprite(load ("eye"));
 	public static Sprite select_sprite=new Sprite(load ("selected_skill"));
 
@@ -242,11 +248,13 @@ public class Assets {
 	public static Texture decoration_building_00=load ("decoration_building_00_icon");
 	public static Texture decor_building_00_part_00=load ("decoration_building_00_part_00");
 	public static Texture decor_building_00_part_00_icon=load ("decoration_building_00_part_00_icon");
-	public static float battle_music_multiplier=0.05f;
+	public static float battle_music_multiplier=0.15f;
 	
 	public static Texture spawn_tower_light=load("spawn_tower_light");
 	public static Texture spawn_tower=load("spawn_tower");
 	public static Texture spawn_tower_bottom=load("spawn_tower_bottom");
+	private static long smiler_saw_id;
+	public static boolean smiler_saw_play;
 	
 	public Assets()
 	{
@@ -346,6 +354,11 @@ public class Assets {
 		icon_cooldown.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		icon_duration.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		noise.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		
+		smiler_saw_id=smiler_saw.play(0.0f);
+		smiler_saw.setLooping(smiler_saw_id, true);
+		smiler_saw.pause();
 		
 		music.setLooping(true);
 		music.setVolume(0.25f);

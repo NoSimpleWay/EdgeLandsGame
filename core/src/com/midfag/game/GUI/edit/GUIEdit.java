@@ -528,7 +528,7 @@ public class GUIEdit extends GUI {
 					
 						GScreen.batch.draw(Assets.mech_foot,cx*300+150,cy*300+150);
 					
-					
+					if ((j<30)&&(j>=0)&&(i<30)&&(i>=0))
 					for (int k=0; k<GScreen.cluster[i][j].Entity_list.size(); k++)
 					{
 						GScreen.temp_vectorA.y=yy-GScreen.cluster[i][j].Entity_list.get(k).z;

@@ -1,6 +1,7 @@
 package com.midfag.entity;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -32,6 +33,9 @@ import com.midfag.game.skills.Skill;
 public class Entity {
 	
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
+	public float bonus_attack_speed=1f;
+	public float bonus_reload_speed=1f;
+	
 	public Entity near_object=null;
 	public Texture main_tex=null;
 	
@@ -190,6 +194,7 @@ public class Entity {
 
 	public float stuck=0f;
 	public boolean need_remove=false;
+	public boolean have_module=false;
 	
 	public void use_module(int _id)
 	{
@@ -293,12 +298,14 @@ public class Entity {
 		{
 			GScreen.batch.setColor(1,1,1,(float) ((Math.sin(TimeUtils.millis()/100))+1)/2f);
 			
-			if ((Math.abs(pos.x-GScreen.pl.pos.x)+Math.abs(pos.y-GScreen.pl.pos.y)<80))
-			{GScreen.batch.draw(Assets.button_e, GScreen.pl.pos.x-7+20, GScreen.pl.pos.y-7+55);}
 			
 			GScreen.batch.draw(Assets.quest, pos.x-4, pos.y+55);
 			
 			Main.font_big.draw(GScreen.batch, "!"+z, pos.x, pos.y);
+			
+			if ((Math.abs(pos.x-GScreen.pl.pos.x)+Math.abs(pos.y-GScreen.pl.pos.y)<120))
+			{GScreen.batch.draw(Assets.button_e, GScreen.pl.pos.x-7+20, GScreen.pl.pos.y-7+85,40,40);}
+
 		}
 	}
 	
@@ -432,6 +439,7 @@ public class Entity {
 		
 		//Helper.log("DESTROY <"+id+">");
 		need_remove=true;
+		/*
 		if ((need_dead_anim))
 		{
 			for (int v=0; v<3; v++)
@@ -446,6 +454,7 @@ public class Entity {
 			
 			need_dead_anim=false;
 		}
+		*/
 		
 		//if (!is_player)
 		{
@@ -570,8 +579,8 @@ public class Entity {
 						
 					    if (path_x>=0)
 					    {
-					    	int cluster_x=(int)(GScreen.camera.position.x/300f);
-						    int cluster_y=(int)(GScreen.camera.position.y/300f);
+					    	int cluster_x=(int)(pos.x/300f);
+						    int cluster_y=(int)(pos.y/300f);
 						    
 							for (int i=0; i<300; i++)
 							for (int j=0; j<300; j++)
@@ -650,17 +659,26 @@ public class Entity {
 			
 		    //if (path_x>=0)
 		    //{
-		    	int cluster_x=(int)(GScreen.camera.position.x/300f);
-			    int cluster_y=(int)(GScreen.camera.position.y/300f);
+		    	int cluster_x=(int)(_x/300f);
+			    int cluster_y=(int)(_y/300f);
 			    
-				for (int i=0; i<300; i++)
-				for (int j=0; j<300; j++)
+			   
+				
+				
+				if (path_x>=0)
 				{
-					if (GScreen.path[j][i]<0)
-					{GScreen.path[j][i]=100;}
-				}
-				
-				
+					
+						int psx=(int)(_x/30.0f);
+					    int psy=(int)(_y/30.0f);
+					    
+						for (int i=psy-30; i<psy+30; i++)
+						for (int j=psx-30; j<psx+30; j++)
+						if ((j>=0)&&(j<300)&&(i>=0)&&(i<300))
+						{
+							if (GScreen.path[j][i]<0)
+							{GScreen.path[j][i]=100;}
+						}
+						
 				for (int x=cluster_x-4; x<=cluster_x+4; x++)
 			    for (int y=cluster_y-4; y<=cluster_y+4; y++)
 			    if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
@@ -673,22 +691,15 @@ public class Entity {
 				    		e.generate_path();
 				    	}
 			    }
-				
 				GScreen.need_shadow_update=true;
+				}
+				
 				GScreen.need_light_update=true;
 				
 				if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
 				if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
 		    //}
-
-		    
-		   
 		    //if ((light_source!=null)&&(!light_source.is_static)){GScreen.need_dynamic_light_update=true;}
-		    
-
-		    
-			
-			
 		}
 	}
 	
@@ -789,6 +800,7 @@ public class Entity {
 				mis.fire_damage=armored[_i].total_fire_damage;
 				mis.cold_damage=armored[_i].total_cold_damage;
 				mis.master=this;
+				mis.master_weapon=armored[_i];
 				
 				//mis.sp
 				
@@ -803,7 +815,7 @@ public class Entity {
 			}
 			else
 			{
-				{armored[_i].get_shoot_sound().play(0.05f);}
+				{armored[_i].get_shoot_sound().play(0.15f);}
 			}
 		
 			
@@ -868,6 +880,7 @@ public class Entity {
 		
 		float cold_rating=1-buff_cold/(buff_cold+100);
 		
+		if(have_module)
 		for (int i=0; i<5; i++)
 		{
 			
@@ -910,9 +923,9 @@ public class Entity {
 		
 		for (int i=0; i<2; i++)
 		{
-			if (armored[i]!=null)
-			if (miso>0)
-			{Assets.minigun.setPitch(miso, armored[i].warm/armored[i].need_warm);}
+			//if (armored[i]!=null)
+			//if (miso>0)
+			//{Assets.minigun.setPitch(miso, armored[i].warm/armored[i].need_warm);}
 			
 
 
@@ -920,7 +933,7 @@ public class Entity {
 			if (armored[i]!=null)
 			if (armored[i].reload_timer>0)
 			{
-				armored[i].reload_timer-=_d*cold_rating;
+				armored[i].reload_timer-=_d*cold_rating*bonus_reload_speed;
 				
 				if (armored[i].reload_timer<=0)
 				{
@@ -932,7 +945,6 @@ public class Entity {
 		slow=Math.min(0.5f, slow);
 		slow*=0.99f;
 		
-		if (stun>0){stun--;}
 		
 		for (int i=0; i<2; i++)
 		{
@@ -941,7 +953,7 @@ public class Entity {
 				armored[i].add_disp*=Math.pow(0.05f,_d);
 			
 				
-				armored[i].cd-=_d*cold_rating;
+				armored[i].cd-=_d*cold_rating*bonus_attack_speed;
 			}
 		}
 		
@@ -951,7 +963,7 @@ public class Entity {
 			{armored_shield.value+=armored_shield.total_regen_speed*_d*(1f-armored_shield.warm/50f);}
 			
 			// if (this instanceof EntityHuman) {Helper.log("WARM!");}
-			armored_shield.warm-=_d;
+			armored_shield.warm-=_d/2f;
 			armored_shield.warm=Math.max(0, armored_shield.warm);
 			armored_shield.value=Math.min(armored_shield.total_value, armored_shield.value);
 		}
@@ -1217,6 +1229,7 @@ public class Entity {
 			need_remove=true;
 		}
 		
+		post_update(_d);
 	}
 
 	public void add_impulse(float _x, float _y, float _d) {
@@ -1225,10 +1238,7 @@ public class Entity {
 		impulse.y+=_y*_d;
 	}
 
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	public void draw_hp()
 	{
@@ -1390,6 +1400,13 @@ public class Entity {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public void post_update(float _d) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
 
 
 	

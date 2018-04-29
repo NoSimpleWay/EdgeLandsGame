@@ -44,6 +44,7 @@ public class SysConfig {
 		ModuleRegisterer.add(new LegendaryModuleUnitEXPLOSIONS());
 		ModuleRegisterer.add(new ModuleUnitTurret());
 		ModuleRegisterer.add(new ModuleUnitHeal());
+		ModuleRegisterer.add(new ModuleUnitOverload());
 	}
 	
 	public static void RegisterModuleAttribute()
@@ -55,6 +56,9 @@ public class SysConfig {
 		ModuleAttrRegisterer.add(new ModuleAttributeMoreTimeSlowResist());
 		ModuleAttrRegisterer.add(new ModuleAttributePushDamage());
 		ModuleAttrRegisterer.add(new ModuleAttributeSelfDamageProtect());
+		ModuleAttrRegisterer.add(new ModuleAttributeMoreHeal());
+		ModuleAttrRegisterer.add(new ModuleAttributeMoreBonusAttackSpeed());
+		ModuleAttrRegisterer.add(new ModuleAttributeMoreBonusReloadSpeed());
 		ModuleAttrRegisterer.add(new ModuleAttributeMoreHeal());
 		;
 	}
@@ -104,6 +108,7 @@ public class SysConfig {
 		WeaponRegisterer.add(new LegendaryWeaponChaos());
 		WeaponRegisterer.add(new LegendaryWeaponBlender());
 		WeaponRegisterer.add(new LegendaryWeaponMirrorLaser());
+		WeaponRegisterer.add(new LegendaryWeaponPyroman());
 	}
 	
 	public static void RegisterEntity()
@@ -159,6 +164,8 @@ public class SysConfig {
 		EntityRegisterer.add(new DecorBuilding00_Part00(null));
 		
 		EntityRegisterer.add(new EntitySpawnTower(null));
+		
+		EntityRegisterer.add(new EntitySmiler(null));
 		
 		for (int i=0; i<EntityRegisterer.size(); i++)
 		{

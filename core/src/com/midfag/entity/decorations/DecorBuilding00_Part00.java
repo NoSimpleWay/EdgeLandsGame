@@ -66,11 +66,7 @@ public class DecorBuilding00_Part00 extends Entity {
 			
 	
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorBuilding00_Part00(new Vector2());
-	}
+
 	
 	@Override
 	public void do_custom_phys()

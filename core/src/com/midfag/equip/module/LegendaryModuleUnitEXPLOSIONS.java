@@ -131,6 +131,8 @@ public class LegendaryModuleUnitEXPLOSIONS extends ModuleUnit {
 		
 		total_damage=base_damage;
 		total_burn=base_burn;
+		
+		self_defence=0;
 	}
 	
 	@Override

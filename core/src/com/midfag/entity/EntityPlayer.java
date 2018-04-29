@@ -22,7 +22,7 @@ import com.midfag.equip.weapon.WeaponSimpleMinigun;
 import com.midfag.equip.weapon.WeaponSimpleShotgun;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
-
+import com.midfag.game.InputHandler;
 import com.midfag.game.skills.Skill;
 import com.midfag.game.skills.shield_skills.SkillGodShield;
 import com.midfag.game.skills.shield_skills.SkillGodShield_A_SuperValue;
@@ -78,7 +78,7 @@ public class EntityPlayer extends Entity {
 		
 		super(_v);
 		
-		
+		have_module=true;
 		id=this.getClass().getName();
 		uid="016132fe";
 		
@@ -387,11 +387,11 @@ public class EntityPlayer extends Entity {
 		//	System.out.println("Scroll lock is live!");
 		//}
 		
-		if (Gdx.input.isKeyPressed(Keys.NUM_1)){use_module(0);}
-		if (Gdx.input.isKeyPressed(Keys.NUM_2)){use_module(1);}
-		if (Gdx.input.isKeyPressed(Keys.NUM_3)){use_module(2);}
-		if (Gdx.input.isKeyPressed(Keys.NUM_4)){use_module(3);}
-		if (Gdx.input.isKeyPressed(Keys.NUM_5)){use_module(4);}
+		if ((Gdx.input.isKeyPressed(Keys.NUM_1))&&(InputHandler.keyF_release)){use_module(0); InputHandler.keyF_release=false;}
+		if ((Gdx.input.isKeyPressed(Keys.NUM_2))&&(InputHandler.keyF_release)){use_module(1); InputHandler.keyF_release=false;}
+		if ((Gdx.input.isKeyPressed(Keys.NUM_3))&&(InputHandler.keyF_release)){use_module(2); InputHandler.keyF_release=false;}
+		if ((Gdx.input.isKeyPressed(Keys.NUM_4))&&(InputHandler.keyF_release)){use_module(3); InputHandler.keyF_release=false;}
+		if ((Gdx.input.isKeyPressed(Keys.NUM_5))&&(InputHandler.keyF_release)){use_module(4); InputHandler.keyF_release=false;}
 		
 		if (Gdx.input.isKeyPressed(Keys.G))
 		{

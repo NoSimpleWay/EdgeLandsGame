@@ -35,11 +35,7 @@ public class DecorBuildingWallWindow extends DecorBuilding {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorBuildingWallWindow(new Vector2());
-	}
+
 	
 	@Override
 	public void some_draw()

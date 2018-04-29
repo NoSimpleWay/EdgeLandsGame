@@ -55,13 +55,7 @@ public class DecorSteelBoxCap extends DecorStoneWall {
 
 			
 	
-	
-	@Override
-	public Entity put() {
-		// TODO Auto-generated method stub
-		return new DecorSteelBoxCap(new Vector2());
-	}
-	
+
 	@Override
 	public void do_custom_phys()
 	{

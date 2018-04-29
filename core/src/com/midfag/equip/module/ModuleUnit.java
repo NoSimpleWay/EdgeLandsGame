@@ -19,6 +19,7 @@ import com.midfag.game.Enums.Rarity;
 
 public class ModuleUnit {
 
+	public boolean active=false;
 	public float prepare_time=-777;
 	public float base_cooldown;
 	public float total_cooldown;
@@ -197,6 +198,12 @@ public class ModuleUnit {
 		{
 			//GScreen.batch_static.setColor(Color.RED);
 			GScreen.batch_static.draw(Assets.icon_duration, _x-27, _y-27+25*(1-duration/total_duration),50f,50f*duration/total_duration);
+		}
+		
+		if (active)
+		{
+			//GScreen.batch_static.setColor(Color.RED);
+			GScreen.batch_static.draw(Assets.icon_duration, _x-27, _y-27+25,50f,50f);
 		}
 		
 		if (highlight_value>0)
