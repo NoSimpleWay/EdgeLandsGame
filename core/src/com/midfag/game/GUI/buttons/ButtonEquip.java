@@ -183,24 +183,26 @@ public class ButtonEquip extends Button {
 				//draw_info("Bonuses: ",""+((Weapon)obj).attr_count);
 				mov+=15;
 				color_it (w.total_damage,w.base_damage); draw_info("Урон: ",""+w.total_damage,1);
-				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=230; draw_info("Поджог: ",""+w.total_fire_damage*10f,mx); }
-				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=230; draw_info("Заморозка: ",""+w.total_cold_damage*10f,mx); }
+				if (w.total_fire_damage>0) {Main.font.setColor(Color.YELLOW); mx+=280; draw_info("Поджог: ",""+w.total_fire_damage*10f,mx); }
+				if (w.total_cold_damage>0) {Main.font.setColor(Color.CYAN); mx+=280; draw_info("Заморозка: ",""+w.total_cold_damage*10f,mx); }
 				mov+=28;
 				color_it (w.base_shoot_cooldown,w.total_shoot_cooldown/GScreen.pl.bonus_attack_speed); draw_info("Скорострельность: ",""+Math.round(1.0f/w.total_shoot_cooldown*GScreen.pl.bonus_attack_speed*10.0f)/10.0f);
-				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion));
-				color_it (w.base_dispersion_additional,w.total_dispersion_additional);draw_info("Dispersion add: ",""+Math.round(w.total_dispersion_additional));
-				color_it (w.total_ammo_size,w.base_ammo_size);draw_info("Ammo size: ",""+Math.round(w.total_ammo_size));
-				color_it (w.base_reload_time,w.total_reload_time/GScreen.pl.bonus_attack_speed);draw_info("Reload time: ",""+Math.round(w.total_reload_time/GScreen.pl.bonus_reload_speed*10.0f)/10f);
+				color_it (w.base_dispersion,w.total_dispersion);draw_info("Dispersion: ",""+Math.round(w.total_dispersion),1);
+				color_it (w.base_dispersion_additional,w.total_dispersion_additional);draw_info("Dispersion add: ",""+Math.round(w.total_dispersion_additional),280);
+				mov+=28;
+				color_it (w.total_ammo_size,w.base_ammo_size);draw_info("Ammo size: ",""+Math.round(w.total_ammo_size),1);
+				color_it (w.base_reload_time,w.total_reload_time/GScreen.pl.bonus_attack_speed);draw_info("Reload time: ",""+Math.round(w.total_reload_time/GScreen.pl.bonus_reload_speed*10.0f)/10f,280);
 				
-				mov+=7;
+				mov=200;
 				Main.font.setColor(1.0f, 0.2f, 0.1f, 1f);
 				draw_info("'"+w.red_text+"'","");
 				
+				/*
 				for (int i=0; i<w.Attribute_list.size(); i++)
 				{
 					draw_info (w.Attribute_list.get(i).name,""+w.Attribute_list.get(i).level);
 				}
-				
+				*/
 				//if (Math.random()<0.01){((Weapon)obj).model.setPosition((float)(Math.random()*100),(float)(Math.random()*100));}
 				
 				((Weapon)obj).model.setPosition(info_x,info_y-300);
@@ -345,8 +347,39 @@ public class ButtonEquip extends Button {
 		Main.font.draw(GScreen.batch_static, _s1, info_x+_x, info_y-mov);
 		
 		if (!_s2.equals(""))
-		{Main.font.draw(GScreen.batch_static, _s2, info_x+180+_x, info_y-mov);}
-		if (_x==0) {mov+=17;} 
+		{
+			Main.font.draw(GScreen.batch_static, _s2, info_x+190+_x, info_y-mov);
+			GScreen.batch_static.setColor(0.25f,1,0.5f,0.1f);
+				GScreen.batch_static.draw(Assets.rect_white, info_x+_x-2+188, info_y-mov-15,70,18);
+			GScreen.batch_static.setColor(Color.WHITE);
+		}
+		
+		if ((_s2.equals(""))&&(mov<180))
+		{
+			Helper.layout.setText(Main.font, _s1);
+			
+			
+			GScreen.batch_static.setColor(1.0f,1,0.5f,0.1f);
+			GScreen.batch_static.draw(Assets.rect_white, info_x+_x-2, info_y-3-mov-Helper.layout.height,Helper.layout.width+5,Helper.layout.height+5);
+			GScreen.batch_static.setColor(Color.WHITE);
+		}
+		
+		if ((!_s2.equals("")))
+		{
+				GScreen.batch_static.setColor(1,1,1,0.1f);
+					GScreen.batch_static.draw(Assets.rect_white, info_x+_x-2, info_y-mov-15,170,18);
+				GScreen.batch_static.setColor(Color.WHITE);	
+		}
+		
+		if (mov>=180)
+		{
+			GScreen.batch_static.setColor(1,0.5f,0.25f,0.1f);
+				GScreen.batch_static.draw(Assets.rect_white, info_x+_x-2, info_y-mov-15,770,18);
+			GScreen.batch_static.setColor(Color.WHITE);
+		}
+		if (_x==0) {mov+=28;} 
+		
+
 	}
 	
 	public void draw_info(String _s1, String _s2)

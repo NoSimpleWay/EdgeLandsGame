@@ -7,6 +7,7 @@ import java.lang.reflect.InvocationTargetException;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
 import com.midfag.entity.Entity;
 import com.midfag.entity.EntityHuman;
@@ -30,6 +31,7 @@ public class Helper {
 	//private static final String BUILDER_CLASS = "builder.class";
 	public static String alphabet[]=new String [16];
 	public static String hex[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P"};
+	public static GlyphLayout  layout = new GlyphLayout();
 	
 	public Helper()
 	{
@@ -51,7 +53,8 @@ public class Helper {
 		for (int i=0; i<300; i++)
 		for (int j=0; j<300; j++)
 		{
-			GScreen.path[j][i]=300;
+			GScreen.path[j][i][0]=300;
+			GScreen.path[j][i][1]=300;
 		}
 			
 		
@@ -64,7 +67,7 @@ public class Helper {
 			if (GScreen.cluster[j][i].Phys_list!=null){GScreen.cluster[j][i].Phys_list.clear();}
 		}
 		
-		FileHandle file = Gdx.files.local("data/level_data/z.txt");
+		FileHandle file = Gdx.files.local("level_data/z.txt");
 		
 		String s=file.readString();
 		
@@ -100,7 +103,8 @@ public class Helper {
 				
 				log ("UID="+id+" | ID="+SysConfig.get_package_path_by_uid(id));
 				
-				if (SysConfig.get_package_path_by_uid(id).equals("")) {e=null;}
+				if (SysConfig.get_package_path_by_uid(id).equals(""))
+				{e=null;}
 				else
 				{e=get_object_from_id(SysConfig.get_package_path_by_uid(id));}
 				//System.out.println("ID="+id);	
@@ -304,7 +308,7 @@ public class Helper {
 			GScreen.pl_mech=GScreen.add_entity_to_map(new EntityPlayer(new Vector2(4400,4400)));
 		}
 		
-		file = Gdx.files.local("data/level_data/z_tile.txt");
+		file = Gdx.files.local("level_data/z_tile.txt");
 		
 		s=file.readString();
 		
@@ -387,7 +391,7 @@ public class Helper {
 				}
 		}
 		
-		file = Gdx.files.local("data/level_data/z_tile_overlay.txt");
+		file = Gdx.files.local("level_data/z_tile_overlay.txt");
 		
 		s=file.readString();
 		ss=s.split("\n");
@@ -420,6 +424,7 @@ public class Helper {
 	    		Entity ee=GScreen.cluster[j][i].Entity_list.get(i);
 	    		
 	    		if (ee.light_source!=null) {ee.light_source.update_light_position(ee.pos.x,ee.pos.y);}
+	    		if (ee.path_x>=0) {ee.generate_path();}
 	    	}
 		}
 		

@@ -17,6 +17,7 @@ import com.midfag.equip.module.ModuleUnit;
 import com.midfag.equip.weapon.Weapon;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.Main;
 import com.midfag.game.Phys;
 
@@ -28,11 +29,12 @@ public class Skill {
 	
 	
 	public int level=0;
-	
+	public int maxlevel=1;
 	public boolean learned=false;
 	public boolean blocked=false;
 	
 	public Vector2 pos=new Vector2();
+	public Vector2 pos_current=new Vector2();
 	public String info;
 	
 	public Skill skill_a;
@@ -41,6 +43,7 @@ public class Skill {
 	
 	//public List<Skill> Sub_skill = new ArrayList<Skill>();
 	
+	public List<Skill> child_list = new ArrayList<Skill>();
 	public Skill parent;
 	
 	public boolean child_learned=false;
@@ -57,18 +60,21 @@ public class Skill {
 	
 	public String indicate_text="";
 	
+	
+	
 	public Skill()
 	{
 		spr.setSize(44, 44);
 		
 		spr.setOrigin(25, 25);
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		//pos_current.set(pos);
 	}
 	
 	public Skill add_sub_skillf(Skill _s)
 	{
-		skill_a=_s;
-		return skill_a;
+		
+		return _s;
 	}
 	
 	public void draw_sub_skill()
@@ -87,6 +93,7 @@ public class Skill {
 	
 	public Skill add_subskill(Skill _s, Entity _e)
 	{
+		child_list.add(_s);
 		_s.parent=this;
 		_s.pos.add(pos);
 		return _s;
@@ -215,6 +222,28 @@ public class Skill {
 	}
 
 	public void missile_hit_action(Entity master, Entity near_entity, Missile _mis) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update_info() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void reset_current_position() {
+		
+		Helper.log("HEH");
+		pos_current.set(parent.pos_current);
+		
+		if (child_list.size()>0)
+		{	
+			
+			for (Skill skl:child_list)
+			{skl.reset_current_position();}
+		}
+		//if (skill_a!=null) {skill_a.reset_current_position();}		//if (child!=null) {}
+		//if (parent!=null)
 		// TODO Auto-generated method stub
 		
 	}

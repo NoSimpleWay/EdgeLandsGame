@@ -97,9 +97,6 @@ public class Missile {
 		lifetime-=_d;
 		
 		shd_lifetime-=_d;
-		
-		
-
 	}
 	
 	public void preupdate(float _d)
@@ -185,9 +182,12 @@ public class Missile {
 	}
 	public void draw_shd(float delta) {
 		// TODO Auto-generated method stub
-		GScreen.sr.setColor(0.2f,0.1f,0.02f,shd_lifetime/2f);
+		if (lifetime>0)
+		{GScreen.sr.setColor(0.2f,0.1f,0.02f,0.1f);}
+		else
+		{{GScreen.sr.setColor(0.2f,0.1f,0.02f,(1f+lifetime)/10f);}}
 		
-		GScreen.sr.rectLine(start_x, start_y, pos.x, pos.y,2);
+		GScreen.sr.rectLine(start_x, start_y, pos.x, pos.y,3);
 		
 	}
 	
@@ -199,6 +199,7 @@ public class Missile {
 			if (master.Skills_list.get(i).learned)
 			{master.Skills_list.get(i).missile_hit_action(master, near_entity, this);}
 		}
+		
 		if (master_weapon!=null) {master_weapon.ability_hit(this, near_entity);}
 		lifetime=-0.1f;
 	}

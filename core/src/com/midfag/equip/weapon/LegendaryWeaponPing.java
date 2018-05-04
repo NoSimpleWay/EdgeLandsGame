@@ -38,7 +38,7 @@ public class LegendaryWeaponPing extends Weapon {
 			
 			name="-Ping 454.739.223.565";
 			
-			spr.setTexture(Assets.load("icon_firle"));
+			spr.setTexture(Assets.load("icon_legendary_ping_minigun"));
 			spr.setSize(75, 40);
 			
 			model.setTexture(Assets.load("model_minigun_ping"));

@@ -73,7 +73,7 @@ public class ModuleUnitOverload extends ModuleUnit {
 	@Override
 	public String get_description()
 	{
-		return "Скорость атаки +"+Math.round(total_shoot_speed*1000.0f)/10.0f+"%, скорость перезарядки +"+Math.round(total_reload_speed*1000.0f)/10.0f+"%"+"\n"+"Наносит "+total_self_damage*Math.round((1f-self_defence)*10.0f)/10.0f+"(+"+Math.round((total_self_damage/20f*(1f-self_defence))*10.0f)/10.0f+"% от запаса) урона владельцу";
+		return "Скорость атаки +"+Math.round(total_shoot_speed*1000.0f)/10.0f+"%, скорость перезарядки +"+Math.round(total_reload_speed*1000.0f)/10.0f+"%"+"\n"+"Наносит "+total_self_damage*Math.round((1f-self_defence)*10.0f)/10.0f+"(+"+Math.round((total_self_damage/10f*(1f-self_defence))*10.0f)/10.0f+"% от запаса) урона владельцу";
 	}
 	
 	@Override

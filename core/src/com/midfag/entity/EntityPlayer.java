@@ -284,8 +284,9 @@ public class EntityPlayer extends Entity {
 	
 	@Override
 	public void draw_action(float _d) {
-
-		spr.setColor(color_multiplier_R, color_multiplier_G, color_multiplier_B, 1);
+		
+		float cold_rating=1.0f-buff_cold/(buff_cold+100.0f);
+		spr.setColor(color_multiplier_R*cold_rating, color_multiplier_G*cold_rating, color_multiplier_B, 1);
 		
 		if (rotate_cooldown<=0)
 		{
@@ -314,8 +315,8 @@ public class EntityPlayer extends Entity {
 		}
 		spr.translate(-5,-80);
 		spr.setSize(100, 200);
-		spr.setTexture(Assets.shadow);
-		spr.draw(GScreen.batch);
+		//spr.setTexture(Assets.shadow);
+		//spr.draw(GScreen.batch);
 		spr.translate(5,80);
 		
 		spr.setSize(100, 100);

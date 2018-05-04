@@ -71,8 +71,8 @@ public class EntitySmiler extends Entity {
 		offset.y=10;
 		can_rotate=false;
 		
-		friction=0.05f;
-		speed/=0.2f;
+		friction=0.07f;
+		speed*=10f;
 		
 		mass=50;
 	}
@@ -169,24 +169,25 @@ public class EntitySmiler extends Entity {
 			if (Math.abs(my)<0.1f) {dx=99999;}else{dx=mx/my;}
 			if (Math.abs(mx)<0.1f) {dy=99999;}else{dy=my/mx;}
 			
-			near_object=null;
-			near_object=GScreen.get_collision(pos.x+catch_x,pos.y+catch_y,pos.x+mx*_d+catch_x,pos.y+my*_d+catch_y,dx,dy,size);
 			
-			if ((near_object==null)&&(near_object!=catch_target))
-			{
+			//near_object=null;
+			//near_object=GScreen.get_collision(pos.x+catch_x,pos.y+catch_y,pos.x+mx*_d+catch_x,pos.y+my*_d+catch_y,dx,dy,size);
+			
+			//if ((near_object==null)||(near_object!=catch_target))
+			//{
 				reposition (catch_target.pos.x+catch_x,catch_target.pos.y+catch_y);
 				pos.x=catch_target.pos.x+catch_x;
 				pos.y=catch_target.pos.y+catch_y;
 				
 				Assets.smiler_saw.resume();
 				
-			}
-			else
-			{
-				catch_target=null;
-				Assets.smiler_saw.pause();
-				mass=50;
-			}
+			//}
+			//else
+			//{
+			//	catch_target=null;
+			//	Assets.smiler_saw.pause();
+			//	mass=50;
+			//}
 			
 			
 			
@@ -219,7 +220,7 @@ public class EntitySmiler extends Entity {
 		}
 		
 		
-		if ((push_cooldown>0)&&(catch_target==null))
+		if ((push_cooldown>0)&&(catch_target==null)&&(target!=null))
 		{
 			push_cooldown-=_d;
 			if (push_cooldown<=0)
@@ -236,8 +237,8 @@ public class EntitySmiler extends Entity {
 		if (push_time>0)
 		{
 			push_time-=_d;
-			float sx=1000f*GScreen.sinR(360-rot);
-			float sy=1000f*GScreen.cosR(360-rot);
+			float sx=1500f*GScreen.sinR(360-rot);
+			float sy=1500f*GScreen.cosR(360-rot);
 			impulse.set(sx,sy);
 			
 			if (near_object!=null)
@@ -247,8 +248,8 @@ public class EntitySmiler extends Entity {
 					catch_target=near_object;
 					
 					
-					sx=30f*GScreen.sinR(360-rot);
-					sy=30f*GScreen.cosR(360-rot);
+					sx=30f*GScreen.sinR(360f-rot);
+					sy=30f*GScreen.cosR(360f-rot);
 					catch_x=-sx;
 					catch_y=-sy;
 					
@@ -264,7 +265,7 @@ public class EntitySmiler extends Entity {
 				rotate_cooldown=0;
 				damage_cooldown=0.2f;
 				
-				Assets.crash.play();
+				Assets.crash.play(0.2f);
 			}
 		}
 	}

@@ -32,7 +32,7 @@ public class LegendaryWeaponBlender extends Weapon {
 			
 
 			
-			name="Блендер";
+			name="Бенчмарк";
 			
 			missile_speed=1500;
 			

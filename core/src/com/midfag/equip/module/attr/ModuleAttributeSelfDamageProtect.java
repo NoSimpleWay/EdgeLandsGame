@@ -33,6 +33,6 @@ public class ModuleAttributeSelfDamageProtect extends ModuleAttribute {
 	@Override
 	public String get_descr()
 	{
-		return 	"Уменьшает вред от использования на "+((level*5)/(level*5+100f)*100f)+"%";
+		return 	"Уменьшает вред от использования на "+((level*2)/(level*2+100f)*100f)+"%";
 	}
 }

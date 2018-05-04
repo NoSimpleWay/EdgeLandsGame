@@ -48,12 +48,12 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 				
 				_w.Attribute_list.add(new WeaponAttributeChaos());
 				
-				_w.base_damage=(float)(Math.random()*15)+7;
+				_w.base_damage=(float)(Math.random()*30)+1;
 				_w.base_dispersion=(float)(Math.random()*90);
 				_w.base_dispersion_additional=(float)(Math.random()*90);
 				
 				_w.base_reload_time=(float)(Math.random()*3);
-				_w.base_shoot_cooldown=(float)(Math.random()*1)+0.2f;
+				_w.base_shoot_cooldown=(float)(Math.random()*2)+0.1f;
 				
 				
 				_w.Available_attribute_list.add(new WeaponAttributeDamage());
@@ -63,6 +63,10 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 				_w.Available_attribute_list.add(new WeaponAttributeClipSize());
 				_w.Available_attribute_list.add(new WeaponAttributeReloadSpeed());
 				
+				_w.Available_attribute_list.add(new WeaponAttributeFireDamage());
+				_w.Available_attribute_list.add(new WeaponAttributeColdDamage());
+				
+				_w.base_missile_count=(int) (Math.random()*10)+1;
 				
 				System.out.println("CHAOS!");
 				
@@ -71,7 +75,7 @@ public class WeaponAttributeChaos extends WeaponAttribute {
 				
 				_w.update_attributes_bonus();
 				
-				_w.total_missile_count=(int) (Math.random()*10)+1;
+				
 			}
 		}
 	}

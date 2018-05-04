@@ -3,6 +3,7 @@ package com.midfag.entity.missiles;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
+import com.midfag.game.Assets;
 
 
 public class MissileChaos extends Missile {
@@ -11,7 +12,7 @@ public class MissileChaos extends Missile {
 	{
 		super(_v, _a, _s, _b);
 		
-		spr.setTexture(new Texture(Gdx.files.internal("missile_chaos.png")));
+		spr.setTexture(Assets.load("missile_chaos"));
 	}
 	
 	@Override

@@ -45,7 +45,7 @@ public class GUISkillsWheel extends GUI {
 		if (!GScreen.show_skills_wheel){remove_this();}
 		if (main_skill_picked)
 		{
-			GScreen.batch_static.draw(Assets.round, skill_x-256, skill_y-256);
+			GScreen.batch_static.draw(Assets.round, skill_x-240, skill_y-240);
 		}
 
 	}

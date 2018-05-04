@@ -13,9 +13,9 @@ public class WeaponSimpleMinigun extends Weapon {
 		{
 			uid="weapon_simple_minigun";
 			
-			base_damage=5;
+			base_damage=10;
 			base_missile_count=1;
-			base_shoot_cooldown=0.05f;
+			base_shoot_cooldown=0.07f;
 			base_dispersion=10;
 			base_dispersion_additional=1;
 			base_ammo_size=100;
@@ -25,7 +25,7 @@ public class WeaponSimpleMinigun extends Weapon {
 			
 			need_warm=3;
 			
-
+			missile_speed=2018;
 			
 			name="Стандартный пулемет";
 			

@@ -279,6 +279,12 @@ public class InputHandler implements InputProcessor {
     		
 
     	}
+    	
+    	if (key==Keys.J)
+    	{
+    		GScreen.show_debug=!GScreen.show_debug;
+    	}
+    	
     	if (key==Keys.I)
     	{
 			GScreen.skills_camera.zoom=1;
@@ -302,7 +308,7 @@ public class InputHandler implements InputProcessor {
     			gui.Button_list.add(new ButtonEquip(530,117,-1));
     			gui.Button_list.add(new ButtonEquip(760,117,-2));
     			
-    			gui.Button_list.add(new ButtonEquip(150,525,-5));
+    			gui.Button_list.add(new ButtonEquip(530,217,-5));
     			
     			for (int i=0; i<2; i++)
     			for (int j=0; j<2; j++)

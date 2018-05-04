@@ -32,6 +32,8 @@ import com.midfag.game.skills.Skill;
 
 public class Entity {
 	
+	public float random_mul_x;
+	public float random_mul_y;
 	//Sprite spr=new Sprite(new Texture(Gdx.files.internal("barrel.png")));
 	public float bonus_attack_speed=1f;
 	public float bonus_reload_speed=1f;
@@ -124,7 +126,7 @@ public class Entity {
 	public boolean have_ability=false;
 	
 	public String id;
-	public String uid;
+	public String uid="entity";
 	
 	public int order=0;
 	
@@ -213,7 +215,8 @@ public class Entity {
 			for (int i=px-path_x; i<=px+path_x; i++)
 			for (int j=py-path_y; j<=py+path_y; j++)
 			{
-				GScreen.path[i][j]=-900;
+				GScreen.path[i][j][0]=-900;
+				GScreen.path[i][j][1]=-900;
 				/*
 				if (GScreen.path[i+1][j]<900){GScreen.path[i+1][j]=700;}
 				if (GScreen.path[i-1][j]<900){GScreen.path[i-1][j]=700;}
@@ -358,9 +361,9 @@ public class Entity {
 				{warm_protect+=Skills_list.get(i).warm_damage_action(this);}
 		}
 		
-		armored_shield.warm+=(_damage/(armored_shield.total_reflect*1f));
+		armored_shield.warm+=(_damage/(armored_shield.total_reflect*0.5f));
 		
-		armored_shield.warm=Math.min(50, armored_shield.warm);
+		armored_shield.warm=Math.min(5, armored_shield.warm);
 		
 		if ((hurt_sound_cooldown<=0)&(_sound))
 		{
@@ -551,7 +554,7 @@ public class Entity {
 						||
 						(
 							(
-									(z+constant_speed_z>=30)
+									(z+constant_speed_z*_d>=30)
 									&&
 									(z<31)
 							)
@@ -559,7 +562,7 @@ public class Entity {
 						||
 						(
 							(
-									(z+constant_speed_z<=30)
+									(z+constant_speed_z*_d<=30)
 									&&
 									(z>29)
 							)
@@ -567,6 +570,7 @@ public class Entity {
 					)
 				{
 					{
+						
 						if (light_source!=null)
 						{
 							light_source.update_light_position(pos.x,pos.y);
@@ -579,14 +583,19 @@ public class Entity {
 						
 					    if (path_x>=0)
 					    {
+					    	Helper.log("UPDATE POSITION!");
 					    	int cluster_x=(int)(pos.x/300f);
 						    int cluster_y=(int)(pos.y/300f);
 						    
-							for (int i=0; i<300; i++)
-							for (int j=0; j<300; j++)
+						    int psx=(int)(pos.x/30.0f);
+						    int psy=(int)(pos.y/30.0f);
+						    
+							for (int i=psy-30; i<psy+30; i++)
+							for (int j=psx-30; j<psx+30; j++)
+							if ((j>=0)&&(j<300)&&(i>=0)&&(i<300))
 							{
-								if (GScreen.path[j][i]<0)
-								{GScreen.path[j][i]=100;}
+								if (GScreen.path[j][i][0]<0){GScreen.path[j][i][0]=300;}
+								if (GScreen.path[j][i][1]<0){GScreen.path[j][i][1]=300;}
 							}
 							
 							
@@ -675,8 +684,8 @@ public class Entity {
 						for (int j=psx-30; j<psx+30; j++)
 						if ((j>=0)&&(j<300)&&(i>=0)&&(i<300))
 						{
-							if (GScreen.path[j][i]<0)
-							{GScreen.path[j][i]=100;}
+							if (GScreen.path[j][i][0]<0){GScreen.path[j][i][0]=100;}
+							if (GScreen.path[j][i][1]<0){GScreen.path[j][i][1]=100;}
 						}
 						
 				for (int x=cluster_x-4; x<=cluster_x+4; x++)
@@ -810,8 +819,8 @@ public class Entity {
 			
 			if (is_AI)
 			{
-				//if (pos.dst(GScreen.pl.pos)<800)
-				//{armored[_i].get_shoot_sound().play((1f-pos.dst(GScreen.pl.pos)/800.0f)*0.15f);}
+				if (pos.dst(GScreen.pl.pos)<800)
+				{armored[_i].get_shoot_sound().play((1f-pos.dst(GScreen.pl.pos)/800.0f)*0.15f);}
 			}
 			else
 			{
@@ -875,6 +884,8 @@ public class Entity {
 			
 			update_calls++;
 
+			if (stuck>0)
+			{stuck-=_d;}
 		
 		rotate_block=false;
 		
@@ -886,6 +897,13 @@ public class Entity {
 			
 			if (armored_module[i]!=null)
 				{armored_module[i].update(this, _d);}
+		}
+		
+		for (int i=0; i<2; i++)
+		{
+			
+			if (armored[i]!=null)
+				{armored[i].update(this, _d);}
 		}
 		some_update(_d);
 		
@@ -959,11 +977,12 @@ public class Entity {
 		
 		if ((armored_shield!=null)&&(armored_shield.value>0))
 		{
-			//if (armored_shield.warm<=0)
-			{armored_shield.value+=armored_shield.total_regen_speed*_d*(1f-armored_shield.warm/50f);}
+			if (armored_shield.warm<=0)
+			{armored_shield.value+=armored_shield.total_regen_speed*_d;}
+			//{armored_shield.value+=armored_shield.total_regen_speed*_d*(1f-armored_shield.warm/50f);}
 			
 			// if (this instanceof EntityHuman) {Helper.log("WARM!");}
-			armored_shield.warm-=_d/2f;
+			armored_shield.warm-=_d;
 			armored_shield.warm=Math.max(0, armored_shield.warm);
 			armored_shield.value=Math.min(armored_shield.total_value, armored_shield.value);
 		}
@@ -993,7 +1012,7 @@ public class Entity {
 		near_object=null;
 		//float spd=(float) (Math.sqrt(mx*mx+my*my));
 		
-
+		
 		if ((mx!=0)||(my!=0))
 		for (int i=0; i<GScreen.Missile_list.size(); i++)
 		{
@@ -1078,6 +1097,9 @@ public class Entity {
 
 			//impulse.scl(Math.max(1f/(near_object.mass/mass+1f),0.9f));
 			stuck=0.1f;
+			random_mul_x=Math.round((float) (Math.random()*2f-1f));
+			random_mul_y=Math.round((float) (Math.random()*2f-1f));
+			
 			//near_object.add_impulse(impulse.x, impulse.y, 0.5f/(near_object.mass/mass+1f));
 			float additive_impulse_x=(impulse.x-near_object.impulse.x);
 			float additive_impulse_y=(impulse.y-near_object.impulse.y);
@@ -1094,6 +1116,8 @@ public class Entity {
 				near_object.impulse.y+=additive_impulse_y*mass/(mass+near_object.mass);
 				impulse.y-=additive_impulse_y*(1f-mass/(mass+near_object.mass));
 			}
+			
+			
 			
 			/*
 			pos.x=GScreen.temp_vector_collision_result.x;

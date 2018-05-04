@@ -53,8 +53,7 @@ public class Main extends Game {
         SysConfig.RegisterModule();
         SysConfig.RegisterModuleAttribute();
         
-        SysConfig.RegisterShield();
-        SysConfig.RegisterShieldAttribute();
+
         
         
         

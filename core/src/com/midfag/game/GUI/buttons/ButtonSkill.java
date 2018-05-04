@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.midfag.game.Assets;
 import com.midfag.game.GScreen;
+import com.midfag.game.Helper;
 import com.midfag.game.InputHandler;
 import com.midfag.game.Main;
 import com.midfag.game.GUI.GUI;
@@ -86,11 +87,36 @@ public class ButtonSkill extends Button {
 	@Override
 	public void second_update(float _d)
 	{
+		if (Math.abs(skill.pos_current.x-skill.pos.x)>_d*400f)
+		{
+			if (skill.pos_current.x>skill.pos.x) {skill.pos_current.x-=_d*400f;}
+			if (skill.pos_current.x<skill.pos.x) {skill.pos_current.x+=_d*400f;}
+		}
+		else
+		{
+			skill.pos_current.x=skill.pos.x;
+		}
 		
+		if (Math.abs(skill.pos_current.y-skill.pos.y)>_d*200f)
+		{
+		if (skill.pos_current.y>skill.pos.y) {skill.pos_current.y-=_d*400f;}
+		if (skill.pos_current.y<skill.pos.y) {skill.pos_current.y+=_d*400f;}
+		}
+		else
+		{
+			skill.pos_current.y=skill.pos.y;
+		}
+		
+		pos.x=skill.pos_current.x;
+		pos.y=skill.pos_current.y;
+		
+
 		if (Gdx.input.isKeyPressed(Keys.ESCAPE))
 		{
 			((GUISkillsWheel)gui).main_skill_picked=false;
 			skill.parent_overlap=false;
+			
+			//if (skill.parent!=null) {skill.reset_current_position();}
 			
 		}
 		is_active=true;
@@ -128,6 +154,8 @@ public class ButtonSkill extends Button {
 									(!skill.parent.child_learned)
 									&&
 									(skill.parent.learned)
+									&&
+									(skill.parent.level>=skill.parent.maxlevel)
 							)
 					)
 				)
@@ -138,6 +166,7 @@ public class ButtonSkill extends Button {
 				}
 				skill.learned=true;
 				
+				
 				skill.learn_action();
 				
 				/*
@@ -146,10 +175,30 @@ public class ButtonSkill extends Button {
 				
 			}
 			
+			if (skill.learned)
+			{
+				skill.level++;
+				
+				if (skill.level>skill.maxlevel)
+				{
+					skill.level=skill.maxlevel;
+				}
+				
+				//Assets.select_sprite.setTexture(Assets.select_texture[skill.level-1]);
+				skill.update_info();
+			}
+			
 			InputHandler.but=-1;
-			if (skill.parent==null)
+			if ((skill.parent==null)&&(!((GUISkillsWheel)gui).main_skill_picked))
 			{
 				((GUISkillsWheel)gui).main_skill_picked=true;
+				Helper.log("LIST SIZE:"+skill.child_list.size());
+				if (skill.child_list.size()>0)
+				{	
+					
+					for (Skill skl:skill.child_list)
+					{skl.reset_current_position();}
+				}
 			
 				((GUISkillsWheel)gui).skill_x=skill.pos.x;
 				((GUISkillsWheel)gui).skill_y=skill.pos.y;
@@ -183,7 +232,8 @@ public class ButtonSkill extends Button {
 
 		if (is_active)
 		{skill.spr.setPosition(pos.x-spr.getWidth()/2,pos.y-spr.getHeight()/2);
-		skill.spr.draw(GScreen.batch_static);}
+		skill.spr.draw(GScreen.batch_static);
+		}
 
 	}
 	
@@ -193,12 +243,24 @@ public class ButtonSkill extends Button {
 		skill.locked=false;
 		skill.spr.setColor(Color.WHITE);
 		
-		
-		if ((!skill.learned)&&(skill.parent!=null)&&(skill.parent.learned))
-		{skill.spr.setColor(Color.GRAY);}
-		if ((!skill.learned)&&(skill.parent!=null)&&(!skill.parent.learned))
+		//if (!is_overlap())
 		{
-			skill.spr.setColor(Color.DARK_GRAY);
+			if ((!skill.learned)&&(skill.parent!=null)&&(skill.parent.level<skill.parent.maxlevel))
+			{
+				skill.spr.setColor(0.5f,0.5f,0.5f,0.75f);
+			}
+			
+			if ((!skill.learned)&&(skill.parent!=null)&&(skill.parent.level<=0))
+			{
+				skill.spr.setColor(0.1f,0.1f,0.1f,0.75f);
+			}
+			
+	
+			
+			
+			
+			if (skill.locked)
+			{skill.spr.setColor(0.2f,0.1f,0.1f,0.5f);}
 		}
 		
 		if ((skill.parent!=null)&&(skill.parent.learned)&&(skill.parent.child_learned)&&(!skill.learned))
@@ -296,7 +358,23 @@ public class ButtonSkill extends Button {
 		if ((skill.learned)&(is_active))
 		{
 
-				Assets.select_sprite.setPosition(skill.pos.x-40,skill.pos.y-40);
+			/*
+				if (skill.level==1) {Assets.select_sprite.setColor(Color.GREEN);}
+				if (skill.level==2) {Assets.select_sprite.setColor(Color.BLUE);}
+				if (skill.level==3) {Assets.select_sprite.setColor(Color.MAGENTA);}
+				if (skill.level==4) {Assets.select_sprite.setColor(Color.ORANGE);}
+				if (skill.level>=5) {Assets.select_sprite.setColor(Color.CYAN);}
+				*/
+				
+			
+			
+				//Assets.select_sprite.setTexture(Assets.select_texture[skill.level-1]);
+				if (skill.level>=skill.maxlevel)
+				{Assets.select_sprite.setColor(Color.WHITE);}
+				else
+				{Assets.select_sprite.setColor(0.6f,0.6f,0.6f,0.6f);}
+				
+				Assets.select_sprite.setPosition(pos.x-78,pos.y-78);
 				Assets.select_sprite.setRotation(rotate);
 				Assets.select_sprite.draw(GScreen.batch_static);
 

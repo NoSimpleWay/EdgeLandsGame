@@ -43,6 +43,7 @@ public class DecorTubeCystern extends DecorStoneWall {
 		
 	}
 	
+	/*
 	public void fill_path()
 	{
 		if (path)
@@ -52,6 +53,6 @@ public class DecorTubeCystern extends DecorStoneWall {
 			GScreen.path[Math.round(pos.x/30f)+j][Math.round(pos.y/30f)+i]=900;
 		}
 	}
-	
+	*/
 
 }

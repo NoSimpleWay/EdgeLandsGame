@@ -3,6 +3,8 @@ package com.midfag.entity.enemies;
 
 
 
+import java.util.Random;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
@@ -24,6 +26,9 @@ public class EntitySpawnTower extends Entity {
 	private float rotate_cooldown;
 	private float body_rotate_cooldown;
 	private float spawn_cooldown=1f;
+	
+	private int bomb_count=0;
+	private float bomb_timer=0.5f;
 	//private int body_rotate;
 	
 	public EntitySpawnTower(Vector2 _v)
@@ -87,13 +92,36 @@ public class EntitySpawnTower extends Entity {
 				float px=100f*GScreen.sinR(sp*80);
 				float py=100f*GScreen.cosR(sp*80);
 				
+				Random rn=new Random();
 				
-				
-				GScreen.add_entity_to_map(new EntityPyra(new Vector2(pos.x+px, pos.y+py)));
+				switch (rn.nextInt(3))
+	        	{
+	        		case 0: GScreen.add_entity_to_map(new EntityPyra(new Vector2(pos.x+px, pos.y+py)));	break;
+	        		case 1: GScreen.add_entity_to_map(new EntitySmiler(new Vector2(pos.x+px, pos.y+py)));	break;
+	        		case 2: GScreen.add_entity_to_map(new EntityRaiderTank(new Vector2(pos.x+px, pos.y+py)));	break;
+	        	}
+				//GScreen.add_entity_to_map(new EntityPyra(new Vector2(pos.x+px, pos.y+py)));
 				
 			}
 			
+			bomb_count=8;
+			
+
 			Gdx.audio.newSound(Gdx.files.internal("data/robo.wav")).play(1f);
+			
+			
+		}
+		
+		if (bomb_count>0)
+		{
+			bomb_timer-=_d;
+			if (bomb_timer<=0)
+			{
+				bomb_timer=0.5f;
+				bomb_count--;
+				GScreen.add_entity_to_map(new EntityMine(new Vector2((float) (GScreen.pl.pos.x+Math.random()*200f-400f), (float) (GScreen.pl.pos.y+Math.random()*200f-400f))));
+			}
+				
 		}
 	}
 	

@@ -22,6 +22,11 @@ public class Assets {
 	
 	public static Texture explosion;
 	
+	public static float trololo_volume=3;
+	
+	public static Sound fall_hit=Gdx.audio.newSound(Gdx.files.internal("data/fall_hit.wav"));
+	
+	public static Sound trololo=Gdx.audio.newSound(Gdx.files.internal("data/trololo.wav"));
 	public static Sound smiler_saw=Gdx.audio.newSound(Gdx.files.internal("data/smiler_saw.wav"));
 	
 	public static Sound shoot00;
@@ -69,9 +74,11 @@ public class Assets {
 	public static Sound door=Gdx.audio.newSound(Gdx.files.internal("data/door.wav"));
 	public static Sound engine_start=Gdx.audio.newSound(Gdx.files.internal("data/engine_start.wav"));
 	
+	public static Texture raider_tank=load ("raider_tank");
 	public static Texture smiler=load ("smiler");
 	public static Sprite skill_wheel=new Sprite(load ("eye"));
-	public static Sprite select_sprite=new Sprite(load ("selected_skill"));
+	public static Texture select_texture[]=new Texture[5];
+	public static Sprite select_sprite=new Sprite(load ("selected_skill0"));
 
 	public static Texture missile;
 	
@@ -87,6 +94,9 @@ public class Assets {
 	public static Texture stone_barak=load ("decor_stone_barak");
 	
 	public static Texture star=load ("star");
+	
+	public static Texture fall=load("fall");
+	public static Texture mine=load("mine");
 	
 	public static Texture planet0=load("planet_00");
 	public static Texture planet1=load("planet_01");
@@ -217,10 +227,10 @@ public class Assets {
 	//public static Texture selected_skill=load ("selected_skill"));
 	
 	public static Texture mech_foot_shadow=load ("foot_shadow");
-	
+
 	//public static Texture 
 	
-	public static Texture shadow=load ("mech/shadow");
+	public static Texture shadow=load ("shadow");
 	
 	public static Texture noise=load ("noise");
 	public static Texture normal_map=load ("normal_map");
@@ -248,13 +258,14 @@ public class Assets {
 	public static Texture decoration_building_00=load ("decoration_building_00_icon");
 	public static Texture decor_building_00_part_00=load ("decoration_building_00_part_00");
 	public static Texture decor_building_00_part_00_icon=load ("decoration_building_00_part_00_icon");
-	public static float battle_music_multiplier=0.15f;
+	public static float battle_music_multiplier=0.05f;
 	
 	public static Texture spawn_tower_light=load("spawn_tower_light");
 	public static Texture spawn_tower=load("spawn_tower");
 	public static Texture spawn_tower_bottom=load("spawn_tower_bottom");
 	private static long smiler_saw_id;
 	public static boolean smiler_saw_play;
+	public static long trololo_id;
 	
 	public Assets()
 	{
@@ -360,17 +371,25 @@ public class Assets {
 		smiler_saw.setLooping(smiler_saw_id, true);
 		smiler_saw.pause();
 		
+		trololo_id=trololo.play(0.0f);
+		trololo.setLooping(trololo_id, true);
+		trololo.pause();
+		
 		music.setLooping(true);
 		music.setVolume(0.25f);
 		music.play();
 	
 		battle_music_00.setLooping(true);
+		battle_music_00.setVolume(0.25f);
+		battle_music_00.play();
+		battle_music_00.pause();
 		
 		/*time_slow_id=time_slow.play();
 		time_slow.setLooping(time_slow_id, true);
 		time_slow.setVolume(time_slow_id, 0.01f);
 		*/
 		
+		//select_sprite.setOrigin(37f, 37f);
 		select_sprite.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		select_sprite.setAlpha(1.0f);
 		
@@ -378,7 +397,8 @@ public class Assets {
 	
 	public static void post_load_assets()
 	{
-		
+		for (int i=0; i<5; i++)
+		{select_texture[i]=load ("selected_skill"+i);}
 		
 		for (int i=0; i<=22; i++)
 		{

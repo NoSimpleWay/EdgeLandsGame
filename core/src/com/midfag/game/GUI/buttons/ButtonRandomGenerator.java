@@ -65,6 +65,11 @@ public class ButtonRandomGenerator extends Button {
 		{
 				InputHandler.but=-1;
 				
+				for (int i=0; i<30; i++)//;
+				{
+					GScreen.pl.inventory[i]=null;
+				}
+				
 				if (egt==EquipGenerationType.MODULE)
 				{
 					/*for (int i=0; i<30; i++)//;
@@ -95,6 +100,7 @@ public class ButtonRandomGenerator extends Button {
 								
 				if (egt==EquipGenerationType.SHIELD)
 				{
+					/*
 					for (int i=0; i<30; i++)//;
 			        {					
 						switch ((int)GScreen.rnd(4))
@@ -105,6 +111,17 @@ public class ButtonRandomGenerator extends Button {
 			        		case 3: GScreen.pl.inventory[i]=new EnergoshieldMirror();		break;
 			        	}
 						((Energoshield) GScreen.pl.inventory[i]).update_attributes_bonus(GScreen.pl);
+					}*/
+					
+					Helper.log("SHIELD LIST SIZE: "+SysConfig.ShieldRegisterer.size());
+					
+					for (int i=0; i<SysConfig.ShieldRegisterer.size(); i++)
+					{
+						Energoshield sh=Helper.get_shield_from_id(SysConfig.ShieldRegisterer.get(i).getClass().getName());
+						sh.generate();
+						sh.update_attributes_bonus(GScreen.pl);
+						GScreen.pl.inventory[i]=sh;
+						
 					}
 					
 				}

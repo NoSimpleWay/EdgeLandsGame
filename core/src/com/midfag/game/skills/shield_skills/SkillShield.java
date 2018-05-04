@@ -16,6 +16,7 @@ public class SkillShield extends Skill {
 	{
 		super();
 		
+		maxlevel=5;
 		pos.x=100;
 		pos.y=100;
 		
@@ -23,20 +24,29 @@ public class SkillShield extends Skill {
 		spr.getTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
 		name="Апгрейд щитов";
-		info=	"+50 ёмкость "+"\n"+
-				"+10 регенерация"+"\n"+
-				"+5 отражение";
+		info=	"+"+50+" ёмкость "+"\n"+
+				"+"+10+" регенерация"+"\n"+
+				"+"+5+" отражение";
 		
 		//skill_a=new SkillShield_A_MoreValue();
 		
 	}
 	
 	@Override
+	public void update_info()
+	{
+		name="Апгрейд щитов";
+		info=	"+"+50*level+" ёмкость "+"\n"+
+				"+"+10*level+" регенерация"+"\n"+
+				"+"+5*level+" отражение";
+	}
+	
+	@Override
 	public void shield_gen_action(Energoshield _e)
 	{
-		_e.total_value+=50;
-		_e.total_regen_speed+=10;
-		_e.total_reflect+=5;
+		_e.total_value+=50*level;
+		_e.total_regen_speed+=10*level;
+		_e.total_reflect+=5*level;
 	}
 	
 	@Override

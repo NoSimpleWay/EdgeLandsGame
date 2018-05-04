@@ -100,7 +100,7 @@ public class Phys {
     		if (( (int)((start.y+(end.y-start.y)*i)/ps)>=0 )&&( (int)((start.y+(end.y-start.y)*i)/ps)<300 ))
     		{
     			
-    			GScreen.path[(int)((start.x+(end.x-start.x)*i)/ps)][(int)((start.y+(end.y-start.y)*i)/ps)]=0;
+    			//GScreen.path[(int)((start.x+(end.x-start.x)*i)/ps)][(int)((start.y+(end.y-start.y)*i)/ps)]=0;
     		}
     		
     	}

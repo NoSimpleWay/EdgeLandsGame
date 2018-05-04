@@ -22,13 +22,13 @@ public class ModuleAttributeMoreBonusAttackSpeed extends ModuleAttribute {
 	public void calculate(ModuleUnit _m)
 	{
 		//System.out.println("CALCULATED");
-		((ModuleUnitOverload)_m).total_shoot_speed+=((ModuleUnitOverload)_m).base_shoot_speed*((_m.level-1f)+0.02f*level);
-		((ModuleUnitOverload)_m).total_self_damage+=((ModuleUnitOverload)_m).base_self_damage*((_m.level-1f)+0.02f*level);;
+		((ModuleUnitOverload)_m).total_shoot_speed+=((ModuleUnitOverload)_m).base_shoot_speed*(0.01f*level);
+		((ModuleUnitOverload)_m).total_self_damage+=((ModuleUnitOverload)_m).base_self_damage*(0.01f*level);;
 	}
 	
 	@Override
 	public String get_descr()
 	{
-		return 	"+"+2f*level+"% ускорение атаки, "+2f*level+"% усиление получаемого урона от модуля";
+		return 	"+"+1f*level+"% ускорение атаки, "+1f*level+"% усиление получаемого урона от модуля";
 	}
 }

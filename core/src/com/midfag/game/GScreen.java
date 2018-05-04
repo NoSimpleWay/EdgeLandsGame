@@ -54,6 +54,10 @@ import com.midfag.game.script.ScriptTimer;
 
 public class GScreen implements Screen {
 	
+	public static int enemy_count=0;
+	public static int plposx;
+	public static int plposy;
+	
 	public static List<Entity> temp_entity_list=new ArrayList<Entity>();
 	public static float battle_music_timer=0;
 	public static boolean enemy_see_player=false;
@@ -102,7 +106,7 @@ public class GScreen implements Screen {
     
     public static ShapeRenderer sr;
     
-	private static final int enemy_gen_count = 10;
+	private static final int enemy_gen_count = 0;
 
     public static CustomSpriteBatch batch;
     public static SpriteBatch batch_static;
@@ -113,8 +117,9 @@ public class GScreen implements Screen {
 	public static int scr_h=700;
 	public static int scr_w=1000;
 	
-    public static float[][] cels=new float[200][200];
-    public static float[][] path=new float[300][300];
+	public static int background_path;
+	public static int main_path;
+    public static float[][][] path=new float[300][300][2];
     public static long[][] path_time=new long[300][300];
     
     public static float light_mask_R[][]=new float[300][300];
@@ -141,6 +146,11 @@ public class GScreen implements Screen {
     
     public static List<String> Timer = new ArrayList<String>();//список пользовательских интерфейсов
     public static List<Float> Timer_value = new ArrayList<Float>();//список пользовательских интерфейсов
+    
+    public static List<String> Timer_max_name = new ArrayList<String>();//список пользовательских интерфейсов
+    public static List<Float> Timer_max = new ArrayList<Float>();//список пользовательских интерфейсов
+    
+    public static float Timer_max_reset_time=0.5f;
     
     public static long saved_timer;
     
@@ -184,6 +194,7 @@ public class GScreen implements Screen {
     public float cooldown;
     public float overlay_cooldown;
     
+    public static boolean show_debug=false;
     public static boolean show_equip=false;
     public static boolean show_skills_wheel=false;
     public static boolean show_edit=false;
@@ -205,7 +216,10 @@ public class GScreen implements Screen {
     public boolean keypress=false;
 
 	private byte path_calculate_mode;
-
+	
+	private int pcv_left=-80;
+	private int pcv_right=-60;
+	
 	private float pixmap_update_cooldown;
 
 	private Texture shadow_texture;
@@ -300,9 +314,11 @@ public class GScreen implements Screen {
     	for (int x=x_min; x<=x_max; x++)
     	for (int y=y_min; y<=y_max; y++)
     	for (int j=0; j<cluster[x][y].Entity_list.size(); j++)
-    	if (cluster[x][y].Entity_list.get(j).z<15)
     	{
-    			Entity e=cluster[x][y].Entity_list.get(j);
+    		Entity e=cluster[x][y].Entity_list.get(j);
+    	if (e.z<15)
+    	{
+    			
 
     			if (e.have_collision)
     			{	temp_vector_collision_result.set
@@ -326,6 +342,7 @@ public class GScreen implements Screen {
 	    				if (dst<min){min=dst;ne=e;}
 	    			}
     			}
+    	}
     	}
     	
     				
@@ -405,11 +422,32 @@ public class GScreen implements Screen {
 	
 	public static void add_timer(String _s)
 	{
-		if (Gdx.input.isKeyPressed(Keys.J))
+		if (show_debug)
 		if (debug_cooldown<=0)
 		{
 			Timer.add(_s);
-			Timer_value.add(Math.round(TimeUtils.timeSinceNanos(saved_timer)/10000f)/100f);
+			float tim=Math.round(TimeUtils.timeSinceNanos(saved_timer)/10000f)/100f;
+			Timer_value.add(tim);
+			
+			boolean founded=false;
+			
+			for (int i=0; i<Timer_max_name.size(); i++)
+			{
+				if (Timer_max_name.get(i).equals(_s))
+				{
+					if (tim>Timer_max.get(i)){Timer_max.set(i, tim);}
+					founded=true;
+				}
+			}
+			
+			if (!founded)
+			{
+				Timer_max.add(tim);
+				Timer_max_name.add(_s);
+			}
+			
+			//Timer_value.add(tim);
+			//if ()
 			saved_timer=TimeUtils.nanoTime();
 		}
 	}
@@ -480,11 +518,15 @@ public class GScreen implements Screen {
     
     	//System.out.println("Object="+_e);
     	
-    	if ((x>0)&&(x<30)&&(y>0)&&(y<30))
+    	if ((x>0)&&(x<30)&&(y>0)&&(y<30)&&(_e!=null))
     	{cluster[x][y].Entity_list.add(_e);}
     	
 
-    	
+    	if ((_e.is_enemy)&&(!_e.is_decor)&&(_e!=null))
+    	{
+    		Helper.log("ENEMY "+_e.getClass().getName()+" x:"+_e.pos.x+" y:"+_e.pos.y);
+    		enemy_count++;
+    	}
     	_e.init("putter");
     	
     	return _e;
@@ -657,7 +699,7 @@ public class GScreen implements Screen {
         for (int i=0; i<300; i++)//;
         for (int j=0; j<300; j++)//;
         {
-        	path[j][i]=100;
+        	path[j][i][main_path]=100;
         }
         
         temp_vectorA=new Vector2(0,0);
@@ -811,6 +853,7 @@ public class GScreen implements Screen {
         
         //Entity_list.add(new DecorStoneBarak(new Vector2(100,200)));
 
+        /*
         for (int i=0; i<100; i++)
         for (int j=0; j<100; j++)
         {
@@ -819,7 +862,7 @@ public class GScreen implements Screen {
         	cels[i][j]=cels[i][j]*cels[i][j]*cels[i][j];
         	
         	if (rnd(100)<=1){cels[i][j]=10;}
-        }
+        }*/
 
         Helper.LoadMap();
         
@@ -995,8 +1038,8 @@ public class GScreen implements Screen {
     	InputHandler.prevx=Gdx.input.getX();
     	InputHandler.prevy=Gdx.input.getY();
     	
-    	int plposx=(int)(camera.position.x/30f);
-    	int plposy=(int)(camera.position.y/30f);
+    	int camplposx=(int)(camera.position.x/30f);
+    	int camplposy=(int)(camera.position.y/30f);
     	
     	
     	if (first_draw) {draw_distance=150; first_draw=false;}
@@ -1011,11 +1054,11 @@ public class GScreen implements Screen {
     	
     	//if (plposx>2000) {Helper.log("WTF");plposx=1000;}
     	
-    	bound_x_left=plposx-draw_distance; if (bound_x_left<0) {bound_x_left=0;}
-    	bound_x_right=plposx+draw_distance; if (bound_x_right>299) {bound_x_right=299;}
+    	bound_x_left=camplposx-draw_distance; if (bound_x_left<0) {bound_x_left=0;}
+    	bound_x_right=camplposx+draw_distance; if (bound_x_right>299) {bound_x_right=299;}
     	
-    	bound_y_down=plposy-draw_distance; if (bound_y_down<0) {bound_y_down=0;}
-    	bound_y_up=plposy+draw_distance; if (bound_y_up>299) {bound_y_up=299;}
+    	bound_y_down=camplposy-draw_distance; if (bound_y_down<0) {bound_y_down=0;}
+    	bound_y_up=camplposy+draw_distance; if (bound_y_up>299) {bound_y_up=299;}
     	
     	//TextureAtlas atlas= new TextureAtlas();
     	
@@ -1071,7 +1114,7 @@ public class GScreen implements Screen {
 					for (int i=bound_y_down; i<bound_y_up; i++)
 					for (int j=bound_x_left; j<bound_x_right; j++)
 			        {
-			        	if (path[j][i]<-250)
+			        	if (path[j][i][main_path]<-250)
 			        	{
 			        		batch_illum.draw(rect_white,j*light_map_size,i*light_map_size,1*light_map_size,1*light_map_size);
 			        	}
@@ -1335,14 +1378,11 @@ public class GScreen implements Screen {
         	
         	if (mis.lifetime>0)
         	{
-	        	
 
-    	    	
 	        	near_dist=99999;
 	        	near_object=null;//w
 	        	Entity near_entity=null;
-	
-	        	
+
 	        	near_entity=get_collision
     			(
 																				//target_entity
@@ -1353,32 +1393,20 @@ public class GScreen implements Screen {
 	    		);
 		    	
 		    	if ((near_entity!=null)&&(!near_entity.need_remove))
-		    	{
-		    		missile_collision_action(mis,near_entity);
-		    		
-		    	}
+		    	{missile_collision_action(mis,near_entity);}
 		    	
-		    	
-    	    	{
-    	    		mis.update(delta);
-    	    		//if (i==0) {Helper.log("LIFETIME="+Missile_list.get(i).lifetime);}
-    	    	}
+    	    	
         	}
-            	
-            
-        	
+        	mis.update(delta);	
 
-
-        if (mis.lifetime>0) {Missile_list.get(i).draw();}
-			
-        
+        	if (mis.lifetime>0) {Missile_list.get(i).draw();}
         }
         
         add_timer("missile_collision_detect");
         
             for (int i=0; i<Missile_list.size();i++)
             {
-            	if (Missile_list.get(i).lifetime<=0)
+            	if (Missile_list.get(i).lifetime<=-1)
             	{
             		Missile_list.remove(i);
             		i--;
@@ -1464,23 +1492,36 @@ public class GScreen implements Screen {
     			            
     			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
     			        	{
-    			        			if (path[fx][fy]>0) {path[fx][fy]=-200;}
+    			        			if (path[fx][fy][main_path]>0) {path[fx][fy][main_path]=-100;}
     			        			
     			        				float dirx=0;
     				        			float diry=0;
     				        			float dir=999.0f;
     				        			
     			        			
-    				        			int mov_dir=1;
-    				        			if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
-    				        			{mov_dir=-0;}
-
-    				        			if ((Math.abs(path[fx][fy-1])<Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy-2])<200)) {diry=-1;}
-    				        			if ((Math.abs(path[fx][fy-1])>Math.abs(path[fx][fy+1]))&&(Math.abs(path[fx][fy+2])<200)) {diry=1;}
+    				        			//int mov_dir=1;
+    				        			//if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
+    				        			//{mov_dir=-0;}
     				        			
-    				        			if ((Math.abs(path[fx-1][fy])<Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx-2][fy])<200)) {dirx=-1;}
-    				        			if ((Math.abs(path[fx-1][fy])>Math.abs(path[fx+1][fy]))&&(Math.abs(path[fx+2][fy])<200)) {dirx=1;}
-    				        			
+    				        			if (e.stuck<=0)
+    				        			{
+    				        				if ((Math.abs(path[fx][fy-1][main_path])<Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy-2][main_path])<200)) {diry=-1;}
+	    				        			if ((Math.abs(path[fx][fy-1][main_path])>Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy+2][main_path])<200)) {diry=1;}
+	    				        			
+	    				        			if ((Math.abs(path[fx-1][fy][main_path])<Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx-2][fy][main_path])<200)) {dirx=-1;}
+	    				        			if ((Math.abs(path[fx-1][fy][main_path])>Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx+2][fy][main_path])<200)) {dirx=1;}
+    				        			}
+    				        			else
+    				        			{
+    				        				dirx=e.random_mul_x;
+    				        				diry=e.random_mul_y;
+    				        			}
+    				        			/*
+    				        			if (Math.abs(path[fx-1][fy+1][main_path])>700) {dirx++; diry--;}
+    				        			if (Math.abs(path[fx+1][fy+1][main_path])>700) {dirx--; diry--;}
+    				        			if (Math.abs(path[fx+1][fy-1][main_path])<700) {dirx--; diry++;}
+    				        			if (Math.abs(path[fx-1][fy-1][main_path])<700) {dirx++; diry++;}
+    				        			*/
     				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
     			        			
     			        			
@@ -1506,7 +1547,7 @@ public class GScreen implements Screen {
           	if (enemy_see_player)
           	{
           		//{Assets.battle_music_00.play();}
-          		if ((battle_music_timer<0.2f)&&(battle_music_timer+real_delta>=0.2f)) {if(!Assets.battle_music_00.isPlaying()) {Assets.battle_music_00.play(); Assets.battle_music_00.setVolume(0.01f);} Helper.log("TRY PLAY BATTLE MUSIC");}
+          		if ((battle_music_timer<0.2f)&&(battle_music_timer+real_delta>=0.2f)) {Assets.battle_music_00.play(); Assets.battle_music_00.setVolume(0.01f); Helper.log("TRY PLAY BATTLE MUSIC");}
           		if ((battle_music_timer>0.2)&&(battle_music_timer<1.2f)){Assets.battle_music_00.setVolume((battle_music_timer-0.2f)*Assets.battle_music_multiplier);}
           		if (battle_music_timer<5) {battle_music_timer+=real_delta;}
           		
@@ -1558,7 +1599,7 @@ public class GScreen implements Screen {
     	           }*/
     	            e.update_calls=0;
     	            	
-    	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); e.pre_death_action(false);  i--;}
+    	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); e.pre_death_action(false);  i--; if (e.is_enemy) {enemy_count--;}}
     	            	//else
     	            	//if ((!e.hidden)&&(!e.is_decor)&&(e.need_change_cluster))
     	            	//{
@@ -1634,6 +1675,41 @@ public class GScreen implements Screen {
           	
           	add_timer("draw_list");
           	
+          
+          	/*int find_x=(int)(InputHandler.posx/30f); 
+          	int find_y=(int)(InputHandler.posy/30f);
+          	int find_iteration=0;
+          	batch.setColor(Color.GREEN);
+          	for (;;)
+          	{
+          		find_iteration++;
+          		if (find_x<1) {find_x=1;}
+          		if (find_x>297) {find_x=297;}
+          		
+          		if (find_y<1) {find_y=1;}
+          		if (find_y>297) {find_y=297;}
+          		
+          		if (path[find_x][find_y][main_path]>0)
+          		{
+          			if (Math.abs(path[find_x][find_y+1][main_path])<Math.abs(path[find_x][find_y-1][main_path])) {find_y++;}
+          			if (Math.abs(path[find_x][find_y+1][main_path])>Math.abs(path[find_x][find_y-1][main_path])) {find_y--;}
+          			
+          			if (Math.abs(path[find_x+1][find_y][main_path])<Math.abs(path[find_x-1][find_y][main_path])) {find_x++;}
+          			if (Math.abs(path[find_x+1][find_y][main_path])>Math.abs(path[find_x-1][find_y][main_path])) {find_x--;}
+          			
+          		}
+          		
+          		batch.draw(Assets.rect_white, find_x*30f, find_y*30f,30,30);
+          		
+          		
+          		
+          		if ((path[find_x][find_y][main_path]>=300)||(path[find_x][find_y][main_path]<10)||(find_iteration>150)) {break;}
+          	}
+          	
+          	batch.setColor(Color.WHITE);
+      		Main.font_big.setColor(Color.RED);
+      		Main.font_big.draw(batch, "!"+find_iteration, InputHandler.posx+15, InputHandler.posy);
+          	*/
         	//batch.end();
   		
 		batch.end();
@@ -1692,9 +1768,11 @@ public class GScreen implements Screen {
 		add_timer("draw_FBO");
 
 
-	    plposx=(int)(pl.pos.x/path_cell);
+	   /*
+	    * plposx=(int)(pl.pos.x/path_cell);
 	    plposy=(int)(pl.pos.y/path_cell);
-	    
+	    *
+	    */
 	    time++;
 		
 
@@ -1810,6 +1888,7 @@ public class GScreen implements Screen {
 		 		sr.end();
 			
  		}
+ 		
 
  		
  		
@@ -1913,27 +1992,33 @@ public class GScreen implements Screen {
 		
 	   //for (int k=0; k<3; k++)
 		
-		 for (int i=plposy-50; i<plposy+50; i++)
-		 for (int j=plposx-50; j<plposx+50; j++)
+		 for (int i=plposy-81; i<plposy+81; i++)
+		 for (int j=plposx-81; j<plposx+81; j++)
 		 		if ((i>0)&&(i<299)&&(j>0)&&(j<299))
 		 		{
 		 		
 
 		 					sr.setColor(0,1,0,0.1f);
-			 					/*
-			 					if (path[j][i]>0)
-			 		 			{
-			 		 	 			sr.setColor((1-path[j][i]/50f)*1,(1-path[j][i]/50f)*1.0f,(1-path[j][i]/50f)*1.0f,0.5f);
-			 		 			}
-			 		 			*/
 			 					
-			 					if (path[j][i]==0)
+			 					if (path[j][i][main_path]>0)
+			 		 			{
+			 						float path_cell_color=(1-path[j][i][main_path]/150f)*1.0f;
+			 						
+			 						if (path[j][i][main_path]<50) {sr.setColor(0,path_cell_color,0,0.5f);}
+			 						else
+			 						if (path[j][i][main_path]<100) {sr.setColor(path_cell_color,path_cell_color,0,0.5f);}
+			 						else
+			 						{sr.setColor(path_cell_color,0,0,0.5f);}
+			 		 			}
+			 		 			
+			 					
+			 					if (path[j][i][main_path]==0)
 			 		 			{
 			 		 	 			sr.setColor(1,1,1,0.5f);
 			 		 			}
 			 		 			
 			 					
-			 					if (path[j][i]<0)
+			 					if (path[j][i][main_path]<0)
 			 					{
 			 						sr.setColor(1,0,0,0.25f);
 			 					}
@@ -1959,8 +2044,8 @@ public class GScreen implements Screen {
 				Main.font.getData().setScale(0.5f);
 				 	for (int i=plposy-51; i<plposy+51; i++)
 					 for (int j=plposx-51; j<plposx+51; j++)
-					 if ((i>0)&&(i<299)&&(j>0)&&(j<299)&&(path[j][i]>=0)&&(path[j][i]<1000))
-					{Main.font.draw(batch, ""+Math.round(path[j][i]), j*30+10f, i*30+15f);}
+					 if ((i>0)&&(i<299)&&(j>0)&&(j<299)&&(path[j][i][main_path]>=0)&&(path[j][i][main_path]<1000))
+					{Main.font.draw(batch, ""+Math.round(path[j][i][main_path]), j*30+10f, i*30+15f);}
 				 Main.font.getData().setScale(1.0f);
 			batch.end();
 			
@@ -1983,14 +2068,14 @@ public class GScreen implements Screen {
 				if (path_calculate_mode==0)
 				{
 					for (int i=plposy-81; i<plposy+81; i++)
-					for (int j=plposx-81; j<plposx+81; j++)
+					for (int j=plposx+pcv_left; j<plposx+pcv_right; j++)
 					if ((i>0)&&(i<299)&&(j>0)&&(j<299))
-					if (path[j][i]>-800)	
+					if (path[j][i][background_path]>-800)	
 					{
 						//if (log) {log=false; Helper.log("WTF clear");}
-						if ((path[j][i]>0)) {path[j][i]+=25;}else {path[j][i]+=100;}
-						if ((path[j][i]>300)) {path[j][i]=300;}
-						if (path[j][i]==0) {path[j][i]=800;}
+						if ((path[j][i][background_path]>0)) {path[j][i][background_path]+=25;}else {path[j][i][background_path]+=100;}
+						if ((path[j][i][background_path]>300)) {path[j][i][background_path]=300;}
+						if (path[j][i][background_path]==0) {path[j][i][background_path]=800;}
 						//if (path[j][i]<=0) {path[j][i]+=80;}
 					}
 				}
@@ -1999,18 +2084,18 @@ public class GScreen implements Screen {
 				
 				if (path_calculate_mode==1)
 					for (int i=plposy-80; i<plposy+80; i++)
-					for (int j=plposx-80; j<plposx+80; j++)
+					for (int j=plposx+pcv_left; j<plposx+pcv_right; j++)
 					if ((i>0)&&(i<299)&&(j>0)&&(j<299))
-					if (path[j][i]>0)
+					if (path[j][i][background_path]>0)
 					{
-						float curpa=path[j][i];
+						float curpa=path[j][i][background_path];
 						float plus=curpa+1;
 						
-						if ((path[j][i+1]>curpa)) {path[j][i+1]=plus;}
-						if ((path[j+1][i]>curpa)) {path[j+1][i]=plus;}
+						if ((path[j][i+1][background_path]>curpa)) {path[j][i+1][background_path]=plus;}
+						if ((path[j+1][i][background_path]>curpa)) {path[j+1][i][background_path]=plus;}
 						
-						if ((path[j][i-1]>curpa)) {path[j][i-1]=plus;}
-						if ((path[j-1][i]>curpa)) {path[j-1][i]=plus;}
+						if ((path[j][i-1][background_path]>curpa)) {path[j][i-1][background_path]=plus;}
+						if ((path[j-1][i][background_path]>curpa)) {path[j-1][i][background_path]=plus;}
 
 						
 					}
@@ -2019,18 +2104,18 @@ public class GScreen implements Screen {
 				if (path_calculate_mode==2)
 				{
 					for (int i=plposy+80; i>plposy-80; i--)
-					for (int j=plposx-80; j<plposx+80; j++)
+					for (int j=plposx+pcv_left; j<plposx+pcv_right; j++)
 					if ((i>0)&&(i<299)&&(j>0)&&(j<299))
-					if (path[j][i]>0)
+					if (path[j][i][background_path]>0)
 					{
-						float curpa=path[j][i];
+						float curpa=path[j][i][background_path];
 						float plus=curpa+1;
 						
-						if ((path[j][i+1]>curpa)) {path[j][i+1]=plus;}
-						if ((path[j+1][i]>curpa)) {path[j+1][i]=plus;}
+						if ((path[j][i+1][background_path]>curpa)) {path[j][i+1][background_path]=plus;}
+						if ((path[j+1][i][background_path]>curpa)) {path[j+1][i][background_path]=plus;}
 						
-						if ((path[j][i-1]>curpa)) {path[j][i-1]=plus;}
-						if ((path[j-1][i]>curpa)) {path[j-1][i]=plus;}
+						if ((path[j][i-1][background_path]>curpa)) {path[j][i-1][background_path]=plus;}
+						if ((path[j-1][i][background_path]>curpa)) {path[j-1][i][background_path]=plus;}
 
 						
 					}
@@ -2040,18 +2125,18 @@ public class GScreen implements Screen {
 					if (path_calculate_mode==3)
 					{
 						for (int i=plposy+80; i>plposy-80; i--)
-						for (int j=plposx+80; j>plposx-80; j--)
+						for (int j=plposx-pcv_left; j>plposx-pcv_right; j--)
 						if ((i>0)&&(i<299)&&(j>0)&&(j<299))
-						if (path[j][i]>0)	
+						if (path[j][i][background_path]>0)	
 						{
-							float curpa=path[j][i];
+							float curpa=path[j][i][background_path];
 							float plus=curpa+1;
 							
-							if ((path[j][i+1]>curpa)) {path[j][i+1]=plus;}
-							if ((path[j+1][i]>curpa)) {path[j+1][i]=plus;}
+							if ((path[j][i+1][background_path]>curpa)) {path[j][i+1][background_path]=plus;}
+							if ((path[j+1][i][background_path]>curpa)) {path[j+1][i][background_path]=plus;}
 							
-							if ((path[j][i-1]>curpa)) {path[j][i-1]=plus;}
-							if ((path[j-1][i]>curpa)) {path[j-1][i]=plus;}
+							if ((path[j][i-1][background_path]>curpa)) {path[j][i-1][background_path]=plus;}
+							if ((path[j-1][i][background_path]>curpa)) {path[j-1][i][background_path]=plus;}
 
 							
 						}
@@ -2060,40 +2145,63 @@ public class GScreen implements Screen {
 				if (path_calculate_mode==4)
 				{
 						for (int i=plposy-80; i<plposy+80; i++)
-						for (int j=plposx+80; j>plposx-80; j--)
+						for (int j=plposx-pcv_left; j>plposx-pcv_right; j--)
 						if ((i>0)&&(i<299)&&(j>0)&&(j<299))
-						if (path[j][i]>0)	
+						if (path[j][i][background_path]>0)	
 						{
-							float curpa=path[j][i];
+							float curpa=path[j][i][background_path];
 							float plus=curpa+1;
 							
-							if ((path[j][i+1]>curpa)) {path[j][i+1]=plus;}
-							if ((path[j+1][i]>curpa)) {path[j+1][i]=plus;}
+							if ((path[j][i+1][background_path]>curpa)) {path[j][i+1][background_path]=plus;}
+							if ((path[j+1][i][background_path]>curpa)) {path[j+1][i][background_path]=plus;}
 							
-							if ((path[j][i-1]>curpa)) {path[j][i-1]=plus;}
-							if ((path[j-1][i]>curpa)) {path[j-1][i]=plus;}
+							if ((path[j][i-1][background_path]>curpa)) {path[j][i-1][background_path]=plus;}
+							if ((path[j-1][i][background_path]>curpa)) {path[j-1][i][background_path]=plus;}
 							
 						
 						
 							
 						}
-						if (path[plposx][plposy]>=0)
-						{path[plposx][plposy]=5;}
+
 				}
 
+				pcv_left+=20;
+				pcv_right+=20;
+				
+				if ((path_calculate_mode==0)&&(pcv_left>=70)){pcv_right=81;}
+				
+				if (pcv_left>=80)
+				{
+					pcv_left=-80;
+					pcv_right=-60;
+					
+					path_calculate_mode++;
+					if (path_calculate_mode==1)
+					{
+						plposx=(int)(pl.pos.x/path_cell);
+					    plposy=(int)(pl.pos.y/path_cell);
+					    
+						if (path[plposx][plposy][background_path]>=0)
+						{path[plposx][plposy][background_path]=5;}
+					}
 
-
+					if (path_calculate_mode>4)
+					{
+						path_calculate_mode=0;
+						
+						if (main_path==0)
+						{main_path=1;
+						background_path=0;}
+						else
+						{main_path=0;
+						background_path=1;}
+						
+						pcv_left=-81;
+						pcv_right=-61;
+					}
+				}
 				
-
-				
-			
-
-				path_calculate_mode++;
-				if (path_calculate_mode>4) {path_calculate_mode=0;}
-				
-				
-				
-				path_cooldown=0.5f;
+				path_cooldown=0.00f;
       		}
       	
 		
@@ -2214,7 +2322,7 @@ public class GScreen implements Screen {
 			Main.font.draw(batch_static, "WARM: "+pl.armored_shield.warm, 17, 170);
 			Main.font.draw(batch_static, "dx: "+InputHandler.dx, 17, 240);
 			
-			float warm_indicate=pl.armored_shield.warm/50f*Assets.panel.getWidth();
+			float warm_indicate=pl.armored_shield.warm/5f*Assets.panel.getWidth();
 			
 			batch_static.draw(Assets.panel, 400, 77);
 			batch_static.setColor(Color.CYAN);
@@ -2251,6 +2359,13 @@ public class GScreen implements Screen {
 		
 		Main.font.setColor(Color.WHITE);
 		Main.font.draw(batch_static, "FPS: "+fps, 17, 30);
+		
+		
+		Main.font_big.setColor(Color.BLACK);
+		Main.font_big.draw(batch_static, " оличество противников: "+enemy_count, 16, scr_h-50);
+		
+		Main.font_big.setColor(Color.WHITE);
+		Main.font_big.draw(batch_static, " оличество противников: "+enemy_count, 17, scr_h-49);
 		
 		
 		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
@@ -2497,7 +2612,19 @@ public class GScreen implements Screen {
 		
    		//game.shapeRenderer_static.end();
    			
-   			if (Gdx.input.isKeyPressed(Keys.J))
+        	Timer_max_reset_time-=real_delta;
+        	
+        	if (Timer_max_reset_time<=0)
+        	{
+        		Timer_max_reset_time=3.0f;
+        		
+        		for (int i=0; i<Timer_max.size(); i++)
+        		{
+        			Timer_max.set(i,0f);
+        		}
+        	}
+        	
+   			if (show_debug)
    			{
    				batch_static.begin();
    					batch_static.setColor(0.1f,0.2f,0.3f, 0.9f);
@@ -2513,19 +2640,45 @@ public class GScreen implements Screen {
    						batch_static.draw(Assets.rect_white, scr_w-500, scr_h-i*25-90.5f,500,2);
    					batch_static.setColor(Color.WHITE);
    					
-   					if (Timer_value.get(i)<=1) {Main.font.setColor(Color.WHITE);}
+   					float timer_default=Timer_value.get(i);
+   					if (timer_default<=1) {Main.font.setColor(Color.WHITE);}
    					else
-   					if (Timer_value.get(i)<=1.5) {Main.font.setColor(Color.GREEN);}
+   					if (timer_default<=1.5) {Main.font.setColor(Color.GREEN);}
    					else
-   	   				if (Timer_value.get(i)<=3.0) {Main.font.setColor(Color.SKY);}
+   	   				if (timer_default<=3.0) {Main.font.setColor(Color.YELLOW);}
    	   				else
-   	   				if (Timer_value.get(i)<=4.5) {Main.font.setColor(Color.PINK);}
+   	   				if (timer_default<=4.5) {Main.font.setColor(Color.ORANGE);}
    	   				else
-   	   				if (Timer_value.get(i)<=6.0) {Main.font.setColor(Color.ORANGE);}
+   	   				if (timer_default<=6.0) {Main.font.setColor(Color.RED);}
    	   				else
-   	   				if (Timer_value.get(i)>6.0) {Main.font.setColor(Color.RED);}
+   	   				if (timer_default>6.0) {Main.font.setColor(Color.CYAN);}
+   					
    					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500, scr_h-i*25-75.5f);
    					Main.font.draw(batch_static, ""+Timer_value.get(i), scr_w-100, scr_h-i*25-75.5f);
+   					
+   					for (int k=0; k<Timer_max_name.size(); k++)
+   					{
+   						if (Timer_max_name.get(k).equals(Timer.get(i)))
+   						{
+   							float timer_maximum=Timer_max.get(k);
+   		   					if (timer_maximum<=1) {Main.font.setColor(Color.WHITE);}
+   		   					else
+   		   					if (timer_maximum<=1.5) {Main.font.setColor(Color.GREEN);}
+   		   					else
+   		   	   				if (timer_maximum<=3.0) {Main.font.setColor(Color.YELLOW);}
+   		   	   				else
+   		   	   				if (timer_maximum<=4.5) {Main.font.setColor(Color.ORANGE);}
+   		   	   				else
+   		   	   				if (timer_maximum<=6.0) {Main.font.setColor(Color.RED);}
+   		   	   				else
+   		   	   				if (timer_maximum>6.0) {Main.font.setColor(Color.CYAN);}
+   							Main.font.draw(batch_static, ""+Math.round(Timer_max.get(k)*100f)/100f, scr_w-50, scr_h-i*25-75.5f);
+   							
+   							//float max=Timer_max.get(i)-(Timer_max.get(k)-Timer_value.get(i))/100.0f;
+   							//Timer_max.set(k, max);
+   						}
+   					}
+   					
    					/*
    					Main.font.setColor(Color.WHITE);
    					Main.font.draw(batch_static, "draw delay: "+Timer.get(i), scr_w-500.5f, scr_h-i*25-76);
@@ -2548,19 +2701,19 @@ public class GScreen implements Screen {
 		{
 			float reflect_value=near_entity.armored_shield.total_reflect;
 		
-		float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/mis.damage);//=1-0=1
+			float reflect_chance=Math.max(0.65f, 1.0f-reflect_value/mis.damage);//=1-0=1
 		
-		reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
+			reflect_chance*=1.0f-(reflect_value/(reflect_value+100.0f));//=1*(1-0/100)=1*1=1
 		
-		if ((Math.random()<reflect_chance))
-		{
-			mis.hit_action(near_entity);
-			mis.another_hit_action(near_entity);
-			
-			near_entity.hit_action(mis.damage,true);
-			near_entity.burn_it(mis.fire_damage);
-			near_entity.freeze_it(mis.cold_damage);
-		}
+			if ((Math.random()<reflect_chance))
+			{
+				mis.hit_action(near_entity);
+				mis.another_hit_action(near_entity);
+				
+				near_entity.hit_action(mis.damage,true);
+				near_entity.burn_it(mis.fire_damage);
+				near_entity.freeze_it(mis.cold_damage);
+			}
 		else
 		{
 			for (int k=0; k<near_entity.Skills_list.size(); k++)

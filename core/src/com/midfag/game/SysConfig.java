@@ -65,6 +65,8 @@ public class SysConfig {
 	
 	public static void RegisterShield()
 	{
+		Helper.log("BEGIN SHIELD REGISTERER");
+		ShieldRegisterer.clear();
 		ShieldRegisterer.add(new EnergoshieldSimple());
 		ShieldRegisterer.add(new EnergoshieldFast());
 		ShieldRegisterer.add(new EnergoshieldMirror());
@@ -109,6 +111,8 @@ public class SysConfig {
 		WeaponRegisterer.add(new LegendaryWeaponBlender());
 		WeaponRegisterer.add(new LegendaryWeaponMirrorLaser());
 		WeaponRegisterer.add(new LegendaryWeaponPyroman());
+		
+		WeaponRegisterer.add(new RareWeaponTroll());
 	}
 	
 	public static void RegisterEntity()
@@ -166,7 +170,8 @@ public class SysConfig {
 		EntityRegisterer.add(new EntitySpawnTower(null));
 		
 		EntityRegisterer.add(new EntitySmiler(null));
-		
+		EntityRegisterer.add(new EntityRaiderTank(null));
+		EntityRegisterer.add(new EntityMine(null));
 		for (int i=0; i<EntityRegisterer.size(); i++)
 		{
 			for (int j=i+1; j<EntityRegisterer.size(); j++)
