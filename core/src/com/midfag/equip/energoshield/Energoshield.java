@@ -64,6 +64,11 @@ public class Energoshield {
 		get_available_attribute();
 	}
 	
+	public void update(float _d)
+	{
+		
+	}
+	
 	public void get_available_attribute()
 	{
 		Available_attribute_list.clear();

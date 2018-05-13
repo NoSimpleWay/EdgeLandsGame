@@ -23,6 +23,7 @@ import com.badlogic.gdx.graphics.g2d.CustomSpriteBatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -65,8 +66,8 @@ public class GScreen implements Screen {
 	
 	MySpriteComparator comparator = new MySpriteComparator();
 	
-	public static List<ButtonLayout> layouts = new ArrayList<ButtonLayout>();//_______________________nienie oece?aneeo eeiee
-	public static List<WorldDebug> WD = new ArrayList<WorldDebug>();//_______________________nienie oece?aneeo eeiee
+	public static List<ButtonLayout> layouts = new ArrayList<ButtonLayout>();//_______________________список физических линий
+	public static List<WorldDebug> WD = new ArrayList<WorldDebug>();//_______________________список физических линий
 	
     public static float lightmap_spread_power = 0.15f;
 
@@ -93,7 +94,7 @@ public class GScreen implements Screen {
     public static Boolean need_shadow_update=true;
     public static Boolean need_pixmap_update=true;
     
-    public static Color global_illumination=new Color(0.05f,0.05f,0.05f, 1f);
+    public static Color global_illumination=new Color(0.85f,0.81f,0.82f, 1f);
 
     public int draw_distance;
     
@@ -138,17 +139,17 @@ public class GScreen implements Screen {
     
     public static Cluster[][] cluster=new Cluster[30][30];
     
-    public static List<Phys> Phys_list = new ArrayList<Phys>();//nienie oece?aneeo eeiee
-    public static List<Missile> Missile_list = new ArrayList<Missile>();//nienie nia?yaia
-    public static List<Entity> Entity_list = new ArrayList<Entity>();//nienie nouanoa (IIN, aaei?aoee)
-    public static List<Shd> Shd_list = new ArrayList<Shd>();//nienie neaaia, inoaaeyaiuo nia?yaaie
-    public static List<GUI> GUI_list = new ArrayList<GUI>();//nienie iieuciaaoaeuneeo eioa?oaenia
+    public static List<Phys> Phys_list = new ArrayList<Phys>();//список физических линий
+    public static List<Missile> Missile_list = new ArrayList<Missile>();//список снарядов
+    public static List<Entity> Entity_list = new ArrayList<Entity>();//список существ (НПС, декорации)
+    public static List<Shd> Shd_list = new ArrayList<Shd>();//список следов, оставляемых снарядами
+    public static List<GUI> GUI_list = new ArrayList<GUI>();//список пользовательских интерфейсов
     
-    public static List<String> Timer = new ArrayList<String>();//nienie iieuciaaoaeuneeo eioa?oaenia
-    public static List<Float> Timer_value = new ArrayList<Float>();//nienie iieuciaaoaeuneeo eioa?oaenia
+    public static List<String> Timer = new ArrayList<String>();//список пользовательских интерфейсов
+    public static List<Float> Timer_value = new ArrayList<Float>();//список пользовательских интерфейсов
     
-    public static List<String> Timer_max_name = new ArrayList<String>();//nienie iieuciaaoaeuneeo eioa?oaenia
-    public static List<Float> Timer_max = new ArrayList<Float>();//nienie iieuciaaoaeuneeo eioa?oaenia
+    public static List<String> Timer_max_name = new ArrayList<String>();//список пользовательских интерфейсов
+    public static List<Float> Timer_max = new ArrayList<Float>();//список пользовательских интерфейсов
     
     public static float Timer_max_reset_time=0.5f;
     
@@ -171,7 +172,7 @@ public class GScreen implements Screen {
 
    // public 
 
-    public static List<Entity> Draw_list = new ArrayList<Entity>();//nienie iieuciaaoaeuneeo eioa?oaenia
+    public static List<Entity> Draw_list = new ArrayList<Entity>();//список пользовательских интерфейсов
     
     //public int[] test=new int[1000];
     
@@ -249,15 +250,17 @@ public class GScreen implements Screen {
 
 	public static float time_speed_value;
 	
-	public static FrameBuffer terrain_fbo= new FrameBuffer(Pixmap.Format.RGB888, 1000/1, 700/1, false);
-	public static FrameBuffer entity_fbo= new FrameBuffer(Pixmap.Format.RGB888, 1000/1, 700/1, false);
-	public static FrameBuffer light_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 90, 90, false);
+	public static FrameBuffer terrain_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 1000/1, 700/1, false);
+	public static FrameBuffer entity_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 900/1, 900/1, false);
+	//public static FrameBuffer light_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 90, 90, false);
+	
 	
 	public static final int light_map_size=1;
 	
-	public static FrameBuffer lightmap_offset_mask= new FrameBuffer(Pixmap.Format.RGBA8888, 1000, 700, false);
+	public static FrameBuffer lightmap_offset_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 900/1, 900/1, false);
+	public static FrameBuffer part_lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
 	public static FrameBuffer lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
-	public static FrameBuffer dynamic_lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
+	//public static FrameBuffer dynamic_lightmap_fbo= new FrameBuffer(Pixmap.Format.RGBA8888, 300*light_map_size, 300*light_map_size, false);
 	
 	public static FrameBuffer shadow_fbo= new FrameBuffer(Pixmap.Format.RGB888, 300*light_map_size, 300*light_map_size, false);
 
@@ -273,8 +276,8 @@ public class GScreen implements Screen {
 
 	public static boolean need_static_light_update=true;
 
-	public static int lightmap_blur_pass=1;
-	public static int lightmap_spread_pass=1;
+	public static int lightmap_blur_pass=12;
+	public static int lightmap_spread_pass=12;
 
 	public static boolean chunk_info;
 
@@ -357,9 +360,11 @@ public class GScreen implements Screen {
 		float collision_size_x=_target.collision_size_x+_size;
 		float collision_size_y=_target.collision_size_y+_size;
 		
+		if (_y1<_y2) {collision_size_y*=-1;}
+		if (_x1<_x2) {collision_size_x*=-1;}
 	
 		///
-		
+		/*
 		float dist=_target.pos.y+collision_size_y-_y1;
 		if ((Math.abs(_dx)<999)&&(_target.pos.y+collision_size_y<_y1)&&(_target.pos.y+collision_size_y>_y2)&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<collision_size_x))
 		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y+collision_size_y);}
@@ -381,6 +386,23 @@ public class GScreen implements Screen {
 		dist=_target.pos.x-collision_size_x-_x1;
 		if ((Math.abs(_dy)<999)&&(_target.pos.x-collision_size_x>_x1)&&(_target.pos.x-collision_size_x<_x2)&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<collision_size_y))
 		{return temp_vectorA.set(_target.pos.x-collision_size_x, _y1+dist*_dy);}
+		*/
+		
+		
+		float dist=_target.pos.y+collision_size_y-_y1;
+		if ((Math.abs(_dx)<999)&&((_target.pos.y+collision_size_y<_y1)^(_target.pos.y+collision_size_y<_y2))&&(Math.abs(_target.pos.x-(_x1+dist*_dx))<Math.abs(collision_size_x)))
+		{return temp_vectorA.set(_x1+dist*_dx, _target.pos.y+collision_size_y);}
+		
+		////
+		
+
+		////
+		
+		dist=_target.pos.x+collision_size_x-_x1;
+		if ((Math.abs(_dy)<999)&&((_target.pos.x+collision_size_x<_x1)^(_target.pos.x+collision_size_x<_x2))&&(Math.abs(_target.pos.y-(_y1+dist*_dy))<Math.abs(collision_size_y)))
+		{return temp_vectorA.set(_target.pos.x+collision_size_x, _y1+dist*_dy);}
+		
+		////
 		
 		return temp_vectorA.set(999999, 999999);
 	
@@ -668,8 +690,8 @@ public class GScreen implements Screen {
     	
     	//System.out.println(listener.);
     	
-    	tile_texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-    	terrain_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	//tile_texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	//terrain_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	
         batch = new CustomSpriteBatch();
         //batch.setShader(shader);
@@ -838,7 +860,7 @@ public class GScreen implements Screen {
 
         }
 
-		camera.zoom=50.0f;
+		camera.zoom=1.0f;
 		
 
 		
@@ -859,6 +881,7 @@ public class GScreen implements Screen {
         for (int j=0; j<100; j++)
         {
         	cels[i][j]=rnd(1);
+
         	cels[i][j]=cels[i][j]*cels[i][j]*cels[i][j];
         	
         	if (rnd(100)<=1){cels[i][j]=10;}
@@ -996,6 +1019,7 @@ public class GScreen implements Screen {
     	{
     		lightmap_spread_power+=world_debug_change/10f;
     		GScreen.need_light_update=true;
+
     		
     		if (lightmap_spread_power<0) {lightmap_spread_power=0;}
     		if (lightmap_spread_power>1) {lightmap_spread_power=1;}
@@ -1046,7 +1070,10 @@ public class GScreen implements Screen {
     	{draw_distance=Math.round(camera.zoom*(scr_w/30));}
     	
     	cluster_draw_distance=Math.round(camera.zoom*(scr_w/500f));
-    	if (cluster_draw_distance>12) {cluster_draw_distance=12;}
+    	if (cluster_draw_distance>15)
+    	{
+    		cluster_draw_distance=15;
+    	}
     	
     	if (Gdx.input.isKeyPressed(Keys.K)) draw_distance=5; //{iter=10;}
     	//draw_distance=Math.min(draw_distance, 300);
@@ -1255,9 +1282,9 @@ public class GScreen implements Screen {
 										
 										//Helper.log("PIXMAP UPDATED "+need_pixmap_update);
 									}
-									*/
+									
 									add_timer("pixmap");
-    				
+									 */
 								
     		lightmap_fbo.end();
 	    			//add_timer("get_pixmap");
@@ -1269,7 +1296,6 @@ public class GScreen implements Screen {
     	
     	//pixmap_update_cooldown-=real_delta;
     	
-    	/*
 	    if (need_static_light_update)
 	    {
 	    	need_static_light_update=false;
@@ -1285,7 +1311,7 @@ public class GScreen implements Screen {
 			}
 			
 			add_timer("entity_receive_light");
-	    }*/
+	    }
     	
 		/*======================================*/
     	add_timer("need_light_update_end");
@@ -1294,160 +1320,35 @@ public class GScreen implements Screen {
 
 
 		
-    	 Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
 		
-    	
-    	 if ((Gdx.input.isButtonPressed(1))&&(!show_edit))
-    			//if (InputHandler.but==1)
-    			{
-
-    				float camlen=(float) Math.sqrt((camera_target.pos.x-InputHandler.posx)*(camera_target.pos.x-InputHandler.posx)+(camera_target.pos.y-camera_target.z-InputHandler.posy)*(camera_target.pos.y-camera_target.z-InputHandler.posy));
-    				camlen/=4;
-    				need_zoom=camlen*0.0002f+1;
-    				//camera.zoom=camlen*0.001f+1;
-    			    camera.position.add(-(camera.position.x-camera_target.pos.x+sinR(180-pl.rot)*camlen)/5, -(camera.position.y-camera_target.pos.y+cosR(180-pl.rot)*camlen)/5, 0.0f);
-    			    camera.update();
-    				
-    			}
-    			else
-    			{
-    				float camspeed=2;
-    				if (!main_control){camspeed=5;}
-    				
-    				camera.position.add(-(camera.position.x-camera_target.pos.x)/camspeed, -(camera.position.y-camera_target.z-camera_target.pos.y)/camspeed, 0.0f);
-    				camera.update();
-    			}
-    	
-    	terrain_fbo.begin();
-    	
-		batch.begin();
-	    //Gdx.gl.glBlendEquation(GL20.GL_FUNC_ADD);
-		batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-	      
-		batch.setColor(white);
 		
-		/*
-    	batch.draw(Assets.planet_good0, 5000-18000*243, 5000-18000*243, 36000*243,36000*243);
-    	batch.draw(Assets.planet_good1, 5000-18000*81, 5000-18000*81, 36000*81,36000*81);
-    	batch.draw(Assets.planet_good2, 5000-18000*27, 5000-18000*27, 36000*27,36000*27);
-    	batch.draw(Assets.planet_good3, 5000-18000*9, 5000-18000*9, 36000*9,36000*9);
-    	batch.draw(Assets.planet_good4, 5000-18000*3, 5000-18000*3, 36000*3,36000*3);
-    	batch.draw(Assets.planet_good5, 5000-18000, 5000-18000, 36000,36000);
-    	*/
-    
-    	int terx=(int)(camera.position.x/90f);
-    	int tery=(int)(camera.position.y/90f);
+		
+    	//Gdx.gl.glClearColor(0, 0, 0, 1);
+		//Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
     	
-    	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/160f));
+    	//terrain_fbo.begin();
     	
-    	int terrain_x_left=terx-terrain_draw_distance; if (terrain_x_left<0) {terrain_x_left=0;}
-    	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>99) {terrain_x_right=99;}
-    	
-    	int terrain_y_down=tery-terrain_draw_distance; if (terrain_y_down<0) {terrain_y_down=0;}
-    	int terrain_y_up=tery+terrain_draw_distance; if (terrain_y_up>99) {terrain_y_up=99;}
-
-    	//batch.setColor(global_illumination);
-    	
-    	
-    	
-    	
+		//batch.begin();
+		//batch.enableBlending();
+		//batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+		//batch.setColor(white);
+		
+		//batch.draw(Assets.rect_white, 0, 0, 9000,9000);
     	
     
-
     	
-    	batch.setColor(Color.WHITE);
-    	
-    	wave_time+=real_delta;
-    	for (int i=terrain_y_down; i<=terrain_y_up; i++)
-		for (int j=terrain_x_left; j<=terrain_x_right; j++)
-	 	{
-
-			batch.draw(tile_texture, j*90-45, i*90-45, tile_map_x[j][i], tile_map_y[j][i], 180, 180);
-	 	}
-    	//batch.flush();
-    	
-		add_timer("       draw_tile");
 		
-			
-
-		
-		
-			batch.setColor(Color.WHITE);
-		
-			//Helper.log("COLOR "+Color.WHITE.toFloatBits());
-			batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
-			//for (int i=0; i<25; i++)
-				{batch.draw(lightmap_texture,0,9000,9000,-9000);}
-				//{batch.draw(shadow_texture,0,9000,9000,-9000);}
-		
-			batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-			
-			
-			
-		
-		
-		
-		add_timer("missile_trail");
-		
-		
-
-
-        
-		
-
 	    
 	   // @SuppressWarnings("unused")
-		Phys po=null;
-    	Missile mis=null;
-        for (int i=0; i<Missile_list.size();i++)
-        {
-        	mis=Missile_list.get(i);
-        	
-        	if (mis.lifetime>0)
-        	{
-
-	        	near_dist=99999;
-	        	near_object=null;//w
-	        	Entity near_entity=null;
-
-	        	near_entity=get_collision
-    			(
-																				//target_entity
-					mis.pos.x,mis.pos.y,											//start_point
-					mis.pos.x+mis.sx*mis.speed*delta,mis.pos.y+mis.sy*mis.speed*delta,						//end_point
-					(mis.sx)/(mis.sy),(mis.sy)/(mis.sx),	//dynamic
-					0															//size
-	    		);
-		    	
-		    	if ((near_entity!=null)&&(!near_entity.need_remove))
-		    	{missile_collision_action(mis,near_entity);}
-		    	
-    	    	
-        	}
-        	mis.update(delta);	
-
-        	if (mis.lifetime>0) {Missile_list.get(i).draw();}
-        }
-        
-        add_timer("missile_collision_detect");
-        
-            for (int i=0; i<Missile_list.size();i++)
-            {
-            	if (Missile_list.get(i).lifetime<=-1)
-            	{
-            		Missile_list.remove(i);
-            		i--;
-            	}
-
-            
-            }
+		
+	 	   
 	    
             
 
 		
         add_timer("entity");
         
-        	batch.setColor(Color.WHITE);
+        	//batch.setColor(Color.WHITE);
         
         	if (chunk_info)
         	{
@@ -1464,97 +1365,12 @@ public class GScreen implements Screen {
 		            	Main.font.setColor(Color.WHITE);
 		            	{
 		            		Main.font.draw(batch, e.id.replace("com.midfag.entity", "")+" === "+e.cx+" "+e.cy, x*300, y*300+i*17+30);
-		            		
-		            		
 		            	}
 		            }
 	          	}
         	}
         	
-        	int fx=0;
-            int fy=0;
-
-
-            Entity near_interact=null;
-            float interact_dist=99999f;
-            
-            //Helper.log("UPDATE BEGIN!");
-
-            //batch.begin();
-          	for (int x=cluster_x-8; x<=cluster_x+8; x++)
-          	for (int y=cluster_y-8; y<=cluster_y+8; y++)
-          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-            {
-            	Entity e=cluster[x][y].Entity_list.get(i);
-            	
-            	if (e.update_calls==0)
-    	        {
-            		
-    		    	if ((!e.hidden)&&((!e.is_decor)||(e.is_interact)))
-    		    	{
-    		    		//e.update_data[e.update_calls]="UPDATE DATA X="+x+" Y="+y+" I="+i;
-    		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
-    		    		e.bottom_draw(delta);
-    		    	}
-    		    	
-    		    	if (e.need_change_cluster) {i--; e.need_change_cluster=false;}
-    		    	
-    	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
-    	        	 {
-    	        		 //InputHandler.keyF_release=false;
-    	        		 if (e.pos.dst(pl.pos)<interact_dist)
-    	        		 {
-    	        			 interact_dist=e.pos.dst(pl.pos);
-    	        			 near_interact=e;
-    	        		 } 
-    	        	}
-    	        	 
-    	        	if (e.is_AI)
-    	        	{	
-    	        		if (!e.is_decor)
-    	        		{
-    		        		fx=(int)(e.pos.x/path_cell);
-    			            fy=(int)(e.pos.y/path_cell);
-    			            
-    			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
-    			        	{
-    			        			if (path[fx][fy][main_path]>0) {path[fx][fy][main_path]=-100;}
-    			        			
-    			        				float dirx=0;
-    				        			float diry=0;
-    				        			float dir=999.0f;
-    				        			
-    			        			
-    				        			//int mov_dir=1;
-    				        			//if ((e.target!=null)&&(e.target.pos.dst(e.pos)<528))
-    				        			//{mov_dir=-0;}
-    				        			
-    				        			if (e.stuck<=0)
-    				        			{
-    				        				if ((Math.abs(path[fx][fy-1][main_path])<Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy-2][main_path])<200)) {diry=-1;}
-	    				        			if ((Math.abs(path[fx][fy-1][main_path])>Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy+2][main_path])<200)) {diry=1;}
-	    				        			
-	    				        			if ((Math.abs(path[fx-1][fy][main_path])<Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx-2][fy][main_path])<200)) {dirx=-1;}
-	    				        			if ((Math.abs(path[fx-1][fy][main_path])>Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx+2][fy][main_path])<200)) {dirx=1;}
-    				        			}
-    				        			else
-    				        			{
-    				        				dirx=e.random_mul_x;
-    				        				diry=e.random_mul_y;
-    				        			}
-    				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
-    			        			
-    			        			
-
-    				        		
-    					        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
-    			        	}
-    		        	}
-    	        	}
-            	}
-
-            }
+        	
           
           	
           	if (enemy_see_player_timer>0)
@@ -1584,182 +1400,310 @@ public class GScreen implements Screen {
           		}
           	}
           	
-          	if (near_interact!=null)
-          	{
-       		 if (near_interact.interact_entry_point.equals("#D"))
-       		 {near_interact.default_interact_action(delta); }
-       		 else
-       		 {ScriptSystem.execute(near_interact.interact_entry_point);}
-       		 
-       		 InputHandler.keyF_release=false;
-          	}
-
-    	      		for (int x=cluster_x-8; x<=cluster_x+8; x++)
-    	          	for (int y=cluster_y-8; y<=cluster_y+8; y++)
-    	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
-    	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
-    	            {
-    	            	Entity e=cluster[x][y].Entity_list.get(i);
-    	            	e.update_calls=0;
-    	            	
-    	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); e.pre_death_action(false);  i--; if (e.is_enemy) {enemy_count--;}}
-
-    	            }
-    	      		
-    	      		
-
-    	      		
-          	add_timer("entity_update");
-          	
-          	
-          	
-          	
-		batch.end();
+		//batch.end();
 		
-	    	sr.begin(ShapeType.Filled);
-	    	Gdx.gl.glEnable(GL20.GL_BLEND);
-	 	   for (int i=0; i<Missile_list.size();i++)
-	        {
-	 		   mis=Missile_list.get(i);
-	 		   
-	 		   mis.draw_shd(delta);
-	        }
-	 	   sr.end();
 
-    	terrain_fbo.end();
-    	
-    	
+
+    	//terrain_fbo.end();
+          	
+
+    		batch.begin();
+    		batch.setColor(Color.BLUE);
+    		batch.draw(Assets.rect_white, 0, 0, 9000, 9000);
+    		/*batch.draw(Assets.planet_good0, 5000-18000*243, 5000-18000*243, 36000*243,36000*243);
+        	batch.draw(Assets.planet_good1, 5000-18000*81, 5000-18000*81, 36000*81,36000*81);
+        	batch.draw(Assets.planet_good2, 5000-18000*27, 5000-18000*27, 36000*27,36000*27);
+        	batch.draw(Assets.planet_good3, 5000-18000*9, 5000-18000*9, 36000*9,36000*9);
+        	batch.draw(Assets.planet_good4, 5000-18000*3, 5000-18000*3, 36000*3,36000*3);
+        	batch.draw(Assets.planet_good5, 5000-18000, 5000-18000, 36000,36000);*/
+        	batch.end();
+        	
+        	
+    		terrain_fbo.begin();
+    		//Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+            //Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+    		batch.begin();
+
+    		
+    		Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    			batch.setColor(Color.WHITE);
+    			
+    				int terx=(int)(camera.position.x/90f);
+    		    	int tery=(int)(camera.position.y/90f);
+    		    	
+    		    	int terrain_draw_distance=Math.round(camera.zoom*(scr_w/160f));
+    		    	
+    		    	int terrain_x_left=terx-terrain_draw_distance; if (terrain_x_left<0) {terrain_x_left=0;}
+    		    	int terrain_x_right=terx+terrain_draw_distance; if (terrain_x_right>99) {terrain_x_right=99;}
+    		    	
+    		    	int terrain_y_down=tery-terrain_draw_distance; if (terrain_y_down<0) {terrain_y_down=0;}
+    		    	int terrain_y_up=tery+terrain_draw_distance; if (terrain_y_up>99) {terrain_y_up=99;}
+    		
+    		    	batch.setColor(global_illumination);
+    		    
+    		    	
+    		    	
+    		    	batch.setColor(Color.WHITE);
+    		    	
+    		    	//wave_time+=real_delta;
+
+    		    	
+    		    	for (int i=terrain_y_down; i<=terrain_y_up; i++)
+    				for (int j=terrain_x_left; j<=terrain_x_right; j++)
+    			 	{
+    					batch.draw(tile_texture, j*90, i*90, tile_map_x[j][i], tile_map_y[j][i], 180, 180);
+    			 	}
+    		    	
+    				add_timer("       draw_tile");
+    					//batch.setColor(Color.WHITE);
+    					//batch.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
+    						//{batch.draw(lightmap_texture,0,9000,9000,-9000);}
+    					//batch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    					
+    				add_timer("draw_lightmap");
+    				
+    		    	Missile mis=null;
+    		        for (int i=0; i<Missile_list.size();i++)
+    		        {
+    		        	mis=Missile_list.get(i);
+    		        	
+    		        	if (mis.lifetime>0)
+    		        	{
+
+    			        	near_dist=99999;
+    			        	near_object=null;//w
+    			        	Entity near_entity=null;
+
+    			        	near_entity=get_collision
+    		    			(
+    																						//target_entity
+    							mis.pos.x,mis.pos.y,											//start_point
+    							mis.pos.x+mis.sx*mis.speed*delta,mis.pos.y+mis.sy*mis.speed*delta,						//end_point
+    							(mis.sx)/(mis.sy),(mis.sy)/(mis.sx),	//dynamic
+    							0															//size
+    			    		);
+    				    	
+    				    	if ((near_entity!=null)&&(!near_entity.need_remove))
+    				    	{missile_collision_action(mis,near_entity);}
+    				    	
+    		    	    	
+    		        	}
+    		        	mis.update(delta);	
+
+    		        	if (mis.lifetime>-0.5f) {Missile_list.get(i).draw();}
+    		        }
+    		        
+    		        add_timer("missile_collision_detect");
+    		        
+    		            for (int i=0; i<Missile_list.size();i++)
+    		            {
+    		            	if (Missile_list.get(i).lifetime<=-1)
+    		            	{
+    		            		Missile_list.remove(i);
+    		            		i--;
+    		            	}
+
+    		            
+    		            }
+    		            
+    			    	
+    		batch.end();
+    		
+    		/*sr.begin(ShapeType.Filled);
+    	    	Gdx.gl.glEnable(GL20.GL_BLEND);
+    	    	Gdx.gl.glBlendFunc(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
+    	    	for (int i=0; i<Missile_list.size();i++)
+    	        {
+    	    		sr.setColor(Color.WHITE);
+    	 		   	mis=Missile_list.get(i);
+    	 		   	
+    	 		   	mis.draw_shd(delta);
+    	        }
+     	   sr.end();*/
+     	  terrain_fbo.end();
+          	
+          	
+          	
     	entity_fbo.begin();
-    	Gdx.gl.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
+    	Gdx.gl.glClearColor(0, 0, 0, 0);
+    	Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
     	batch.begin();
-    	batch.setBlendFunction(-1, -1);
-    	Gdx.gl20.glBlendFuncSeparate(Gdx.gl.GL_SRC_ALPHA,Gdx.gl.GL_ONE_MINUS_SRC_ALPHA, Gdx.gl.GL_ONE,Gdx.gl.GL_ONE);
-	    	for (int draw_y=cluster_y+cluster_draw_distance; draw_y>=cluster_y-cluster_draw_distance; draw_y--)
-			{
-				
-				Draw_list.clear();
-				
-		    	for (int draw_x=cluster_x-cluster_draw_distance; draw_x<=cluster_x+cluster_draw_distance; draw_x++)
-		    	if ((draw_x>=0)&&(draw_y>=0)&&(draw_x<30)&&(draw_y<30))
-		    	for (int i=0; i<cluster[draw_x][draw_y].Entity_list.size();i++)
+    	batch.setColor(Color.WHITE);
+    	int fx=0;
+        int fy=0;
+
+
+        Entity near_interact=null;
+        float interact_dist=99999f;
+      	for (int x=cluster_x-8; x<=cluster_x+8; x++)
+      	for (int y=cluster_y-8; y<=cluster_y+8; y++)
+      	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+        for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+        {
+        	Entity e=cluster[x][y].Entity_list.get(i);
+        	
+        	if (e.update_calls==0)
+	        {
+        		
+		    	if ((!e.hidden)&&((!e.is_decor)||(e.is_interact)))
 		    	{
-		    		Entity e=cluster[draw_x][draw_y].Entity_list.get(i);
-		    		
-		    		if (!e.hidden)
-		    		{
-		    			e.draw();
-		    		}
-		    		///
+		    		e.update(delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+		    		e.bottom_draw(delta);
 		    	}
 		    	
-		    	//Helper.log("Y="+draw_y+" size="+Draw_list.size());
-		    	try {Draw_list.sort(comparator);} catch (Exception e) {e.printStackTrace();}
-	
-		         for (int i=0; i<Draw_list.size(); i++)
-		         {
-		        	Entity e=Draw_list.get(i);
-		         	e.draw_action(delta);
-		         	e.effect_draw(delta);
-		         } 
+		    	if (e.need_change_cluster) {i--; e.need_change_cluster=false;}
+		    	
+	        	 if ((e.is_interact)&&(Gdx.input.isKeyPressed(Keys.E))&&(Math.abs(pl.pos.x-GScreen.pl.pos.x)+Math.abs(pl.pos.y-GScreen.pl.pos.y)<80)&&(InputHandler.keyF_release))
+	        	 {
+	        		 if (e.pos.dst(pl.pos)<interact_dist)
+	        		 {
+	        			 interact_dist=e.pos.dst(pl.pos);
+	        			 near_interact=e;
+	        		 } 
+	        	}
+	        	 
+	        	if (e.is_AI)
+	        	{	
+	        		if (!e.is_decor)
+	        		{
+		        		fx=(int)(e.pos.x/path_cell);
+			            fy=(int)(e.pos.y/path_cell);
+			            
+			        	if ((fx>1)&&(fy>1)&&(fx<298)&&(fy<298))
+			        	{
+			        			if (path[fx][fy][main_path]>0) {path[fx][fy][main_path]=-100;}
+			        			
+			        				float dirx=0;
+				        			float diry=0;
+				        			float dir=999.0f;
+				        			
+				        			if (e.stuck<=0)
+				        			{
+				        				if ((Math.abs(path[fx][fy-1][main_path])<Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy-2][main_path])<200)) {diry=-1;}
+    				        			if ((Math.abs(path[fx][fy-1][main_path])>Math.abs(path[fx][fy+1][main_path]))&&(Math.abs(path[fx][fy+2][main_path])<200)) {diry=1;}
+    				        			
+    				        			if ((Math.abs(path[fx-1][fy][main_path])<Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx-2][fy][main_path])<200)) {dirx=-1;}
+    				        			if ((Math.abs(path[fx-1][fy][main_path])>Math.abs(path[fx+1][fy][main_path]))&&(Math.abs(path[fx+2][fy][main_path])<200)) {dirx=1;}
+				        			}
+				        			else
+				        			{
+				        				dirx=e.random_mul_x;
+				        				diry=e.random_mul_y;
+				        			}
+				        			
+				        			if (dirx*diry!=0) {dirx/=1.41f; diry/=1.41f;}
+				        			
+					        	e.add_impulse(e.speed*dirx, e.speed*diry,	delta*(1-e.time_slow_resist)+real_delta*e.time_slow_resist);
+			        	}
+		        	}
+	        	}
+        	}
+
+        }
+      	
+      	if (near_interact!=null)
+      	{
+   		 if (near_interact.interact_entry_point.equals("#D"))
+   		 {near_interact.default_interact_action(delta); }
+   		 else
+   		 {ScriptSystem.execute(near_interact.interact_entry_point);}
+   		 
+   		 InputHandler.keyF_release=false;
+      	}
+      	
+	      		for (int x=cluster_x-8; x<=cluster_x+8; x++)
+	          	for (int y=cluster_y-8; y<=cluster_y+8; y++)
+	          	if ((x>=0)&&(y>=0)&&(x<30)&&(y<30))
+	            for (int i=0; i<cluster[x][y].Entity_list.size();i++)
+	            {
+	            	Entity e=cluster[x][y].Entity_list.get(i);
+	            	e.update_calls=0;
+	            	
+	            	if ((e.need_remove)) {cluster[x][y].Entity_list.remove(i); e.pre_death_action(false);  i--; if (e.is_enemy) {enemy_count--;}}
+	            }
+	      		
+      	add_timer("entity_update");
+
+
+      	for (int draw_y=cluster_y+cluster_draw_distance; draw_y>=cluster_y-cluster_draw_distance; draw_y--)
+		{
+			
+			Draw_list.clear();
+			
+	    	for (int draw_x=cluster_x-cluster_draw_distance; draw_x<=cluster_x+cluster_draw_distance; draw_x++)
+	    	if ((draw_x>=0)&&(draw_y>=0)&&(draw_x<30)&&(draw_y<30))
+	    	for (int i=0; i<cluster[draw_x][draw_y].Entity_list.size();i++)
+	    	{
+	    		Entity e=cluster[draw_x][draw_y].Entity_list.get(i);
+	    		
+	    		if (!e.hidden)
+	    		{
+	    		
+	    			e.draw();
+	    		}
+	    		///
+	    	}
+	    	
+	    	//Helper.log("Y="+draw_y+" size="+Draw_list.size());
+	    	try {
+				Draw_list.sort(comparator);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
-    	batch.end();
-    	entity_fbo.end();
-    	
-    	
-    	lightmap_offset_mask.begin();
-	    	batch.begin();
-	    	Gdx.gl.glClearColor(0.0f, 1.0f, 0.0f, 1.0f);
-	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT | (Gdx.graphics.getBufferFormat().coverageSampling?GL20.GL_COVERAGE_BUFFER_BIT_NV:0));
-		      	batch.setShader(Main.shader_lightmap_offset);
-		      	for (int draw_y=cluster_y+cluster_draw_distance; draw_y>=cluster_y-cluster_draw_distance; draw_y--)
-				{
-					
-					Draw_list.clear();
-					
-			    	for (int draw_x=cluster_x-cluster_draw_distance; draw_x<=cluster_x+cluster_draw_distance; draw_x++)
-			    	if ((draw_x>=0)&&(draw_y>=0)&&(draw_x<30)&&(draw_y<30))
-			    	for (int i=0; i<cluster[draw_x][draw_y].Entity_list.size();i++)
-			    	{
-			    		Entity e=cluster[draw_x][draw_y].Entity_list.get(i);
-			    		
-			    		if (!e.hidden)
-			    		{
-			    			e.draw();
-			    		}
-			    		///
-			    	}
-			    	
-			    	//Helper.log("Y="+draw_y+" size="+Draw_list.size());
-			    	try {Draw_list.sort(comparator);} catch (Exception e) {e.printStackTrace();}
-		
-			         for (int i=0; i<Draw_list.size(); i++)
-			         {
-			        	Entity e=Draw_list.get(i);
-			         	e.draw_offset_mask(delta);
-			         } 
-				}
-		      	batch.setShader(Main.shader_default);
-	      	batch.end();
-      	lightmap_offset_mask.end();
-    	
+	    	
+	         for (int i=0; i<Draw_list.size(); i++)
+	         {
+
+	        	 Entity e=Draw_list.get(i);
+	     		
+	         	e.draw_action(delta);
+	         	e.effect_draw(delta);
+	         } 
+		}
+      	
+      	
+      	
+      	add_timer("draw_list");
 		
 
     	
 		add_timer("terrain_fbo_end");
+		batch.end();
+		entity_fbo.end();
+		
+		/*
+		part_lightmap_fbo.begin();
+			batch.begin();
+				batch.draw(lightmap_texture,0,9000,9000,-9000);
+			batch.end();
+		part_lightmap_fbo.end();
+		*/
+		
+
 		
 		batch_static.begin();
-		
-		
-		if (Gdx.input.isKeyPressed(Keys.H))
-		{batch_static.setShader(Main.shader_bloom);}
-		else
-		{batch_static.setShader(Main.shader_default);}
-		
-		
-		//terrain_fbo.begin();
-		
+
+				if (screen_effect!=null){screen_effect.update(delta, real_delta);}
 			
-		
-			
-				if (screen_effect!=null)
-				{
-					screen_effect.update(delta, real_delta);
-				}
-			
-				batch_static.setColor(Color.WHITE);
-				batch_static.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-				//for (int i=0; i<3; i++)
-				{batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);}
 				
+				batch_static.setColor(Color.WHITE);
+				
+				//for (int i=0; i<3; i++)
+				batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
 				
 				
 				batch_static.setShader(Main.shader_lightmap);
-				
-				
-				
-					Main.shader_lightmap.setUniformf("zoom",camera.zoom);
-					Main.shader_lightmap.setUniformf("x",camera.position.x/9000f);
-					Main.shader_lightmap.setUniformf("y",camera.position.y/9000f);
-					
-					lightmap_offset_mask.getColorBufferTexture().bind(2);
-					Main.shader_lightmap.setUniformi("u_texture3", 2); //passing first texture!!!
-					
-					lightmap_texture.bind(1);
+					part_lightmap_fbo.getColorBufferTexture().bind(1);
 					Main.shader_lightmap.setUniformi("u_texture2", 1); //passing first texture!!!
 					
 					entity_fbo.getColorBufferTexture().bind(0);
-					
-					
+					Main.shader_lightmap.setUniformf("zoom",camera.zoom);
 					Main.shader_lightmap.setUniformi("u_texture", 0); //passing first texture!!!
 					
-					batch_static.setBlendFunction(-1, -1);
-					Gdx.gl20.glBlendFuncSeparate(GL20.GL_ONE, GL20.GL_ONE_MINUS_SRC_ALPHA,GL20.GL_ONE, GL20.GL_DST_ALPHA);
-				{batch_static.draw(entity_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);}
-				//{batch_static.draw(terrain_fbo.getColorBufferTexture(),150,scr_h-15,scr_w,-scr_h);}
+					batch_static.draw(entity_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
 				batch_static.setShader(Main.shader_default);
-				batch_static.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
-				//{batch_static.draw(lightmap_offset_mask.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);}
+				
 				//batch_static.draw(terrain_fbo.getColorBufferTexture(),0,scr_h,scr_w,-scr_h);
 				
 				
@@ -1858,22 +1802,12 @@ public class GScreen implements Screen {
 		    				
 		    				if (temp_vector_collision_result.x<99999)
 		    				{
-		    					
-		    				
 		    						dst=Math.abs(temp_vector_collision_result.x-pl.pos.x)+Math.abs(temp_vector_collision_result.y-pl.pos.y);
 		    						sr.circle(temp_vector_collision_result.x, temp_vector_collision_result.y, 3);
-			    					
-			    					/*batch.begin();
-			    						Main.font_big.draw(batch, ""+dst+ "("+min+")["+counter+"]", temp_vector_collision_result.x+15, temp_vector_collision_result.y);
-			    					batch.end();*/
-			    					
+
 			    				if (dst<min)
 			    				{
-
-			    					
 			    					min=dst;
-			    					
-			    					//Helper.log("TARGET CHANGED "+dst+"|"+counter);
 			    					
 			    					temp_vector.x=temp_vector_collision_result.x;
 			    					temp_vector.y=temp_vector_collision_result.y;	
@@ -2217,7 +2151,7 @@ public class GScreen implements Screen {
     	
         
       
-        //0													o?a	o?e	iea	iei	oun										
+        //0													трд	трл	млд	млн	тыс										
         	//float test_float=	99	999	999	999	999	999	999	999	999	999	999	999	999f;
         	if (show_edit)
         	{
@@ -2292,7 +2226,26 @@ public class GScreen implements Screen {
 		
         
         
-		
+		if ((Gdx.input.isButtonPressed(1))&&(!show_edit))
+		//if (InputHandler.but==1)
+		{
+
+			float camlen=(float) Math.sqrt((camera_target.pos.x-InputHandler.posx)*(camera_target.pos.x-InputHandler.posx)+(camera_target.pos.y-camera_target.z-InputHandler.posy)*(camera_target.pos.y-camera_target.z-InputHandler.posy));
+			camlen/=4;
+			need_zoom=camlen*0.0002f+1;
+			//camera.zoom=camlen*0.001f+1;
+		    camera.position.add(-(camera.position.x-camera_target.pos.x+sinR(180-pl.rot)*camlen)/5, -(camera.position.y-camera_target.pos.y+cosR(180-pl.rot)*camlen)/5, 0.0f);
+		    camera.update();
+			
+		}
+		else
+		{
+			float camspeed=2;
+			if (!main_control){camspeed=5;}
+			
+			camera.position.add(-(camera.position.x-camera_target.pos.x)/camspeed, -(camera.position.y-camera_target.z-camera_target.pos.y)/camspeed, 0.0f);
+			camera.update();
+		}
 		
 		if (true)
 		{
@@ -2321,8 +2274,8 @@ public class GScreen implements Screen {
 					float hp2=pl.armored_shield.value/pl.armored_shield.total_value*100f;
 					float hp3=(hp2-hp1)/2f;
 					
-					Main.font.draw(batch_static, "hp1 "+hp1, 16, 29);
-					Main.font.draw(batch_static, "hp2 "+hp2, 16, 59);
+					//Main.font.draw(batch_static, "hp1 "+hp1, 16, 29);
+					//Main.font.draw(batch_static, "hp2 "+hp2, 16, 59);
 					
 					batch_static.setColor(hp3,hp3,hp3,hp3);
 				}
@@ -2339,17 +2292,17 @@ public class GScreen implements Screen {
 		
 		
 		Main.font.setColor(Color.BLACK);
-		Main.font.draw(batch_static, "FPS: "+fps, 16, 29);
+		Main.font.draw(batch_static, "FPS: "+fps, 60, 29);
 		
 		Main.font.setColor(Color.WHITE);
-		Main.font.draw(batch_static, "FPS: "+fps, 17, 30);
+		Main.font.draw(batch_static, "FPS: "+fps, 61, 30);
 		
 		
 		Main.font_big.setColor(Color.BLACK);
-		Main.font_big.draw(batch_static, "Eiee?anoai i?ioeaieeia: "+enemy_count, 16, scr_h-50);
+		Main.font_big.draw(batch_static, "Количество противников: "+enemy_count, 16, scr_h-50);
 		
 		Main.font_big.setColor(Color.WHITE);
-		Main.font_big.draw(batch_static, "Eiee?anoai i?ioeaieeia: "+enemy_count, 17, scr_h-49);
+		Main.font_big.draw(batch_static, "Количество противников: "+enemy_count, 17, scr_h-49);
 		
 		
 		if (Gdx.input.isKeyPressed(Keys.CONTROL_LEFT))
@@ -2739,7 +2692,6 @@ public class GScreen implements Screen {
 	@Override
     public void resize(int width, int height) {
 
-		
 		Helper.log("RESIZED "+width+"|"+height);
     	scr_w=(int) (width/1.0f);
     	scr_h=(int) (height/1.0f);
@@ -2754,19 +2706,25 @@ public class GScreen implements Screen {
     	camera.position.y=pl.pos.y;
     	
     	terrain_fbo.dispose();
-    	terrain_fbo = new FrameBuffer(Pixmap.Format.RGB888, scr_w, scr_h, false);
+    	terrain_fbo = new FrameBuffer(Pixmap.Format.RGBA8888, scr_w, scr_h, false);
     	terrain_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-    	terrain_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
+    	terrain_fbo.getColorBufferTexture().setWrap(TextureWrap.ClampToEdge, TextureWrap.ClampToEdge);
     	
     	entity_fbo.dispose();
     	entity_fbo = new FrameBuffer(Pixmap.Format.RGBA8888, scr_w, scr_h, false);
     	entity_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	entity_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
     	
-    	lightmap_offset_mask.dispose();
-    	lightmap_offset_mask = new FrameBuffer(Pixmap.Format.RGB888, scr_w, scr_h, false);
-    	lightmap_offset_mask.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
-    	lightmap_offset_mask.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
+    	part_lightmap_fbo.dispose();
+    	part_lightmap_fbo = new FrameBuffer(Pixmap.Format.RGBA8888, scr_w, scr_h, false);
+    	part_lightmap_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	part_lightmap_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
+    	
+    	
+    	lightmap_offset_fbo.dispose();
+    	lightmap_offset_fbo = new FrameBuffer(Pixmap.Format.RGBA8888, scr_w, scr_h, false);
+    	lightmap_offset_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
+    	lightmap_offset_fbo.getColorBufferTexture().setWrap(TextureWrap.MirroredRepeat, TextureWrap.MirroredRepeat);
     	//light_fbo = new FrameBuffer(Pixmap.Format.RGB888, (int)(scr_w/1f), (int)(scr_h/1f), false);
     	//light_fbo.getColorBufferTexture().setFilter(TextureFilter.Linear, TextureFilter.Linear);
     	

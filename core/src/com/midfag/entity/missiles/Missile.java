@@ -16,6 +16,7 @@ import com.midfag.game.GScreen;
 
 
 public class Missile {
+	//public float tail_timer;
 	public Vector2 pos=new Vector2();
 	public float angle;
 	public float speed;
@@ -63,7 +64,7 @@ public class Missile {
 	public Missile(Vector2 _v,float _a, float _s, boolean _b)
 	{
 
-		lifetime=(float)(Math.random()*0.2f)+3.5f;
+		lifetime=(float)(Math.random()*0.2f)+2.5f;
 		pos=_v;
 		angle=_a;
 		speed=_s;
@@ -133,7 +134,7 @@ public class Missile {
 			
 			if (random_anim<=0)
 			{
-				spr.setColor(col);
+				//spr.setColor(col);
 				spr.setPosition(pos.x-spr.getWidth()/2,pos.y-spr.getHeight()/2);
 				spr.setRotation(360-angle/3.14f*180f);
 				spr.draw(GScreen.batch);

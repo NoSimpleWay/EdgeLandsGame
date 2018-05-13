@@ -2,6 +2,7 @@ package com.midfag.entity;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 
 import com.badlogic.gdx.graphics.Texture.TextureFilter;
@@ -286,7 +287,7 @@ public class EntityPlayer extends Entity {
 	public void draw_action(float _d) {
 		
 		float cold_rating=1.0f-buff_cold/(buff_cold+100.0f);
-		spr.setColor(color_multiplier_R*cold_rating, color_multiplier_G*cold_rating, color_multiplier_B, 1);
+		spr.setColor(cold_rating, cold_rating, 1, 1);
 		
 		if (rotate_cooldown<=0)
 		{
@@ -335,39 +336,7 @@ public class EntityPlayer extends Entity {
 
 	}
 	
-	@Override
-	public void some_draw()
-	{
-		spr.setPosition(pos.x-spr.getOriginX(),pos.y-spr.getOriginY());
-		GScreen.Draw_list.add(this);
-		//leg.setSize(10, 50*GScreen.sinR(leg1_anim)/10+40f);
-		/*
-		if (direction==0)
-		{
-			draw_leg_vert(-30,0,-1);
-			draw_leg_vert(15,0,1);
-		}
-		
-		if (direction==1)
-		{
-			draw_leg_horiz(0,15,-1);
-			draw_leg_horiz(0,-15,1);
-		}
-		
-		if (direction==2)
-		{
-			draw_leg_vert(-30,0,1);
-			draw_leg_vert(15,0,-1);
-		}
-		
-		if (direction==3)
-		{
-			draw_leg_horiz(0,15,1);
-			draw_leg_horiz(0,-15,-1);
-		}
-		*/
-
-	}
+	
 	
 
 	

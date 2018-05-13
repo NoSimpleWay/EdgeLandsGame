@@ -613,11 +613,21 @@ public class Entity {
 						    }
 							
 							GScreen.need_shadow_update=true;
-							GScreen.need_light_update=true;
 							
-							if ((light_source!=null)&&(light_source.is_static)){ GScreen.need_static_light_update=true; GScreen.need_pixmap_update=true; }
-							if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
+							GScreen.need_light_update=true;
+							GScreen.need_static_light_update=true;
+							GScreen.need_pixmap_update=true;
+							
+
+							//if (light_source!=null){GScreen.need_light_update=true; GScreen.need_dynamic_light_update=true;}
 					    }
+					    
+						if (light_source!=null)
+						{
+							GScreen.need_light_update=true;
+							GScreen.need_static_light_update=true;
+							GScreen.need_pixmap_update=true;
+						}
 
 					    
 					   
@@ -905,6 +915,10 @@ public class Entity {
 			if (armored[i]!=null)
 				{armored[i].update(this, _d);}
 		}
+		if (armored_shield!=null)
+		{
+			armored_shield.update(_d);
+		}
 		some_update(_d);
 		
 		/*
@@ -1116,40 +1130,8 @@ public class Entity {
 				near_object.impulse.y+=additive_impulse_y*mass/(mass+near_object.mass);
 				impulse.y-=additive_impulse_y*(1f-mass/(mass+near_object.mass));
 			}
-			
-			
-			
-			/*
-			pos.x=GScreen.temp_vector_collision_result.x;
-			pos.y=GScreen.temp_vector_collision_result.y;
-			*/
-			//impulse.x+=near_object.impulse.x/10.0f;
-			//impulse.y+=near_object.impulse.y/10.0f;
-			/*
-			pos.x=near_object.goal_x;
-			pos.y=near_object.goal_y;*/
-			
-			/*
-			move(
-					-GScreen.sinR(near_object.angle)/100f,
-					-GScreen.cosR(near_object.angle)/100f,
-					1f
-				);*/
-			
-			//hit_action(1f,false);
-			
-			//pos.x=near_object.goal_x-GScreen.sinR(near_object.angle);
-			//pos.y=near_object.goal_y-GScreen.cosR(near_object.angle);
-			
-			//System.out.println("###"+near_object.move_block);
 		}
-		
-		
-		
-		//move(cmx,cmy,_d);
-		
 
-		
 		look_cooldown-=_d;
 		
 		impulse.scl((float) Math.pow(friction, _d));
@@ -1271,6 +1253,7 @@ public class Entity {
 		
 		GScreen.batch.setColor(Color.GREEN);
 		GScreen.batch.draw(GScreen.rect_white, pos.x-15, pos.y-40, 30f*armored_shield.value/armored_shield.total_value,10);
+		GScreen.batch.setColor(Color.WHITE);
 	}
 	
 	public void update_color_state()
@@ -1308,9 +1291,9 @@ public class Entity {
 			dynamic_multiplier_G=dynamic_multiplier_R;
 			dynamic_multiplier_B=dynamic_multiplier_R;*/
 			
-	    	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
-	    	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
-	    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
+	    	//color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
+	    	//color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
+	    	//color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
 	    		/*
 	    		float red = ((pxm >> 24) & 0xFF)/255f;
 	    		float green = ((pxm >>16 ) & 0xFF)/255f;
@@ -1329,6 +1312,8 @@ public class Entity {
 
 	public void draw_action(float _d)
 	{
+
+		
 		draw_action(_d, 1f);
 		//Main.font.draw(GScreen.batch, ""+constant_move_y, pos.x, pos.y);
 	}
@@ -1339,50 +1324,44 @@ public class Entity {
 	}
 	
 	public void draw_action(float _d, float _siz) {
-		// TODO Auto-generated method stub
-		
-		//if (!GScreen.show_edit)
-		//{
-		//	float cold_rating=1-buff_cold/(buff_cold+100);
-		//	spr.setColor(cold_rating, cold_rating, 1, 1);
-		//}
+
 		
 		if (!is_decor)
 		{draw_hp();}
-		
-		//Main.font.draw(GScreen.batch, "R "+color_multiplier_R, pos.x, pos.y-20);
-		
-		Color temp_color=spr.getColor();
-		
 
-		/*
-		spr.setColor(0.1f, 0.1f, 0.1f, 0.1f);
-		spr.setScale(_siz, _siz*1.52f);
-		spr.draw(GScreen.batch);*/
-		
-		
+		Color temp_color=spr.getColor();
+
 		if (light_source==null)
 		{spr.setColor(color_total_R,color_total_G,color_total_B,1f);}
 		else
 		{spr.setColor(1,1,1,1f);}
 		
-		if (selected) {spr.setColor(0f, 1f, 0f, 0.9f);}
-		
-		/*spr.getVertices()[12]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);
-		spr.getVertices()[7]=Color.toFloatBits(color_multiplier_R/3f, color_multiplier_G/3f, color_multiplier_B/3f, 1);
-		spr.getVertices()[7]=0;
-		spr.getVertices()[12]=0;
-		spr.getVertices()[17]=0;*/
+		//if (selected) {spr.setColor(0f, 1f, 0f, 0.9f);}
 		
 		spr.setScale(_siz);
 		spr.draw(GScreen.batch);
-		
-		
+
+		GScreen.batch.setColor(Color.WHITE);
+	}
+	
+	
+	public void draw_offset_mask(float _d) {
 		
 
+		float mask_multiplier=(pos.y-GScreen.camera.position.y+350f)/700f;
 		
+		//
 		
+		/*
+		 * small	=95/512=0.18
+		 * big		=249/512=0.48
+		 * 
+		 */
 		
+		spr.setColor(mask_multiplier,1,1,1);
+		spr.draw(GScreen.batch);
+		//spr.setColor(1,1,1,1);
+
 		GScreen.batch.setColor(Color.WHITE);
 	}
 	

@@ -309,7 +309,6 @@ public class ButtonSkill extends Button {
 				Main.shader.setUniformf("uTime", GScreen.wave_time*77);
 		    	Main.shader.setUniformf("zoom",1);
 	        	GScreen.batch_static.draw(Assets.text_bg, info_x-462+GScreen.skills_camera.position.x, info_y-385+300+GScreen.skills_camera.position.y);
-	        	
 	        GScreen.batch_static.setShader(GScreen.batch.getShader());
 	        
 		

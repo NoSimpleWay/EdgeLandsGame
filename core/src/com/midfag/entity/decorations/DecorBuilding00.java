@@ -51,7 +51,7 @@ public class DecorBuilding00 extends Entity {
 		path_x=2;
 		path_y=2;
 		
-		path_offset_y=60;
+		path_offset_y=75;
 		//spr.setOrigin(80.0f, 10f);
 		
 		//shield=999999;

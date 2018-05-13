@@ -538,7 +538,7 @@ public class CustomSpriteBatch implements Batch {
 
 	@Override
 	public void draw (Texture texture, float x, float y, float width, float height) {
-		//if (!drawing) throw new IllegalStateException("SpriteBatch.begin must be called before draw.");
+		if (!drawing) throw new IllegalStateException("SpriteBatch.begin must be called before draw.");
 
 		float[] vertices = this.vertices;
 

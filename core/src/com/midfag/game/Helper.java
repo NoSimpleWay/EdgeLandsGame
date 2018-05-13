@@ -382,12 +382,17 @@ public class Helper {
 			if (!sub_s.equals("no"))
 				{
 					//GScreen.tile_map[j][i]=Integer.parseInt(sub_s);
-					GScreen.tile_map[j][i]=(int) (Math.random()*4);
-					int ty=(int)GScreen.tile_map[j][i]/5;
+					
+					if (Math.random()<0.1)
+					{GScreen.tile_map[j][i]=(int) (Math.random()*4)+5;}
+					else
+					{GScreen.tile_map[j][i]=(int) (Math.random()*3);}
+					
+					int ty=(int)(GScreen.tile_map[j][i]/5f);
 					int tx=GScreen.tile_map[j][i]-ty*5;
 					
-					GScreen.tile_map_x[j][i]=tx*100+1;
-					GScreen.tile_map_y[j][i]=ty*100+1;
+					GScreen.tile_map_x[j][i]=tx*180+1;
+					GScreen.tile_map_y[j][i]=ty*180+1;
 				}
 		}
 		

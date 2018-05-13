@@ -28,7 +28,11 @@ public class Main extends Game {
     public static ShaderProgram shader_time_slow;
     public static ShaderProgram shader;
     
+    //public static ShaderProgram shader_default;
+    
 	public static boolean script_activate=true;
+	public static ShaderProgram shader_lightmap;
+	public static ShaderProgram shader_lightmap_offset;
 	//public static SpriteBatch batch_wheel;
     
 	public Main(boolean _script)
@@ -64,6 +68,7 @@ public class Main extends Game {
         
 	        ShaderProgram.pedantic = false;
 	       
+	        
 			shader=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/d.frag")));
 			if (!shader.isCompiled()) {System.err.println(shader.getLog()); shader=GScreen.batch.getShader();}
 		
@@ -75,6 +80,12 @@ public class Main extends Game {
 			
 			shader_bloom=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/shader_bloom.frag")));
 			if (!shader_bloom.isCompiled()) {System.err.println(shader_bloom.getLog()); shader_bloom=GScreen.batch.getShader();}
+			
+			shader_lightmap=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/lightmap.frag")));
+			if (!shader_lightmap.isCompiled()) {System.err.println(shader_lightmap.getLog()); shader_lightmap=GScreen.batch.getShader();}
+			
+			shader_lightmap_offset=new ShaderProgram(Gdx.files.internal("data/d.vert"),(Gdx.files.internal("data/lightmap_offset.frag")));
+			if (!shader_lightmap.isCompiled()) {System.err.println(shader_lightmap_offset.getLog()); shader_lightmap_offset=GScreen.batch.getShader();}
         
         Texture texture = new Texture(Gdx.files.internal("data/fonts/big.png"));
         texture.setFilter(TextureFilter.Linear, TextureFilter.Linear);// true enables mipmaps

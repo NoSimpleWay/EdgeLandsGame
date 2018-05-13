@@ -72,6 +72,7 @@ public class SysConfig {
 		ShieldRegisterer.add(new EnergoshieldMirror());
 		ShieldRegisterer.add(new EnergoshieldStone());
 		ShieldRegisterer.add(new EnergoshieldRobo());
+		ShieldRegisterer.add(new LegendaryEnergoshieldCup());
 		
 	}
 	
@@ -152,6 +153,7 @@ public class SysConfig {
 		
 		EntityRegisterer.add(new SystemHelper(null));
 		EntityRegisterer.add(new SystemLight(null));
+		EntityRegisterer.add(new SystemLightRandom(null));
 		
 		EntityRegisterer.add(new EntityEliteWheel(null));
 		EntityRegisterer.add(new EntityPyra(null));
