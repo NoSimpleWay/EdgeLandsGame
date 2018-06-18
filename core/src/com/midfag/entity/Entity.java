@@ -655,11 +655,28 @@ public class Entity {
 		int tncx=(int)(_x/300f);
 		int tncy=(int)(_y/300f);
 		
-		if ((tcx!=tncx)||(tcy!=tncy))
+		if (
+				((tcx!=tncx)||(tcy!=tncy))
+				&&
+				(tncx>=0)
+				&&
+				(tncx<30)
+				&&
+				(tncy>=0)
+				&&
+				(tncy<30)
+				&&
+				(tcx>=0)
+				&&
+				(tcx<30)
+				&&
+				(tcy>=0)
+				&&
+				(tcy<30)
+			)
 		{
 				{GScreen.cluster[tcx][tcy].Entity_list.remove(this);
-				GScreen.cluster[tncx][tncy].Entity_list.add(this);}
-				
+				GScreen.cluster[tncx][tncy].Entity_list.add(this);}	
 		}
 		
 		pos.x=_x;
@@ -672,7 +689,7 @@ public class Entity {
 			}
 			else
 			{
-				update_dynamic_color_state();
+				//update_dynamic_color_state();
 				update_color_state();
 			}
 			
@@ -1013,8 +1030,8 @@ public class Entity {
 		/*if (Math.abs(impulse.x)<2){impulse.x=0;}
 		if (Math.abs(impulse.y)<2){impulse.y=0;}*/
 		
-		if (Math.abs(impulse.x)<1f) {impulse.x=0;}
-		if (Math.abs(impulse.y)<1f) {impulse.y=0;}
+		//if (Math.abs(impulse.x)<0.5f) {impulse.x=0;}
+		//if (Math.abs(impulse.y)<0.5f) {impulse.y=0;}
 		
 		float mx=impulse.x*cold_rating;
 		float my=impulse.y*cold_rating;
@@ -1291,9 +1308,9 @@ public class Entity {
 			dynamic_multiplier_G=dynamic_multiplier_R;
 			dynamic_multiplier_B=dynamic_multiplier_R;*/
 			
-	    	//color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
-	    	//color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
-	    	//color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
+	    	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;}
+	    	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
+	    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
 	    		/*
 	    		float red = ((pxm >> 24) & 0xFF)/255f;
 	    		float green = ((pxm >>16 ) & 0xFF)/255f;
@@ -1385,12 +1402,12 @@ public class Entity {
 		// TODO Auto-generated method stub
 		/*dynamic_multiplier_R=1f/(1f+GScreen.path[(int)(pos.x/30)][(int)(pos.y/30-1)]/5f);
 		dynamic_multiplier_G=dynamic_multiplier_R;
-		dynamic_multiplier_B=dynamic_multiplier_R;
+		dynamic_multiplier_B=dynamic_multiplier_R;*/
 		
 		
     	color_total_R=color_multiplier_R+dynamic_multiplier_R; if (color_total_R>1) {color_total_R=1;} 
     	color_total_G=color_multiplier_G+dynamic_multiplier_G; if (color_total_G>1) {color_total_G=1;}
-    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	*/
+    	color_total_B=color_multiplier_B+dynamic_multiplier_B; if (color_total_B>1) {color_total_B=1;}	
 		
 	}
 

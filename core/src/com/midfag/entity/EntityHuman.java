@@ -40,7 +40,7 @@ public class EntityHuman extends Entity {
 		
 		//is_player
 		
-		speed=150;
+		speed=300f;
 		friction=0.01f;
 
 		have_ability=false;

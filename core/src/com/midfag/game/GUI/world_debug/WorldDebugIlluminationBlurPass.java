@@ -3,6 +3,7 @@ package com.midfag.game.GUI.world_debug;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.midfag.game.GScreen;
+import com.midfag.game.Localisation;
 
 public class WorldDebugIlluminationBlurPass extends WorldDebug  {
 
@@ -11,7 +12,7 @@ public class WorldDebugIlluminationBlurPass extends WorldDebug  {
 	@Override
 	public String get_debug_text()
 	{
-		return "illumination_blur_pass="+GScreen.lightmap_blur_pass;
+		return Localisation.get_value_from_id("debug_info_BP")+" "+GScreen.lightmap_blur_pass;
 	}
 	
 	@Override
