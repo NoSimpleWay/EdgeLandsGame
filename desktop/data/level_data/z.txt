@@ -1,7 +1,11 @@
 ###ENTITY
 2b3ddb9a
 pos.x
+<<<<<<< HEAD
 4500
+=======
+4914
+>>>>>>> parent of 362126d... eclipse project setting
 pos.y
 4491
 y
@@ -420,6 +424,7 @@ shield_total_value
 PUT
 
 ###ENTITY
+<<<<<<< HEAD
 016132fe
 pos.x
 4648
@@ -536,6 +541,8 @@ shield_total_value
 PUT
 
 ###ENTITY
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 00da634d
 pos.x
 5052
@@ -3269,15 +3276,24 @@ shield_total_value
 PUT
 
 ###ENTITY
+<<<<<<< HEAD
 df238eb5
 pos.x
 6798
 pos.y
 6831
+=======
+016132fe
+pos.x
+5920
+pos.y
+7085
+>>>>>>> parent of 362126d... eclipse project setting
 y
 0
 angle
 0
+<<<<<<< HEAD
 LightSource
 LiR
 0.01
@@ -3303,6 +3319,116 @@ PUT
 
 ###ENTITY
 df238eb5
+=======
+ArmoredWeapon
+0
+weapon_simple_shotgun
+weapon_rarity
+4
+weapon_level
+1.0
+WeaponAttr
+attr_damage
+weapon_attr_level
+5.0
+WeaponAttrReady
+WeaponReady
+ArmoredWeapon
+1
+weapon_simple_firle
+weapon_rarity
+4
+weapon_level
+1.0
+WeaponAttr
+attr_cold_damage
+weapon_attr_level
+25.0
+WeaponAttrReady
+WeaponReady
+ArmoredModule
+0
+modoverload
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+masdp
+module_attr_level
+26
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+1
+modoverload
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+masdp
+module_attr_level
+26
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+2
+modoverload
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+masdp
+module_attr_level
+26
+ModuleAttrReady
+ModuleReady
+ArmoredModule
+3
+modoverload
+module_rarity
+4
+module_level
+1.0
+ModuleAttr
+masdp
+module_attr_level
+26
+ModuleAttrReady
+ModuleReady
+ArmoredShield
+shsimple
+shield_rarity
+4
+shield_level
+1.0
+ShieldAttr
+val
+shield_attr_level
+3.0
+ShieldAttrReady
+ShieldAttr
+reg
+shield_attr_level
+9.0
+ShieldAttrReady
+ShieldAttr
+refl
+shield_attr_level
+6.0
+ShieldAttrReady
+ShieldReady
+shield_value
+545.0
+shield_total_value
+545.0
+PUT
+
+###ENTITY
+syslight
+>>>>>>> parent of 362126d... eclipse project setting
 pos.x
 7128
 pos.y

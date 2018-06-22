@@ -19,13 +19,21 @@ public class DesktopLauncherWithoutScriptSystem {
 		config.height=700;
 		
 		//System.gc();
+<<<<<<< HEAD
 		config.samples=4;
+=======
+		config.samples=3;
+>>>>>>> parent of 362126d... eclipse project setting
 		config.fullscreen=false;
 		//config.fullscreen=false;
 		//config.foregroundFPS = 90;
 		config.vSyncEnabled = false; // Setting to false disables vertical sync
 		config.foregroundFPS = 80; // Setting to 0 disables foreground fps throttling
 		config.backgroundFPS = 80; // Setting to 0 disables background fps throttling
+<<<<<<< HEAD
+=======
+		config.vSyncEnabled=false;
+>>>>>>> parent of 362126d... eclipse project setting
 		
 		new LwjglApplication(new Main(false), config);
 	}
