@@ -3,14 +3,13 @@ package com.midfag.game.GUI.world_debug;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.midfag.game.GScreen;
-import com.midfag.game.Localisation;
 
 public class WorldDebugIlluminationPower extends WorldDebug  {
 
 	@Override
 	public String get_debug_text()
 	{
-		return Localisation.get_value_from_id("debug_info_LBP")+" "+GScreen.lightmap_spread_power;
+		return "illumination_blur_power="+GScreen.lightmap_spread_power;
 	}
 	
 	@Override

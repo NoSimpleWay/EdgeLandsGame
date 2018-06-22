@@ -3,7 +3,6 @@ package com.midfag.game.GUI.world_debug;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input.Keys;
 import com.midfag.game.GScreen;
-import com.midfag.game.Localisation;
 
 public class WorldDebugIlluminationColorB extends WorldDebug  {
 
@@ -12,7 +11,7 @@ public class WorldDebugIlluminationColorB extends WorldDebug  {
 	@Override
 	public String get_debug_text()
 	{
-		return Localisation.get_value_from_id("debug_info_ILLB")+" "+GScreen.global_illumination.b;
+		return "illumination_B="+GScreen.global_illumination.b;
 	}
 	
 	@Override

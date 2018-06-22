@@ -19,14 +19,13 @@ public class DesktopLauncherWithoutScriptSystem {
 		config.height=700;
 		
 		//System.gc();
-		config.samples=3;
+		config.samples=4;
 		config.fullscreen=false;
 		//config.fullscreen=false;
 		//config.foregroundFPS = 90;
 		config.vSyncEnabled = false; // Setting to false disables vertical sync
 		config.foregroundFPS = 80; // Setting to 0 disables foreground fps throttling
 		config.backgroundFPS = 80; // Setting to 0 disables background fps throttling
-		config.vSyncEnabled=false;
 		
 		new LwjglApplication(new Main(false), config);
 	}

@@ -9,7 +9,7 @@ import com.badlogic.gdx.files.FileHandle;
 public class Localisation {
 	public static List<String> id=new ArrayList< String>();
 	public static List<String> value=new ArrayList< String>();
-	public static String cache_enemy_count;
+	
 	public Localisation()
 	{
 
@@ -37,7 +37,6 @@ public class Localisation {
 			}
 		}
 		
-		cache_enemy_count=get_value_from_id("info_enemy_count");
 		
 	}
 
