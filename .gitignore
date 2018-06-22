@@ -40,6 +40,7 @@ com_crashlytics_export_strings.xml
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 .classpath
@@ -78,6 +79,11 @@ com_crashlytics_export_strings.xml
 .classpath
 .project
 >>>>>>> parent of 362126d... eclipse project setting
+=======
+
+.classpath
+.project
+>>>>>>> parent of 8fb27b0... gitignore
 =======
 
 .classpath
