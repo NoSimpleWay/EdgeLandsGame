@@ -37,6 +37,9 @@ com_crashlytics_export_strings.xml
 
 .classpath
 .project
+<<<<<<< HEAD
+>>>>>>> parent of 362126d... eclipse project setting
+=======
 >>>>>>> parent of 362126d... eclipse project setting
 .metadata/
 /android/bin/
