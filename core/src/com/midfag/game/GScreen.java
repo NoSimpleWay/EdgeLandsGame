@@ -813,8 +813,13 @@ public class GScreen implements Screen {
 		
 		lightmap_camera = new OrthographicCamera();
 <<<<<<< HEAD
+<<<<<<< HEAD
 		lightmap_camera.setToOrtho(false, 300*light_map_size, 300*light_map_size);
 		lightmap_camera.position.set(new Vector3(150*light_map_size,150*light_map_size,0));
+=======
+		lightmap_camera.setToOrtho(false, lightmap_size*lightmap_scale, lightmap_size*lightmap_scale);
+		lightmap_camera.position.set(new Vector3(lightmap_size*lightmap_scale/2.0f,lightmap_size*lightmap_scale/2.0f,0));
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 		lightmap_camera.setToOrtho(false, lightmap_size*lightmap_scale, lightmap_size*lightmap_scale);
 		lightmap_camera.position.set(new Vector3(lightmap_size*lightmap_scale/2.0f,lightmap_size*lightmap_scale/2.0f,0));
@@ -1166,7 +1171,11 @@ public class GScreen implements Screen {
 			        			batch_illum.setColor(e.light_source.R,e.light_source.G,e.light_source.B,1f);
 			        			float po=e.light_source.light_power;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			        			batch_illum.draw(rect_white, (int)(e.pos.x/30f-(po-1f)/2f)*light_map_size, (int)(e.pos.y/30f-(po-1f)/2f)*light_map_size,po*light_map_size, po*light_map_size); 
+=======
+			        			batch_illum.draw(rect_white, (int)(e.pos.x/30f-(po-1f)/2f)*lightmap_scale, (int)(e.pos.y/30f-(po-1f)/2f)*lightmap_scale,po*lightmap_scale, po*lightmap_scale); 
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 			        			batch_illum.draw(rect_white, (int)(e.pos.x/30f-(po-1f)/2f)*lightmap_scale, (int)(e.pos.y/30f-(po-1f)/2f)*lightmap_scale,po*lightmap_scale, po*lightmap_scale); 
 >>>>>>> parent of 362126d... eclipse project setting
@@ -1175,8 +1184,13 @@ public class GScreen implements Screen {
 			        		batch_illum.setColor(1,1,1,1f);
 			        		
 <<<<<<< HEAD
+<<<<<<< HEAD
 			        		batch_illum.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
 			        		batch_illum.draw(shadow_texture, 0, 300*light_map_size,300*light_map_size, -300*light_map_size); 
+=======
+			        		//batch_illum.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
+			        		//batch_illum.draw(shadow_texture, 0, lightmap_size*lightmap_scale,lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale); 
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 			        		//batch_illum.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
 			        		//batch_illum.draw(shadow_texture, 0, lightmap_size*lightmap_scale,lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale); 
@@ -1191,7 +1205,11 @@ public class GScreen implements Screen {
 	    					add_timer("light_source_light_generate");
 	    		 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    		lightmap_fbo.begin();
+=======
+	    		lightmap_fbo_main.begin();
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 	    		lightmap_fbo_main.begin();
 >>>>>>> parent of 362126d... eclipse project setting
@@ -1202,7 +1220,11 @@ public class GScreen implements Screen {
 	    				//batch_illum.setColor(0.1f,0.1f,0.1f,1.0f);
 	    				
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    				for (int k=0; k<lightmap_spread_pass*light_map_size; k++)
+=======
+	    				for (int k=0; k<lightmap_spread_pass*lightmap_scale; k++)
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 	    				for (int k=0; k<lightmap_spread_pass*lightmap_scale; k++)
 >>>>>>> parent of 362126d... eclipse project setting
@@ -1211,24 +1233,34 @@ public class GScreen implements Screen {
 				        	batch_illum.setColor(lightmap_spread_power,lightmap_spread_power,lightmap_spread_power,1.0f);				
 	    				
 <<<<<<< HEAD
+<<<<<<< HEAD
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0+1, 300*light_map_size, 300*light_map_size, -300*light_map_size);
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0-1, 300*light_map_size, 300*light_map_size, -300*light_map_size);
 		    				
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0, 300*light_map_size+0.5f, 300*light_map_size, -300*light_map_size);
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0, 300*light_map_size-0.5f, 300*light_map_size, -300*light_map_size);
 =======
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0+1, lightmap_size*lightmap_scale, lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale);
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0-1, lightmap_size*lightmap_scale, lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale);
 		    				
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0, lightmap_size*lightmap_scale+0.51f, lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale);
 		    				batch_illum.draw(lightmap_fbo.getColorBufferTexture(), 0, lightmap_size*lightmap_scale-0.51f, lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale);
+<<<<<<< HEAD
+>>>>>>> parent of 362126d... eclipse project setting
+=======
 >>>>>>> parent of 362126d... eclipse project setting
 		    				
 			    				batch_illum.setColor(1,1,1,1f);
 				        		
 				        		batch_illum.setBlendFunction(GL20.GL_DST_COLOR, GL20.GL_ZERO);
 <<<<<<< HEAD
+<<<<<<< HEAD
 				        		batch_illum.draw(shadow_texture, 0, 300*light_map_size,300*light_map_size, -300*light_map_size); 
+=======
+				        		batch_illum.draw(shadow_texture, 0, lightmap_size*lightmap_scale,lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale); 
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 				        		batch_illum.draw(shadow_texture, 0, lightmap_size*lightmap_scale,lightmap_size*lightmap_scale, -lightmap_size*lightmap_scale); 
 >>>>>>> parent of 362126d... eclipse project setting
@@ -1241,8 +1273,11 @@ public class GScreen implements Screen {
 			    		batch_illum.draw(rect_white,250,250,50,50);
 	    			batch_illum.end();
 <<<<<<< HEAD
+<<<<<<< HEAD
 	    		lightmap_fbo.end();
 =======
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 	    		lightmap_fbo_main.end();
 	    		
 	    		lightmap_texture=lightmap_fbo.getColorBufferTexture();
@@ -1300,6 +1335,9 @@ public class GScreen implements Screen {
 			    		batch_illum.end();
 			    	lightmap_fbo_main.end();
 			    	lightmap_texture=lightmap_fbo_main.getColorBufferTexture();
+<<<<<<< HEAD
+>>>>>>> parent of 362126d... eclipse project setting
+=======
 >>>>>>> parent of 362126d... eclipse project setting
     				}
     				
@@ -1335,6 +1373,9 @@ public class GScreen implements Screen {
 		    		lightmap_fbo_main.end();
     				
 
+<<<<<<< HEAD
+>>>>>>> parent of 362126d... eclipse project setting
+=======
 >>>>>>> parent of 362126d... eclipse project setting
     			
 									add_timer("blur");

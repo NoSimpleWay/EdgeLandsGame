@@ -2,7 +2,11 @@
 2b3ddb9a
 pos.x
 <<<<<<< HEAD
+<<<<<<< HEAD
 4500
+=======
+4914
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 4914
 >>>>>>> parent of 362126d... eclipse project setting
@@ -541,7 +545,43 @@ shield_total_value
 PUT
 
 ###ENTITY
+<<<<<<< HEAD
 =======
+>>>>>>> parent of 362126d... eclipse project setting
+=======
+syslight
+pos.x
+4752
+pos.y
+4671
+y
+35
+angle
+0
+LightSource
+LiR
+1.0
+LiG
+0.0
+LiB
+0.0
+LiP
+3.0750082
+LightReady
+ArmoredShield
+shrobo
+shield_rarity
+0
+shield_level
+1.0
+ShieldReady
+shield_value
+400.0
+shield_total_value
+400.0
+PUT
+
+###ENTITY
 >>>>>>> parent of 362126d... eclipse project setting
 00da634d
 pos.x
@@ -3277,22 +3317,29 @@ PUT
 
 ###ENTITY
 <<<<<<< HEAD
+<<<<<<< HEAD
 df238eb5
 pos.x
 6798
 pos.y
 6831
 =======
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 016132fe
 pos.x
 5920
 pos.y
 7085
+<<<<<<< HEAD
+>>>>>>> parent of 362126d... eclipse project setting
+=======
 >>>>>>> parent of 362126d... eclipse project setting
 y
 0
 angle
 0
+<<<<<<< HEAD
 <<<<<<< HEAD
 LightSource
 LiR
@@ -3320,6 +3367,8 @@ PUT
 ###ENTITY
 df238eb5
 =======
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 ArmoredWeapon
 0
 weapon_simple_shotgun
