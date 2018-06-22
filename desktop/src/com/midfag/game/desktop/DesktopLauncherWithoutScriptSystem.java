@@ -21,7 +21,11 @@ public class DesktopLauncherWithoutScriptSystem {
 		//System.gc();
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		config.samples=4;
+=======
+		config.samples=3;
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 		config.samples=3;
 >>>>>>> parent of 362126d... eclipse project setting
@@ -36,7 +40,10 @@ public class DesktopLauncherWithoutScriptSystem {
 		config.backgroundFPS = 80; // Setting to 0 disables background fps throttling
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> parent of 362126d... eclipse project setting
 =======
 >>>>>>> parent of 362126d... eclipse project setting
 		config.vSyncEnabled=false;
